@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.login_form{
+    width: 30%;
+    background: linear-gradient(rgb(176, 176, 237),lightblue);
+    padding: 50px;
+    border-radius: 20px;
+    margin-top: 130px;
+}
+#login_btn{
+    width: 100%;
+    background-color: black;
+    border: none;
+
+}
+.signup_form{
+    width: 30%;
+    background: linear-gradient(rgb(176, 176, 237),lightblue);
+    padding: 10px;
+    border-radius: 0px;
+    margin-top: 90px;
+}
