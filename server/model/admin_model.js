@@ -25,6 +25,7 @@ const adminSchema = new mongoose.Schema({
 adminSchema.pre('save' , async function (next) {
     this.password = await bcrypt.hash(this.password , 10);
     next();
+    
 })
 
 const adminCollection = new mongoose.model('adminCollection', adminSchema);
