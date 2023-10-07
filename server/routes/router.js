@@ -1,12 +1,14 @@
 const express = require('express')
-const route = express()
+const route = express.Router()
 const adminCollection = require('../model/admin_model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const secret = process.env.secretKey
+const authenticateJWT = require('../middleware/auth')
 
 route.get('/', (req, res) => {
-    res.render('index')
+    if(!req.cookies.session) return res.redirect('/adminhome/login') 
+    res.render('admin_home')
 })
 
 // route.get('/signup',(req,res) =>{
@@ -41,29 +43,42 @@ route.get('/', (req, res) => {
 // })
 
 
-route.get('/login', (req, res) => {
-    res.render('login');
+route.get('/login',(req, res) => {
+    const key = req.cookies.session;
+    if (key) {
+        res.render('admin_home')
+    }else{
+        res.render('login');
+    }  
 })
-
+//login post//
 route.post('/login_admin', async (req, res) => {
     try {
         const { email, loginpassword } = req.body;
-        const Useremail = await adminCollection.findOne({ email });
+        const adminemail = await adminCollection.findOne({ email });
 
-        if (!Useremail) {
+        if (!adminemail) {
             return res.render('login', { show: true });
         }
-        const passMatch = await bcrypt.compare(loginpassword, Useremail.password);
-        if (!passMatch) return res.status("401").render('login', { alert: true })
-        const token = jwt.sign({ userId: Useremail._id }, secret)
-        return res.cookie('session', token).render('index')
+        const passMatch = await bcrypt.compare(loginpassword, adminemail.password);
+        if (!passMatch) return res.status(401).render('login', { alert: true })
+        const token = jwt.sign({ adminId: adminemail._id }, secret)
+        return res.cookie('session', token).redirect('/adminhome')
     }
-
-
-
     catch (err) {
         res.send(err);
     }
 })
+
+//edit//
+route.get('/')
+
+
+route.get('/products',authenticateJWT,(req,res)=>{
+    res.render('products')
+})
+
+
+
 
 module.exports = route
