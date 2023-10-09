@@ -9,6 +9,9 @@ const bodyparser = require('body-parser')
 const { body , validationResult } =require ("express-validator");
 const parserencoded = bodyparser.urlencoded({ extended: false });
 
+route.use(express.json());
+
+
 
 route.get('/',async (req, res) => {
     if(!req.cookies.session) return res.redirect('/adminhome/login')
@@ -90,14 +93,17 @@ route.put('/update',authenticateJWT, async (req, res) => {
     try{
         const adminId = req.adminId;
         console.log(adminId);
-        console.log(req.body);
-        const updateAdmin = await adminCollection.findByIdAndUpdate({_id:adminId},{$set: req.body });
-        
+        const updateAdmin = await adminCollection.findByIdAndUpdate({_id: adminId},{$set: req.body });
+
+        // console.log(updateAdmin);
 
         if(!updateAdmin){
+            
             return res.status(404).send('User not found')
         }else{
-            res.redirect('/adminhome')
+            console.log('gghfgf')
+            res.redirect(303,'/adminhome')
+            
         }
 
     }catch (err) {

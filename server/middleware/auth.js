@@ -4,6 +4,7 @@ const model = require("../model/admin_model");
 const jwt = require('jsonwebtoken');
 const secret = process.env.secretKey
 
+
 function authenticateJWT(req, res, next) {
 const token = req.cookies.session;
   if (!token) {
