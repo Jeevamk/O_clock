@@ -6,9 +6,10 @@ const bcrypt = require('bcrypt')
 const secret = process.env.secretKey
 const authenticateJWT = require('../middleware/auth')
 
-route.get('/', (req, res) => {
-    if(!req.cookies.session) return res.redirect('/adminhome/login') 
-    res.render('admin_home')
+route.get('/',authenticateJWT,async (req, res) => {
+    if(!req.cookies.session) return res.redirect('/adminhome/login')
+    const admin_detail = await adminCollection.findOne({_id:req.adminId})
+    res.render('admin_home',{admin:admin_detail})
 })
 
 // route.get('/signup',(req,res) =>{
@@ -70,8 +71,13 @@ route.post('/login_admin', async (req, res) => {
     }
 })
 
-//edit//
-route.get('/')
+route.get('/profile', authenticateJWT, (req, res) => {
+    const admin = req.admin;
+    res.render("profile", { admin: admin })
+})
+
+
+
 
 
 route.get('/products',authenticateJWT,(req,res)=>{

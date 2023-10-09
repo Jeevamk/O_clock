@@ -11,11 +11,10 @@ const token = req.cookies.session;
   } else{
     jwt.verify(token, secret , (err, decodedToken) => {
         if (err) return res.status(401).render({ message: ' failed' });
-        req.userId = decodedToken.userId;
+        req.adminId = decodedToken.adminId;
         next();
       });
-  }
-   
+  } 
 }
 
 
