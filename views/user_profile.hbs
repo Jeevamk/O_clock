@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+
+<body>
+    <section>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-dark" href="#" id="logo_img" >O|o' CLOCK</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 " id="navitems">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">{{user.name}}</a>
+                            </li>
+
+                        </ul>
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i>
+
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" href="/userlogin">Login</a>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="/user_sign">Signup</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="">My Profile</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#"><i class="fa-regular fa-heart"></i></a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </section>
+    {{!-- section end --}}
+
+    <section>
+        <div class="container" id="profile_container">
+            <h3 class="text-center p-5">PROFILE INFORMATION</h3>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                    <div class="container  shadow-lg P-5" id="admin_profile">
+                        <div class="col-md-12 text-center">
+                            <img src="/images/profile.png" alt="">
+
+                            <h4>{{user.name}}</h4>
+
+                            <button type="button" class="btn-outline-dark">My Orders</button>
+                            <button type="button" class="btn-outline-dark">My Wishlist</button>
+
+                            <div class="container shadow-lg P-5  mt-5 text-center">
+                                <a href="/delete/{{user._id}}"><button type="button"
+                                        class="btn btn-dark">Delete</button></a>
+                                <a href="/user_logout"><button type="button" class="btn btn-dark">LogOut</button></a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                    <div class="container shadow-lg P-5"
+                        style=" background:linear-gradient(rgb(176, 176, 237),lightblue)">
+                        <form action="" method="">
+                            <div class="mb-4">
+                                <label for="InputName">User Name</label>
+                                <input type="text" class="form-control" id="InputName" placeholder="Enter Name"
+                                    name="name" value="{{user.name}}">
+                            </div>
+                            <div class="mb-4">
+                                <label for="InputName">Email Address</label>
+                                <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email"
+                                    name="email" value="{{user.email}}">
+                            </div>
+                            <div class="mb-4">
+                                <label for="InputName">Phone</label>
+                                <input type="number" class="form-control" id="Inputphone"
+                                    placeholder="Enter Phone number" name="phone" value="{{user.phone}}">
+                            </div>
+                            <div class="mb-4">
+                                <a href="" class="text-danger">Change Password</a>
+                                <a href="" class="text-danger ">Edit</a>
+
+                            </div>
+
+
+
+
+
+                        </form>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

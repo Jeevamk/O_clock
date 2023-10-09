@@ -4,7 +4,9 @@ const dotenv = require('dotenv').config({path:'config.env'});
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
 const path = require('path')
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const { body , validationResult } =require ("express-validator");
+const parserencoded = bodyparser.urlencoded({ extended: false });                                                                                                                       
 
 
 const app = express();
@@ -16,6 +18,7 @@ app.use(morgan('tiny'))
 //parse request to body parser
 app.use(bodyparser.urlencoded({extended:true}))
 app.use(cookieParser())
+
 //view engine
 app.set('view engine','hbs');
 // app.set("views",path.resolve(__dirname,"views/hbs"))

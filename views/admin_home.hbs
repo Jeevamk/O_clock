@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Sidebar 05</title>
+    <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -29,8 +29,8 @@
                         <span class="sr-only">Toggle Menu</span>
                     </button>
                 </div>
-                <div class="p-4">
-                    <h1><a href="" class="logo">O'Clock<span> {{admin.name}}</span></a></h1>
+                <div class="p-5">
+                    <h1><a href="" class="logo">O|o' CLOCK<span> {{admin.name}}</span></a></h1>
                     <ul class="list-unstyled components mb-5">
                         <li class="active">
                             <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
@@ -65,10 +65,12 @@
                         </li>
                     </ul>
 
-                    <div class="mb-4">
-                        <a href="#" id="logout"><span class="fa-solid fa-right-from-bracket mr-3"></span>Logout</a>
+                    <div class="mb-5">
+                        <a href="/adminhome/admin_logout" id="logout"><span
+                                class="fa-solid fa-right-from-bracket mr-3"></span>Logout</a>
 
                     </div>
+
                 </div>
             </nav>
     </section>
@@ -78,7 +80,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+                    <h5 class="modal-title" id="exampleModalToggleLabel">Profile</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -92,120 +94,65 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-dark" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
-                            data-bs-dismiss="modal">Edit</button>
+                        <button type="submit" class="btn btn-dark" data-bs-target="#exampleModalToggle2"
+                            data-bs-toggle="modal" data-bs-dismiss="modal">Edit</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-            tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Hide this modal and show the first with the button below.
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
-                            data-bs-dismiss="modal">Back to first</button>
-                    </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">Edit Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-        </div>
-        <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
-        <!-- Modal -->
-        {{!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="staticBackdropLabel">Admin Profile</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container" id="admin_profile">
-                            <div class="col-md-12 text-center">
-                                <img src="/images/profile.png" alt="">
-                                <h2 style="color: red; font-weight:bolder">Welcome </h1>
-                                    <h4>{{admin.name}}</h4>
-                                    <h5>{{admin.email}}</h5>
-                                    <h5>{{admin.phone}}</h5>
-                                    {{!--
-                            </div> --}}
-
-                            {{!-- <div class="container shadow-lg P-5 text-center"> --}}
-                                <a href="/update" data-bs-toggle="modal" data-bs-target="#staticBackdrops"><button
-                                        type="button" class="btn btn-dark">Edit</button></a>
-                                <a href="/logout"><button type="button" class="btn btn-dark">LogOut</button></a>
-
-                                {{!--
-                            </div> --}}
-
+                <div class="modal-body">
+                    <form id="myForm">
+                        <h3 style="text-align: center; font-family: cursive; font-weight: bold;">Edit Form</h3>
+                        <div class="mb-4">
+                            <input type="text" class="form-control" id="InputName" placeholder="Enter Name" name="name"
+                                value="{{admin.name}}">
                         </div>
-                    </div>
-                </div>
-
-            </div>
-        </div> --}}
-
-        <!-- Modal -->
-        {{!-- <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropsLabel">Login</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container" id="login">
-                            <div class="col-md-6">
-                                <form action="">
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingInput"
-                                            placeholder="name@example.com">
-                                        <label for="floatingInput">Email address</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input type="password" class="form-control" id="floatingPassword"
-                                            placeholder="Password">
-                                        <label for="floatingPassword">Password</label>
-                                    </div>
-                                    <a href="">Forgot Password?</a>
-                                    <div class="pt-3">
-                                        <a href="" class="btn btn-dark">Log In</a>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                            <div class="col-md-6">
-                                <img src="../public/images/login.jpg" alt="login">
-                            </div>
+                        <div class="mb-4">
+                            <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email"
+                                name="email" value="{{admin.email}}">
                         </div>
-                    </div>
-
+                        <div class="mb-4">
+                            <input type="number" class="form-control" id="Inputphone" placeholder="Enter Phone number"
+                                name="phone" value="{{admin.phone}}">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="submitButton" class="btn btn-primary" data-bs-target="#exampleModalToggle"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Save Changes</button>
                 </div>
             </div>
-        </div> --}}
-
-
-        <!-- Page Content  -->
-        <div id="content" class="p-4 p-md-5 pt-5">
         </div>
+    </div>
+    {{#if errors}}
+    <script>
+        alert('{{errors.msg}}')
+    </script>
+    {{/if}}
+
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+
+    </div>
 
 
 
 
-
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/popper.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/main.js"></script>
+    <script src="/js/edit.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

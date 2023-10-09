@@ -12,6 +12,7 @@ const token = req.cookies.session;
     jwt.verify(token, secret , (err, decodedToken) => {
         if (err) return res.status(401).render({ message: ' failed' });
         req.adminId = decodedToken.adminId;
+
         next();
       });
   } 

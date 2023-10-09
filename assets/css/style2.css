@@ -34,11 +34,50 @@
 }
 a{
     text-decoration: none;
+    
 }
 #admin_profile{
     background: linear-gradient(rgb(176, 176, 237), lightblue);
 }
+#user_login{
+    width: 200px;
+    height: auto;
+}
 
-.sign{
-    background-image: url('/assets/images/signup.jpg');
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+
+#profile_container{
+    background-image: url('/assets/images/contact.jpg');
+}
+
+
+#loginrow {
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 12px 12px 22px;
+
+}
+
+.logimg{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    height: 450px;
+}
+
+#logh1{
+    font-size: 3rem;
+    font-weight: 700px;
+}
+
+#logo_img{
+    font-weight: bolder;
+    font-family:serif ;
+    font-size: 30px;
+    
 }

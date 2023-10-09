@@ -5,9 +5,20 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const secret = process.env.secretKey
 const authenticateJWT = require('../middleware/auth')
+const bodyparser = require('body-parser')
+const { body , validationResult } =require ("express-validator");
+const parserencoded = bodyparser.urlencoded({ extended: false });
 
-route.get('/',authenticateJWT,async (req, res) => {
+
+route.get('/',async (req, res) => {
     if(!req.cookies.session) return res.redirect('/adminhome/login')
+    res.redirect('/adminhome/index')
+    // const admin_detail = await adminCollection.findOne({_id:req.adminId})
+    // res.render('admin_home',{admin:admin_detail})
+})
+
+route.get('/index',authenticateJWT,async (req,res)=>{
+    if (!req.cookies.session) return res.redirect('/adminhome/login')
     const admin_detail = await adminCollection.findOne({_id:req.adminId})
     res.render('admin_home',{admin:admin_detail})
 })
@@ -52,7 +63,9 @@ route.get('/login',(req, res) => {
         res.render('login');
     }  
 })
+
 //login post//
+
 route.post('/login_admin', async (req, res) => {
     try {
         const { email, loginpassword } = req.body;
@@ -71,9 +84,38 @@ route.post('/login_admin', async (req, res) => {
     }
 })
 
-route.get('/profile', authenticateJWT, (req, res) => {
-    const admin = req.admin;
-    res.render("profile", { admin: admin })
+//edit//
+
+route.put('/update',authenticateJWT, async (req, res) => {
+    try{
+        const adminId = req.adminId;
+        console.log(adminId);
+        console.log(req.body);
+        const updateAdmin = await adminCollection.findByIdAndUpdate({_id:adminId},{$set: req.body });
+        
+
+        if(!updateAdmin){
+            return res.status(404).send('User not found')
+        }else{
+            res.redirect('/adminhome')
+        }
+
+    }catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+      }
+})
+
+
+//logout//
+route.get('/admin_logout', (req, res) => {
+    const key = req.cookies.session;
+    if (key) {
+        res.clearCookie('session');
+        res.redirect('/adminhome');
+    } else {
+        res.render('login');
+    }
 })
 
 
