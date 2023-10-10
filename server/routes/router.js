@@ -110,19 +110,7 @@ route.put('/update', authenticateJWT, async (req, res) => {
     }
 })
 
-
 //logout//
-
-// route.get('/admin_logout', (req, res) => {
-//     const key = req.cookies.session;
-//     if (key) {
-//         res.clearCookie('session');
-//         res.redirect('/adminhome');
-//     } else {
-//         res.render('login');
-//     }
-// })
-
 route.get('/admin_logout', (req, res) => {
     if (req.cookies.session) {
         res.clearCookie('session');

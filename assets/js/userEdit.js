@@ -1,13 +1,13 @@
-function fun() {
+function func() {
 
-    const adminData = document.getElementById('myForm');
-    const myformData = new FormData(adminData)
-    fetch('/adminhome/update', {
+    const UserData = document.getElementById('editForm');
+    const myeditData = new FormData(UserData)
+    fetch('/edit', {
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(Object.fromEntries(myformData)),
+        body: JSON.stringify(Object.fromEntries(myeditData)),
     })
     .then((response) => {
         if (response.ok) {
@@ -16,8 +16,8 @@ function fun() {
         throw new Error("not ok")
     })
     .then((data)=>{
-        if (document.cookie.includes("updateToken")){
-            window.location.href = "/adminhome"
+        if (document.cookie.includes("editToken")){
+            window.location.href = "/"
         }
     })
 

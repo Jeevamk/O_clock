@@ -10,21 +10,14 @@ const { body, validationResult } = require("express-validator");
 const parserencoded = bodyparser.urlencoded({ extended: false });
 const session = require('express-session')
 
-// route.use (session({
-//     secret: keysecret,
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: {
-//         secure: false, 
-//         // maxAge: 3600000,
-//     },
-// }))
+route.use(express.json());
 
 
 
 route.get('/', async (req, res) => {
-    res.render('user_index')
-    // if (!req.cookies.sessions) return res.redirect('/userlogin')
+    
+    if (!req.cookies.sessions) return res.redirect('/userlogin')
+    return res.redirect('user_index')
     // const user_detail = await userCollection.findOne({ _id: req.userId })
     // res.render('user_index', { user: user_detail })
 })
@@ -114,23 +107,27 @@ route.get('/userlogin', (req, res) => {
 })
 
 route.post('/user_login', async (req, res) => {
+    if (req.cookies.sessions) {
+        res.redirect("/")
+    } else {
 
-    try {
-        const { email, password } = req.body;
+        try {
+            const { email, password } = req.body;
 
-        const useremail = await userCollection.findOne({ email });
+            const useremail = await userCollection.findOne({ email });
 
-        if (!useremail) {
-            return res.render('user_login', { show: true });
+            if (!useremail) {
+                return res.render('user_login', { show: true });
+            }
+            const passMatch = await bcrypt.compare(password, useremail.password);
+            if (!passMatch) return res.status(401).render('user_login', { alert: true })
+            const token = jwt.sign({ userId: useremail._id }, keysecret)
+            res.cookie('sessions', token);
+            return res.redirect('/')
         }
-        const passMatch = await bcrypt.compare(password, useremail.password);
-        if (!passMatch) return res.status(401).render('user_login', { alert: true })
-        const token = jwt.sign({ userId: useremail._id }, keysecret)
-        res.cookie('sessions', token);
-        return res.redirect('/')
-    }
-    catch (err) {
-        res.send(err);
+        catch (err) {
+            res.send(err);
+        }
     }
 })
 
@@ -150,71 +147,35 @@ route.get('/profile', auth, async (req, res) => {
 
 //edit//
 
-// route.put('/update',auth, parserencoded, [
-//     body('name')
-//     .notEmpty().withMessage('Name is required')
-//     .isLength({min:3}).withMessage("Name must be at least 3 characters"),
+route.put('/edit', auth, async (req, res) => {
+    try {
+        const userId = req.userId;
+        const updateUser = await userCollection.findByIdAndUpdate({ _id: userId }, { $set: req.body });
 
-//     body('email')
-//     .notEmpty().withMessage('Email is required')
-//     .isEmail().withMessage('Invalid email address')
-//     .normalizeEmail().withMessage('Invalid email format'),
+        res.cookie("editToken", updateUser)
+        res.json(updateUser)
 
-//     body('phone')
-//     .notEmpty().withMessage('phone number is required')
-//     .isLength({min:10}).withMessage('phone number must be at least 10 characters')
-//     .matches(/^\d+$/).withMessage('Phone number can only contain digits')
-
-// ], async (req, res) => {
-
-//     const errors = validationResult(req);
-
-
-//     if(!errors.isEmpty()) {
-//         const err = errors.array();
-//         const firsterr = err[0]
-
-//         return res.render('update', { errors: firsterr });
-
-//     }
-//     try{
-//         const userId = req.user._id;
-//         const updateUserData = {
-//             name:req.body.name,
-//             email:req.body.email,
-//             phone:req.body.phone,
-//         };
-//         const updateUser = await userCollection.findByIdAndUpdate(userId,updateUserData,{new:true});
-
-//         if(!updateUser){
-//             return res.status(404).send('User not found')
-//         }else{
-//             res.redirect('/')
-//         }
-
-//     }catch (err) {
-//         console.error(err);
-//         res.status(500).send('Internal Server Error');
-//       }
-// })
-
-
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    }
+})
 
 
 //delete//
 
-route.get('/delete/:id', auth, async (req, res) => {
-    try {
-        const userId = req.params.id;
-        await userCollection.findByIdAndDelete(userId);
-        res.clearCookie('sessions');
-        res.redirect('/');
+// route.get('/delete/:id', auth, async (req, res) => {
+//     try {
+//         const userId = req.params.id;
+//         await userCollection.findByIdAndDelete(userId);
+//         res.clearCookie('sessions');
+//         res.redirect('/');
 
-    }
-    catch (error) {
-        res.send(error);
-    }
-})
+//     }
+//     catch (error) {
+//         res.send(error);
+//     }
+// })
 
 
 // logout//
