@@ -138,7 +138,8 @@ a {
   background-color: transparent; }
   a:hover {
     color: #0056b3;
-    text-decoration: underline; }
+    text-decoration: underline;
+   }
 
 a:not([href]):not([tabindex]) {
   color: inherit;
@@ -8194,7 +8195,7 @@ h1, h2, h3, h4, h5,
 #sidebar {
   min-width: 270px;
   max-width: 270px;
-  background: #3445b4;
+  background: black;
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -8211,13 +8212,15 @@ h1, h2, h3, h4, h5,
     #sidebar h1 .logo {
       color: #fff; }
       #sidebar h1 .logo span {
-        font-size: 14px;
-        color: #44bef1;
+        font-size: 20px;
+        color: whitesmoke;
+        text-align: center;
         display: block; }
   #sidebar ul.components {
     padding: 0; }
   #sidebar ul li {
-    font-size: 16px; }
+    font-size: 16px;
+  text-decoration: none; }
     #sidebar ul li > ul {
       margin-left: 10px; }
       #sidebar ul li > ul li {
@@ -8228,7 +8231,7 @@ h1, h2, h3, h4, h5,
       color: rgba(255, 255, 255, 0.6);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
       #sidebar ul li a span {
-        color: #44bef1; }
+        color: lightgray; }
       #sidebar ul li a:hover {
         color: #fff; }
     #sidebar ul li.active > a {
@@ -8283,6 +8286,8 @@ h1, h2, h3, h4, h5,
 
 a[data-toggle="collapse"] {
   position: relative; }
+
+
 
 .dropdown-toggle::after {
   display: block;

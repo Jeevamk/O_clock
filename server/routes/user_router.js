@@ -8,7 +8,17 @@ const auth = require('../middleware/auth_user')
 const bodyparser = require('body-parser');
 const { body, validationResult } = require("express-validator");
 const parserencoded = bodyparser.urlencoded({ extended: false });
+const session = require('express-session')
 
+// route.use (session({
+//     secret: keysecret,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         secure: false, 
+//         // maxAge: 3600000,
+//     },
+// }))
 
 
 
@@ -101,12 +111,10 @@ route.get('/userlogin', (req, res) => {
     } else {
         res.render('user_login')
     }
-
-
 })
 
 route.post('/user_login', async (req, res) => {
-        
+
     try {
         const { email, password } = req.body;
 

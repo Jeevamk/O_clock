@@ -8,7 +8,7 @@ const secret = process.env.secretKey
 function authenticateJWT(req, res, next) {
 const token = req.cookies.session;
   if (!token) {
-    return res.status(401).json({ message: 'Authentication failed' });
+    return res.redirect("/adminhome/login")
   } else{
     jwt.verify(token, secret , (err, decodedToken) => {
         if (err) return res.status(401).render({ message: ' failed' });

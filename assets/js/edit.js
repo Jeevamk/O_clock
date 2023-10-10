@@ -9,19 +9,19 @@ function fun() {
         },
         body: JSON.stringify(Object.fromEntries(myformData)),
     })
-    .then(response => {
+    .then((response) => {
         if (response.ok) {
-            return response.json()
-           
+          return response.json();
         }
-        if (response.redirected) {
-           
-        } 
-        else {
-            // Handle errors here
+        throw new Error("not ok")
+    })
+    .then((data)=>{
+        if (document.cookie.includes("updateToken")){
+            window.location.href = "/adminhome"
         }
     })
+
     .catch(error => {
-        // Handle network or other errors here
+        console.log(error);
     });
 };

@@ -6,7 +6,8 @@ const bodyparser = require('body-parser');
 const path = require('path')
 const cookieParser = require('cookie-parser');
 const { body , validationResult } =require ("express-validator");
-const parserencoded = bodyparser.urlencoded({ extended: false });                                                                                                                       
+const parserencoded = bodyparser.urlencoded({ extended: false });  
+                                                                                                                  
 
 
 const app = express();
