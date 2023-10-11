@@ -27,32 +27,35 @@
     margin-top: 90px;
 }
 
-#logout{
+#logout {
     text-decoration: none;
     color: white;
     font-size: 18px;
 }
-a{
+
+a {
     text-decoration: none;
-    
+
 }
-#admin_profile{
+
+#admin_profile {
     background: linear-gradient(rgb(176, 176, 237), lightblue);
 }
-#user_login{
+
+#user_login {
     width: 200px;
     height: auto;
 }
 
 .divider:after,
 .divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
 }
 
-#profile_container{
+#profile_container {
     background-image: url('/assets/images/contact.jpg');
 }
 
@@ -64,20 +67,32 @@ background: #eee;
 
 }
 
-.logimg{
+.logimg {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     height: 450px;
 }
 
-#logh1{
+#logh1 {
     font-size: 3rem;
     font-weight: 700px;
 }
 
-#logo_img{
+#logo_img {
     font-weight: bolder;
-    font-family:serif ;
+    font-family: serif;
     font-size: 30px;
-    
+
+}
+
+#admin_name {
+    font-weight: 500;
+    font-family: cursive;
+
+}
+/* .user_head{
+    background-color: black;
+} */
+#user{
+    font-weight: bold; 
 }

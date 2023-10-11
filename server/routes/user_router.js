@@ -8,23 +8,27 @@ const auth = require('../middleware/auth_user')
 const bodyparser = require('body-parser');
 const { body, validationResult } = require("express-validator");
 const parserencoded = bodyparser.urlencoded({ extended: false });
-const session = require('express-session')
+// const session = require('express-session')
 
 route.use(express.json());
 
 
 
-route.get('/', async (req, res) => {
-    
-    if (!req.cookies.sessions) return res.redirect('/userlogin')
-    return res.redirect('user_index')
-    // const user_detail = await userCollection.findOne({ _id: req.userId })
-    // res.render('user_index', { user: user_detail })
+route.get('/', (req, res) => {
+    return res.render('user_index')   
+})
+
+route.get('/user',(req,res) => {
+    if (!req.cookies.sessions) {
+        return res.render('user_login')
+    }
+    return res.redirect('/profile')
 })
 
 
 //signup//
 route.get('/user_sign', (req, res) => {
+    if(req.cookies.sessions) return redirect('/user_login')
     res.render('user_signup')
 })
 
@@ -150,6 +154,7 @@ route.get('/profile', auth, async (req, res) => {
 route.put('/edit', auth, async (req, res) => {
     try {
         const userId = req.userId;
+        console.log(userId);
         const updateUser = await userCollection.findByIdAndUpdate({ _id: userId }, { $set: req.body });
 
         res.cookie("editToken", updateUser)

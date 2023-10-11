@@ -17,7 +17,7 @@ function func() {
     })
     .then((data)=>{
         if (document.cookie.includes("editToken")){
-            window.location.href = "/"
+            window.location.href = "/profile"
         }
     })
 

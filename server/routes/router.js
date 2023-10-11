@@ -17,8 +17,6 @@ route.use(express.json());
 route.get('/', async (req, res) => {
     if (!req.cookies.session) return res.redirect('/adminhome/login')
     return res.redirect('/adminhome/index')
-    // const admin_detail = await adminCollection.findOne({_id:req.adminId})
-    // res.render('admin_home',{admin:admin_detail})
 })
 
 route.get('/index', authenticateJWT, async (req, res) => {
@@ -26,6 +24,7 @@ route.get('/index', authenticateJWT, async (req, res) => {
     const admin_detail = await adminCollection.findOne({ _id: req.adminId })
     res.render('admin_home', { admin: admin_detail })
 })
+
 
 // route.get('/signup',(req,res) =>{
 //     res.render('signup')
