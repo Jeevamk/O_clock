@@ -83,7 +83,8 @@ route.post('/user_registration', parserencoded, [
                 email: req.body.email,
                 phone: req.body.phone,
                 password: req.body.password,
-                cpassword: req.body.cpassword
+                cpassword: req.body.cpassword,
+                status: req.body.status
             })
 
             const postingData = await userData.save();

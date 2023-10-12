@@ -112,12 +112,17 @@
                                         <td>{{phone}}</td>
                                         <td>{{status}}</td>
                                         <td>
-                                        <a href="" class=""><i class="fa-regular fa-eye" style="color: #01060e;"></i></a>
-                                        {{!-- <a href="" class="pl-2"><i class="fa-solid fa-pen-to-square" style="color: #00040a;"></i></a> --}}
-                                        <a href="" class="pl-2"><i class="fa-solid fa-trash" style="color: #000714;"></i></a>
-                                        
-                                        </td>
+                                            <button type="button" class="view-button" data-user-id="{{_id}}" 
+                                                ><i
+                                                        class="fa-regular fa-eye"
+                                                        style="color: #01060e;"></i></button>
+                                            {{!-- <a href="" class="pl-2"><i class="fa-solid fa-pen-to-square"
+                                                    style="color: #00040a;"></i></a> --}}
+                                            <button type="button" onclick="deleteData()"><a href="" class="pl-2"><i
+                                                        class="fa-solid fa-trash"
+                                                        style="color: #000714;"></i></a></button>
 
+                                        </td>
 
                                     </tr>
                                     {{/each}}
@@ -170,19 +175,17 @@
                 </div>
                 <div class="modal-body">
                     <form id="myForm">
-                        {{!-- <h3 style="text-align: center; font-family: cursive; font-weight: bold;">Edit Form</h3>
-                        --}}
                         <div class="mb-4">
                             <input type="text" class="form-control" id="InputName" placeholder="Enter Name" name="name"
-                                value="{{admin.name}}">
+                                value="{{adminid.name}}">
                         </div>
                         <div class="mb-4">
                             <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email"
-                                name="email" value="{{admin.email}}">
+                                name="email" value="{{adminid.email}}">
                         </div>
                         <div class="mb-4">
                             <input type="number" class="form-control" id="Inputphone" placeholder="Enter Phone number"
-                                name="phone" value="{{admin.phone}}">
+                                name="phone" value="{{adminid.phone}}">
                         </div>
                         <button type="button" id="submitButton" onclick="fun()" class="btn btn-primary"
                             data-bs-toggle="modal" data-bs-dismiss="modal">Save Changes</button>
@@ -199,8 +202,27 @@
 
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="viewmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">View Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="viewbody">
+
+                </div>
+                <div class="modal-footer">
+                    <a href="/adminhome/users"><button type="button" class="btn btn-secondary">Close</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    <script src="/js/viewdata.js"></script>
     <script src="/js/edit.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.js"></script>
