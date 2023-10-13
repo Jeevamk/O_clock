@@ -37,6 +37,34 @@ route.get('/:id', async (req, res) => {
 });
 
 
+//delete//
+
+route.delete('/delete_user/:id', async (req, res) => {
+    try {
+        const userId = req.params.id;
+        await userCollection.findByIdAndDelete(userId);
+        res.redirect(303,'/adminhome/users');
+    }
+    catch (error) { 
+        res.send(error);
+    }
+})
+
+
+// route.delete('/delete_user/:userId', async (req, res) => {
+//     const userId = req.params.id;
+//     if (isValidObjectId(userId)) {
+//         try {
+//             await userCollection.findByIdAndDelete(userId);
+//             res.redirect('/adminhome/users');
+//         } catch (error) {
+//             res.status(500).send('Error deleting user: ' + error);
+//         }
+//     } else {
+//         res.status(400).send('Invalid userId');
+//     }
+// });
+
 
 
 

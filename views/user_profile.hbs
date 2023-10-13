@@ -18,7 +18,10 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
+                    {{!-- <a class="navbar-brand" href="#"><img src="/images/logo.png" alt="logo"
+                            class="logo_img img-fluid"></a> --}}
                     <a class="navbar-brand text-dark" href="#" id="logo_img">O|o' CLOCK</a>
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -47,21 +50,9 @@
 
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i></a>
 
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                    <li><a class="dropdown-item" href="/userlogin">Login</a>
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="/user_sign">Signup</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="">My Profile</a></li>
-                                </ul>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -72,6 +63,7 @@
                             <li class="nav-item ">
                                 <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                             </li>
+
                         </ul>
                     </div>
                 </div>
@@ -128,8 +120,8 @@
                             <div class="mb-4">
                                 <button type="button" class="btn btn-dark text-light">
                                     Change Password
-                            </button>
-                            <button type="button" class="btn btn-dark text-light" data-bs-toggle="modal"
+                                </button>
+                                <button type="button" class="btn btn-dark text-light" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
                                     Edit
                                 </button>
@@ -175,7 +167,7 @@
 
 
 
-<script src="/js/userEdit.js"></script>
+    <script src="/js/userEdit.js"></script>
 
 </body>
 

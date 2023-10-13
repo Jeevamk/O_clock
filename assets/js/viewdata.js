@@ -1,66 +1,3 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     const viewButtons = document.querySelectorAll('.view-button');
-
-
-//     viewButtons.forEach(button => {
-//         button.addEventListener('click', function() {
-//             const userId = button.getAttribute('data-id');
-
-//             // Fetch user data for the specific user using AJAX
-//             fetch(`/adminhome/users/${userId}`)
-//                 .then(response => response.json())
-//                 .then(data => {
-//                     // document.getElementById('user-modal-title').textContent = data.name;
-//                     document.getElementById('user-id').textContent = data._id;
-//                     document.getElementById('user-name').textContent = data.name;
-//                     document.getElementById('user-email').textContent = data.email;
-//                     document.getElementById('user-phone').textContent = data.phone;
-//                     document.getElementById('user-status').textContent = data.status;
-
-//                     // Show the Bootstrap modal
-//                     $('#user-modal').modal('show');
-//                 })
-//                 .catch(error => {
-//                     console.error('Error fetching user data:', error);
-//                 });
-//         });
-//     });
-// });
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     const viewButtons = document.querySelectorAll('.view-button');
-
-//     viewButtons.forEach(button => {
-//         button.addEventListener('click', function() {
-//             const userId = button.getAttribute('data-id');
-
-//             // Fetch user data for the specific user using AJAX
-//             fetch(`/adminhome/users/${userId}`)
-//                 .then(response => response.json())
-//                 .then(data => {
-//                     if (data && data._id) {
-//                         // Populate the modal with user data
-//                         document.getElementById('user-id').textContent = data._id;
-//                         document.getElementById('user-name').textContent = data.name;
-//                         document.getElementById('user-email').textContent = data.email;
-//                         document.getElementById('user-phone').textContent = data.phone;
-//                         document.getElementById('user-status').textContent = data.status;
-
-//                         // Show the Bootstrap modal
-//                         $('#user-modal').modal('show');
-//                     } else {
-//                         console.error('User data is null or missing _id property');
-//                     }
-//                 })
-//                 .catch(error => {
-//                     console.error('Error fetching user data:', error);
-//                 });
-//         });
-//     });
-// });
-
-// document.addEventListener('DOMContentLoaded', function() 
-// {
 const viewButtons = document.querySelectorAll('.view-button');
 
 viewButtons.forEach(btn => {
@@ -107,3 +44,47 @@ viewButtons.forEach(btn => {
         }
     })
 });
+
+//delete part//
+const deleteButtons = document.querySelectorAll('.delete-button');
+
+deleteButtons.forEach(btn => {
+    btn.addEventListener('click', async (event) => {
+        const userId = await event.target.getAttribute('data-user-id');
+
+        try {
+            const response = await fetch(`/adminhome/users/delete_user/${userId}`, {
+                                    method: 'DELETE'
+                                })
+            if (response.ok) {
+                window.location.href='/adminhome/users'
+            } else {
+                console.error('Error fetching user data:', error);
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    })
+});
+
+// deleteButtons.forEach(btn => {
+//     btn.addEventListener('click', async (event) => {
+//         const userId = event.target.getAttribute('data-user-id');
+//         if (isValidObjectId(userId)) {
+//             try {
+//                 const response = await fetch(`/adminhome/users/${userId}`, {
+//                     method: 'DELETE'
+//                 });
+//                 if (response.ok) {
+//                     window.location.href = '/adminhome/users';
+//                 } else {
+//                     console.error('Error deleting user:', response.statusText);
+//                 }
+//             } catch (error) {
+//                 console.error('Error deleting user:', error);
+//             }
+//         } else {
+//             console.error('Invalid userId:', userId);
+//         }
+//     });
+// });

@@ -96,3 +96,24 @@ a {
 #user{
     font-weight: bold; 
 }
+
+
+/* homepage of user side */
+.car{
+    padding: 0;
+ }
+
+ .nav_bar{
+    padding: 0;
+ }
+
+.features {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    /* box-shadow: 5px 10px #fbfafa; */
+    /* box-shadow: 12px 12px 22px */
+}
+.feat0 .feat1 .feat2 .feat3 {
+    box-shadow: 12px 12px 22px
+}

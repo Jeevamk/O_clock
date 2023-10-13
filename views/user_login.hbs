@@ -14,75 +14,67 @@
 </head>
 
 <body>
-  <section>
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand text-dark" href="#" id="logo_img" >O|o' CLOCK</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 " id="navitems">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Shop</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">{{user.name}}</a>
-              </li>
+  <section class="navSec">
+        <div class="container-fluid fixed-top nav_bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    {{!-- <a class="navbar-brand" href="#"><img src="/images/logo.png" alt="logo"
+                            class="logo_img img-fluid"></a> --}}
+                    <a class="navbar-brand text-dark" href="#" id="logo_img">O|o' CLOCK</a>
 
-            </ul>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 " id="navitems">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">{{user.name}}</a>
+                            </li>
 
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                  <li><a class="dropdown-item" href="/userlogin">Login</a>
-                  </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i></a>
 
-                  <li><a class="dropdown-item" href="/user_sign">Signup</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="/profile">My Profile</a></li>
-                </ul>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="#"><i class="fa-regular fa-heart"></i></a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-              </li>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#"><i class="fa-regular fa-heart"></i></a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                            </li>
 
-            </ul>
-          </div>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
         </div>
-      </nav>
-
-    </div>
-  </section>
+    </section>
 
   {{!-- navbar end --}}
 
-  <section class="login py-5 bg-light">
+  <section class="login py-5 bg-light mt-5">
     <div class="container">
       <div class="row" id="loginrow">
         <div class="col-lg-7  py-5">
