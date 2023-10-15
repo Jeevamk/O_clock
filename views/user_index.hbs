@@ -20,8 +20,8 @@
 
 <body>
     <section class="navSec">
-        <div class="container-fluid fixed-top nav_bar">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid  nav_bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <div class="container-fluid">
                     {{!-- <a class="navbar-brand" href="#"><img src="/images/logo.png" alt="logo"
                             class="logo_img img-fluid"></a> --}}
@@ -137,43 +137,51 @@
     {{!-- carousal section end --}}
 
     {{!-- features section start --}}
-    <section class="features mt-3">
+    <section class="features mt-4">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 ">
-                    <div class="mt-5 feat0 text-center">
-                        <img src="/images/secure_payment.png" width="100px" alt="securepayment">
-                        <h5 class="text-secondary ">Free Delivery</h5>
+                    <div class=" feat0 text-center">
+                        <img src="/images/feature1.png" width="60px" alt="securepayment">
+                        <h5 class="text-dark pt-2 ">Free Delivery</h5>
+                        <p class="text-secondary">For all orders above $45</p>
                     </div>
 
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
-                    <div class="mt-5 feat1 text-center">
-                        <img src="/images/secure_payment.png" width="100px" alt="securepayment">
-                        <h5 class="text-secondary ">Secure Payments</h5>
+                    <div class="feat1 text-center">
+                        <img src="/images/secure_payment.png" width="90px" alt="securepayment">
+                        <h5 class="text-dark pt-2 ">Secure Payments</h5>
+                        <p class="text-secondary">Confidence on all your devices</p>
                     </div>
 
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
-                    <div class="mt-5 feat2 text-center">
-                        <img src="/images/secure_payment.png" width="100px" alt="securepayment">
-                        <h5 class="text-secondary ">Top-notch support</h5>
+                    <div class="feat2 text-center">
+                        <img src="/images/feature3.png" width="60px" alt="securepayment">
+                        <h5 class="text-dark pt-2 ">Top-notch support</h5>
+                        <p class="text-secondary">sayhello&vapier.com</p>
 
                     </div>
 
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 ">
-                    <div class="mt-5 feat3 text-center">
+                    <div class="feat3 text-center">
                         {{!-- <i class="fa-solid fa-rotate-left fa-2xl icon_featr" style="color: #b4b8c0;"></i> --}}
                         {{!-- <img src="/images/return-icon.png" width="80px" alt="securepayment"> --}}
                         <span class="material-symbols-outlined icon_featr">
                             rotate_left
                         </span>
-                        <h5 class="text-secondary ">7 Days Return</h5>
+                        <h5 class="text-dark pt-2 ">7 Days Return</h5>
+                        <p class="text-secondary">7 Days Return</p>
                     </div>
                 </div>
             </div>
         </div>
+        <div>
+            <hr>
+        </div>
+
     </section>
 
     {{!-- features section end --}}
@@ -183,27 +191,74 @@
     <section class="brandSec">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 bg-info">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, magni dolor aspernatur sit deleniti provident ullam nostrum aliquam, laboriosam facilis laudantium pariatur perspiciatis natus, rerum aliquid necessitatibus minus saepe velit?
-                    Temporibus enim ullam impedit, ipsam quos similique officiis esse ducimus nisi voluptates beatae optio earum veniam quasi amet debitis dolorem. Sunt recusandae error facilis deleniti inventore earum odit, repudiandae quos?</p>
+                <div class="col-12">
+                    <h3 class="text-dark text-center text-brand">SHOP BY BRAND</h3>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
+                    <div class="card text-bg-dark">
+                        <img src="/images/img1.png" class="card-img" alt="brand1">
+                        <div class="card-img-overlay text-center">
+                            <button type="button" class="btn btn-light brand-btn">CASTUS FIESTA</button>
+                        </div>
+                    </div>
 
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 bg-danger">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, magni dolor aspernatur sit deleniti provident ullam nostrum aliquam, laboriosam facilis laudantium pariatur perspiciatis natus, rerum aliquid necessitatibus minus saepe velit?
-                    Temporibus enim ullam impedit, ipsam quos similique officiis esse ducimus nisi voluptates beatae optio earum veniam quasi amet debitis dolorem. Sunt recusandae error facilis deleniti inventore earum odit, repudiandae quos?</p>
-                    
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
+                    <div class="card text-bg-dark">
+                        <img src="/images/img2.jpg" class="card-img" alt="brand2">
+                        <div class="card-img-overlay text-center">
+                            <button type="button" class="btn btn-light brand-btn">DANIEL WELLINGTON</button>
+                        </div>
+                    </div>
 
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 bg-primary">
-
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
+                    <div class="card text-bg-dark">
+                        <img src="/images/img3.png" class="card-img" alt="brand3">
+                        <div class="card-img-overlay text-center">
+                            <button type="button" class="btn btn-light brand-btn">FOSSIL</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 bg-warning">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
+                    <div class="card text-bg-dark">
+                        <img src="/images/img4.png" class="card-img" alt="brand4">
+                        <div class="card-img-overlay text-center">
+                            <button type="button" class="btn btn-light brand-btn">MASERATI</button>
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </div>
 
     </section>
+
+    {{!-- brand sec end --}}
+
+    {{!-- store locator sec start --}}
+    <section class="mt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 ">
+                    <div class="card">
+                        <img src="/images/back.jpg" class="card-img" alt="locator" height="auto">
+                        <div class="card-img-overlay text-center text-light ">
+                            <p class="card-title ">NEED A CLOSER LOOK? COME VISIT US IN STORE</p>
+                            <h3 class="card-text">YOUR SPECIALIST WATCH STORE</h3>
+                             <button type="button" class="btn btn-light store">STORE LOCATOR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    {{!-- store locator sec end --}}
+
 
 
 </body>

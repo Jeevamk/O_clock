@@ -84,6 +84,7 @@ editButtons.forEach(btn => {
                 document.getElementById('editbody').innerHTML =
                     ` <form id="editstatusForm" onsubmit="status()">
                     <input type="hidden" value="${userdata._id}" name="id">
+
             <div class="mb-2">
             <label for="user-name">Name</label>
                 <input type="text" class="form-control" id="user-name" placeholder="Enter Name" 
@@ -131,7 +132,7 @@ function status() {
     const UserStatusData = document.getElementById('editstatusForm');
     const mystatusData = new FormData(UserStatusData)
     console.log(mystatusData);
-    fetch(`/adminhome/users/edit/${userId}`, {
+    fetch(`/adminhome/users/edit`, {
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
@@ -140,7 +141,7 @@ function status() {
     })
         .then((response) => {
             if (response.ok) {
-                window.location.href = "/adminhome/admin_user"
+                window.location.href = "/adminhome/users"
                 return response.json();
             }
             throw new Error("not ok")

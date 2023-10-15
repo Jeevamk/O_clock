@@ -90,33 +90,107 @@ a {
     font-family: cursive;
 
 }
+
 /* .user_head{
     background-color: black;
 } */
-#user{
-    font-weight: bold; 
+#user {
+    font-weight: bold;
 }
 
 
-/* homepage of user side */
-.car{
+/*------------------------------------------------------------homepage of user side-------------------------------------------------*/
+.car {
     padding: 0;
- }
+}
 
- .nav_bar{
+.nav_bar {
     padding: 0;
- }
+}
 
+/*---------------------- feature side sec2----------------------*/
 .features {
     width: 100%;
-    height: 200px;
     padding: 10px;
     /* box-shadow: 5px 10px #fbfafa; */
     /* box-shadow: 12px 12px 22px */
 }
+
 .feat0 .feat1 .feat2 .feat3 {
     box-shadow: 12px 12px 22px
 }
-.icon_featr{
+
+.icon_featr {
     font-size: 60px;
 }
+
+/*------------------------------- shop by brand sec3-------------------------*/
+.text-brand {
+    font-family: "Jost",Sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.brand-btn{
+    width: 60%;
+    border-radius: 0;
+}
+
+.brand-btn:hover {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+/*-------------------------------- store locator sec--------------------------------- */
+.store {
+    font-size: 15px;
+    color: black;
+    border-radius: 0;
+    border: 3px solid white;
+  
+}
+.store:hover{
+    background: transparent;
+    font-weight: bold;
+    border-radius: 0;
+}
+
+/*---------------------------------login sec -----------------------------------------*/
+.content{
+    margin: 7% 12%;
+    background-color: #fff;
+    padding: 4rem 1rem 3rem 4rem;
+    box-shadow: 0 0 5px 5px rgba(0,0,0,.05);
+}
+
+.login {
+    font-weight: 600 !important;
+}
+
+.form-controls{
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border-color:black ;
+    border-style: solid;
+    border-width: 0 0 1px 0 !important;
+    padding: 0px !important;
+    color: #495057;
+    height: auto;
+    border-radius: 0;
+    background-color:#fff ;
+    background-clip: padding-box;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #fff;
+    outline: 0;
+    box-shadow: none;
+}
+
