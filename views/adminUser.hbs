@@ -112,15 +112,13 @@
                                         <td>{{phone}}</td>
                                         <td>{{status}}</td>
                                         <td>
-                                            <button type="button" class="view-button" data-user-id="{{_id}}" 
-                                                ><i
-                                                        class="fa-regular fa-eye"
-                                                        style="color: #01060e;"></i></button>
-                                            {{!-- <a href="" class="pl-2"><i class="fa-solid fa-pen-to-square"
-                                                    style="color: #00040a;"></i></a> --}}
-                                            <button type="button" class="delete-button " data-user-id="{{_id}}"><i
-                                                        class="fa-solid fa-trash"
-                                                        style="color: #000714;"></i></button>
+                                            <button type="button" class="view-button p-1 btn  btn-light m-1" data-user-id="{{_id}}"><i
+                                                    class="fa-regular fa-eye" style="color:black;"></i></button>
+                                            <button type="button" class="edit-button btn btn-light p-1 m-1" data-user-id="{{_id}}"><i
+                                                    class="fa-solid fa-pen-to-square" style="color: #01060e;"></i></button>
+                                           
+                                            <button type="button" class="delete-button btn btn-light p-1 m-1" data-user-id="{{_id}}"><i
+                                                    class="fa-solid fa-trash" style="color: #000714;"></i></button>
 
                                         </td>
 
@@ -137,7 +135,7 @@
 
 
 
-    {{!-- modal --}}
+    {{!-- modal1 adminprofile--}}
     <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
         tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -202,7 +200,7 @@
 
 
 
-    <!-- Modal -->
+    <!-- Modal2 view single data from the table-->
     <div class="modal fade" id="viewmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -212,6 +210,25 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="viewbody">
+
+                </div>
+                <div class="modal-footer">
+                    <a href="/adminhome/users"><button type="button" class="btn btn-secondary">Close</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- modal3 view edit data from the table --}}
+    <div class="modal fade" id="editmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="editbody">
 
                 </div>
                 <div class="modal-footer">
