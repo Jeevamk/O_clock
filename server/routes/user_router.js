@@ -15,10 +15,10 @@ route.use(express.json());
 
 
 route.get('/', (req, res) => {
-    return res.render('user_index')   
+    return res.render('user_index')
 })
 
-route.get('/user',(req,res) => {
+route.get('/user', (req, res) => {
     if (!req.cookies.sessions) {
         return res.render('user_login')
     }
@@ -28,7 +28,7 @@ route.get('/user',(req,res) => {
 
 //signup//
 route.get('/user_sign', (req, res) => {
-    if(req.cookies.sessions) return redirect('/user_login')
+    if (req.cookies.sessions) return redirect('/user_login')
     res.render('user_signup')
 })
 
@@ -121,15 +121,23 @@ route.post('/user_login', async (req, res) => {
             const { email, password } = req.body;
 
             const useremail = await userCollection.findOne({ email });
+            console.log(useremail);
+
 
             if (!useremail) {
                 return res.render('user_login', { show: true });
             }
-            const passMatch = await bcrypt.compare(password, useremail.password);
-            if (!passMatch) return res.status(401).render('user_login', { alert: true })
-            const token = jwt.sign({ userId: useremail._id }, keysecret)
-            res.cookie('sessions', token);
-            return res.redirect('/')
+            if (useremail.status === 'Block') {
+                return res.render('user_login', { blocked: true })
+            } else {
+                const passMatch = await bcrypt.compare(password, useremail.password);
+                if (!passMatch) return res.status(401).render('user_login', { alert: true })
+                const token = jwt.sign({ userId: useremail._id }, keysecret)
+                res.cookie('sessions', token);
+                return res.redirect('/')
+
+            }
+
         }
         catch (err) {
             res.send(err);
