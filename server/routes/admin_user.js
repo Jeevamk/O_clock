@@ -59,8 +59,8 @@ route.get('/edit/:id', async (req, res) => {
 })
 
 
-route.put('/edit',authenticateJWT, async (req, res) => {
-    const userId = req.body.id;
+route.put('/edit/:id',authenticateJWT, async (req, res) => {
+    const userId = req.params.id;
     const userUpdateData = req.body;
     try {
         const userUpdate = await userCollection.findByIdAndUpdate({ _id: userId }, { $set: userUpdateData })

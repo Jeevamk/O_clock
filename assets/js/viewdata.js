@@ -82,38 +82,56 @@ editButtons.forEach(btn => {
             if (response.ok) {
                 const userdata = await response.json()
                 document.getElementById('editbody').innerHTML =
-                    ` <form id="editstatusForm" onsubmit="status()">
-                    <input type="hidden" value="${userdata._id}" name="id">
 
-            <div class="mb-2">
-            <label for="user-name">Name</label>
-                <input type="text" class="form-control" id="user-name" placeholder="Enter Name" 
-                    name="name" value="${userdata.name}" readonly>
-            </div>
-            <div class="mb-2">
-            <label for="user-email">Email Address</label>
-                <input type="email" class="form-control" id="user-email" placeholder="Enter Email"
-                    name="email" value="${userdata.email}" readonly>
-            </div>
-            <div class="mb-2">
-            <label for="user-phone">Phone Number</label>
-                <input type="text" class="form-control" id="user-phone" placeholder="Phone number"
-                    name="phone" value="${userdata.phone}" readonly>
-            </div>
-            <div class="mb-2">
-            <label for="user-status mb-2">Status</label>
-            <select class="form-select form-select-sm" id="user-status" aria-label="Small select example" value="${userdata.status}">
-                <option selected>Active</option>
-                <option value="1">Block</option>
-            </select>
-            </ div>
-            <div class="mb-2">
-            <button type="submit" id="statusUpdateButton"  class="btn btn-primary"
-                             >Save Changes</button>
-            </div>
-            
-            
-        </form>`
+`<form id="editstatusForm" >
+<input type="text" class="form-control" hidden value="${userdata._id}" name="id">
+<div class="form-group row">
+  <label for="user-name" class="col-sm-2 col-form-label">Name</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" id="user-name" placeholder="Enter Name" 
+                        name="name" value="${userdata.name}" readonly>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="user-email" class="col-sm-2 col-form-label">Email</label>
+  <div class="col-sm-10">
+    <input type="email" class="form-control" id="user-email" placeholder="Enter Email"
+                         name="email" value="${userdata.email}" readonly>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="user-phone" class="col-sm-2 col-form-label">Phone Number</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" id="user-phone" placeholder="Phone number"
+               name="phone" value="${userdata.phone}" readonly>
+  </div>
+</div>
+<fieldset class="form-group">
+  <div class="row">
+    <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Active" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Active
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Block">
+        <label class="form-check-label" for="gridRadios2">
+          Block
+        </label>
+      </div>
+    </div>
+  </div>
+</fieldset>                     
+  
+<div class="form-group row">
+  <div class="col-sm-10">
+    <button type="button" class="btn btn-dark"  onclick="status()" id="statusUpdateButton">Submit</button>
+  </div>
+</div>
+</form>`
                 const showModal = new bootstrap.Modal(document.getElementById('editmodal'))
                 showModal.show()
 
@@ -128,29 +146,29 @@ editButtons.forEach(btn => {
 
 //------------------------edit part---------------------//
 
-function status() {
-    const UserStatusData = document.getElementById('editstatusForm');
-    const mystatusData = new FormData(UserStatusData)
-    console.log(mystatusData);
-    fetch(`/adminhome/users/edit`, {
-        method: 'PUT',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(Object.fromEntries(mystatusData)),
-    })
-        .then((response) => {
-            if (response.ok) {
-                window.location.href = "/adminhome/users"
-                return response.json();
-            }
-            throw new Error("not ok")
-        })
+// function status() {
+//     const UserStatusData = document.getElementById('editstatusForm');
+//     const mystatusData = new FormData(UserStatusData)
+//     console.log(mystatusData);
+//     fetch(`/adminhome/users/edit`, {
+//         method: 'PUT',
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(Object.fromEntries(mystatusData)),
+//     })
+//         .then((response) => {
+//             if (response.ok) {
+//                 window.location.href = "/adminhome/users"
+//                 return response.json();
+//             }
+//             throw new Error("not ok")
+//         })
 
-        .catch(error => {
-            console.log(error);
-        });
-};
+//         .catch(error => {
+//             console.log(error);
+//         });
+// };
 
 
 

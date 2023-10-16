@@ -51,3 +51,23 @@ function fun() {
 //             console.log(error);
 //         });
 // };
+
+
+function status() {
+    const status =  document.querySelector('input[name="gridRadios"]:checked').value;
+    const userId = document.querySelector('input[name="id"]').value;
+
+    const request = new XMLHttpRequest();
+    request.open('PUT',`/adminhome/users/edit/${userId}`);
+    request.setRequestHeader('Content-Type','application/json');
+    request.send(JSON.stringify({status}));
+        
+    request.onload =  function(){
+        if(request.status === 200) {
+            window.location.href = '/adminhome/users'
+        }else{
+            console.error(err);
+        }
+    }
+};
+
