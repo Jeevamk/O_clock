@@ -133,8 +133,11 @@ a {
 }
 
 .brand-btn{
-    width: 60%;
     border-radius: 0;
+}
+
+#fos-btn{
+    width: 50%;
 }
 
 .brand-btn:hover {
@@ -156,6 +159,47 @@ a {
     font-weight: bold;
     border-radius: 0;
 }
+
+.locate-card{
+    /* position: absolute; */
+    top: 200px;
+}
+
+
+/* latest sec */
+/* .latest {
+    position: relative;
+    display: flex;
+    width: 1075px;
+    
+} */
+
+.text-latest{
+    font-family: "Jost",Sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+.latest-card{
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.05);
+    border: none;
+}
+
+/*----------------------------- best sellers start---------------------------------- */
+.text-best{
+    font-family: "Jost",Sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.card{
+    border: none;
+}
+
+/*-------------------------------- category starts men&women-------------------------*/
+
 
 /*---------------------------------login sec -----------------------------------------*/
 .content{
@@ -194,3 +238,89 @@ a {
     box-shadow: none;
 }
 
+
+
+@media screen and (max-width:550px) {
+    .carousel-inner {
+        padding-top: 30px;
+    }
+    
+}
+
+
+@media screen and (max-width:685px) {
+    .locator {
+        height: 60vw;
+    }
+
+    .locate-text{
+        font-size: 10px;
+    }
+    .h3-text{
+        font-size: 20px;
+    }
+    .locate-card{
+        top: 0px;
+    }
+    
+    
+}
+
+@media screen and (max-width:375px) {
+    .locat-text {
+        display: none;
+    }
+    .h3-text{
+        font-size: 17px;
+        padding-top: 50px;
+        line-height: 20px;
+    }
+    .store{
+        background-color: transparent;
+        color: white;
+        border: 1px solid;
+    }   
+    .locate-card{
+        
+        top: 0px;
+    }
+}
+
+@media screen and (min-width:375px ) and (max-width:500px) {
+    .locate-card{
+        padding-top: 80px;
+
+    }
+    .locat-text {
+        font-size: 15px;
+    }
+    .h3-text{
+        font-size: 17px;
+        line-height: 20px;
+    }
+    .locate-card{
+        top: 0px;
+    }
+
+}
+
+@media screen and (min-width:500px ) and (max-width:768px) {
+    .locate-card{
+        top:0;
+        padding-top: 80px;
+
+    }
+    .h3-text{
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+}
+
+/* 
+@media screen and (max-width:6850px) {
+    .locator {
+        height: 300px;
+    }
+    
+} */
