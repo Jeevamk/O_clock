@@ -32,37 +32,40 @@ route.get('/user_sign', (req, res) => {
     res.render('user_signup')
 })
 
-route.post('/user_registration', parserencoded, [
-    body('name')
-        .notEmpty().withMessage('Name is required')
-        .isLength({ min: 3 }).withMessage("Name must be at least 3 characters"),
+route.post('/user_registration',
+//  parserencoded, [
+//     body('name')
+//         .notEmpty().withMessage('Name is required')
+//         .isLength({ min: 3 }).withMessage("Name must be at least 3 characters"),
 
-    body('email')
-        .notEmpty().withMessage('Email is required')
-        .isEmail().withMessage('Invalid email address')
-        .normalizeEmail().withMessage('Invalid email format'),
+//     body('email')
+//         .notEmpty().withMessage('Email is required')
+//         .isEmail().withMessage('Invalid email address')
+//         .normalizeEmail().withMessage('Invalid email format'),
 
-    body('phone')
-        .notEmpty().withMessage('phone number is required')
-        .isLength({ min: 10 }).withMessage('phone number must be at least 10 characters')
-        .matches(/^\d+$/).withMessage('Phone number can only contain digits'),
+//     body('phone')
+//         .notEmpty().withMessage('phone number is required')
+//         .isLength({ min: 10 }).withMessage('phone number must be at least 10 characters')
+//         .matches(/^\d+$/).withMessage('Phone number can only contain digits'),
 
-    body('password')
-        .notEmpty().withMessage('Password is required')
-        .isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
-        .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/)
-        .withMessage('Password must contain at least one lowercase letter, one uppercase letter, and one digit'),
+//     body('password')
+//         .notEmpty().withMessage('Password is required')
+//         .isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
+//         .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/)
+//         .withMessage('Password must contain at least one lowercase letter, one uppercase letter, and one digit'),
 
-    body('cpassword')
-        .notEmpty().withMessage('Confirm Password is required')
-        .custom((value, { req }) => {
-            if (value !== req.body.password) {
-                throw new Error('Passwords do not match');
-            }
-            return true;
-        })
+//     body('cpassword')
+//         .notEmpty().withMessage('Confirm Password is required')
+//         .custom((value, { req }) => {
+//             if (value !== req.body.password) {
+//                 throw new Error('Passwords do not match');
+//             }
+//             return true;
+//         })
 
-], async (req, res) => {
+// ]
+
+ async (req, res) => {
 
     const errors = validationResult(req);
 

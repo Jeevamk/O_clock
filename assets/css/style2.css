@@ -268,6 +268,55 @@ a {
     box-shadow: none;
 }
 
+/*------------------------------- latest products------------------------------ */
+
+.cards-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .latest-card {
+    max-width: 100%;
+    max-height: 100%;
+  } 
+
+  .latest-card {
+    margin: 0 0.5em;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    border: none;
+    border-radius: 0;
+  } 
+  .inner_carousal {
+    padding: 1em;
+  }
+
+  .prev_control,
+  .next_control {
+    background-color: #e1e1e1;
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* @media (min-width: 768px) {
+    .latest-card img {
+      height: 11em;
+    }
+  }  */
+
+/*--------------------------------- best products sec------------------- */
+.best-card {
+    /* margin: 0 0.5em; */
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    border: none;
+    border-radius: 0;
+  } 
+
+  
+
+
 
 
 @media screen and (max-width:550px) {

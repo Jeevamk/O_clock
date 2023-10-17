@@ -84,20 +84,20 @@
         <div class="col-lg-7 text-center py-5">
           <h1 id="logh1">Sign Up</h1>
 
-          <form action="/user_registration" method="POST">
+          <form action="/user_registration" method="POST" onsubmit="return validateForm()">
             <div class="form-row">
               <div class="offset-1 col-lg-10 pt-3">
-                <input type="text" class="form-control" name="name" placeholder="User Name" />
+                <input type="text" class="form-control" name="name" placeholder="User Name" id="name" />
 
               </div>
               <div class="offset-1 col-lg-10 pt-3">
-                <input type="email" class="form-control" name="email" placeholder="Email address" />
+                <input type="email" class="form-control" name="email" placeholder="Email address" id="email" />
               </div>
               <div class="offset-1 col-lg-10 pt-3">
-                <input type="number" class="form-control" name="phone" placeholder="Phone Number" />
+                <input type="number" class="form-control" name="phone" placeholder="Phone Number" id="phone" />
               </div>
               <div class="offset-1 col-lg-10 pt-3">
-                <input type="password" class="form-control" name="password" placeholder="Password" />
+                <input type="password" class="form-control" name="password" placeholder="Password" id="password" />
               </div>
               <div class="offset-1 col-lg-10 pt-3">
                 <input type="password" class="form-control" name="cpassword" placeholder="Confirm Password" />
@@ -208,6 +208,7 @@
   </script>
   {{/if}}
 
+<script src="/js/formValidation.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
