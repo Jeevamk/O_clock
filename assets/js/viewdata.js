@@ -83,7 +83,7 @@ editButtons.forEach(btn => {
                 const userdata = await response.json()
                 document.getElementById('editbody').innerHTML =
 
-`<form id="editstatusForm" >
+                    `<form id="editstatusForm" >
 <input type="text" class="form-control" hidden value="${userdata._id}" name="id">
 <div class="form-group row">
   <label for="user-name" class="col-sm-2 col-form-label">Name</label>
@@ -143,32 +143,4 @@ editButtons.forEach(btn => {
         }
     })
 });
-
-//------------------------edit part---------------------//
-
-// function status() {
-//     const UserStatusData = document.getElementById('editstatusForm');
-//     const mystatusData = new FormData(UserStatusData)
-//     console.log(mystatusData);
-//     fetch(`/adminhome/users/edit`, {
-//         method: 'PUT',
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(Object.fromEntries(mystatusData)),
-//     })
-//         .then((response) => {
-//             if (response.ok) {
-//                 window.location.href = "/adminhome/users"
-//                 return response.json();
-//             }
-//             throw new Error("not ok")
-//         })
-
-//         .catch(error => {
-//             console.log(error);
-//         });
-// };
-
-
 
