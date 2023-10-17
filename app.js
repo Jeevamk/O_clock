@@ -35,6 +35,7 @@ app.use('/js',express.static(path.resolve(__dirname,"assets/js")))
 app.use('/adminhome',require('./server/routes/router'))
 app.use('/',require('./server/routes/user_router'))
 app.use('/adminhome/users',require('./server/routes/admin_user'))
+app.use('/adminhome/category',require ('./server/routes/admin_category'))
 
 
 

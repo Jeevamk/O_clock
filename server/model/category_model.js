@@ -3,19 +3,21 @@ const mongoose = require ('mongoose');
 const categorySchema = mongoose.Schema({
     name : {
         type : String ,
-        required : true,
+        // required : true,
     },
-    color : {
+    description :{
         type : String,
-        
+
     },
     availableStock :{
         type : Number,
-        required :true,
+        // required :true,
         min : 0,
         max : 200
     },
 
 })
 
-exports.Category = mongoose.model('Category',categorySchema);
+const categoryCollection = new mongoose.model('categoryCollection', categorySchema);
+
+module.exports = categoryCollection;
