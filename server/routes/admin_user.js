@@ -20,6 +20,8 @@ route.get('/', authenticateJWT, async (req, res) => {
 //get single data //
 
 route.get('/:id', async (req, res) => {
+    if (req.cookies.sessions) {
+    
     const userId = req.params.id;
 
     try {
@@ -33,6 +35,10 @@ route.get('/:id', async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'internal server error' })
     }
+}else {
+    res.redirect('/adminhome')
+}
+
 
 });
 
@@ -40,6 +46,8 @@ route.get('/:id', async (req, res) => {
 //update //
 
 route.get('/edit/:id', async (req, res) => {
+    if (req.cookies.sessions){
+
     const userId = req.params.id;
 
     try {
@@ -55,6 +63,9 @@ route.get('/edit/:id', async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'Internal server error' })
     };
+}else{
+    res.redirect('/adminhome')
+}
 
 })
 

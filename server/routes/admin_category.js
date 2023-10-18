@@ -12,6 +12,8 @@ route.get ('/',authenticateJWT, async (req,res) => {
         const adminid = await adminCollection.findOne({ _id: req.adminId });
         const categoryList = await categoryCollection.find();
         res.render('adminCategory', { adminid, categoryList })
+    }else{
+        res.redirect('/adminhome')
     }
     
 })
@@ -21,7 +23,7 @@ route.post('/' , async (req,res)=> {
     const category = new categoryCollection ({
         name : req.body.name,
         description : req.body.description,
-        availableStock : req.body.availableStock,
+        // availableStock : req.body.availableStock,
     })
     category == await category.save();
     
@@ -37,6 +39,8 @@ route.post('/' , async (req,res)=> {
 //view single data//
 
 route.get('/:id', async (req, res) => {
+    if(req.cookies.session) {
+
     const catId = req.params.id;
 
     try {
@@ -50,13 +54,18 @@ route.get('/:id', async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'internal server error' })
     }
+}else {
+    res.redirect('/adminhome')
+}
 
 });
 
 
 //update//
 
-route.get('/update/:id',async (req,res)=> {
+route.get('/update/:id',async (req,res)=> { 
+    if(req.cookies.session) {
+
     const catId = req.params.id;
     
     try{
@@ -72,6 +81,9 @@ route.get('/update/:id',async (req,res)=> {
         console.log(error);
         res.status(500).json({error:"Internal server error"})
     }
+}else {
+    res.redirect('/adminhome')
+}
 })
 
 

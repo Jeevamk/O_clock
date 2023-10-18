@@ -9,12 +9,12 @@ const categorySchema = mongoose.Schema({
         type : String,
 
     },
-    availableStock :{
-        type : Number,
-        // required :true,
-        min : 0,
-        max : 200
-    },
+    // availableStock :{
+    //     type : Number,
+    //     // required :true,
+    //     min : 0,
+    //     max : 200
+    // },
 
 })
 

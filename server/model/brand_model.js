@@ -12,11 +12,7 @@ const brandSchema = mongoose.Schema( {
     image : [{
         type : String,
     }],
-    stocknumber : {
-        type : Number,
-        min : 0,
-        max:200
-    },
+   
 })
 
 const brandCollection = new mongoose.model('brandCollection',brandSchema);

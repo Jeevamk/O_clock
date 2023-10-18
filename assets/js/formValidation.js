@@ -45,3 +45,18 @@ function addcat() {
   
     return true;
   }
+
+  //brand//
+  function addbrand() {
+    const nameInput = document.querySelector("#name");
+     const descriptionInput = document.querySelector("#disc");
+     const availableStockInput = document.querySelector("#stock");
+ 
+     if (nameInput.value === "" || descriptionInput.value === "" || availableStockInput.value === "") {
+       alert("Please fill in all the required fields.");
+       return false;
+     }
+ 
+   
+     return true;
+   }

@@ -123,9 +123,6 @@ route.get('/admin_logout', (req, res) => {
 
 
 
-route.get('/products', authenticateJWT, (req, res) => {
-    res.render('products')
-})
 
 
 

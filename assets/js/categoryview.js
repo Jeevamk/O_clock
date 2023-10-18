@@ -21,11 +21,7 @@ viewCategory.forEach(btn => {
                 <input type="text" class="form-control" id="description" 
                     name="description" value="${catdata.description}" readonly>
             </div>
-            <div class="mb-4">
-            <label for="availableStock">AvailableStock</label>
-                <input type="number" class="form-control" id="availableStock" 
-                    name="availableStock" value="${catdata.availableStock}" readonly>
-            </div>
+            
             
         </form>`
                 const showModal = new bootstrap.Modal(document.getElementById('catmodal'))
@@ -95,14 +91,7 @@ editcategory.forEach(btn => {
                                          name="description" value="${catdata.description}">
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label for="availableStock" class="col-sm-2 col-form-label">Stock</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="availableStock" 
-                               name="availableStock" value="${catdata.availableStock}">
-                  </div>
-                </div>
-                                    
+                          
                 <div class="form-group row">
                   <div class="col-sm-10">
                     <button type="button" class="btn btn-dark"  onclick="catEdit()" id="catUpdateButton">Submit</button>

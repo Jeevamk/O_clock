@@ -28,7 +28,7 @@ route.get('/user', (req, res) => {
 
 //signup//
 route.get('/user_sign', (req, res) => {
-    if (req.cookies.sessions) return redirect('/user_login')
+    if (req.cookies.sessions) return res.redirect('/')
     res.render('user_signup')
 })
 
@@ -150,6 +150,7 @@ route.post('/user_login', async (req, res) => {
 
 //profile//
 route.get('/profile', auth, async (req, res) => {
+    if (req.cookies.sessions) {
     try {
         const userDetail = await userCollection.findOne({ _id: req.userId });
         if (!userDetail) {
@@ -160,6 +161,9 @@ route.get('/profile', auth, async (req, res) => {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
     }
+}else {
+    res.redirect('/userlogin')
+}
 });
 
 //edit//
