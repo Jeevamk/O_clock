@@ -56,15 +56,14 @@ route.get('/:id', async (req, res) => {
 
 //update//
 
-route.put('/update/:id',authenticateJWT,async (req,res)=> {
+route.get('/update/:id',async (req,res)=> {
     const catId = req.params.id;
-    const categoryUpdateData = req.body;
-
+    
     try{
-        const categoryUpdate = await categoryCollection.findByIdAndUpdate({_id:catId},{$set:categoryUpdateData})
+        const categoryUpdate = await categoryCollection.findOne({_id: catId })
 
         if (categoryUpdate) {
-            res.redirect(303,'/adminhome/category')
+            res.json(categoryUpdate)
         } else{
             res.status(404).json({error:"category not found"});
         }
@@ -73,6 +72,27 @@ route.put('/update/:id',authenticateJWT,async (req,res)=> {
         console.log(error);
         res.status(500).json({error:"Internal server error"})
     }
+})
+
+
+route.put('/update',authenticateJWT, async (req, res) => {
+
+    const catid = req.body.id;
+    const categoryUpdateData = req.body;
+    try {
+        const categoryUpdate = await categoryCollection.findByIdAndUpdate({ _id: catid }, { $set: categoryUpdateData })
+
+        if (categoryUpdate) {
+            res.redirect(303,'/adminhome/category')
+        } else {
+            res.status(404).json({ error: 'category not found' });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal server error' })
+    };
+
 })
 
 
