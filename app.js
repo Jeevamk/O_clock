@@ -34,11 +34,12 @@ app.use('/images',express.static(path.resolve(__dirname,"assets/images")))
 app.use('/js',express.static(path.resolve(__dirname,"assets/js")))
 
 //load routers
-app.use('/adminhome',require('./server/routes/router'))
-app.use('/',require('./server/routes/user_router'))
-app.use('/adminhome/users',require('./server/routes/admin_user'))
-app.use('/adminhome/category',require ('./server/routes/admin_category'))
-app.use('/adminhome/brands',require('./server/routes/admin_brand'))
+app.use('/adminhome',require('./server/routes/admin/router'))
+app.use('/',require('./server/routes/user/user_router'))
+app.use('/adminhome/users',require('./server/routes/admin/admin_user'))
+app.use('/adminhome/category',require ('./server/routes/admin/admin_category'))
+app.use('/adminhome/brands',require('./server/routes/admin/admin_brand'))
+app.use('/adminhome/products',require('./server/routes/admin/admin_products'))
 
 
 

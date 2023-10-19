@@ -1,8 +1,8 @@
 const express = require('express')
 const route = express.Router()
-const categoryCollection = require('../model/category_model')
-const authenticateJWT = require('../middleware/auth')
-const adminCollection = require('../model/admin_model')
+const categoryCollection = require('../../model/category_model')
+const authenticateJWT = require('../../middleware/auth')
+const adminCollection = require('../../model/admin_model')
 
 route.use(express.json());
 

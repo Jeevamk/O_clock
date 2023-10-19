@@ -1,8 +1,8 @@
 const express = require('express')
 const route = express.Router()
-const userCollection = require('../model/user_model')
-const authenticateJWT = require('../middleware/auth')
-const adminCollection = require('../model/admin_model')
+const userCollection = require('../../model/user_model')
+const authenticateJWT = require('../../middleware/auth')
+const adminCollection = require('../../model/admin_model')
 
 route.use(express.json());
 
@@ -27,7 +27,7 @@ route.get('/:id', async (req, res) => {
     try {
         const user = await userCollection.findOne({ _id: userId });
         if (user) {
-            res.json(user);
+            return res.json(user);
         } else {
             res.status(404).json({ error: 'User not found' });
         }
@@ -38,7 +38,6 @@ route.get('/:id', async (req, res) => {
 }else {
     res.redirect('/adminhome')
 }
-
 
 });
 

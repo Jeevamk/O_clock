@@ -1,4 +1,4 @@
- const viewButtons = document.querySelectorAll('.view-button');
+const viewButtons = document.querySelectorAll('.view-button');
 
 viewButtons.forEach(btn => {
     btn.addEventListener('click', async (event) => {

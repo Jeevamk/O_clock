@@ -1,10 +1,10 @@
 const express = require('express');
 const route = express.Router();
 const jwt = require('jsonwebtoken');
-const userCollection = require('../model/user_model');
+const userCollection = require('../../model/user_model');
 const bcrypt = require('bcrypt');
 const keysecret = process.env.keySecret
-const auth = require('../middleware/auth_user')
+const auth = require('../../middleware/auth_user')
 const bodyparser = require('body-parser');
 const { body, validationResult } = require("express-validator");
 const parserencoded = bodyparser.urlencoded({ extended: false });
