@@ -84,7 +84,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 category_head">
-                            <h2 class="text-center text-dark" id="cate" style="font-weight:bold ;">BRANDS</h2>
+                            <h2 class="text-center text-dark" id="brand" style="font-weight:bold ;">BRANDS</h2>
                             <hr>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                         </div>
                     </div>
 
-                    {{!-- <div class="row pt-3">
+                    <div class="row pt-3">
                         <div class="col-12">
                             <table class="table table-striped table-hover">
                                 <thead>
@@ -110,21 +110,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{#each categoryList}}
+                                    {{#each brands}}
                                     <tr>
-                                        <td>{{logo}}</td>
+                                        <td><img src="/images/uploads/{{logo.data}}" alt="" width="50px"></td>
                                         <td>{{name}}</td>
                                         <td>{{description}}</td>
                                         <td>
-                                            <button type="button" class="view-cat p-1 btn  btn-light m-1"
-                                                data-cat-id="{{_id}}"><i class="fa-regular fa-eye"
+                                            <button type="button" class="view-brand p-1 btn  btn-light m-1"
+                                                data-brand-id="{{_id}}"><i class="fa-regular fa-eye"
                                                     style="color:black;"></i></button>
-                                            <button type="button" class="edit-cat btn btn-light p-1 m-1"
-                                                data-cat-id="{{_id}}"><i class="fa-solid fa-pen-to-square"
+                                            <button type="button" class="edit-brand btn btn-light p-1 m-1"
+                                                data-brand-id="{{_id}}"><i class="fa-solid fa-pen-to-square"
                                                     style="color: #01060e;"></i></button>
 
-                                            <button type="button" class="delete-cat btn btn-light p-1 m-1"
-                                                data-cat-id="{{_id}}"><i class="fa-solid fa-trash"
+                                            <button type="button" class="delete-brand btn btn-light p-1 m-1"
+                                                data-brand-id="{{_id}}"><i class="fa-solid fa-trash"
                                                     style="color: #000714;"></i></button>
 
                                         </td>
@@ -134,7 +134,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div> --}}
+                    </div> 
                 </div>
             </div>
 
@@ -198,7 +198,7 @@
                 </div>
             </div>
 
-            {{!------------------------------ modal add category ---------------------------------------}}
+            {{!------------------------------ modal add brand ---------------------------------------}}
 
             <div class="modal fade" id="brandModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -210,7 +210,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="container">
-                                <form action="/adminhome/brands" method="POST" onsubmit="return addbrand()">
+                                <form action="/adminhome/brands" method="POST" onsubmit="return addbrand()" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="name">Brand Name</label>
                                         <input type="text" class="form-control" id="name" placeholder="Brand Name"
@@ -242,27 +242,28 @@
 
 
             <!-- Modal2 view single data from the table-->
-            {{!-- <div class="modal fade" id="catmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            <div class="modal fade" id="brandmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">View Category</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">View Brand</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="catbody">
+                        <div class="modal-body" id="brandbody">
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/adminhome/category"><button type="button"
+                            <a href="/adminhome/brands"><button type="button"
                                     class="btn btn-secondary">Close</button></a>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div> 
 
             {{!----------------------------------- modal3 edit data from the table-------------------------------------------}}
-            {{!-- <div class="modal fade" id="cateditmodal" data-bs-backdrop="static" data-bs-keyboard="false"
+
+            <div class="modal fade" id="brandeditmodal" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -270,16 +271,16 @@
                             <h5 class="modal-title" id="staticBackdropLabel">Edit Details</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="editcat">
+                        <div class="modal-body" id="editbrand">
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/adminhome/category"><button type="button"
+                            <a href="/adminhome/brands"><button type="button"
                                     class="btn btn-secondary">Close</button></a>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div> 
 
 
 
@@ -288,9 +289,9 @@
     </section>
 
 
-
+    <script src="/js/brand.js"></script>
     <script src="/js/formValidation.js"></script>
-    <script src="/js/categoryview.js"></script>
+    {{!-- <script src="/js/categoryview.js"></script> --}}
     <script src="/js/edit.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.js"></script>

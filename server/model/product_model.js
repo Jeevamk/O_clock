@@ -34,16 +34,18 @@ const productSchema = mongoose.Schema({
         type : String,
         default  :'',
     },
-    productStock :{
-        type : Number,
-        required :true,
-        min : 0,
-        max: 200,
+    color : {
+        type : String,
+        default :''
     },
     reviews : {
         type : Number,
         default : 0 ,
     },
+    gender : {
+        type : String ,
+        required :true,
+    }
 
 })
 

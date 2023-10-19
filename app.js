@@ -20,6 +20,8 @@ app.use(morgan('tiny'))
 app.use(bodyparser.urlencoded({extended:true}))
 app.use(cookieParser())
 
+app.use(express.urlencoded({ extended: true }))
+
 //view engine
 app.set('view engine','hbs');
 // app.set("views",path.resolve(__dirname,"views/hbs"))

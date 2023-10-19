@@ -60,7 +60,7 @@ catDelete.forEach(btn => {
 });
 
 
-//update//
+//update view//
 
 const editcategory = document.querySelectorAll('.edit-cat');
 
