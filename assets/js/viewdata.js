@@ -7,8 +7,7 @@ viewButtons.forEach(btn => {
         try {
             const response = await fetch(`/adminhome/users/${userId}`)
             if (response.ok) {
-                const userdata = await response.json()
-
+                const userdata = await response.json()   
                 const viewData = document.getElementById('viewbody');
                 viewData.innerHTML = ` <form id="viewForm">
             <div class="mb-4">

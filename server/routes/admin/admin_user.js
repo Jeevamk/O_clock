@@ -20,10 +20,8 @@ route.get('/', authenticateJWT, async (req, res) => {
 //get single data //
 
 route.get('/:id', async (req, res) => {
-    if (req.cookies.sessions) {
-    
+    if (req.cookies.session) {
     const userId = req.params.id;
-
     try {
         const user = await userCollection.findOne({ _id: userId });
         if (user) {
@@ -45,7 +43,7 @@ route.get('/:id', async (req, res) => {
 //update //
 
 route.get('/edit/:id', async (req, res) => {
-    if (req.cookies.sessions){
+    if (req.cookies.session){
 
     const userId = req.params.id;
 
