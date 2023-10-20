@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema({
     },
     category : {
         type :mongoose.Schema.Types.ObjectId,
-        ref :'Category',
+        ref :'categoryCollection',
         required : true,
     },
     description1 : {
@@ -45,7 +45,15 @@ const productSchema = mongoose.Schema({
     gender : {
         type : String ,
         required :true,
-    }
+    },
+    createdDate :{
+        type : Date,
+        default :Date.now,
+    },
+    countStock :{
+        type : Number,
+        required : true,
+    },
 
 })
 

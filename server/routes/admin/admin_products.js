@@ -34,9 +34,25 @@ route.post('/',async (req,res)=>{
     const product = new productCollection ({
         name : req.body.name,
         description1  :req.body.description1,
+        description2 : req.body.description2,
         price : req.body.price,
-
+        category : req.body.category,
+        image : req.body.image,
+        images  : req.body.images,
+        brand : req.body.brand,
+        color : req.body.color,
+        reviews : req.body.reviews,
+        gender : req.body.gender,
+        createdDate :req.body.createdDate,
+        countStock : req.body.countStock,
     })
+    product == await product.save();
+
+    if(!product) {
+        return res.status(404).send("product is not created")
+    }else {
+        return res.redirect('/adminhome/products')
+    }
 
 })
 

@@ -30,6 +30,33 @@ function validateForm() {
     return true;
   }
 
+//signup//
+//  function validateForm() {
+//   var correct_way=/^[A-Z a-z]+$/;
+//     var a =document.getElementById("name").value;
+//     if (a=="") {
+//         document.getElementById ("error").innerHTML="**please fill user name";
+//         return false;
+//     }
+//     if (a.length<3) {
+//         document.getElementById ("error").innerHTML="**User name must have be 3 characters";
+//         return false;
+//     }
+//     if (a.length>20) {
+//         document.getElementById ("error").innerHTML="**User name must have be less than 20 characters";
+//         return false;
+//     }
+//     if (a.match (correct_way)) {
+//         true;
+//     }
+//         else{
+//             document.getElementById ("error").innerHTML="**only alpabets are allowed";
+//             return false;
+//         }
+   
+
+//  }
+
   //category//
 
 function addcat() {
