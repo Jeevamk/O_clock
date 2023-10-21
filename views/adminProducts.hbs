@@ -134,7 +134,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>  --}}
+                    </div> --}}
                 </div>
             </div>
 
@@ -210,16 +210,74 @@
                         </div>
                         <div class="modal-body">
                             <div class="container">
-                                <form action="/adminhome/products" method="POST" onsubmit="return addproduct()" enctype="multipart/form-data">
+                                <form class="row g-3" action="/adminhome/products" method="POST" onsubmit="return addproduct()"
+                                    enctype="multipart/form-data">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="product Name"
+                                            name="name" style="border: 1px solid black;">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="price">Price</label>
+                                        <input type="text" class="form-control" id="price" placeholder="Enter price"
+                                            name="price" style="border: 1px solid black;">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="disc">Discription1</label>
+                                        <input type="text" class="form-control" id="disc"
+                                            placeholder="Enter Discription" name="description"
+                                            style="border: 1px solid black;">
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                        <label for="disc2">Discription2</label>
+                                        <input type="text" class="form-control" id="disc2"
+                                            placeholder="Enter Discription" name="description2"
+                                            style="border: 1px solid black;">
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="reviews">Reviews</label>
+                                        <input type="Number" class="form-control" id="reviews"
+                                            placeholder="Enter reviews" name="reviews" style="border: 1px solid black;">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="color" class="form-label">color</label><br>
+                                        <select id="color" class="form-select" >
+                                            <option selected>Black</option>
+                                            <option>Brown</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                                Check me out
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                    </div>
+                                </form>
+                                {{!-- <form action="/adminhome/products" method="POST" onsubmit="return addproduct()"
+                                    enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="name">Product Name</label>
                                         <input type="text" class="form-control" id="name" placeholder="product Name"
                                             name="name" style="border: 1px solid black;">
                                     </div>
                                     <div class="form-group">
-                                        <label for="disc">Discription</label>
+                                        <label for="disc">Discription1</label>
                                         <input type="text" class="form-control" id="disc"
                                             placeholder="Enter Discription" name="description"
+                                            style="border: 1px solid black;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="disc2">Discription2</label>
+                                        <input type="text" class="form-control" id="disc2"
+                                            placeholder="Enter Discription" name="description2"
                                             style="border: 1px solid black;">
                                     </div>
                                     <div class="form-group">
@@ -230,24 +288,53 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="brand">Brand</label>
-                                        <input type="text" class="form-control" id="brand"
-                                            placeholder="Enter brand" name="brand"
-                                            style="border: 1px solid black;">
+                                        <input type="text" class="form-control" id="brand" placeholder="Enter brand"
+                                            name="brand" style="border: 1px solid black;">
                                     </div>
                                     <div class="form-group">
                                         <label for="price">Price</label>
-                                        <input type="text" class="form-control" id="price"
-                                            placeholder="Enter price" name="price"
+                                        <input type="text" class="form-control" id="price" placeholder="Enter price"
+                                            name="price" style="border: 1px solid black;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="color">Color</label>
+                                        <input type="text" class="form-control" id="color" placeholder="Enter color"
+                                            name="color" style="border: 1px solid black;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reviews">Reviews</label>
+                                        <input type="Number" class="form-control" id="reviews"
+                                            placeholder="Enter reviews" name="reviews" style="border: 1px solid black;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gender">Gender</label>
+                                        <input type="text" class="form-control" id="gender" placeholder="Enter gender"
+                                            name="gender" style="border: 1px solid black;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="createdDate">CreatedDate</label>
+                                        <input type="date" class="form-control" id="createdDate"
+                                            placeholder="Enter createdDate" name="createdDate"
                                             style="border: 1px solid black;">
                                     </div>
-                                    
+                                    <div class="form-group">
+                                        <label for="countStock">countStock</label>
+                                        <input type="number" class="form-control" id="countStock"
+                                            placeholder="Enter countStock" name="countStock"
+                                            style="border: 1px solid black;">
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="image">Select a logo</label><br>
                                         <input type="file" id="image" name="image" style="border: 1px solid black;">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="images">Select images</label><br>
+                                        <input type="file" id="images" name="images" style="border: 1px solid black;">
+                                    </div>
 
                                     <button type="submit" class="btn btn-dark">Submit</button>
-                                </form>
+                                </form> --}}
                             </div>
 
                         </div>
@@ -261,8 +348,8 @@
 
 
             <!-- Modal2 view single data from the table-->
-            {{!-- <div class="modal fade" id="brandmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            {{!-- <div class="modal fade" id="brandmodal" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -278,9 +365,10 @@
                         </div>
                     </div>
                 </div>
-            </div>  --}}
+            </div> --}}
 
-            {{!----------------------------------- modal3 edit data from the table-------------------------------------------}}
+            {{!----------------------------------- modal3 edit data from the
+            table-------------------------------------------}}
 
             {{!-- <div class="modal fade" id="brandeditmodal" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -299,8 +387,8 @@
                         </div>
                     </div>
                 </div>
-            </div> 
- --}}
+            </div>
+            --}}
 
 
 
@@ -310,7 +398,8 @@
 
     <script src="/js/brand.js"></script>
     <script src="/js/formValidation.js"></script>
-    {{!-- <script src="/js/categoryview.js"></script> --}}
+    {{!--
+    <script src="/js/categoryview.js"></script> --}}
     <script src="/js/edit.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.js"></script>
