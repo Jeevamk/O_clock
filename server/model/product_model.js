@@ -5,10 +5,14 @@ const productSchema = mongoose.Schema({
         type : String,
         required : true,
     },
-    category : {
-        type :mongoose.Schema.Types.ObjectId,
-        ref :'categoryCollection',
-        required : true,
+    // category : {
+    //     type :mongoose.Schema.Types.ObjectId,
+    //     ref :'categoryCollection',
+    //     required : true,
+    // },
+    category :{
+        type : String,
+        default  :'',
     },
     description1 : {
         type :String,
@@ -23,13 +27,12 @@ const productSchema = mongoose.Schema({
         default : 0,
     },
     image : {
-        type : String,
-        default : ''
+        data : Buffer ,
+        contentType : String,
     },
-    images : [{
-        type : String,
-        default: '',
-    }],
+    // images : [{
+    //     type : String,
+    // }],
     brand : {
         type : String,
         default  :'',
@@ -54,6 +57,11 @@ const productSchema = mongoose.Schema({
         type : Number,
         default : 0,
     },
+    material :{
+        type : String,
+        default : ''
+
+    }
 
 })
 
