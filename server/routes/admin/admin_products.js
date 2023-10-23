@@ -75,7 +75,7 @@ route.post("/", upload.single("image"), async (req, res) => {
   }
 });
 
-module.exports = route;
+
 
 //view single data//
 
@@ -99,3 +99,61 @@ route.get("/:id", async (req, res) => {
   }
 });
 
+//edit//
+
+route.get("/update/:id", async (req, res) => {
+  if (req.cookies.session) {
+    const productId = req.params.id;
+
+    try {
+      const productUpdate = await productCollection.findOne({ _id: productId });
+
+      if (productUpdate) {
+        res.json(productUpdate);
+      } else {
+        res.status(404).json({ error: "product not found" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  } else {
+    res.redirect("/adminhome");
+  }
+});
+
+route.put("/update", authenticateJWT, async (req, res) => {
+  const productid = req.body.id;
+  const productUpdateData = req.body;
+  try {
+    const productUpdate = await productCollection.findByIdAndUpdate(
+      { _id: productid },
+      { $set: productUpdateData }
+    );
+
+    if (productUpdate) {
+      res.redirect(303, "/adminhome/products");
+    } else {
+      res.status(404).json({ error: "product not found" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+//delete//
+
+route.delete("/delete_product/:id", async (req, res) => {
+  try {
+    const productId = req.params.id;
+    await productCollection.findByIdAndDelete(productId);
+    res.redirect(303, "/adminhome/products");
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+
+module.exports = route;
