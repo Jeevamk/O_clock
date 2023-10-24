@@ -55,9 +55,9 @@ a {
     background: #eee;
 }
 
-#profile_container {
+/* #profile_container {
     background-image: url('/assets/images/contact.jpg');
-}
+} */
 
 
 #loginrow {
@@ -260,13 +260,13 @@ a {
     background-clip: padding-box;
 }
 
-.form-control:focus {
+/* .form-control:focus {
     color: #495057;
     background-color: #fff;
     border-color: #fff;
     outline: 0;
     box-shadow: none;
-}
+} */
 
 /*------------------------------- latest products------------------------------ */
 
@@ -405,3 +405,10 @@ a {
 }
 
 }
+
+@media screen and (max-width:525px) {
+    
+    .logimg{
+        display: none;
+    }
+    }

@@ -78,8 +78,8 @@
     <div class="container">
       <div class="row" id="loginrow">
         <div class="col-lg-5">
-          <img src="/images/login.jpg" alt="loginimg" class="img-fluid logimg p-4" >
-          <a href="/userlogin" class="mt-5">i am already a member</a>
+          <img src="/images/loginImg.jpg" alt="loginimg" class="img-fluid logimg p-4 mt-5" >
+          {{!-- <a href="/userlogin" class="mt-5">i am already a member</a> --}}
         </div>
         <div class="col-lg-7 text-center py-5">
           <h1 id="logh1">Sign Up</h1>
@@ -88,25 +88,26 @@
             <div class="form-row">
               <div class="offset-1 col-lg-10 pt-3">
                 <input type="text" class="form-control" name="name" placeholder="User Name" id="name" value="" />
-                <p id="error text-danger"></p>
+                <p id="error" class="text-danger"></p>
 
               </div>
               <div class="offset-1 col-lg-10 pt-3">
                 <input type="email" class="form-control" name="email" placeholder="Email address" id="email" value="" />
-                <p id="error1 text-danger" ></p>
+                <p id="error1"  class="text-danger"></p>
               </div>
               <div class="offset-1 col-lg-10 pt-3">
                 <input type="number" class="form-control" name="phone" placeholder="Phone Number" id="phone" value="" />
-                <p id="error2 text-danger"></p>
+                <p id="error2" class="text-danger"></p>
               </div>
               <div class="offset-1 col-lg-10 pt-3">
                 <input type="password" class="form-control" name="password" placeholder="Password" id="password" value="" />
-                <p id="error3 text-danger"></p>
+                <p id="error3" class="text-danger"></p>
               </div>
               <div class="offset-1 col-lg-10 pt-3">
-                <input type="password" class="form-control" name="cpassword" placeholder="Confirm Password" value="" />
-                <p id="error4 text-danger"></p>
+                <input type="password" class="form-control" name="cpassword" placeholder="Confirm Password" id="cpassword" value="" />
+                <p id="error4" class="text-danger"></p>
               </div>
+              <a href="/userlogin" class="mt-5">i am already a member</a>
               <div class="offset-1 col-lg-10 pt-3">
                 <input type="text" class="form-control" name="status" value="active" hidden/>
               </div>
