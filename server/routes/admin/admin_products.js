@@ -5,6 +5,15 @@ const adminCollection = require("../../model/admin_model");
 const authenticateJWT = require("../../middleware/auth");
 const multer = require("multer");
 const categoryCollection = require("../../model/category_model");
+const cloudinary = require('cloudinary').v2;
+
+
+cloudinary.config({ 
+  cloud_name: 'dsqsfves6', 
+  api_key: '399517237489362', 
+  api_secret: '8PgxUwekIWnaWbpNYgHFnbRwi7c',
+  secure: true
+});
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -17,6 +26,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 route.use(express.json());
+
+
+
 
 route.get("/", authenticateJWT, async (req, res) => {
   if (req.cookies.session) {
@@ -31,7 +43,6 @@ route.get("/", authenticateJWT, async (req, res) => {
 //add product//
 route.post("/", upload.single("image"), async (req, res) => {
   try {
-    // Retrieve the category ObjectId based on the category name
     const category = await categoryCollection.findOne({
       name: req.body.category,
     });
@@ -69,11 +80,13 @@ route.post("/", upload.single("image"), async (req, res) => {
     } else {
       return res.redirect("/adminhome/products");
     }
-  } catch (error) {
+  } 
+  catch (error) {
     console.error(error);
     return res.status(500).send("Internal Server Error");
   }
-});
+}
+);
 
 
 
@@ -99,6 +112,7 @@ route.get("/:id", async (req, res) => {
   }
 });
 
+
 //edit//
 
 route.get("/update/:id", async (req, res) => {
@@ -121,6 +135,7 @@ route.get("/update/:id", async (req, res) => {
     res.redirect("/adminhome");
   }
 });
+
 
 route.put("/update", authenticateJWT, async (req, res) => {
   const productid = req.body.id;

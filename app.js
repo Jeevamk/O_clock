@@ -1,5 +1,5 @@
 const express=require('express');
-const hbs = require('hbs')
+const hbs = require('hbs');
 const dotenv = require('dotenv').config({path:'config.env'});
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
@@ -7,6 +7,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser');
 const { body , validationResult } =require ("express-validator");
 const parserencoded = bodyparser.urlencoded({ extended: false });  
+const fileUpload = require("express-fileupload");
                                                                                                                   
 
 
@@ -21,6 +22,11 @@ app.use(bodyparser.urlencoded({extended:true}))
 app.use(cookieParser())
 
 app.use(express.urlencoded({ extended: true }))
+
+// app.use(fileUpload({
+//     useTempFiles: true
+//   }))
+  
 
 //view engine
 app.set('view engine','hbs');
