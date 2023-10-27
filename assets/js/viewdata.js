@@ -1,15 +1,15 @@
-const viewButtons = document.querySelectorAll('.view-button');
+const viewButtons = document.querySelectorAll(".view-button");
 
-viewButtons.forEach(btn => {
-    btn.addEventListener('click', async (event) => {
-        const userId = await event.target.getAttribute('data-user-id');
+viewButtons.forEach((btn) => {
+  btn.addEventListener("click", async (event) => {
+    const userId = await event.target.getAttribute("data-user-id");
 
-        try {
-            const response = await fetch(`/adminhome/users/${userId}`)
-            if (response.ok) {
-                const userdata = await response.json()   
-                const viewData = document.getElementById('viewbody');
-                viewData.innerHTML = ` <form id="viewForm">
+    try {
+      const response = await fetch(`/adminhome/users/${userId}`);
+      if (response.ok) {
+        const userdata = await response.json();
+        const viewData = document.getElementById("viewbody");
+        viewData.innerHTML = ` <form id="viewForm">
             <div class="mb-4">
             <label for="user-name">Name</label>
                 <input type="text" class="form-control" id="user-name" placeholder="Enter Name" 
@@ -31,58 +31,57 @@ viewButtons.forEach(btn => {
                     name="phone" value="${userdata.status}" readonly>
             </div>
             
-        </form>`
-                const showModal = new bootstrap.Modal(document.getElementById('viewmodal'))
-                showModal.show()
-
-            } else {
-                console.error('Error fetching user data:', error);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    })
+        </form>`;
+        const showModal = new bootstrap.Modal(
+          document.getElementById("viewmodal")
+        );
+        showModal.show();
+      } else {
+        console.error("Error fetching user data:", error);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  });
 });
-
 
 //delete part//
-const deleteButtons = document.querySelectorAll('.delete-button');
+const deleteButtons = document.querySelectorAll(".delete-button");
 
-deleteButtons.forEach(btn => {
-    btn.addEventListener('click', async (event) => {
-        const userId = await event.target.getAttribute('data-user-id');
+deleteButtons.forEach((btn) => {
+  btn.addEventListener("click", async (event) => {
+    const userId = await event.target.getAttribute("data-user-id");
 
-        try {
-            const response = await fetch(`/adminhome/users/delete_user/${userId}`, {
-                method: 'DELETE'
-            })
-            if (response.ok) {
-                window.location.href = '/adminhome/users'
-            } else {
-                console.error('Error fetching user data:', error);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    })
+    try {
+      const response = await fetch(`/adminhome/users/delete_user/${userId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        window.location.href = "/adminhome/users";
+      } else {
+        console.error("Error fetching user data:", error);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  });
 });
-
 
 //update status part//
 //---------------view part--------------------//
-const editButtons = document.querySelectorAll('.edit-button');
+const editButtons = document.querySelectorAll(".edit-button");
 
-editButtons.forEach(btn => {
-    btn.addEventListener('click', async (event) => {
-        const userId = await event.target.getAttribute('data-user-id');
+editButtons.forEach((btn) => {
+  btn.addEventListener("click", async (event) => {
+    const userId = await event.target.getAttribute("data-user-id");
 
-        try {
-            const response = await fetch(`/adminhome/users/edit/${userId}`)
-            if (response.ok) {
-                const userdata = await response.json()
-                document.getElementById('editbody').innerHTML =
-
-                    `<form id="editstatusForm" >
+    try {
+      const response = await fetch(`/adminhome/users/edit/${userId}`);
+      if (response.ok) {
+        const userdata = await response.json();
+        document.getElementById(
+          "editbody"
+        ).innerHTML = `<form id="editstatusForm" >
 <input type="text" class="form-control" hidden value="${userdata._id}" name="id">
 <div class="form-group row">
   <label for="user-name" class="col-sm-2 col-form-label">Name</label>
@@ -130,16 +129,37 @@ editButtons.forEach(btn => {
     <button type="button" class="btn btn-dark"  onclick="status()" id="statusUpdateButton">Submit</button>
   </div>
 </div>
-</form>`
-                const showModal = new bootstrap.Modal(document.getElementById('editmodal'))
-                showModal.show()
-
-            } else {
-                console.error('Error fetching user data:', error);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    })
+</form>`;
+        const showModal = new bootstrap.Modal(
+          document.getElementById("editmodal")
+        );
+        showModal.show();
+      } else {
+        console.error("Error fetching user data:", error);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  });
 });
 
+//update status//
+function status() {
+  const status = document.querySelector(
+    'input[name="gridRadios"]:checked'
+  ).value;
+  const userId = document.querySelector('input[name="id"]').value;
+
+  const request = new XMLHttpRequest();
+  request.open("PUT", `/adminhome/users/edit/${userId}`);
+  request.setRequestHeader("Content-Type", "application/json");
+  request.send(JSON.stringify({ status }));
+
+  request.onload = function () {
+    if (request.status === 200) {
+      window.location.href = "/adminhome/users";
+    } else {
+      console.error(err);
+    }
+  };
+}

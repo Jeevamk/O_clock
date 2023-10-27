@@ -81,8 +81,8 @@ function validateForm() {
     passwordError.innerHTML = "Please fill in your password";
     return false;
   }
-  if (password.length < 8) {
-    passwordError.innerHTML = "Password must be at least 8 characters";
+  if (password.length < 6) {
+    passwordError.innerHTML = "Password must be at least 6 characters";
     return false;
   }
   passwordError.innerHTML = "";

@@ -7,7 +7,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser');
 const { body , validationResult } =require ("express-validator");
 const parserencoded = bodyparser.urlencoded({ extended: false });  
-const fileUpload = require("express-fileupload");
+const expressHandlebars = require('express-handlebars');
                                                                                                                   
 
 
@@ -46,6 +46,7 @@ app.use('/adminhome/users',require('./server/routes/admin/admin_user'))
 app.use('/adminhome/category',require ('./server/routes/admin/admin_category'))
 app.use('/adminhome/brands',require('./server/routes/admin/admin_brand'))
 app.use('/adminhome/products',require('./server/routes/admin/admin_products'))
+app.use('/',require('./server/routes/user/auth_google'))
 
 
 

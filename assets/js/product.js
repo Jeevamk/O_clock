@@ -13,7 +13,7 @@ viewProduct.forEach((btn) => {
         productData.innerHTML = ` <form id="productForm">
                 <div class="mb-4">
             <label for="image">product image</label>
-            <img src="${productdata.image}" alt="product image" style="max-width: 100px;">
+            <img src="${productdata.image}" alt="product image" style="max-width: 50px;">
             </div>
             <div class="mb-4 ">
             <label for="name">Name</label>
@@ -91,23 +91,23 @@ viewProduct.forEach((btn) => {
   });
 });
 
-
 //edit data//
 
-const editproduct = document.querySelectorAll('.edit-product');
+const editproduct = document.querySelectorAll(".edit-product");
 
-editproduct.forEach(btn => {
-    btn.addEventListener('click', async (event) => {
-        const productId = await event.target.getAttribute('data-product-id');
+editproduct.forEach((btn) => {
+  btn.addEventListener("click", async (event) => {
+    const productId = await event.target.getAttribute("data-product-id");
 
-        try {
-            const response = await fetch(`/adminhome/products/update/${productId}`)
-    
-            if (response.ok) {
-                const productdata = await response.json()
+    try {
+      const response = await fetch(`/adminhome/products/update/${productId}`);
 
-                document.getElementById('editproduct').innerHTML =
-                ` <form id="updateproductForm">
+      if (response.ok) {
+        const productdata = await response.json();
+
+        document.getElementById(
+          "editproduct"
+        ).innerHTML = ` <form id="updateproductForm">
                 <input type="text" class="form-control" hidden value="${productdata._id}" name="id">
                 <div class="mb-4">
             <label for="image">product image</label>
@@ -179,65 +179,67 @@ editproduct.forEach(btn => {
 
             </div>
             
-        </form>`
-                const showModal = new bootstrap.Modal(document.getElementById('producteditmodal'))
-                showModal.show()
-
-            } else {
-                console.error('Error fetching user data:', error);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    })
-})
+        </form>`;
+        const showModal = new bootstrap.Modal(
+          document.getElementById("producteditmodal")
+        );
+        showModal.show();
+      } else {
+        console.error("Error fetching user data:", error);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  });
+});
 
 //put method//
 
-function productEdit () {
-  const ProductEditedData = document.getElementById('updateproductForm')
-  const myproductData = new FormData(ProductEditedData)
+function productEdit() {
+  const ProductEditedData = document.getElementById("updateproductForm");
+  const myproductData = new FormData(ProductEditedData);
 
-      fetch(`/adminhome/products/update`, {
-          method: 'PUT',
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify(Object.fromEntries(myproductData)),
-      })
-          .then((response) => {
-              if (response.ok) {
-                  window.location.href = "/adminhome/products"
-                  
-              }
-              throw new Error("not ok")
-          })
-  
-          .catch(error => {
-              console.log(error);
-          });
-  };
+  fetch(`/adminhome/products/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Object.fromEntries(myproductData)),
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "/adminhome/products";
+      }
+      throw new Error("not ok");
+    })
 
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
 //delete data//
 
-const productDelete = document.querySelectorAll('.delete-product');
+const productDelete = document.querySelectorAll(".delete-product");
 
-productDelete.forEach(btn => {
-    btn.addEventListener('click', async (event) => {
-        const productId = await event.target.getAttribute('data-product-id');
+productDelete.forEach((btn) => {
+  btn.addEventListener("click", async (event) => {
+    const productId = await event.target.getAttribute("data-product-id");
 
-        try {
-            const response = await fetch(`/adminhome/products/delete_product/${productId}`, {
-                method: 'DELETE'
-            })
-            if (response.ok) {
-                window.location.href = '/adminhome/products'
-            } else {
-                console.error('Error fetching user data:', error);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
+    try {
+      const response = await fetch(
+        `/adminhome/products/delete_product/${productId}`,
+        {
+          method: "DELETE",
         }
-    })
+      );
+      if (response.ok) {
+        window.location.href = "/adminhome/products";
+      } else {
+        console.error("Error fetching user data:", error);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  });
 });

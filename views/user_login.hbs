@@ -43,14 +43,12 @@
               <li class="nav-item">
                 <a class="nav-link active" href="#">Blog</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">{{user.name}}</a>
-              </li>
+            
 
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
               <li class="nav-item">
-                <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i></a>
+                <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i>{{user.name}}</a>
 
               </li>
               <li class="nav-item ">
@@ -140,10 +138,10 @@
               </div>
               <div class="offset-1 col-lg-10  text-center">
                 <button type="submit" class="btn btn-dark mt-4  ms-5">Login</button>
-
               </div>
             </div>
           </form>
+          <a href="/google"><button class="btn btn-dark text-white">google+</button></a>
 
 
         </div>

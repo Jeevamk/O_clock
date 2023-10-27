@@ -1,17 +1,19 @@
-const viewBrand = document.querySelectorAll('.view-brand');
+const viewBrand = document.querySelectorAll(".view-brand");
 
-viewBrand.forEach(btn => {
-    btn.addEventListener('click', async (event) => {
-        const brandId = await event.target.getAttribute('data-brand-id');
+viewBrand.forEach((btn) => {
+  btn.addEventListener("click", async (event) => {
+    const brandId = await event.target.getAttribute("data-brand-id");
 
-        try {
-            const response = await fetch(`/adminhome/brands/${brandId}`)
-            if (response.ok) {
-                const branddata = await response.json()
+    try {
+      const response = await fetch(`/adminhome/brands/${brandId}`);
+      if (response.ok) {
+        const branddata = await response.json();
 
-                const brandData = document.getElementById('brandbody');
-                brandData.innerHTML = ` <form id="brandForm">
+        const brandData = document.getElementById("brandbody");
+        brandData.innerHTML = ` <form id="brandForm">
                 <div class="mb-4">
+             
+
             <label for="logo">Brand Logo</label>
             <img src="${branddata.logo}" alt="Brand Logo" style="max-width: 100px;">
             </div>
@@ -27,60 +29,63 @@ viewBrand.forEach(btn => {
             </div>
             
             
-        </form>`
-                const showModal = new bootstrap.Modal(document.getElementById('brandmodal'))
-                showModal.show()
-
-            } else {
-                console.error('Error fetching user data:', error);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    })
-})
-
+        </form>`;
+        const showModal = new bootstrap.Modal(
+          document.getElementById("brandmodal")
+        );
+        showModal.show();
+      } else {
+        console.error("Error fetching user data:", error);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  });
+});
 
 //delete data//
 
-const brandDelete = document.querySelectorAll('.delete-brand');
+const brandDelete = document.querySelectorAll(".delete-brand");
 
-brandDelete.forEach(btn => {
-    btn.addEventListener('click', async (event) => {
-        const brandId = await event.target.getAttribute('data-brand-id');
+brandDelete.forEach((btn) => {
+  btn.addEventListener("click", async (event) => {
+    const brandId = await event.target.getAttribute("data-brand-id");
 
-        try {
-            const response = await fetch(`/adminhome/brands/delete_brand/${brandId}`, {
-                method: 'DELETE'
-            })
-            if (response.ok) {
-                window.location.href = '/adminhome/brands'
-            } else {
-                console.error('Error fetching user data:', error);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
+    try {
+      const response = await fetch(
+        `/adminhome/brands/delete_brand/${brandId}`,
+        {
+          method: "DELETE",
         }
-    })
+      );
+      if (response.ok) {
+        window.location.href = "/adminhome/brands";
+      } else {
+        console.error("Error fetching user data:", error);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  });
 });
-
 
 //update view//
 
-const editbrand = document.querySelectorAll('.edit-brand');
+const editbrand = document.querySelectorAll(".edit-brand");
 
-editbrand.forEach(btn => {
-    btn.addEventListener('click', async (event) => {
-        const brandId = await event.target.getAttribute('data-brand-id');
+editbrand.forEach((btn) => {
+  btn.addEventListener("click", async (event) => {
+    const brandId = await event.target.getAttribute("data-brand-id");
 
-        try {
-            const response = await fetch(`/adminhome/brands/update/${brandId}`)
-    
-            if (response.ok) {
-                const branddata = await response.json()
+    try {
+      const response = await fetch(`/adminhome/brands/update/${brandId}`);
 
-                document.getElementById('editbrand').innerHTML =
-                `<form id="updatebrandForm" >
+      if (response.ok) {
+        const branddata = await response.json();
+
+        document.getElementById(
+          "editbrand"
+        ).innerHTML = `<form id="updatebrandForm" >
                 <input type="text" class="form-control" hidden value="${branddata._id}" name="id">
                 <div class="form-group row">
                     <img src="${branddata.logo}" alt="Brand Logo" style="max-width: 100px;">
@@ -108,42 +113,41 @@ editbrand.forEach(btn => {
                     <button type="button" class="btn btn-dark"  onclick="brandEdit()" id="brandUpdateButton">Submit</button>
                   </div>
                 </div>
-                </form>`
-                const showModal = new bootstrap.Modal(document.getElementById('brandeditmodal'))
-                showModal.show()
-
-            } else {
-                console.error('Error fetching user data:', error);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    })
-})
-
+                </form>`;
+        const showModal = new bootstrap.Modal(
+          document.getElementById("brandeditmodal")
+        );
+        showModal.show();
+      } else {
+        console.error("Error fetching user data:", error);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  });
+});
 
 //put method//
 
-function brandEdit () {
-    const BrandEditedData = document.getElementById('updatebrandForm')
-    const myBrandData = new FormData(BrandEditedData)
+function brandEdit() {
+  const BrandEditedData = document.getElementById("updatebrandForm");
+  const myBrandData = new FormData(BrandEditedData);
 
-        fetch(`/adminhome/brands/update`, {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(myBrandData)),
-        })
-            .then((response) => {
-                if (response.ok) {
-                    window.location.href = "/adminhome/brands"
-                    
-                }
-                throw new Error("not ok")
-            })
-    
-            .catch(error => {
-                console.log(error);
-            });
-    };
+  fetch(`/adminhome/brands/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Object.fromEntries(myBrandData)),
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "/adminhome/brands";
+      }
+      throw new Error("not ok");
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+}

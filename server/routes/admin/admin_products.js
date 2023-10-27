@@ -5,14 +5,13 @@ const adminCollection = require("../../model/admin_model");
 const authenticateJWT = require("../../middleware/auth");
 const multer = require("multer");
 const categoryCollection = require("../../model/category_model");
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require("cloudinary").v2;
 
-
-cloudinary.config({ 
-  cloud_name: 'dsqsfves6', 
-  api_key: '399517237489362', 
-  api_secret: '8PgxUwekIWnaWbpNYgHFnbRwi7c',
-  secure: true
+cloudinary.config({
+  cloud_name: "dsqsfves6",
+  api_key: "399517237489362",
+  api_secret: "8PgxUwekIWnaWbpNYgHFnbRwi7c",
+  secure: true,
 });
 
 const storage = multer.diskStorage({
@@ -26,9 +25,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 route.use(express.json());
-
-
-
 
 route.get("/", authenticateJWT, async (req, res) => {
   if (req.cookies.session) {
@@ -80,15 +76,11 @@ route.post("/", upload.single("image"), async (req, res) => {
     } else {
       return res.redirect("/adminhome/products");
     }
-  } 
-  catch (error) {
+  } catch (error) {
     console.error(error);
     return res.status(500).send("Internal Server Error");
   }
-}
-);
-
-
+});
 
 //view single data//
 
@@ -111,7 +103,6 @@ route.get("/:id", async (req, res) => {
     res.redirect("/adminhome");
   }
 });
-
 
 //edit//
 
@@ -136,7 +127,6 @@ route.get("/update/:id", async (req, res) => {
   }
 });
 
-
 route.put("/update", authenticateJWT, async (req, res) => {
   const productid = req.body.id;
   const productUpdateData = req.body;
@@ -157,7 +147,6 @@ route.put("/update", authenticateJWT, async (req, res) => {
   }
 });
 
-
 //delete//
 
 route.delete("/delete_product/:id", async (req, res) => {
@@ -169,6 +158,5 @@ route.delete("/delete_product/:id", async (req, res) => {
     res.send(error);
   }
 });
-
 
 module.exports = route;

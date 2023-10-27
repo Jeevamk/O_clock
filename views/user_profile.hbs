@@ -44,14 +44,12 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">Blog</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">{{user.name}}</a>
-                            </li>
+                           
 
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
                             <li class="nav-item">
-                                <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i></a>
+                                <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i>{{user.name}}</a>
 
                             </li>
                             <li class="nav-item ">
@@ -118,7 +116,7 @@
                                     placeholder="Enter Phone number" name="phone" value="{{user.phone}}" readonly>
                             </div>
                             <div class="mb-4">
-                                <button type="button" class="btn btn-dark text-light">
+                                <button type="button" class="btn btn-dark text-light" data-bs-toggle="modal" data-bs-target="#passwordchange">
                                     Change Password
                                 </button>
                                 <button type="button" class="btn btn-dark text-light" data-bs-toggle="modal"
@@ -132,7 +130,7 @@
             </div>
     </section>
 
-    <!-- Modal -->
+    <!-- Modal edit form -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -163,7 +161,41 @@
 
         </div>
     </div>
-    </div>
+
+{{!-- modal changepassword --}}
+
+<div class="modal fade" id="passwordchange" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="text-align: center; font-family: cursive; font-weight: bold;">Change Password</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="changepassword">
+                        <input type="text" class="form-control" name="_id" hidden value="{{user._id}}">
+                        <div class="mb-4">
+                            <input type="password" class="form-control" id="currentpassword" placeholder="Enter current password" name="currentpassword"
+                                >
+                        </div>
+                        <div class="mb-4">
+                            <input type="password" class="form-control" id="newpassword" placeholder="Enter New password"
+                                name="newpassword">
+                        </div>
+                        <div class="mb-4">
+                            <input type="password" class="form-control" id="cnewpassword" placeholder="Confirm New password"
+                                name="cnewpassword">
+                        </div>
+                        <button type="button" id="changeButton" onclick="change()" class="btn btn-outline-dark"
+                            data-bs-toggle="modal" data-bs-dismiss="modal">Save Changes</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div> 
+
 
 
 
