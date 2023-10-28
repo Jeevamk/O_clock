@@ -40,9 +40,11 @@ function change() {
   })
     .then((response) => {
       if (response.ok) {
+        alert("Password updated successfully");
         return window.location.href = "/user"
       }
-      throw new Error("not ok");
+      alert("Password change failed. Please try again.");
+      // throw new Error("not ok");
     })
     .catch((error) => {
       console.log(error);

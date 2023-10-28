@@ -205,10 +205,14 @@ route.get("/user_logout", (req, res) => {
 
 route.put("/password-change", async (req, res) => {
   const userId = req.body._id;
-  console.log(req.body);
-  console.log(userId);
-  const { currentpassword, newpassword } = req.body;
-  console.log(newpassword, " ", currentpassword);
+  const { currentpassword, newpassword , cnewpassword } = req.body;
+
+  if (newpassword !== cnewpassword) {
+    return res
+      .status(400)
+      .json({ success: false, message: "New password and confirm password do not match" });
+  }
+
   try {
     const user = await userCollection.findById(userId);
 
@@ -216,20 +220,22 @@ route.put("/password-change", async (req, res) => {
       return res
         .status(404)
         .json({ success: false, message: "User not found" });
+      // return res.status(404).render("password-change", { aler: true });
+      
     }
-    console.log(user.password);
     const passwordMatch = await bcrypt.compare(currentpassword, user.password);
     console.log(passwordMatch);
     if (!passwordMatch) {
       return res
         .status(401)
         .json({ success: false, message: "Current password is incorrect" });
+      // return res.status(401).render("profile", { alert: true });
     }
 
     user.password = newpassword;
     console.log(user.password);
     await user.save();
-    res.clearCookie("session")
+    res.clearCookie("sessions")
     return res.json({
       success: true,
       message: "Password updated successfully",
