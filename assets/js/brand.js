@@ -43,31 +43,31 @@ viewBrand.forEach((btn) => {
   });
 });
 
-//delete data//
+// delete data//
 
-const brandDelete = document.querySelectorAll(".delete-brand");
+// const brandDelete = document.querySelectorAll(".delete-brand");
 
-brandDelete.forEach((btn) => {
-  btn.addEventListener("click", async (event) => {
-    const brandId = await event.target.getAttribute("data-brand-id");
+// brandDelete.forEach((btn) => {
+//   btn.addEventListener("click", async (event) => {
+//     const brandId = await event.target.getAttribute("data-brand-id");
 
-    try {
-      const response = await fetch(
-        `/adminhome/brands/delete_brand/${brandId}`,
-        {
-          method: "DELETE",
-        }
-      );
-      if (response.ok) {
-        window.location.href = "/adminhome/brands";
-      } else {
-        console.error("Error fetching user data:", error);
-      }
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  });
-});
+//     try {
+//       const response = await fetch(
+//         `/adminhome/brands/delete_brand/${brandId}`,
+//         {
+//           method: "DELETE",
+//         }
+//       );
+//       if (response.ok) {
+//         window.location.href = "/adminhome/brands";
+//       } else {
+//         console.error("Error fetching user data:", error);
+//       }
+//     } catch (error) {
+//       console.error("Error fetching user data:", error);
+//     }
+//   });
+// });
 
 //update view//
 
@@ -139,6 +139,66 @@ function brandEdit() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(Object.fromEntries(myBrandData)),
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "/adminhome/brands";
+      }
+      throw new Error("not ok");
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+
+//delete part view//
+
+const deletebutton = document.querySelectorAll(".delete-brand");
+deletebutton.forEach((btn) => {
+  btn.addEventListener("click", async (event) => {
+    const brandId = await event.target.getAttribute("data-brand-id");
+
+    try {
+      const response = await fetch(`/adminhome/brands/delete_brand/${brandId}`)
+      if (response.ok) {
+        const brandData = await response.json();
+        document.getElementById("deletebody").innerHTML= `<div id="deletealert"><h5> Are you confirm to delete this account</h5> </div>
+        <form id="deletebrandForm">
+        <input type="text" class="form-control" hidden value="${brandData._id}" name="id">
+        <div class="col-sm-10">
+        <button type="button" class="btn btn-dark"  onclick="deletebrand()" id="deleteButton">yes</button>
+      </div>
+      </form>
+        `;
+        const showModal = new bootstrap.Modal(
+          document.getElementById("deletemodal")
+        );
+        showModal.show();
+
+      }else {
+        console.error("Error fetching user data:", error);
+      }
+    }catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  })
+})
+
+
+//delete part//
+
+function deletebrand() {
+  const brandDeleteData = document.getElementById("deletebrandForm");
+  const myDeleteData = new FormData(brandDeleteData);
+
+  fetch(`/adminhome/brands/delete_brand`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Object.fromEntries(myDeleteData)),
   })
     .then((response) => {
       if (response.ok) {

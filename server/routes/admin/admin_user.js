@@ -59,6 +59,7 @@ route.get("/edit/:id", async (req, res) => {
   }
 });
 
+
 route.put("/edit/:id", authenticateJWT, async (req, res) => {
   const userId = req.params.id;
   const userUpdateData = req.body;
@@ -81,14 +82,38 @@ route.put("/edit/:id", authenticateJWT, async (req, res) => {
 
 //delete//
 
-route.delete("/delete_user/:id", async (req, res) => {
-  try {
+route.get("/delete_user/:id", async (req, res) => {
+  if (req.cookies.session) {
     const userId = req.params.id;
+
+    try {
+      const userDelete = await userCollection.findOne({ _id: userId });
+
+      if (userDelete) {
+        res.json(userDelete);
+      } else {
+        res.status(404).json({ error: "User not found" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  } else {
+    res.redirect("/adminhome");
+  }
+});
+
+
+
+route.delete("/delete_user", async (req, res) => {
+  try {
+    const userId = req.body.id;
     await userCollection.findByIdAndDelete(userId);
     res.redirect(303, "/adminhome/users");
   } catch (error) {
     res.send(error);
   }
 });
+
 
 module.exports = route;

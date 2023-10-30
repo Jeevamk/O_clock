@@ -45,27 +45,68 @@ viewButtons.forEach((btn) => {
   });
 });
 
-//delete part//
-const deleteButtons = document.querySelectorAll(".delete-button");
+//delete part view//
 
-deleteButtons.forEach((btn) => {
+const deletebtn = document.querySelectorAll(".delete-button");
+deletebtn.forEach((btn) => {
   btn.addEventListener("click", async (event) => {
     const userId = await event.target.getAttribute("data-user-id");
 
     try {
-      const response = await fetch(`/adminhome/users/delete_user/${userId}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(`/adminhome/users/delete_user/${userId}`)
       if (response.ok) {
-        window.location.href = "/adminhome/users";
-      } else {
+        const userData = await response.json();
+        document.getElementById("deletebody").innerHTML= `<div id="deletealert"><h5> Are you confirm to delete this account</h5> </div>
+        <form id="deleteForm">
+        <input type="text" class="form-control" hidden value="${userData._id}" name="id">
+        <div class="col-sm-10">
+        <button type="button" class="btn btn-dark"  onclick="deleteuser()" id="deleteButton">yes</button>
+      </div>
+      </form>
+        `;
+        const showModal = new bootstrap.Modal(
+          document.getElementById("deletemodal")
+        );
+        showModal.show();
+
+      }else {
         console.error("Error fetching user data:", error);
       }
-    } catch (error) {
+    }catch (error) {
       console.error("Error fetching user data:", error);
     }
-  });
-});
+  })
+})
+
+
+//delete part//
+
+function deleteuser() {
+  const UserDeleteData = document.getElementById("deleteForm");
+  const myDeleteData = new FormData(UserDeleteData);
+
+  fetch(`/adminhome/users/delete_user`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Object.fromEntries(myDeleteData)),
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "/adminhome/users";
+      }
+      throw new Error("not ok");
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+
+
+
 
 //update status part//
 //---------------view part--------------------//
@@ -142,6 +183,8 @@ editButtons.forEach((btn) => {
     }
   });
 });
+
+
 
 //update status//
 function status() {

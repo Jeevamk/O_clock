@@ -37,30 +37,7 @@ viewCategory.forEach((btn) => {
   });
 });
 
-//delete//
-const catDelete = document.querySelectorAll(".delete-cat");
 
-catDelete.forEach((btn) => {
-  btn.addEventListener("click", async (event) => {
-    const catId = await event.target.getAttribute("data-cat-id");
-
-    try {
-      const response = await fetch(
-        `/adminhome/category/delete_category/${catId}`,
-        {
-          method: "DELETE",
-        }
-      );
-      if (response.ok) {
-        window.location.href = "/adminhome/category";
-      } else {
-        console.error("Error fetching user data:", error);
-      }
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  });
-});
 
 //update view//
 
@@ -126,6 +103,66 @@ function catEdit() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(Object.fromEntries(mycategoryData)),
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "/adminhome/category";
+      }
+      throw new Error("not ok");
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+
+//delete part view//
+
+const catDelete = document.querySelectorAll(".delete-cat");
+catDelete.forEach((btn) => {
+  btn.addEventListener("click", async (event) => {
+    const catId = await event.target.getAttribute("data-cat-id");
+
+    try {
+      const response = await fetch(`/adminhome/category/delete_category/${catId}`)
+      if (response.ok) {
+        const catData = await response.json();
+        document.getElementById("deletebody").innerHTML= `<div id="deletealert"><h5> Are you confirm to delete this account</h5> </div>
+        <form id="deletecatForm">
+        <input type="text" class="form-control" hidden value="${catData._id}" name="id">
+        <div class="col-sm-10">
+        <button type="button" class="btn btn-dark"  onclick="deletecat()" id="deleteButton">yes</button>
+      </div>
+      </form>
+        `;
+        const showModal = new bootstrap.Modal(
+          document.getElementById("deletemodal")
+        );
+        showModal.show();
+
+      }else {
+        console.error("Error fetching user data:", error);
+      }
+    }catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  })
+})
+
+
+//delete part//
+
+function deletecat() {
+  const catDeleteData = document.getElementById("deletecatForm");
+  const myDeleteData = new FormData(catDeleteData);
+
+  fetch(`/adminhome/category/delete_category`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Object.fromEntries(myDeleteData)),
   })
     .then((response) => {
       if (response.ok) {

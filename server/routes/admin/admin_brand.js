@@ -114,14 +114,38 @@ route.put("/update", authenticateJWT, async (req, res) => {
 
 //delete//
 
-route.delete("/delete_brand/:id", async (req, res) => {
-  try {
+route.get("/delete_brand/:id", async (req, res) => {
+  if (req.cookies.session) {
     const brandId = req.params.id;
+
+    try {
+      const brandDelete = await brandCollection.findOne({ _id: brandId });
+
+      if (brandDelete) {
+        res.json(brandDelete);
+      } else {
+        res.status(404).json({ error: "brand not found" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  } else {
+    res.redirect("/adminhome");
+  }
+});
+
+
+
+route.delete("/delete_brand", async (req, res) => {
+  try {
+    const brandId = req.body.id;
     await brandCollection.findByIdAndDelete(brandId);
     res.redirect(303, "/adminhome/brands");
   } catch (error) {
     res.send(error);
   }
 });
+
 
 module.exports = route;

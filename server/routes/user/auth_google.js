@@ -23,6 +23,7 @@ route.use(
 );
 
 route.use(passport.initialize());
+route.use(passport.session())
 
 route.get(
   "/auth/google",
@@ -30,19 +31,26 @@ route.get(
 );
 
 route.get(
-  "/google/callback",
+  "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "/google/protected",
-    failureRedirect: "/google/failure",
+    successRedirect: "/auth/protected",
+    failureRedirect: "/auth/google/failure",
   })
 );
 
-route.get("/google/failure", (req, res) => {
+route.get("/auth/google/failure", (req, res) => {
   res.send("something went wrong");
 });
 
-route.get("/google/protected", isLoggedIn, (req, res) => {
-  res.send("hello world");
+route.get("/auth/protected", isLoggedIn, (req, res) => {
+  let name = req.user.displayName;
+  // res.redirect('/')
+  res.send(`hello${name}`);
 });
+
+route.get('/auth/logout', (req,res) =>{
+  req.session.destroy();
+  res.send('see u again')
+})
 
 module.exports = route;

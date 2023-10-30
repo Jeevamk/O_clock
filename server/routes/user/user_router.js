@@ -220,7 +220,7 @@ route.put("/password-change", async (req, res) => {
       return res
         .status(404)
         .json({ success: false, message: "User not found" });
-      // return res.status(404).render("password-change", { aler: true });
+      // return res.status(404).render("password-change", { alert: true });
       
     }
     const passwordMatch = await bcrypt.compare(currentpassword, user.password);

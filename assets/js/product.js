@@ -220,26 +220,87 @@ function productEdit() {
 
 //delete data//
 
-const productDelete = document.querySelectorAll(".delete-product");
+// const productDelete = document.querySelectorAll(".delete-product");
 
+// productDelete.forEach((btn) => {
+//   btn.addEventListener("click", async (event) => {
+//     const productId = await event.target.getAttribute("data-product-id");
+
+//     try {
+//       const response = await fetch(
+//         `/adminhome/products/delete_product/${productId}`,
+//         {
+//           method: "DELETE",
+//         }
+//       );
+//       if (response.ok) {
+//         window.location.href = "/adminhome/products";
+//       } else {
+//         console.error("Error fetching user data:", error);
+//       }
+//     } catch (error) {
+//       console.error("Error fetching user data:", error);
+//     }
+//   });
+// });
+
+
+
+//delete part view//
+
+const productDelete = document.querySelectorAll(".delete-product");
 productDelete.forEach((btn) => {
   btn.addEventListener("click", async (event) => {
     const productId = await event.target.getAttribute("data-product-id");
 
     try {
-      const response = await fetch(
-        `/adminhome/products/delete_product/${productId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`/adminhome/products/delete_product/${productId}`)
       if (response.ok) {
-        window.location.href = "/adminhome/products";
-      } else {
+        const productData = await response.json();
+        document.getElementById("deletebody").innerHTML= `<div id="deletealert"><h5> Are you confirm to delete this account</h5> </div>
+        <form id="deleteproductForm">
+        <input type="text" class="form-control" hidden value="${productData._id}" name="id">
+        <div class="col-sm-10">
+        <button type="button" class="btn btn-dark"  onclick="deleteproduct()" id="deleteButton">yes</button>
+      </div>
+      </form>
+        `;
+        const showModal = new bootstrap.Modal(
+          document.getElementById("deletemodal")
+        );
+        showModal.show();
+
+      }else {
         console.error("Error fetching user data:", error);
       }
-    } catch (error) {
+    }catch (error) {
       console.error("Error fetching user data:", error);
     }
-  });
-});
+  })
+})
+
+
+//delete part//
+
+function deleteproduct() {
+  const productDeleteData = document.getElementById("deleteproductForm");
+  const myDeleteData = new FormData(productDeleteData);
+
+  fetch(`/adminhome/products/delete_product`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Object.fromEntries(myDeleteData)),
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "/adminhome/products";
+      }
+      throw new Error("not ok");
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+}

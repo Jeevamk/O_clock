@@ -47,6 +47,8 @@ app.use('/adminhome/category',require ('./server/routes/admin/admin_category'))
 app.use('/adminhome/brands',require('./server/routes/admin/admin_brand'))
 app.use('/adminhome/products',require('./server/routes/admin/admin_products'))
 app.use('/',require('./server/routes/user/auth_google'))
+app.use('/adminhome/order',require('./server/routes/admin/admin_order'))
+
 
 
 

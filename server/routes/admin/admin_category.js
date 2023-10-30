@@ -98,14 +98,39 @@ route.put("/update", authenticateJWT, async (req, res) => {
 });
 
 //delete//
-route.delete("/delete_category/:id", async (req, res) => {
-  try {
+
+route.get("/delete_category/:id", async (req, res) => {
+  if (req.cookies.session) {
     const catId = req.params.id;
+
+    try {
+      const catDelete = await categoryCollection.findOne({ _id: catId });
+
+      if (catDelete) {
+        res.json(catDelete);
+      } else {
+        res.status(404).json({ error: "category not found" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  } else {
+    res.redirect("/adminhome");
+  }
+});
+
+
+
+route.delete("/delete_category", async (req, res) => {
+  try {
+    const catId = req.body.id;
     await categoryCollection.findByIdAndDelete(catId);
     res.redirect(303, "/adminhome/category");
   } catch (error) {
     res.send(error);
   }
 });
+
 
 module.exports = route;

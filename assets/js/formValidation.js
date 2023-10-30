@@ -44,17 +44,17 @@ function validateForm() {
   var confirmPasswordError = document.getElementById("error4");
 
   if (name === "") {
-    nameError.innerHTML = "Please fill in your name";
+    nameError.innerHTML = "**Please fill in your name**";
     return false;
   }
   if (name.length <3 ) {
-    nameError.innerHTML = "name must be at  3 characters";
+    nameError.innerHTML = "**name must be at  3 characters**";
     return false;
   }
   nameError.innerHTML = "";
 
   if (email === "") {
-    emailError.innerHTML = "Please fill in your email";
+    emailError.innerHTML = "**Please fill in your email**";
     return false;
   }
   if (
@@ -62,33 +62,39 @@ function validateForm() {
     (email.charAt(email.length - 4) !== "." &&
       email.charAt(email.length - 3) !== ".")
   ) {
-    emailError.innerHTML = "Invalid email format";
+    emailError.innerHTML = "**Invalid email format**";
     return false;
   }
   emailError.innerHTML = "";
 
   if (phone === "") {
-    phoneError.innerHTML = "Please fill in your phone";
+    phoneError.innerHTML = "**Please fill in your phone**";
     return false;
   }
   if (phone.length < 10) {
-    phoneError.innerHTML = "phone number must be at least 10 characters";
+    phoneError.innerHTML = "**phone number must be at least 10 characters**";
     return false;
   }
   phoneError.innerHTML = "";
 
   if (password === "") {
-    passwordError.innerHTML = "Please fill in your password";
+    passwordError.innerHTML = "**Please fill in your password**";
     return false;
   }
   if (password.length < 6) {
-    passwordError.innerHTML = "Password must be at least 6 characters";
+    passwordError.innerHTML = "**Password must be at least 6 characters**";
     return false;
   }
   passwordError.innerHTML = "";
 
+  if(confirmPassword === ""){
+    confirmPasswordError.innerHTML = "**Please fill in your confirm password**"
+    return false;
+  }
+  confirmPasswordError.innerHTML = "";
+
   if (confirmPassword !== password) {
-    confirmPasswordError.innerHTML = "Passwords do not match";
+    confirmPasswordError.innerHTML = "**Passwords do not match**";
     return false;
   }
   confirmPasswordError.innerHTML = "";
