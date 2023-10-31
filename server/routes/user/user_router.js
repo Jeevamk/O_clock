@@ -329,9 +329,9 @@ route.post("/token-password", async (req, res) => {
     const token = req.body.token;
     const _id = req.body.id;
 
-    const tokenData = await userCollection.findOne({ _id });
+    const tokenData = await userCollection.findOne( { _id } );
     if(token==tokenData.token){
-      const _id = tokenData._id
+      const _id = tokenData._id;
       res.render('reset',{_id})
     }
     // console.log(tokenData);
@@ -342,8 +342,10 @@ route.post("/token-password", async (req, res) => {
 });
 
 
+
 route.post("/reset-password", async (req, res) => {
   const userId = req.body._id;
+  console.log(userId);
   const newpass = req.body.newpass;
   const cnewpass = req.body.cpass;
 
