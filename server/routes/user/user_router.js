@@ -8,10 +8,53 @@ const auth = require("../../middleware/auth_user");
 const bodyparser = require("body-parser");
 const { body, validationResult } = require("express-validator");
 const parserencoded = bodyparser.urlencoded({ extended: false });
+const nodemailer = require("nodemailer");
+const randomstring = require("randomstring");
+const { token } = require("morgan");
 // const session = require('express-session')
+
+const trasnporter = nodemailer.createTransport({
+  service: "gmail",
+  // host: " 192.168.1.13",
+  // port: 587,
+  // secure: false,
+  // requireTLS: true,
+  auth: {
+    user: "jeevamk100@gmail.com",
+    pass: "hexg nlyg mvit mqnt",
+  },
+});
+
+const sendResetPasswordMail = (email, token) => {
+  return new Promise((resolve, reject) => {
+    try {
+      const mailoptions = {
+        from: "jeevamk100@gmail.com",
+        to: email,
+        subject: "For Reset Password",
+        html: `<p> Hii , Please copy the link and reset password:</p><h1>${token}</h1>`,
+      };
+      trasnporter.sendMail(mailoptions, (error, info) => {
+        if (error) {
+          console.log(error);
+          return reject(error)
+          
+        } else {
+          console.log("mail has been sent");
+          resolve (info.response)
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ success: false, msg: error.message });
+    }
+  })
+  
+};
 
 route.use(express.json());
 
+//indexpage//
 route.get("/", (req, res) => {
   return res.render("user_index");
 });
@@ -205,37 +248,30 @@ route.get("/user_logout", (req, res) => {
 
 route.put("/password-change", async (req, res) => {
   const userId = req.body._id;
-  const { currentpassword, newpassword , cnewpassword } = req.body;
+  const { currentpassword, newpassword, cnewpassword } = req.body;
 
   if (newpassword !== cnewpassword) {
-    return res
-      .status(400)
-      .json({ success: false, message: "New password and confirm password do not match" });
+    return res.status(400).json({
+      success: false,
+      message: "New password and confirm password do not match",
+    });
   }
 
   try {
     const user = await userCollection.findById(userId);
 
-    if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
-      // return res.status(404).render("password-change", { alert: true });
-      
-    }
     const passwordMatch = await bcrypt.compare(currentpassword, user.password);
     console.log(passwordMatch);
     if (!passwordMatch) {
       return res
         .status(401)
         .json({ success: false, message: "Current password is incorrect" });
-      // return res.status(401).render("profile", { alert: true });
     }
 
     user.password = newpassword;
     console.log(user.password);
     await user.save();
-    res.clearCookie("sessions")
+    res.clearCookie("sessions");
     return res.json({
       success: true,
       message: "Password updated successfully",
@@ -247,5 +283,89 @@ route.put("/password-change", async (req, res) => {
       .json({ success: false, message: "Password change failed" });
   }
 });
+
+
+
+//forgot password//
+
+route.get("/forgotpassword", (req, res) => {
+  res.render("forgotpassword");
+});
+
+route.post("/forget-password", async (req, res) => {
+  const email = req.body.email;
+  try {
+    const userData = await userCollection.findOne({ email });
+    console.log(userData); 
+    if (userData.status == 'active') {
+      const randomString = randomstring.generate({ length: 5 });
+      console.log(randomString);
+      const randomtoken = sendResetPasswordMail(email,randomString);
+      if(randomtoken){
+        const data = await userCollection.findOneAndUpdate(
+          { email },
+          { $set: { token: randomString } }
+        );
+
+        if(data){
+          const _id = data._id
+          res.render("token" ,{_id});
+
+        }
+
+      }
+      
+      // sendResetPasswordMail(userData.name, email, randomString);
+
+    }
+  } catch (err) {
+    res.status(400).send({ success: false, msg: err.message });
+  }
+});
+
+
+route.post("/token-password", async (req, res) => {
+  try {
+    const token = req.body.token;
+    const _id = req.body.id;
+
+    const tokenData = await userCollection.findOne({ _id });
+    if(token==tokenData.token){
+      const _id = tokenData._id
+      res.render('reset',{_id})
+    }
+    // console.log(tokenData);
+  } catch (error) {
+    console.log(error);
+  }
+  
+});
+
+
+route.post("/reset-password", async (req, res) => {
+  const userId = req.body._id;
+  const newpass = req.body.newpass;
+  const cnewpass = req.body.cpass;
+
+  if (newpass === cnewpass) {
+    try {
+      const user = await userCollection.findById(userId);
+
+      if (!user) {
+        return res.status(404).send("User not found");
+      }
+
+      user.password = newpass;
+      await user.save();
+      res.render("user_login");
+    } catch (error) {
+      console.error("Error:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  } else {
+    res.status(400).send("Passwords do not match");
+  }
+});
+
 
 module.exports = route;
