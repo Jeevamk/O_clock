@@ -12,6 +12,7 @@ passport.use(
       passReqToCallback: true,
     },
     async (request, accessToken, refreshToken, profile, done) => {
+      console.log('profile', profile)
       const userExist = await userCollection.findOne({
         googleId: profile.id,
       });
@@ -26,6 +27,7 @@ passport.use(
         email: profile.emails[0].value,
         status: "Active",
       });
+      console.log(userData);
 
       await userData.save();
 
@@ -41,3 +43,5 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+
+

@@ -10,8 +10,11 @@ const passport = require("passport");
 // })
 
 function isLoggedIn(req, res, next) {
+  console.log("dsdf",req.userData);
   req.userData ? next() : res.sendStatus(401);
+  
 }
+
 
 
 route.use(

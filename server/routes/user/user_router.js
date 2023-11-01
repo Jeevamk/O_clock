@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const userCollection = require("../../model/user_model");
 const bcrypt = require("bcrypt");
 const keysecret = process.env.keySecret;
-const auth = require("../../middleware/auth_user");
+const {auth,logauth} = require("../../middleware/auth_user");
 const bodyparser = require("body-parser");
 const { body, validationResult } = require("express-validator");
 const parserencoded = bodyparser.urlencoded({ extended: false });
@@ -54,17 +54,24 @@ const sendResetPasswordMail = (email, token) => {
 
 route.use(express.json());
 
+
 //indexpage//
-route.get("/", (req, res) => {
-  return res.render("user_index");
+
+route.get("/",logauth, async (req, res) => {
+  if (!req.cookies.sessions) return res.render("user_index");
+  const _id = req.userId
+  const user = await userCollection.findById(_id)
+  return res.render("user_index",{user});
 });
 
 route.get("/user", (req, res) => {
+  
   if (!req.cookies.sessions) {
     return res.render("user_login");
   }
   return res.redirect("/profile");
 });
+
 
 //signup//
 route.get("/user_sign", (req, res) => {
@@ -141,17 +148,6 @@ route.post(
   }
 );
 
-//log in//
-route.get("/userlogin", (req, res) => {
-  
-  const key = req.cookies.sessions;
-  if (key) {
-    const userName = req.cookies.userName;
-    res.render("user_index", { userName });
-  } else {
-    res.render("user_login");
-  }
-});
 
 
 route.post("/user_login", async (req, res) => {
@@ -162,7 +158,7 @@ route.post("/user_login", async (req, res) => {
       const { email, password } = req.body;
 
       const useremail = await userCollection.findOne({ email });
-      console.log(useremail);
+      // console.log(useremail);
 
       if (!useremail) {
         return res.render("user_login", { show: true });
@@ -182,6 +178,7 @@ route.post("/user_login", async (req, res) => {
     }
   }
 });
+
 
 //profile//
 route.get("/profile", auth, async (req, res) => {
