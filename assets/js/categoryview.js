@@ -128,7 +128,7 @@ catDelete.forEach((btn) => {
       const response = await fetch(`/adminhome/category/delete_category/${catId}`)
       if (response.ok) {
         const catData = await response.json();
-        document.getElementById("deletebody").innerHTML= `<div id="deletealert"><h5> Are you confirm to delete this account</h5> </div>
+        document.getElementById("deletebody").innerHTML= `<div id="deletealert"><h5> Are you confirm to delete this category</h5> </div>
         <form id="deletecatForm">
         <input type="text" class="form-control" hidden value="${catData._id}" name="id">
         <div class="col-sm-10">

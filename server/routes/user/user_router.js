@@ -143,14 +143,16 @@ route.post(
 
 //log in//
 route.get("/userlogin", (req, res) => {
-  const userName = req.cookies.userName;
+  
   const key = req.cookies.sessions;
   if (key) {
+    const userName = req.cookies.userName;
     res.render("user_index", { userName });
   } else {
     res.render("user_login");
   }
 });
+
 
 route.post("/user_login", async (req, res) => {
   if (req.cookies.sessions) {
@@ -285,8 +287,8 @@ route.put("/password-change", async (req, res) => {
 });
 
 
-
 //forgot password//
+
 
 route.get("/forgotpassword", (req, res) => {
   res.render("forgotpassword");

@@ -14,6 +14,7 @@ cloudinary.config({
   secure: true,
 });
 
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     return cb(null, "./assets/images/uploads");

@@ -257,7 +257,7 @@ productDelete.forEach((btn) => {
       const response = await fetch(`/adminhome/products/delete_product/${productId}`)
       if (response.ok) {
         const productData = await response.json();
-        document.getElementById("deletebody").innerHTML= `<div id="deletealert"><h5> Are you confirm to delete this account</h5> </div>
+        document.getElementById("deletebody").innerHTML= `<div id="deletealert"><h5> Are you confirm to delete this product</h5> </div>
         <form id="deleteproductForm">
         <input type="text" class="form-control" hidden value="${productData._id}" name="id">
         <div class="col-sm-10">

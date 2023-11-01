@@ -10,8 +10,9 @@ const passport = require("passport");
 // })
 
 function isLoggedIn(req, res, next) {
-  req.user ? next() : res.sendStatus(401);
+  req.userData ? next() : res.sendStatus(401);
 }
+
 
 route.use(
   session({
@@ -39,18 +40,26 @@ route.get(
 );
 
 route.get("/auth/google/failure", (req, res) => {
-  res.send("something went wrong");
+  res.send("something went wrong....");
 });
 
+
 route.get("/auth/protected", isLoggedIn, (req, res) => {
-  let name = req.user.displayName;
-  // res.redirect('/')
-  res.send(`hello${name}`);
+  console.log("gyu",req.userData);
+  // const name = req.userData.name;
+  // console.log(name);
+  const userId = req.newUser._id; 
+  const token = jwt.sign({ userId }, keysecret);
+  res.cookie("sessions", token);
+  return res.redirect("/");
+  // res.send(`hello${name}`);
 });
+
 
 route.get('/auth/logout', (req,res) =>{
   req.session.destroy();
   res.send('see u again')
 })
+
 
 module.exports = route;
