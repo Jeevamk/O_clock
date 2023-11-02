@@ -14,7 +14,7 @@ const { token } = require("morgan");
 // const session = require('express-session')
 
 const trasnporter = nodemailer.createTransport({
-  service: "gmail",
+  service: "Gmail",
   // host: " 192.168.1.13",
   // port: 587,
   // secure: false,
@@ -299,23 +299,20 @@ route.post("/forget-password", async (req, res) => {
     if (userData.status == 'active') {
       const randomString = randomstring.generate({ length: 5 });
       console.log(randomString);
-      const randomtoken = sendResetPasswordMail(email,randomString);
+      const randomtoken =await sendResetPasswordMail(email,randomString);
       if(randomtoken){
         const data = await userCollection.findOneAndUpdate(
-          { email },
+          { email:email },
           { $set: { token: randomString } }
         );
+        console.log(data);
 
         if(data){
-          const _id = data._id
+          const _id = await data._id
           res.render("token" ,{_id});
 
         }
-
       }
-      
-      // sendResetPasswordMail(userData.name, email, randomString);
-
     }
   } catch (err) {
     res.status(400).send({ success: false, msg: err.message });
@@ -332,10 +329,13 @@ route.post("/token-password", async (req, res) => {
     if(token==tokenData.token){
       const _id = tokenData._id;
       res.render('reset',{_id})
+    }else {
+      res.status(400).send({ success: false, msg: "Invalid token." });
     }
     // console.log(tokenData);
   } catch (error) {
-    console.log(error);
+    console.error("Error:", error);
+    res.status(500).send({ success: false, msg: error.message });
   }
   
 });

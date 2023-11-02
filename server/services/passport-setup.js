@@ -16,9 +16,9 @@ passport.use(
       const userExist = await userCollection.findOne({
         googleId: profile.id,
       });
-      console.log(profile);
+      console.log("fvgifdgi",profile);
       if (userExist) {
-        return done(null, profile);
+        return done(null, userExist);
       }
 
       const userData = new userCollection({
@@ -27,11 +27,12 @@ passport.use(
         email: profile.emails[0].value,
         status: "Active",
       });
-      console.log(userData);
+      
 
       await userData.save();
+      console.log("ssdds",userData);
 
-      done(null, userData);
+       done(null, userData);
     }
   )
 );

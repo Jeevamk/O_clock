@@ -102,75 +102,38 @@ function validateForm() {
   return true;
 }
 
-//  function validateForm() {
-//   var correct_way=/^[A-Z a-z]+$/;
-//     var a =document.getElementById("name").value;
-//     if (a=="") {
-//         document.getElementById ("error").innerHTML="**please fill user name";
-//         return false;
-//     }
-//     if (a.length<3) {
-//         document.getElementById ("error").innerHTML="**User name must have be 3 characters";
-//         return false;
-//     }
-//     if (a.length>20) {
-//         document.getElementById ("error").innerHTML="**User name must have be less than 20 characters";
-//         return false;
-//     }
-//     if (a.match (correct_way)) {
-//         true;
-//     }
-//         else{
-//             document.getElementById ("error").innerHTML="**only alpabets are allowed";
-//             return false;
-//         }
-//         aError.innerHTML = "";
+//login form//
+function loginForm() {
+  var logemail = document.forms["loginform"]["email"].value;
+  var logpassword = document.forms["loginform"]["password"].value;
 
-//     var b =document.myform.email.value;
-//     if (b=="") {
-//         document.getElementById ("error1").innerHTML="**please fill email";
-//         return false;
-//     }
-//     if (b.indexOf ('@')<=0) {
-//         document.getElementById("error1").innerHTML="**invalid @ position";
-//         return false;
-//     }
-//     if ((b.charAt(b.length-4)!='.') && (b.charAt(b.length)!='.')) {
-//         document.getElementById("error1").innerHTML="**invalid position at 3 & 4";
-//         return false;
-//     }
+  var logemailError = document.getElementById("msg1");
+  var logpasswordError = document.getElementById("msg2");
 
-//     var c=document.myform.phone.value;
+  if (logemail === "") {
+    logemailError.innerHTML = "**Please fill in your email**";
+    return false;
+  }
+  logemailError.innerHTML = "";
 
-//     if (c=="") {
-//         document.getElementById ("error2").innerHTML="**Please fill the mobile number"
-//         return false;
-//     }
-//     if (isNaN(c)) {
-//         document.getElementById("error2").innerHTML="**only numbers allowed";
-//         return false;
-//     }
-//     if (c.length <10 ) {
-//         document.getElementById ("error2").innerHTML="**mobile numbers must be 10 digits";
-//         return false;
+  if (!logemail) {
+    logemailError.innerHTML = "**Email is not found**";
+    return false;
+  }
+  logemailError.innerHTML = "";
 
-//     }
+  if (logpassword === "") {
+    logpasswordError.innerHTML = "**Please fill the password**";
+    return false;
+  }
+  logpasswordError.innerHTML = "";
+  
+  
+  return true;
+}
 
-//     var d=document.myform.password.value;
-//     if (d=="") {
-//       document.getElementById ("error3").innerHTML="**Please fill the password"
-//       return false;
-//     }
 
-//     if (d.length <6 ) {
-//       document.getElementById ("error3").innerHTML="**password must be 6 numbers";
-//       return false;
 
-//   }
-
-//   return true;
-
-//  }
 
 //category//
 

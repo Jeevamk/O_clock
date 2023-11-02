@@ -24,14 +24,23 @@
         <div class="col-12">
           <form action="/token-password" method="POST">
             <input type="text" hidden name="id" value="{{_id}}">
-            <label for="token">Enter Token</label><br />
+            <label for="token">Enter Access Code</label><br />
             <input type="text" id="token" name="token" /><br />
+            <p id="msg1" class="text-danger"></p>
             <input type="submit" value="Submit"/>
           </form>
 
         </div>
       </div>
     </div>
+
+
+       
+  {{#if tokenalert}}
+  <script>
+        document.getElementById("msg1").innerHTML="Access Code is incorrect"
+  </script>
+  {{/if}}
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
