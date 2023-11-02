@@ -319,6 +319,10 @@ route.post("/forget-password", async (req, res) => {
   }
 });
 
+route.get("/token", (req, res) => {
+  res.render("token");
+});
+
 
 route.post("/token-password", async (req, res) => {
   try {
@@ -328,16 +332,16 @@ route.post("/token-password", async (req, res) => {
     const tokenData = await userCollection.findOne( { _id } );
     if(token==tokenData.token){
       const _id = tokenData._id;
-      res.render('reset',{_id})
+      res.render('reset', {_id} )
     }else {
       res.status(400).send({ success: false, msg: "Invalid token." });
+      // res.render('token', {tokenalert:true})
     }
     // console.log(tokenData);
   } catch (error) {
     console.error("Error:", error);
     res.status(500).send({ success: false, msg: error.message });
-  }
-  
+  } 
 });
 
 
