@@ -10,8 +10,7 @@ const brandSchema = mongoose.Schema( {
         type : String,
     },
     logo : {
-        data : Buffer ,
-        contentType : String
+        type :String,
     },
    
 })

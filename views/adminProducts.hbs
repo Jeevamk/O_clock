@@ -138,7 +138,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
 
@@ -214,8 +214,8 @@
                         </div>
                         <div class="modal-body">
                             <div class="container">
-                                <form class="row g-3" action="/adminhome/products" method="POST" onsubmit="return addproduct()"
-                                    enctype="multipart/form-data">
+                                <form class="row g-3" action="/adminhome/products" method="POST"
+                                    onsubmit="return addproduct()" enctype="multipart/form-data">
                                     <div class="col-md-6">
                                         <label for="name" class="form-label">Product Name</label>
                                         <input type="text" class="form-control" id="name" placeholder="product Name"
@@ -237,11 +237,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="brand" class="form-label">Brand</label><br>
-                                        <select id="brand" class="form-select" name="brand" >
+                                        <select id="brand" class="form-select" name="brand">
                                             <option selected>Fossil</option>
                                             <option>Daniel Wellington</option>
                                             <option>Castus Feista</option>
-                                            <option>Maserati</option>
+                                            <option>Maserati</option> 
+                                            
                                         </select>
                                     </div>
                                     <div class="col-12">
@@ -252,11 +253,11 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                        <label for="disc2" class="form-label">Discription2</label>
-                                        <input type="text" class="form-control" id="disc2"
-                                            placeholder="Enter Discription" name="description2"
-                                            style="border: 1px solid black;">
-                                    </div>
+                                            <label for="disc2" class="form-label">Discription2</label>
+                                            <input type="text" class="form-control" id="disc2"
+                                                placeholder="Enter Discription" name="description2"
+                                                style="border: 1px solid black;">
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="reviews" class="form-label">Reviews</label>
@@ -265,24 +266,24 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="color" class="form-label">color</label><br>
-                                        <select id="color" class="form-select" name="color" >
+                                        <select id="color" class="form-select" name="color">
                                             <option selected>Black</option>
                                             <option>Brown</option>
                                             <option>Silver</option>
                                             <option>Gold</option>
                                         </select>
                                     </div>
-                                     <div class="col-md-6">
+                                    <div class="col-md-6">
                                         <label for="gender" class="form-label">Gender</label><br>
-                                        <select id="gender" class="form-select" name="gender" >
+                                        <select id="gender" class="form-select" name="gender">
                                             <option selected>Men</option>
                                             <option>Women</option>
-                                             <option>All</option>
+                                            <option>All</option>
                                         </select>
                                     </div>
-                                     <div class="col-md-6">
+                                    <div class="col-md-6">
                                         <label for="material" class="form-label">Material</label><br>
-                                        <select id="material" class="form-select" name="material" >
+                                        <select id="material" class="form-select" name="material">
                                             <option selected>Leather</option>
                                             <option>stainless Steel</option>
                                             <option>Silicon</option>
@@ -290,28 +291,32 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="image" class="form-label">Image</label><br>
-                                        <input type="file" id="image" name="image" class="form-control" style="border: 1px solid black;">
-                                        
+                                        <input type="file" id="image" name="image" class="form-control"
+                                            style="border: 1px solid black;">
+
                                     </div>
-                                    {{!-- <div class="col-md-6">
-                                       <label for="images" class="form-label">Images</label><br>
-                                        <input type="file" id="images" name="images" class="form-control" style="border: 1px solid black;">
-                                    </div> --}}
+                                    <div class="col-md-6">
+                                        <label for="images" class="form-label">Images</label><br>
+                                        <input type="file" id="images" name="images" class="form-control"
+                                            style="border: 1px solid black;" multiple required>
+                                    </div>
                                     <div class="col-md-6">
                                         <label for="createdDate" class="form-label">Date</label><br>
-                                        <input type="date" id="createdDate" name="createdDate" class="form-control" style="border: 1px solid black;">
-                                        
+                                        <input type="date" id="createdDate" name="createdDate" class="form-control"
+                                            style="border: 1px solid black;">
+
                                     </div>
                                     <div class="col-md-6">
                                         <label for="countStock" class="form-label">Stock</label><br>
-                                        <input type="number" id="countStock" name="countStock" class="form-control" style="border: 1px solid black;">
-                                        
+                                        <input type="number" id="countStock" name="countStock" class="form-control"
+                                            style="border: 1px solid black;">
+
                                     </div>
                                     <div class="col-12 mt-2">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </form>
-                                
+
                             </div>
 
                         </div>
@@ -325,8 +330,8 @@
 
 
             <!-- Modal2 view single data from the table-->
-            <div class="modal fade" id="productmodal" data-bs-backdrop="static" data-bs-keyboard="false"
-                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="productmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -344,7 +349,8 @@
                 </div>
             </div>
 
-            {{!----------------------------------- modal3 edit data from the table-------------------------------------------}}
+            {{!----------------------------------- modal3 edit data from the
+            table-------------------------------------------}}
 
             <div class="modal fade" id="producteditmodal" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -364,26 +370,27 @@
                     </div>
                 </div>
             </div>
-            
 
 
-                    {{!-- modal4 view delete data from the table --}}
-    <div class="modal fade" id="deletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="deletebody">
 
-                </div>
-                <div class="modal-footer">
-                    <a href="/adminhome/products"><button type="button" class="btn btn-secondary">Close</button></a>
+            {{!-- modal4 view delete data from the table --}}
+            <div class="modal fade" id="deletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="deletebody">
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/adminhome/products"><button type="button"
+                                    class="btn btn-secondary">Close</button></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 
 
@@ -392,7 +399,8 @@
     </section>
 
     <script src="/js/product.js"></script>
-    {{!-- <script src="/js/brand.js"></script> --}}
+    {{!--
+    <script src="/js/brand.js"></script> --}}
     <script src="/js/formValidation.js"></script>
     {{!--
     <script src="/js/categoryview.js"></script> --}}

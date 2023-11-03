@@ -5,15 +5,15 @@ const adminCollection = require("../../model/admin_model");
 const authenticateJWT = require("../../middleware/auth");
 const multer = require("multer");
 const categoryCollection = require("../../model/category_model");
+const brandCollection = require("../../model/brand_model");
+const dotenv = require("dotenv").config({ path: "config.env" });
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
-  cloud_name: "dsqsfves6",
-  api_key: "399517237489362",
-  api_secret: "8PgxUwekIWnaWbpNYgHFnbRwi7c",
-  secure: true,
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -31,37 +31,25 @@ route.get("/", authenticateJWT, async (req, res) => {
   if (req.cookies.session) {
     const adminid = await adminCollection.findOne({ _id: req.adminId });
     const products = await productCollection.find();
-    res.render("adminProducts", { adminid, products });
+    const brands = await brandCollection.find();
+    const category = await categoryCollection.find();
+    res.render("adminProducts", { adminid, products, brands, category });
   } else {
     res.redirect("/adminhome");
   }
 });
 
 //add product//
-route.post("/", upload.single("image"), async (req, res) => {
+route.post("/", upload.array("images", 5), async (req, res) => {
   try {
-    const category = await categoryCollection.findOne({
-      name: req.body.category,
-    });
-
-    if (!category) {
-      return res.status(400).send("Invalid category");
-    }
-
     const product = new productCollection({
       name: req.body.name,
       description1: req.body.description1,
       description2: req.body.description2,
       price: req.body.price,
       category: req.body.category,
-      image: {
-        data: req.file.filename,
-        contentType: "image/jpg",
-      },
-      // images: {
-      //     data:req.file.filename,
-      //     contentType : 'image/jpg'
-      // },
+      image: result.secure_url,
+      images: imageUrls,
       brand: req.body.brand,
       color: req.body.color,
       reviews: req.body.reviews,
@@ -70,6 +58,8 @@ route.post("/", upload.single("image"), async (req, res) => {
       countStock: req.body.countStock,
       material: req.body.material,
     });
+
+    const imageUrls = req.files.map((file) => file.path);
     product == (await product.save());
 
     if (!product) {
@@ -82,6 +72,58 @@ route.post("/", upload.single("image"), async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 });
+
+//add product//
+// route.post("/", upload.single("image"), async (req, res) => {
+//   try {
+
+//     const result = await cloudinary.uploader.upload(req.file.path);
+//     const imageUrls = req.files.map(file => file.path);
+
+//     // const category = await categoryCollection.findOne({
+//     //   name: req.body.category,
+//     // });
+
+//     // if (!category) {
+//     //   return res.status(400).send("Invalid category");
+//     // }
+
+//     const product = new productCollection({
+//       name: req.body.name,
+//       description1: req.body.description1,
+//       description2: req.body.description2,
+//       price: req.body.price,
+//       category: req.body.category,
+//       image: result.secure_url,
+//       images: imageUrls,
+//       // image: {
+//       //   data: req.file.filename,
+//       //   contentType: "image/jpg",
+//       // },
+//       // images: {
+//       //     data:req.file.filename,
+//       //     contentType : 'image/jpg'
+//       // },
+//       brand: req.body.brand,
+//       color: req.body.color,
+//       reviews: req.body.reviews,
+//       gender: req.body.gender,
+//       createdDate: req.body.createdDate,
+//       countStock: req.body.countStock,
+//       material: req.body.material,
+//     });
+//     product == (await product.save());
+
+//     if (!product) {
+//       return res.status(404).send("product is not created");
+//     } else {
+//       return res.redirect("/adminhome/products");
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).send("Internal Server Error");
+//   }
+// });
 
 //view single data//
 
@@ -171,8 +213,6 @@ route.get("/delete_product/:id", async (req, res) => {
   }
 });
 
-
-
 route.delete("/delete_product", async (req, res) => {
   try {
     const productId = req.body.id;
@@ -182,6 +222,5 @@ route.delete("/delete_product", async (req, res) => {
     res.send(error);
   }
 });
-
 
 module.exports = route;
