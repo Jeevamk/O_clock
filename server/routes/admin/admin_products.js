@@ -8,6 +8,7 @@ const categoryCollection = require("../../model/category_model");
 const brandCollection = require("../../model/brand_model");
 const dotenv = require("dotenv").config({ path: "config.env" });
 const cloudinary = require("cloudinary").v2;
+const upload = multer({ dest: 'assets/img/products' })
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -15,16 +16,28 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    return cb(null, "./assets/images/uploads");
-  },
-  filename: function (req, file, cb) {
-    return cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
 
-const upload = multer({ storage });
+// Middleware to handle image uploads
+const handleImageUpload = async (req, res, next) => {
+  try {
+    const images =req.files;
+    const imageUrls = [];
+
+    for (const image of images) {
+      const result = await cloudinary.uploader.upload(image.path);
+      imageUrls.push(result.secure_url);
+    }
+
+    req.imageUrls = imageUrls; 
+    next();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to upload images' });
+  }
+};
+
+
+
 route.use(express.json());
 
 route.get("/", authenticateJWT, async (req, res) => {
@@ -32,7 +45,7 @@ route.get("/", authenticateJWT, async (req, res) => {
     const adminid = await adminCollection.findOne({ _id: req.adminId });
     const products = await productCollection.find();
     const brands = await brandCollection.find();
-    const category = await categoryCollection.find();
+    const category = await categoryCollection.find({},'name');
     res.render("adminProducts", { adminid, products, brands, category });
   } else {
     res.redirect("/adminhome");
@@ -40,15 +53,16 @@ route.get("/", authenticateJWT, async (req, res) => {
 });
 
 //add product//
-route.post("/", upload.array("images", 5), async (req, res) => {
+route.post("/", upload.array("images", 5),handleImageUpload, async (req, res) => {
   try {
+    const imageUrls = req.imageUrls;
+
     const product = new productCollection({
       name: req.body.name,
       description1: req.body.description1,
       description2: req.body.description2,
       price: req.body.price,
       category: req.body.category,
-      image: result.secure_url,
       images: imageUrls,
       brand: req.body.brand,
       color: req.body.color,
@@ -59,7 +73,6 @@ route.post("/", upload.array("images", 5), async (req, res) => {
       material: req.body.material,
     });
 
-    const imageUrls = req.files.map((file) => file.path);
     product == (await product.save());
 
     if (!product) {
@@ -73,57 +86,7 @@ route.post("/", upload.array("images", 5), async (req, res) => {
   }
 });
 
-//add product//
-// route.post("/", upload.single("image"), async (req, res) => {
-//   try {
 
-//     const result = await cloudinary.uploader.upload(req.file.path);
-//     const imageUrls = req.files.map(file => file.path);
-
-//     // const category = await categoryCollection.findOne({
-//     //   name: req.body.category,
-//     // });
-
-//     // if (!category) {
-//     //   return res.status(400).send("Invalid category");
-//     // }
-
-//     const product = new productCollection({
-//       name: req.body.name,
-//       description1: req.body.description1,
-//       description2: req.body.description2,
-//       price: req.body.price,
-//       category: req.body.category,
-//       image: result.secure_url,
-//       images: imageUrls,
-//       // image: {
-//       //   data: req.file.filename,
-//       //   contentType: "image/jpg",
-//       // },
-//       // images: {
-//       //     data:req.file.filename,
-//       //     contentType : 'image/jpg'
-//       // },
-//       brand: req.body.brand,
-//       color: req.body.color,
-//       reviews: req.body.reviews,
-//       gender: req.body.gender,
-//       createdDate: req.body.createdDate,
-//       countStock: req.body.countStock,
-//       material: req.body.material,
-//     });
-//     product == (await product.save());
-
-//     if (!product) {
-//       return res.status(404).send("product is not created");
-//     } else {
-//       return res.redirect("/adminhome/products");
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).send("Internal Server Error");
-//   }
-// });
 
 //view single data//
 

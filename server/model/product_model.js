@@ -6,7 +6,7 @@ const productSchema = mongoose.Schema({
         required : true,
     },
     category : {
-        type :mongoose.Schema.Types.ObjectId,
+        type :String,
         ref :'categoryCollection',
        
     },
@@ -33,7 +33,8 @@ const productSchema = mongoose.Schema({
     images : [String],
     brand : {
         type : String,
-        default  :'',
+        ref :'brandCollection',
+        // default  :'',
     },
     color : {
         type : String,

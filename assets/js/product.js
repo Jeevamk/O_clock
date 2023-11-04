@@ -12,8 +12,11 @@ viewProduct.forEach((btn) => {
         const productData = document.getElementById("productbody");
         productData.innerHTML = ` <form id="productForm">
                 <div class="mb-4">
-            <label for="image">product image</label>
-            <img src="${productdata.image}" alt="product image" style="max-width: 50px;">
+            
+            <img src="${productdata.images[0]}" alt="product image" style="max-width: 100px;" height="100px">
+            <img src="${productdata.images[1]}" alt="product image" style="max-width: 100px;" height="100px">
+            <img src="${productdata.images[2]}" alt="product image" style="max-width: 100px;" height="100px">
+            <img src="${productdata.images[3]}" alt="product image" style="max-width: 100px;" height="100px">
             </div>
             <div class="mb-4 ">
             <label for="name">Name</label>
@@ -111,7 +114,8 @@ editproduct.forEach((btn) => {
                 <input type="text" class="form-control" hidden value="${productdata._id}" name="id">
                 <div class="mb-4">
             <label for="image">product image</label>
-            <img src="${productdata.image}" alt="product image" style="max-width: 100px;">
+            <img src="${productdata.images[0]}" alt="product image" multiple style="max-width: 100px;">
+
             </div>
             <div class="mb-4 ">
             <label for="name">Name</label>
