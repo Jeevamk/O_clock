@@ -112,7 +112,8 @@
                                 <tbody>
                                     {{#each brands}}
                                     <tr>
-                                        <td><img src="/images/uploads/{{logo.data}}" alt="" width="50px"></td>
+                                        <td><img src="{{this.logo}}" width="50px" alt="logo"></td>
+                                        {{!-- <td><img src="/images/uploads/{{logo.data}}" alt="" width="50px"></td> --}}
                                         <td>{{name}}</td>
                                         <td>{{description}}</td>
                                         <td>

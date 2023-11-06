@@ -51,6 +51,7 @@ function validateForm() {
     nameError.innerHTML = "**name must be at  3 characters**";
     return false;
   }
+ 
   nameError.innerHTML = "";
 
   if (email === "") {
@@ -170,4 +171,24 @@ function addbrand() {
   }
 
   return true;
+}
+
+
+//forgot password//
+
+function forgotForm() {
+  var forgotemail = document.forms["forgotform"]["email"].value;
+
+  var forgotemailError = document.getElementById("forgoterror");
+
+  if (forgotemail === "") {
+    forgotemailError.innerHTML = "**Please fill in email**";
+    return false;
+  }
+ 
+  forgotemailError.innerHTML = "";
+  
+  return true;
+
+
 }

@@ -4,18 +4,26 @@ const brandCollection = require("../../model/brand_model");
 const authenticateJWT = require("../../middleware/auth");
 const adminCollection = require("../../model/admin_model");
 const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const dotenv = require("dotenv").config({ path: "config.env" });
+const upload = multer({ dest: 'assets/img/products' })
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    return cb(null, "./assets/images/uploads");
-  },
-  filename: function (req, file, cb) {
-    return cb(null, `${Date.now()}-${file.originalname}`);
-  },
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const upload = multer({ storage });
-// const upload = multer ( {dest : "assets/images/uploads"})
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     return cb(null, "./assets/images/uploads");
+//   },
+//   filename: function (req, file, cb) {
+//     return cb(null, `${Date.now()}-${file.originalname}`);
+//   },
+// });
+
+
 
 route.use(express.json());
 
@@ -30,23 +38,62 @@ route.get("/", authenticateJWT, async (req, res) => {
 });
 
 //add brand//
-route.post("/", upload.single("logo"), async (req, res) => {
-  const brand = new brandCollection({
-    name: req.body.name,
-    description: req.body.description,
-    logo: {
-      data: req.file.filename,
-      contentType: "image/jpg",
-    },
-  });
-  brand == (await brand.save());
 
-  if (!brand) {
-    return res.status(404).send("the brand can not be created");
-  } else {
-    return res.redirect("/adminhome/brands");
+route.post("/", upload.single("logo"), async (req, res) => {
+  try {
+    if (!req.file || !req.file.path) {
+      return res.status(400).send("Please upload an image.");
+    }
+
+    cloudinary.uploader.upload(req.file.path, async (error, result) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).send("Error uploading the image to Cloudinary.");
+      }
+      const imageUrls = result.secure_url;
+
+      const brand = new brandCollection({
+        name: req.body.name,
+        description: req.body.description,
+        logo: imageUrls,
+      });
+
+      const savedBrand = await brand.save();
+
+      if (!savedBrand) {
+        return res.status(404).send("The brand cannot be created.");
+      } else {
+        return res.redirect("/adminhome/brands");
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal server error");
   }
 });
+
+// route.post("/", upload.single("logo"),async (req, res) => {
+//   try {
+
+//     const brand = new brandCollection({
+//       name: req.body.name,
+//       description: req.body.description,
+//       logo : imageUrls,
+//     });
+//     brand == (await brand.save());
+
+//     if (!brand) {
+//       return res.status(404).send("the brand can not be created");
+//     } else {
+//       return res.redirect("/adminhome/brands");
+//     }
+ 
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).send("Internal server errror")
+//   }
+  
+// });
 
 //view single data//
 

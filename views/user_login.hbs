@@ -94,47 +94,7 @@
 
     {{! navbar end }}
 
-    {{! <section class="login py-5 bg-light">
-    <div class="container main">
-      <div class="row content">
-        <div class="col-md-6 ">
-          <h1 id="logh1" class="text-center">Log In</h1>
-          <div class="input-box">
-            <form action="/user_login" method="POST">
-              <div class="form-row">
-
-                <div class="offset-1 col-lg-10 pt-3">
-                  <input type="email" class="form-control" name="email" placeholder="Email address" />
-                </div>
-
-                <div class="offset-1 col-lg-10 pt-5">
-                  <input type="password" class="form-control" name="password" placeholder="Password" />
-                </div>
-                <div class="offset-1 col-lg-10 pt-3">
-                  <a href="">Forgott Password?</a>
-                </div>
-                <div class="offset-1 col-lg-10  text-center">
-                  <button type="submit" class="btn btn-dark mt-4  ms-5">Login</button>
-
-                </div>
-              </div>
-            </form>
-
-          </div>
-        </div>
-        <div class="col-md-6 side-image">
-          <img src="/images/loginImg.jpg" alt="loginimg" class="img-fluid logimg p-4">
-          <div>
-            <p class="mt-5">Not a member? <a href="user_sign">SignUp</a> </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </section>  }}
-
-    <section class="log mt-5">
+   <section class="log mt-5">
       <div class="container">
         <div class="row content">
           <div class="col-md-6 mb-3">
@@ -193,22 +153,11 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> 
 
-    {{! <section>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <img src="/images/loginImg.jpg" class="img-fluid " alt="login">
-      </div>
+    
 
-      <div class="col-md-6">
-
-
-      </div>
-    </div>
-  </div>
-</section> }}
+    
 
     {{#if alert}}
       <script>
@@ -216,19 +165,17 @@
       </script>
     {{/if}}
 
-    
-  {{#if show}}
-  <script>
+    {{#if show}}
+      <script>
         document.getElementById("msg1").innerHTML="Email is not exist..."
-  </script>
-  {{/if}}
+      </script>
+    {{/if}}
 
     {{#if blocked}}
       <script>
         alert("The account is blocked....please login with another account")
       </script>
     {{/if}}
-
 
     <script src="/js/formValidation.js"></script>
     <script

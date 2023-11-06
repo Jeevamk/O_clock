@@ -12,9 +12,6 @@ viewBrand.forEach((btn) => {
         const brandData = document.getElementById("brandbody");
         brandData.innerHTML = ` <form id="brandForm">
                 <div class="mb-4">
-             
-
-            <label for="logo">Brand Logo</label>
             <img src="${branddata.logo}" alt="Brand Logo" style="max-width: 100px;">
             </div>
             <div class="mb-4">
@@ -164,7 +161,7 @@ deletebutton.forEach((btn) => {
       const response = await fetch(`/adminhome/brands/delete_brand/${brandId}`)
       if (response.ok) {
         const brandData = await response.json();
-        document.getElementById("deletebody").innerHTML= `<div id="deletealert"><h5> Are you confirm to delete this brand </h5> </div>
+        document.getElementById("deletebody").innerHTML = `<div id="deletealert"><h5> Are you confirm to delete this brand </h5> </div>
         <form id="deletebrandForm">
         <input type="text" class="form-control" hidden value="${brandData._id}" name="id">
         <div class="col-sm-10">
@@ -177,10 +174,10 @@ deletebutton.forEach((btn) => {
         );
         showModal.show();
 
-      }else {
+      } else {
         console.error("Error fetching user data:", error);
       }
-    }catch (error) {
+    } catch (error) {
       console.error("Error fetching user data:", error);
     }
   })
