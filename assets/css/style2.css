@@ -330,6 +330,11 @@ a {
   background-position: "right top" */
 }
 
+/*------------------- admin brand section------------------ */
+#logo {
+    display: block;
+    max-width: 100%;
+}
 
 @media screen and (max-width:550px) {
     .carousel-inner {

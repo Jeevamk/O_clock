@@ -41,59 +41,34 @@ route.get("/", authenticateJWT, async (req, res) => {
 
 route.post("/", upload.single("logo"), async (req, res) => {
   try {
-    if (!req.file || !req.file.path) {
-      return res.status(400).send("Please upload an image.");
-    }
+    
+    const croppedlogo = req.body.croppedData
+    console.log(croppedlogo);
+    const result = await cloudinary.uploader.upload(croppedlogo);
+    console.log(result);
 
-    cloudinary.uploader.upload(req.file.path, async (error, result) => {
-      if (error) {
-        console.error(error);
-        return res.status(500).send("Error uploading the image to Cloudinary.");
-      }
-      const imageUrls = result.secure_url;
+    const brand = new brandCollection({
+      name: req.body.name,
+      description: req.body.description,
+      logo: result.url,
 
-      const brand = new brandCollection({
-        name: req.body.name,
-        description: req.body.description,
-        logo: imageUrls,
-      });
-
-      const savedBrand = await brand.save();
-
-      if (!savedBrand) {
-        return res.status(404).send("The brand cannot be created.");
-      } else {
-        return res.redirect("/adminhome/brands");
-      }
     });
+
+    const savedBrand = await brand.save();
+
+
+    if (!savedBrand) {
+      return res.status(404).send("The brand cannot be created.");
+    } else {
+      return res.redirect("/adminhome/brands");
+    }
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal server error");
   }
 });
 
-// route.post("/", upload.single("logo"),async (req, res) => {
-//   try {
 
-//     const brand = new brandCollection({
-//       name: req.body.name,
-//       description: req.body.description,
-//       logo : imageUrls,
-//     });
-//     brand == (await brand.save());
-
-//     if (!brand) {
-//       return res.status(404).send("the brand can not be created");
-//     } else {
-//       return res.redirect("/adminhome/brands");
-//     }
- 
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).send("Internal server errror")
-//   }
-  
-// });
 
 //view single data//
 
