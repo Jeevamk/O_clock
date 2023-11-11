@@ -12,10 +12,7 @@ const brandSchema = mongoose.Schema( {
     logo :{
         type : String,
     },
-    // croppedData: {
-    //     type: String, 
-    // },
-   
+    
 })
 
 const brandCollection = new mongoose.model('brandCollection',brandSchema);

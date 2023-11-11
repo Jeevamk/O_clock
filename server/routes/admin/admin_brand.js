@@ -114,13 +114,22 @@ route.get("/update/:id", async (req, res) => {
   }
 });
 
-route.put("/update", authenticateJWT, async (req, res) => {
+
+route.put("/update", upload.single('logo'), async (req, res) => {
+  const logoPath = req.file.path;
   const brandid = req.body.id;
-  const brandUpdateData = req.body;
+  const result = await cloudinary.uploader.upload(logoPath);
+
+  // const croppedLogoData = req.body.croppedLogoData;
+  // const croppedResult = await cloudinary.uploader.upload(croppedLogoData);
+ 
   try {
+    const {name,description} = req.body
     const brandUpdate = await brandCollection.findByIdAndUpdate(
       { _id: brandid },
-      { $set: brandUpdateData }
+      { $set:  {
+        name,description,logo : result.url
+      }}
     );
 
     if (brandUpdate) {

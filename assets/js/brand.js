@@ -1,5 +1,4 @@
 const viewBrand = document.querySelectorAll(".view-brand");
-
 viewBrand.forEach((btn) => {
   btn.addEventListener("click", async (event) => {
     const brandId = await event.target.getAttribute("data-brand-id");
@@ -40,32 +39,6 @@ viewBrand.forEach((btn) => {
   });
 });
 
-// delete data//
-
-// const brandDelete = document.querySelectorAll(".delete-brand");
-
-// brandDelete.forEach((btn) => {
-//   btn.addEventListener("click", async (event) => {
-//     const brandId = await event.target.getAttribute("data-brand-id");
-
-//     try {
-//       const response = await fetch(
-//         `/adminhome/brands/delete_brand/${brandId}`,
-//         {
-//           method: "DELETE",
-//         }
-//       );
-//       if (response.ok) {
-//         window.location.href = "/adminhome/brands";
-//       } else {
-//         console.error("Error fetching user data:", error);
-//       }
-//     } catch (error) {
-//       console.error("Error fetching user data:", error);
-//     }
-//   });
-// });
-
 //update view//
 
 const editbrand = document.querySelectorAll(".edit-brand");
@@ -88,6 +61,9 @@ editbrand.forEach((btn) => {
                     <img src="${branddata.logo}" alt="Brand Logo" style="max-width: 100px;">
                     <div class="col-sm-10">
                     <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
+                    </div>
+                    <div id="ContainerLogo">
+                      <img id="croppedLogo" name="croppedLogo" src="#" alt="Cropped Logo">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -129,13 +105,12 @@ editbrand.forEach((btn) => {
 function brandEdit() {
   const BrandEditedData = document.getElementById("updatebrandForm");
   const myBrandData = new FormData(BrandEditedData);
+  console.log(Object.fromEntries(myBrandData));
 
   fetch(`/adminhome/brands/update`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(Object.fromEntries(myBrandData)),
+
+    body: myBrandData,
   })
     .then((response) => {
       if (response.ok) {
@@ -149,7 +124,6 @@ function brandEdit() {
     });
 }
 
-
 //delete part view//
 
 const deletebutton = document.querySelectorAll(".delete-brand");
@@ -158,10 +132,12 @@ deletebutton.forEach((btn) => {
     const brandId = await event.target.getAttribute("data-brand-id");
 
     try {
-      const response = await fetch(`/adminhome/brands/delete_brand/${brandId}`)
+      const response = await fetch(`/adminhome/brands/delete_brand/${brandId}`);
       if (response.ok) {
         const brandData = await response.json();
-        document.getElementById("deletebody").innerHTML = `<div id="deletealert"><h5> Are you confirm to delete this brand </h5> </div>
+        document.getElementById(
+          "deletebody"
+        ).innerHTML = `<div id="deletealert"><h5> Are you confirm to delete this brand </h5> </div>
         <form id="deletebrandForm">
         <input type="text" class="form-control" hidden value="${brandData._id}" name="id">
         <div class="col-sm-10">
@@ -173,16 +149,14 @@ deletebutton.forEach((btn) => {
           document.getElementById("deletemodal")
         );
         showModal.show();
-
       } else {
         console.error("Error fetching user data:", error);
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
-  })
-})
-
+  });
+});
 
 //delete part//
 
