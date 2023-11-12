@@ -86,3 +86,4 @@ document.addEventListener("DOMContentLoaded", () => {
     brandEditform.submit();
   });
 });
+
