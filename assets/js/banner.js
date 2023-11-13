@@ -75,11 +75,9 @@ editbanner.forEach((btn) => {
                 <div class="form-group row">
                     <img src="${bannerdata.bannerImg}" alt="Brand Logo" style="max-width: 100px;">
                     <div class="col-sm-10">
-                    <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
+                    <input type="file" class="form-control" id="bannerImg" name="bannerImg" accept="image/*">
                     </div>
-                    <div id="ContainerBanner">
-                      <img id="croppedBanner" name="croppedBanner" src="#" alt="Cropped Banner">
-                    </div>
+                    
                 </div>
                 <div class="form-group row">
                   <label for="name" class="col-sm-2 col-form-label">Name</label>

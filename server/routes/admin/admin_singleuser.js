@@ -5,10 +5,12 @@ const authenticateJWT = require("../../middleware/auth");
 const adminCollection = require("../../model/admin_model");
 
 
-route.get("/", authenticateJWT, async (req, res) => {
+route.get("/:id", authenticateJWT, async (req, res) => {
+  
     if (req.cookies.session) {
+      const _id=req.params.id;
       const adminid = await adminCollection.findOne({ _id: req.adminId });
-      const users = await userCollection.find();
+      const users = await userCollection.findById(_id);
       res.render("adminSingleUser", { adminid, users });
       console.log(users);
     }

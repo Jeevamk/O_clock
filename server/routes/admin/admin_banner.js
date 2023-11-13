@@ -102,12 +102,11 @@ route.get("/update/:id", async (req, res) => {
 
 
 route.put("/update", upload.single('bannerImg'), async (req, res) => {
+    console.log(req.file);
     const imgPath = req.file.path;
     const bannerid = req.body.id;
     const result = await cloudinary.uploader.upload(imgPath);
   
-    // const croppedLogoData = req.body.croppedLogoData;
-    // const croppedResult = await cloudinary.uploader.upload(croppedLogoData);
    
     try {
       const {name,description,createdDate,expireDate} = req.body

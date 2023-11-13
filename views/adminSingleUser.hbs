@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/style2.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Latest compiled and minified CSS -->
     {{!--
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
@@ -84,23 +88,55 @@
                         <div class="col-12 user_head">
                             <h2 class="text-center text-dark" id="user">User Detail</h2>
                         </div>
+                        
                     </div>
-                    <div><hr></div>
+                    <div>
+                        <hr>
+                    </div>
                     <div class="row pt-3">
-                        <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 col-xxl-5 bg-primary">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore eos, distinctio dolor pariatur porro, harum reprehenderit magnam quisquam unde laudantium quo quam beatae est dolorem minus excepturi vero voluptas? Eaque!
-                        Eum hic voluptates illum maiores molestias. Eveniet voluptatibus aperiam consectetur obcaecati incidunt soluta cumque quibusdam molestias dolorem reiciendis ea facilis fuga sequi, tempora nesciunt ad hic quas, modi nemo voluptatem.</p>
 
-                    </div>
-                    <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 col-xxl-7 bg-danger">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis officia officiis possimus nisi exercitationem nihil a libero eos ullam atque praesentium sit, enim maxime reiciendis id voluptatum autem ipsam neque!
-                        Accusantium molestias doloribus doloremque dolor vero libero voluptates repudiandae, fugit possimus fugiat dolorem maiores odio, veritatis accusamus dolorum ipsam quae dolore neque minus aliquid sint aut sit perspiciatis. Error, minima!</p>
+                        <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 col-xxl-5 ">
+                            <form id="viewForm">
+                                <div class="mb-4">
+                                    <label for="user-name">Name</label>
+                                    <input type="text" class="form-control" id="user-name" placeholder="Enter Name"
+                                        name="name" value={{users.name}} readonly>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="user-email">Email Address</label>
+                                    <input type="email" class="form-control" id="user-email" placeholder="Enter Email"
+                                        name="email" value={{users.email}} readonly>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="user-phone">Phone Number</label>
+                                    <input type="text" class="form-control" id="user-phone" placeholder="Phone number"
+                                        name="phone" value={{users.phone}} readonly>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="user-status">Status</label>
+                                    <input type="text" class="form-control" id="user-status" placeholder="status"
+                                        name="status" value={{users.status}} readonly>
+                                </div>
+                                <div class="mb-4">
+                            <a href="/adminhome/users"><i class="fa-solid fa-circle-arrow-left" style="color: black; font-size:x-large"></i></a>
+                        </div>
 
-                    </div>
+                            </form>
+
+                        </div>
+                        <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 col-xxl-7 bg-danger">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis officia officiis
+                                possimus nisi exercitationem nihil a libero eos ullam atque praesentium sit, enim maxime
+                                reiciendis id voluptatum autem ipsam neque!
+                                Accusantium molestias doloribus doloremque dolor vero libero voluptates repudiandae,
+                                fugit possimus fugiat dolorem maiores odio, veritatis accusamus dolorum ipsam quae
+                                dolore neque minus aliquid sint aut sit perspiciatis. Error, minima!</p>
+
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
     </section>
 
 
@@ -170,10 +206,10 @@
 
 
 
-   
 
 
- 
+
+
 
     <script src="/js/viewdata.js"></script>
     <script src="/js/edit.js"></script>

@@ -50,11 +50,6 @@ viewProduct.forEach((btn) => {
                     name="brand" value="${productdata.brand}" readonly>
             </div>
             <div class="mb-4 ">
-            <label for="reviews">reviews</label>
-                <input type="number" class="form-control" id="reviews" 
-                    name="reviews" value="${productdata.reviews}" readonly>
-            </div>
-            <div class="mb-4 ">
             <label for="color">color</label>
                 <input type="text" class="form-control" id="color" 
                     name="color" value="${productdata.color}" readonly>
@@ -150,11 +145,6 @@ editproduct.forEach((btn) => {
             <label for="brand">brand</label>
                 <input type="text" class="form-control" id="brand" 
                     name="brand" value="${productdata.brand}" >
-            </div>
-            <div class="mb-4 ">
-            <label for="reviews">reviews</label>
-                <input type="number" class="form-control" id="reviews" 
-                    name="reviews" value="${productdata.reviews}" >
             </div>
             <div class="mb-4 ">
             <label for="color">color</label>

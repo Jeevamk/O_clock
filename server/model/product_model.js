@@ -40,10 +40,6 @@ const productSchema = mongoose.Schema({
         type : String,
         default :''
     },
-    reviews : {
-        type : Number,
-        default : 0 ,
-    },
     gender : {
         type : String ,
         required :true,

@@ -66,7 +66,6 @@ route.post("/", upload.array("images", 5),handleImageUpload, async (req, res) =>
       images: imageUrls,
       brand: req.body.brand,
       color: req.body.color,
-      reviews: req.body.reviews,
       gender: req.body.gender,
       createdDate: req.body.createdDate,
       countStock: req.body.countStock,
