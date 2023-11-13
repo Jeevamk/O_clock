@@ -89,7 +89,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 category_head">
-                            <h2 class="text-center text-dark" id="product" style="font-weight:bold ;">PRODUCTS</h2>
+                            <h2 class="text-center text-dark" id="brand" style="font-weight:bold ;">BANNER</h2>
                             <hr>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                     <div class="row">
                         <div class="d-flex justify-content-end w-100">
                             <button class="btn btn-dark text-white" data-bs-toggle="modal"
-                                data-bs-target="#brandModal">Add Products</button>
+                                data-bs-target="#brandModal">Add Banner</button>
                         </div>
                     </div>
 
@@ -108,32 +108,36 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Image</th>
+                                        {{!-- <th scope="col">Id</th> --}}
+                                        <th scope="col">Logo</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Brand</th>
-                                        <th scope="col">Price</th>
+                                        <th scope="col">Description</th>
+                                        {{!-- <th scope="col">Created Date</th>
+                                        <th scope="col">Expire Date</th> --}}
+                                        <th scope="col">Status</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{#each products}}
+                                    {{#each banners}}
                                     <tr>
-                                        <td><img src={{this.images.[0]}} alt="" width="50px"></td>
+                                        <td><img src="{{this.bannerImg}}" width="50px" alt="bannerImg"></td>
                                         <td>{{name}}</td>
-                                        <td>{{category}}</td>
-                                        <td>{{brand}}</td>
-                                        <td>{{price}}</td>
+                                        <td>{{description}}</td>
+                                        {{!-- <td>{{createdDate}}</td>
+                                        <td>{{expireDate}}</td> --}}
+                                        <td>{{status}}</td>
+                                        
                                         <td>
-                                            <button type="button" class="view-product p-1 btn  btn-light m-1"
-                                                data-product-id="{{_id}}"><i class="fa-regular fa-eye"
+                                            <button type="button" class="view-banner p-1 btn  btn-light m-1"
+                                                data-banner-id="{{_id}}"><i class="fa-regular fa-eye"
                                                     style="color:black;"></i></button>
-                                            <button type="button" class="edit-product btn btn-light p-1 m-1"
-                                                data-product-id="{{_id}}"><i class="fa-solid fa-pen-to-square"
+                                            <button type="button" class="edit-banner btn btn-light p-1 m-1"
+                                                data-banner-id="{{_id}}"><i class="fa-solid fa-pen-to-square"
                                                     style="color: #01060e;"></i></button>
 
-                                            <button type="button" class="delete-product btn btn-light p-1 m-1"
-                                                data-product-id="{{_id}}"><i class="fa-solid fa-trash"
+                                            <button type="button" class="delete-banner btn btn-light p-1 m-1"
+                                                data-banner-id="{{_id}}"><i class="fa-solid fa-trash"
                                                     style="color: #000714;"></i></button>
 
                                         </td>
@@ -207,124 +211,69 @@
                 </div>
             </div>
 
-            {{!------------------------------ modal add product ---------------------------------------}}
+            {{!------------------------------ modal add brand ---------------------------------------}}
 
             <div class="modal fade" id="brandModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title fs-5" id="exampleModalLabel">Add Product</h3>
+                            <h3 class="modal-title fs-5" id="exampleModalLabel">Add Banner</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="container">
-                                <form class="row g-3" action="/adminhome/products" method="POST"
-                                    onsubmit="return addproduct()" enctype="multipart/form-data" id="productAddForm">
-                                    <div class="col-md-6">
-                                        <label for="name" class="form-label">Product Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="product Name"
+                                <form action="/adminhome/banner" method="POST" onsubmit="return addbanner()"
+                                    enctype="multipart/form-data" id="bannerAddForm">
+                                    <div class="form-group">
+                                        <label for="name">Banner Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Brand Name"
                                             name="name" style="border: 1px solid black;">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="price">Price</label>
-                                        <input type="text" class="form-control" id="price" placeholder="Enter price"
-                                            name="price" style="border: 1px solid black;">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="category" class="form-label">Category</label><br>
-
-                                        <select id="category" class="form-select" name="category" >
-                                            {{#each category}}
-                                            <option class="bg-dark text-light" value="{{this.name}}">{{this.name}}
-                                            </option>
-                                            {{/each}}
-                                            
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="brand" class="form-label">Brand</label><br>
-                                        <select id="brand" class="form-select" name="brand">
-                                            {{#each brands}}
-                                            <option class="bg-dark text-light" value="{{this.name}}">{{this.name}}
-                                            </option>
-                                            {{/each}}
-                                            
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="description1" class="form-label">Discription1</label>
-                                        <input type="text" class="form-control" id="description1"
-                                            placeholder="Enter Discription" name="description1"
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <input type="text" class="form-control" id="description"
+                                            placeholder="Enter Discription" name="description"
                                             style="border: 1px solid black;">
                                     </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="disc2" class="form-label">Discription2</label>
-                                            <input type="text" class="form-control" id="disc2"
-                                                placeholder="Enter Discription" name="description2"
-                                                style="border: 1px solid black;">
+                                    <div class="form-group">
+                                        <label for="bannerImg">Select a logo</label><br>
+                                        <input type="file" id="bannerImg" name="bannerImg"
+                                            style="border: 1px solid black;">
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="bannerContainer">
+                                            <img id="croppedbanner" name="croppedbanner" src="#" alt="Cropped Logo">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="reviews" class="form-label">Reviews</label>
-                                        <input type="Number" class="form-control" id="reviews"
-                                            placeholder="Enter reviews" name="reviews" style="border: 1px solid black;">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="color" class="form-label">color</label><br>
-                                        <select id="color" class="form-select" name="color">
-                                            <option selected>Black</option>
-                                            <option>Brown</option>
-                                            <option>Silver</option>
-                                            <option>Gold</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="gender" class="form-label">Gender</label><br>
-                                        <select id="gender" class="form-select" name="gender">
-                                            <option selected>Men</option>
-                                            <option>Women</option>
-                                            <option>All</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="material" class="form-label">Material</label><br>
-                                        <select id="material" class="form-select" name="material">
-                                            <option selected>Leather</option>
-                                            <option>stainless Steel</option>
-                                            <option>Silicon</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="images" class="form-label">Image</label><br>
-                                        <input type="file" id="images" name="images" class="form-control"
-                                            style="border: 1px solid black;" multiple>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div id="ImageContainer">
-                                            <img id="croppedimage" name="croppedimage" src="#" alt="Cropped Image">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="createdDate" class="form-label">Date</label><br>
                                         <input type="date" id="createdDate" name="createdDate" class="form-control"
                                             style="border: 1px solid black;">
-
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="countStock" class="form-label">Stock</label><br>
-                                        <input type="number" id="countStock" name="countStock" class="form-control"
+                                    <div class="form-group">
+                                        <label for="expireDate" class="form-label">Expire Date</label><br>
+                                        <input type="date" id="expireDate" name="expireDate" class="form-control"
                                             style="border: 1px solid black;">
-
                                     </div>
-                                    <div class="col-12 mt-2">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status"
+                                                id="Enable" value="Enable" checked>
+                                            <label class="form-check-label" for="Enable">
+                                                Enable
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status"
+                                                id="Disable" value="Disable" >
+                                            <label class="form-check-label" for="Disable">
+                                                Disable
+                                            </label>
+                                        </div>
                                     </div>
+                                    <button type="submit" class="btn btn-dark">Submit</button>
                                 </form>
-
                             </div>
 
                         </div>
@@ -338,29 +287,28 @@
 
 
             <!-- Modal2 view single data from the table-->
-            <div class="modal fade" id="productmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="bannermodal" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">View Product</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">View Banner</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="productbody">
+                        <div class="modal-body" id="bannerbody">
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/adminhome/products"><button type="button"
+                            <a href="/adminhome/banner"><button type="button"
                                     class="btn btn-secondary">Close</button></a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {{!----------------------------------- modal3 edit data from the
-            table-------------------------------------------}}
+            {{!----------------------------------- modal3 edit data from the table---------------------------------------}}
 
-            <div class="modal fade" id="producteditmodal" data-bs-backdrop="static" data-bs-keyboard="false"
+            <div class="modal fade" id="bannereditmodal" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -368,11 +316,11 @@
                             <h5 class="modal-title" id="staticBackdropLabel">Edit Details</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="editproduct">
+                        <div class="modal-body" id="editbanner">
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/adminhome/products"><button type="button"
+                            <a href="/adminhome/banner"><button type="button"
                                     class="btn btn-secondary">Close</button></a>
                         </div>
                     </div>
@@ -380,10 +328,9 @@
             </div>
 
 
-
             {{!-- modal4 view delete data from the table --}}
-            <div class="modal fade" id="deletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="deletemodal" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -393,7 +340,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/adminhome/products"><button type="button"
+                            <a href="/adminhome/banner"><button type="button"
                                     class="btn btn-secondary">Close</button></a>
                         </div>
                     </div>
@@ -407,12 +354,8 @@
     </section>
 
     <script src="/js/cropper.js"></script>
-    <script src="/js/product.js"></script>
-    {{!--
-    <script src="/js/brand.js"></script> --}}
+    <script src="/js/banner.js"></script>
     <script src="/js/formValidation.js"></script>
-    {{!--
-    <script src="/js/categoryview.js"></script> --}}
     <script src="/js/edit.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.js"></script>

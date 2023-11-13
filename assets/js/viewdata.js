@@ -28,7 +28,7 @@ viewButtons.forEach((btn) => {
             <div class="mb-4">
             <label for="user-status">Status</label>
                 <input type="text" class="form-control" id="user-status" placeholder="status"
-                    name="phone" value="${userdata.status}" readonly>
+                    name="status" value="${userdata.status}" readonly>
             </div>
             
         </form>`;
