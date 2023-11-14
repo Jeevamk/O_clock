@@ -88,7 +88,7 @@
                         <div class="col-12 user_head">
                             <h2 class="text-center text-dark" id="user">User Detail</h2>
                         </div>
-                        
+
                     </div>
                     <div>
                         <hr>
@@ -118,19 +118,32 @@
                                         name="status" value={{users.status}} readonly>
                                 </div>
                                 <div class="mb-4">
-                            <a href="/adminhome/users"><i class="fa-solid fa-circle-arrow-left" style="color: black; font-size:x-large"></i></a>
-                        </div>
+                                    <a href="/adminhome/users"><i class="fa-solid fa-circle-arrow-left"
+                                            style="color: black; font-size:x-large"></i></a>
+                                </div>
 
                             </form>
 
                         </div>
-                        <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 col-xxl-7 bg-secondary">
-                           <div>
-                            <h5>Product Name:{{orderProduct.name}}</h5>
-                            {{!-- <h5>Product Image:{{orderProduct.images.[0]}}</h5> --}}
-                            <img src="{{orderProduct.images.[0]}}" alt="" width="100px">
+                        <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 col-xxl-7 shadow-2-strong">
+                            <div class="" style="background-color: hsl(223, 30%, 95%);">
+                                
+                                    <div class="text-center py-3">
+                                        <img src="{{orderProduct.images.[0]}}" alt="" width="100px"><br>
+                                        <h5 style="font-weight: bolder;">{{orderProduct.name}}</h5>
+                                        <p style="color: black;font-weight:800">Rs:{{orderProduct.price}}/-</p>
+                                        <p class="text-danger">{{orderDetail.paymentMethod}}</p>
+                                        <p style="color: green;">{{orderDetail.status}} <span style="color: black;">On</span>{{orderDetail.date}}</p>
+                                        <p></p>
+                                       
+                                    
+                                </div>
+                            </div>
+                            {{!-- <div>
+                                <h5>Product Name:{{orderProduct.name}}</h5>
+                                <img src="{{orderProduct.images.[0]}}" alt="" width="100px">
 
-                           </div>
+                            </div> --}}
 
                         </div>
                     </div>

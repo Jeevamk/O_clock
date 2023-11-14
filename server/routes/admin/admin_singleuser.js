@@ -12,13 +12,14 @@ route.get("/:id", authenticateJWT, async (req, res) => {
     if (req.cookies.session) {
       const _id=req.params.id;
       const orders = await orderCollection.find({ userId: _id })
+      const orderDetail = orders[0]
       const productId = orders[0].productId;
       const orderProduct = await productCollection.findById(productId)
       console.log(productId);
       console.log(orderProduct);
       const adminid = await adminCollection.findOne({ _id: req.adminId });
       const users = await userCollection.findById(_id);
-      res.render("adminSingleUser", { adminid, users, orderProduct});
+      res.render("adminSingleUser", { adminid, users, orderProduct,orders,orderDetail});
       // console.log(users);
     }
   });
