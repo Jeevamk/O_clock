@@ -81,37 +81,6 @@ route.get("/user_sign", (req, res) => {
 
 route.post(
   "/user_registration",
-  //  parserencoded, [
-  //     body('name')
-  //         .notEmpty().withMessage('Name is required')
-  //         .isLength({ min: 3 }).withMessage("Name must be at least 3 characters"),
-
-  //     body('email')
-  //         .notEmpty().withMessage('Email is required')
-  //         .isEmail().withMessage('Invalid email address')
-  //         .normalizeEmail().withMessage('Invalid email format'),
-
-  //     body('phone')
-  //         .notEmpty().withMessage('phone number is required')
-  //         .isLength({ min: 10 }).withMessage('phone number must be at least 10 characters')
-  //         .matches(/^\d+$/).withMessage('Phone number can only contain digits'),
-
-  //     body('password')
-  //         .notEmpty().withMessage('Password is required')
-  //         .isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
-  //         .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/)
-  //         .withMessage('Password must contain at least one lowercase letter, one uppercase letter, and one digit'),
-
-  //     body('cpassword')
-  //         .notEmpty().withMessage('Confirm Password is required')
-  //         .custom((value, { req }) => {
-  //             if (value !== req.body.password) {
-  //                 throw new Error('Passwords do not match');
-  //             }
-  //             return true;
-  //         })
-
-  // ]
 
   async (req, res) => {
     const errors = validationResult(req);
@@ -127,6 +96,7 @@ route.post(
       const cpassword = req.body.cpassword;
 
       if (password === cpassword) {
+
         const userData = new userCollection({
           name: req.body.name,
           email: req.body.email,
@@ -158,7 +128,7 @@ route.post("/user_login", async (req, res) => {
       const { email, password } = req.body;
 
       const useremail = await userCollection.findOne({ email });
-      // console.log(useremail);
+      
 
       if (!useremail) {
         return res.render("user_login", { show: true });

@@ -155,6 +155,7 @@ function addcat() {
   return true;
 }
 
+
 //brand//
 function addbrand() {
   const nameInput = document.querySelector("#name");

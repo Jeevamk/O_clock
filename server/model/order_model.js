@@ -1,9 +1,15 @@
 const mongoose = require('mongoose')
 
 const orderSchema = mongoose.Schema ({
-    name :{
-        type : String,
-        required : true
+    userId : {
+        type :mongoose.Schema.Types.ObjectId,
+        ref :'userCollection',
+       
+    },
+    productId: {
+        type :mongoose.Schema.Types.ObjectId,
+        ref :'productCollection',
+       
     },
     date : {
         type : Date,

@@ -114,6 +114,8 @@ route.get("/:id", async (req, res) => {
 route.get("/update/:id", async (req, res) => {
   if (req.cookies.session) {
     const productId = req.params.id;
+    // const brands = await brandCollection.find();
+    // const category = await categoryCollection.find();
 
     try {
       const productUpdate = await productCollection.findOne({ _id: productId });

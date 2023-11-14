@@ -139,7 +139,7 @@ editproduct.forEach((btn) => {
             <div class="mb-4 ">
             <label for="category">category</label>
                 <input type="text" class="form-control" id="category" 
-                    name="category" value="${productdata.category}" >
+                    name="category" value="${productdata.category}">
             </div>
             <div class="mb-4 ">
             <label for="brand">brand</label>

@@ -6,7 +6,7 @@ const userCollection = require("../../model/user_model");
 
 
 route.get("/",logauth, async (req, res) => {
-    if (!req.cookies.sessions) return res.render("user_index");
+    if (!req.cookies.sessions) return res.render("shop");
     const _id = req.userId
     const user = await userCollection.findById(_id)
     return res.render("shop",{user});
