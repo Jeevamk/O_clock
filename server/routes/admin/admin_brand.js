@@ -56,7 +56,6 @@ route.post("/", upload.single("logo"), async (req, res) => {
 
     const savedBrand = await brand.save();
 
-
     if (!savedBrand) {
       return res.status(404).send("The brand cannot be created.");
     } else {

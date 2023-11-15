@@ -13,10 +13,10 @@ viewProduct.forEach((btn) => {
         productData.innerHTML = ` <form id="productForm">
                 <div class="mb-4">
             
-            <img src="${productdata.images[0]}" alt="product image" style="max-width: 100px;" height="100px">
-            <img src="${productdata.images[1]}" alt="product image" style="max-width: 100px;" height="100px">
-            <img src="${productdata.images[2]}" alt="product image" style="max-width: 100px;" height="100px">
-            <img src="${productdata.images[3]}" alt="product image" style="max-width: 100px;" height="100px">
+            <img src="${productdata.images}" alt="product image" style="max-width: 100px;" height="100px">
+            <img src="${productdata.images1}" alt="product image" style="max-width: 100px;" height="100px">
+            <img src="${productdata.images2}" alt="product image" style="max-width: 100px;" height="100px">
+            <img src="${productdata.images3}" alt="product image" style="max-width: 100px;" height="100px">
             </div>
             <div class="mb-4 ">
             <label for="name">Name</label>
@@ -109,10 +109,10 @@ editproduct.forEach((btn) => {
                 <input type="text" class="form-control" hidden value="${productdata._id}" name="id">
                 <div class="mb-4">
             
-            <img src="${productdata.images[0]}" alt="product image1" multiple style="max-width: 100px;">
-            <img src="${productdata.images[1]}" alt="product image2" multiple style="max-width: 100px;">
-            <img src="${productdata.images[2]}" alt="product image3" multiple style="max-width: 100px;">
-            <img src="${productdata.images[3]}" alt="product image4" multiple style="max-width: 100px;">
+            <img src="${productdata.images}" alt="product image1"  style="max-width: 100px;">
+            <img src="${productdata.images1}" alt="product image2"  style="max-width: 100px;">
+            <img src="${productdata.images2}" alt="product image3"  style="max-width: 100px;">
+            <img src="${productdata.images3}" alt="product image4"  style="max-width: 100px;">
 
             </div>
             <div class="mb-4 ">

@@ -18,23 +18,23 @@ cloudinary.config({
 
 
 // Middleware to handle image uploads
-const handleImageUpload = async (req, res, next) => {
-  try {
-    const images =req.files;
-    const imageUrls = [];
+// const handleImageUpload = async (req, res, next) => {
+//   try {
+//     const images =req.files;
+//     const imageUrls = [];
 
-    for (const image of images) {
-      const result = await cloudinary.uploader.upload(image.path);
-      imageUrls.push(result.secure_url);
-    }
+//     for (const image of images) {
+//       const result = await cloudinary.uploader.upload(image.path);
+//       imageUrls.push(result.secure_url);
+//     }
 
-    req.imageUrls = imageUrls; 
-    next();
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to upload images' });
-  }
-};
+//     req.imageUrls = imageUrls; 
+//     next();
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Failed to upload images' });
+//   }
+// };
 
 
 
@@ -53,9 +53,18 @@ route.get("/", authenticateJWT, async (req, res) => {
 });
 
 //add product//
-route.post("/", upload.array("images", 5),handleImageUpload, async (req, res) => {
+route.post("/", upload.fields([{name:"images", maxCount:1},{ name :'images1' ,maxCount:1},{name :'images2', maxCount:1},{name:'images3',maxCount:1}]), async (req, res) => {
   try {
-    const imageUrls = req.imageUrls;
+    const croppedMainImage = req.body.croppedProductData
+    const croppedImage1 = req.body.croppedProduct1Data
+    const croppedImage2 = req.body.croppedProduct2Data
+    const croppedImage3 = req.body.croppedProduct3Data
+
+    const mainImage=await cloudinary.uploader.upload(croppedMainImage)
+    const Imageone=await cloudinary.uploader.upload(croppedImage1)
+    const Imagetwo=await cloudinary.uploader.upload(croppedImage2)
+    const Imagethree=await cloudinary.uploader.upload(croppedImage3)
+
 
     const product = new productCollection({
       name: req.body.name,
@@ -63,7 +72,10 @@ route.post("/", upload.array("images", 5),handleImageUpload, async (req, res) =>
       description2: req.body.description2,
       price: req.body.price,
       category: req.body.category,
-      images: imageUrls,
+      images: mainImage.url,
+      images1: Imageone.url,
+      images2: Imagetwo.url,
+      images3: Imagethree.url,
       brand: req.body.brand,
       color: req.body.color,
       gender: req.body.gender,

@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //cropper edit brand
-
 document.addEventListener("DOMContentLoaded", () => {
   const logoEdit = document.getElementById("logo");
   const ContainerLogo = document.getElementById("ContainerLogo");
@@ -88,53 +87,176 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// //add product//
-// document.addEventListener("DOMContentLoaded", () => {
-//   const imageInput = document.getElementById("images");
-//   const ImageContainer = document.getElementById("ImageContainer");
-//   let croppers = [];
+// //add product-main image//
+document.addEventListener("DOMContentLoaded", () => {
+  const productInput = document.getElementById("images");
+  const croppedimage = document.getElementById("croppedimage");
+  let cropper;
 
-//   imageInput.addEventListener("change", (e) => {
-//     const input = e.target;
-//     const files = input.files;
+  productInput.addEventListener("change", (e) => {
+    const input = e.target;
+    const reader = new FileReader();
 
-//     croppers.forEach(cropper => cropper.destroy());
-//     croppers = [];
+    reader.onload = (event) => {
+      if (cropper) {
+        cropper.destroy();
+      }
 
-//     // Display each selected image and initialize cropper
-//     for (let i = 0; i < files.length; i++) {
-//       const reader = new FileReader();
-//       reader.onload = (event) => {
-//         const img = document.createElement('img');
-//         img.src = event.target.result;
-//         ImageContainer.appendChild(img);
-//         const cropper = new Cropper(img, {
-//           aspectRatio: 1,
-//           viewMode: 2,
-//         });
-//         croppers.push(cropper);
-//       };
-//       reader.readAsDataURL(files[i]);
-//     }
-//   });
+      croppedimage.src = event.target.result;
+      cropper = new Cropper(croppedimage, {
+        aspectRatio: 1,
+        viewMode: 2,
+      });
+    };
 
-//   const productAddForm = document.getElementById("productAddForm");
-//   productAddForm.addEventListener("submit", () => {
-//     const croppedDataArray = [];
+    reader.readAsDataURL(input.files[0]);
+  });
 
-//     // Retrieve cropped data for each image
-//     croppers.forEach(cropper => {
-//       const croppedCanvas = cropper.getCroppedCanvas();
-//       if (croppedCanvas) {
-//         croppedDataArray.push(croppedCanvas.toDataURL('image/jpeg'));
-//       }
-//     });
+  const productform = document.getElementById("productAddForm");
+  productform.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-//     // You can now send croppedDataArray to the server or perform further actions
+    const croppedProductData = cropper.getCroppedCanvas().toDataURL();
 
-//     console.log(croppedDataArray);
-//   });
-// });
+    const hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.name = "croppedProductData";
+    hiddenInput.value = croppedProductData;
+
+    
+    productform.appendChild(hiddenInput);
+
+    productform.submit();
+  });
+});
+//image1/
+document.addEventListener("DOMContentLoaded", () => {
+  const product1Input = document.getElementById("images1");
+  const croppedimage1 = document.getElementById("croppedimage1");
+  let cropper;
+
+  product1Input.addEventListener("change", (e) => {
+    const input = e.target;
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      if (cropper) {
+        cropper.destroy();
+      }
+
+      croppedimage1.src = event.target.result;
+      cropper = new Cropper(croppedimage1, {
+        aspectRatio: 1,
+        viewMode: 2,
+      });
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  });
+
+  const productform = document.getElementById("productAddForm");
+  productform.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const croppedProduct1Data = cropper.getCroppedCanvas().toDataURL();
+
+    const hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.name = "croppedProduct1Data";
+    hiddenInput.value = croppedProduct1Data;
+
+    
+    productform.appendChild(hiddenInput);
+
+    productform.submit();
+  });
+});
+
+//images2//
+document.addEventListener("DOMContentLoaded", () => {
+  const product2Input = document.getElementById("images2");
+  const croppedimage2 = document.getElementById("croppedimage2");
+  let cropper;
+
+  product2Input.addEventListener("change", (e) => {
+    const input = e.target;
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      if (cropper) {
+        cropper.destroy();
+      }
+
+      croppedimage2.src = event.target.result;
+      cropper = new Cropper(croppedimage2, {
+        aspectRatio: 1,
+        viewMode: 2,
+      });
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  });
+
+  const productform = document.getElementById("productAddForm");
+  productform.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const croppedProduct2Data = cropper.getCroppedCanvas().toDataURL();
+
+    const hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.name = "croppedProduct2Data";
+    hiddenInput.value = croppedProduct2Data;
+
+    
+    productform.appendChild(hiddenInput);
+
+    productform.submit();
+  });
+});
+
+//images3//
+document.addEventListener("DOMContentLoaded", () => {
+  const product3Input = document.getElementById("images3");
+  const croppedimage3 = document.getElementById("croppedimage3");
+  let cropper;
+
+  product3Input.addEventListener("change", (e) => {
+    const input = e.target;
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      if (cropper) {
+        cropper.destroy();
+      }
+
+      croppedimage3.src = event.target.result;
+      cropper = new Cropper(croppedimage3, {
+        aspectRatio: 1,
+        viewMode: 2,
+      });
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  });
+
+  const productform = document.getElementById("productAddForm");
+  productform.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const croppedProduct3Data = cropper.getCroppedCanvas().toDataURL();
+
+    const hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.name = "croppedProduct3Data";
+    hiddenInput.value = croppedProduct3Data;
+
+    
+    productform.appendChild(hiddenInput);
+
+    productform.submit();
+  });
+});
 
 
 //add banner//

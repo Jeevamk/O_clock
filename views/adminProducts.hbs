@@ -119,7 +119,7 @@
                                 <tbody>
                                     {{#each products}}
                                     <tr>
-                                        <td><img src={{this.images.[0]}} alt="" width="50px"></td>
+                                        <td><img src={{this.images}} alt="" width="50px"></td>
                                         <td>{{name}}</td>
                                         <td>{{category}}</td>
                                         <td>{{brand}}</td>
@@ -267,7 +267,7 @@
                                         </div>
                                     </div>
                                    
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label for="color" class="form-label">color</label><br>
                                         <select id="color" class="form-select" name="color">
                                             <option selected>Black</option>
@@ -276,7 +276,7 @@
                                             <option>Gold</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label for="gender" class="form-label">Gender</label><br>
                                         <select id="gender" class="form-select" name="gender">
                                             <option selected>Men</option>
@@ -284,7 +284,7 @@
                                             <option>All</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label for="material" class="form-label">Material</label><br>
                                         <select id="material" class="form-select" name="material">
                                             <option selected>Leather</option>
@@ -294,16 +294,48 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="images" class="form-label">Image</label><br>
+                                        <label for="images" class="form-label">Main Image</label><br>
                                         <input type="file" id="images" name="images" class="form-control"
-                                            style="border: 1px solid black;" multiple>
-
+                                            style="border: 1px solid black;">
                                     </div>
                                     <div class="col-md-6">
                                         <div id="ImageContainer">
-                                            <img id="croppedimage" name="croppedimage" src="#" alt="Cropped Image">
+                                            <img id="croppedimage" name="croppedimage" hidden src="#" alt="Cropped Image">
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <label for="images1" class="form-label">Image</label><br>
+                                        <input type="file" id="images1" name="images1" class="form-control"
+                                            style="border: 1px solid black;">
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="Image1Container">
+                                            <img id="croppedimage1" name="croppedimage1" hidden src="#" alt="Cropped Image1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="images2" class="form-label">Image</label><br>
+                                        <input type="file" id="images2" name="images2" class="form-control"
+                                            style="border: 1px solid black;">
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="Image2Container">
+                                            <img id="croppedimage2" name="croppedimage2" hidden src="#" alt="Cropped Image2">
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <label for="images3" class="form-label">Image</label><br>
+                                        <input type="file" id="images3" name="images3" class="form-control"
+                                            style="border: 1px solid black;">
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="Image3Container">
+                                            <img id="croppedimage3" name="croppedimage3" hidden src="#" alt="Cropped Image3">
+                                        </div>
+                                    </div> 
                                     
                                     <div class="col-md-6">
                                         <label for="createdDate" class="form-label">Date</label><br>

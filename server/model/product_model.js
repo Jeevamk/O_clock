@@ -22,11 +22,19 @@ const productSchema = mongoose.Schema({
         type :Number,
         default : 0,
     },
-    image : {
-        type:Object,
-        default:"",
+   
+    images :{
+        type : String,
     },
-    images : [String],
+    images1 :{
+        type : String,
+    },
+    images2 :{
+        type : String,
+    },
+    images3 :{
+        type : String,
+    },
     brand : {
         type : String,
         ref :'brandCollection',
@@ -52,8 +60,8 @@ const productSchema = mongoose.Schema({
         type : String,
         default : ''
 
-    }
-
+    },
+    
 })
 
 
