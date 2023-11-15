@@ -30,6 +30,9 @@ const userSchema = new mongoose.Schema({
   displayName: {
     type: String,
   },
+  otp: {
+    type: String,
+  },
 });
 
 userSchema.pre("save", async function (next) {

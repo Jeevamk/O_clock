@@ -10,10 +10,6 @@ const productSchema = mongoose.Schema({
         ref :'categoryCollection',
        
     },
-    // category :{
-    //     type : String,
-    //     default  :'',
-    // },
     description1 : {
         type :String,
         required :true,
