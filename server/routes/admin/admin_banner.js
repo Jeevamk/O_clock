@@ -108,7 +108,7 @@ route.put("/update", upload.single('bannerImg'), async (req, res) => {
   
    
     try {
-      const {name,description,createdDate,expireDate} = req.body
+      const {name,description} = req.body
       const bannerUpdate = await bannerCollection.findByIdAndUpdate(
         { _id: bannerid },
         { $set:  {

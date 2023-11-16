@@ -60,10 +60,7 @@ editbrand.forEach((btn) => {
                 <div class="form-group row">
                     <img src="${branddata.logo}" alt="Brand Logo" style="max-width: 100px;">
                     <div class="col-sm-10">
-                    <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
-                    </div>
-                    <div id="ContainerLogo">
-                      <img id="croppedLogo" name="croppedLogo" src="#" alt="Cropped Logo">
+                    <input type="file" class="form-control" id="logo" name="logo" accept="image/*"  >
                     </div>
                 </div>
                 <div class="form-group row">
