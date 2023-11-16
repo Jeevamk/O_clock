@@ -21,6 +21,11 @@ const bannerSchema = mongoose.Schema( {
     },
     expireDate : {
         type : Date,
+        default: function () {
+            const DateExpire = new Date(this.createdDate);
+            DateExpire.setDate(DateExpire.getDate() + 4);
+            return DateExpire;
+          },
     }
 })
 

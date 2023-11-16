@@ -14,9 +14,9 @@ viewProduct.forEach((btn) => {
                 <div class="mb-4">
             
             <img src="${productdata.images}" alt="product image" style="max-width: 100px;" height="100px">
-            <img src="${productdata.images1}" alt="product image" style="max-width: 100px;" height="100px">
-            <img src="${productdata.images2}" alt="product image" style="max-width: 100px;" height="100px">
-            <img src="${productdata.images3}" alt="product image" style="max-width: 100px;" height="100px">
+            <img src="${productdata.Imageone}" alt="product image" style="max-width: 100px;" height="100px">
+            <img src="${productdata.Imagetwo}" alt="product image" style="max-width: 100px;" height="100px">
+            <img src="${productdata.Imagethree}" alt="product image" style="max-width: 100px;" height="100px">
             </div>
             <div class="mb-4 ">
             <label for="name">Name</label>
@@ -65,11 +65,6 @@ viewProduct.forEach((btn) => {
                     name="material" value="${productdata.material}" readonly>
             </div>
             <div class="mb-4 ">
-            <label for="createdDate">createdDate</label>
-                <input type="text" class="form-control" id="createdDate" 
-                    name="createdDate" value="${productdata.createdDate}" readonly>
-            </div>
-            <div class="mb-4 ">
             <label for="countStock">countStock</label>
                 <input type="number" class="form-control" id="countStock" 
                     name="countStock" value="${productdata.countStock}" readonly>
@@ -110,9 +105,9 @@ editproduct.forEach((btn) => {
                 <div class="mb-4">
             
             <img src="${productdata.images}" alt="product image1"  style="max-width: 100px;">
-            <img src="${productdata.images1}" alt="product image2"  style="max-width: 100px;">
-            <img src="${productdata.images2}" alt="product image3"  style="max-width: 100px;">
-            <img src="${productdata.images3}" alt="product image4"  style="max-width: 100px;">
+            <img src="${productdata.Imageone}" alt="product image2"  style="max-width: 100px;">
+            <img src="${productdata.Imagetwo}" alt="product image3"  style="max-width: 100px;">
+            <img src="${productdata.Imagethree}" alt="product image4"  style="max-width: 100px;">
 
             </div>
             <div class="mb-4 ">
@@ -161,11 +156,7 @@ editproduct.forEach((btn) => {
                 <input type="text" class="form-control" id="material" 
                     name="material" value="${productdata.material}" >
             </div>
-            <div class="mb-4 ">
-            <label for="createdDate">createdDate</label>
-                <input type="text" class="form-control" id="createdDate" 
-                    name="createdDate" value="${productdata.createdDate}" >
-            </div>
+          
             <div class="mb-4 ">
             <label for="countStock">countStock</label>
                 <input type="number" class="form-control" id="countStock" 

@@ -61,9 +61,9 @@ route.post("/", upload.fields([{name:"images", maxCount:1},{ name :'images1' ,ma
     const croppedImage3 = req.body.croppedProduct3Data
 
     const mainImage=await cloudinary.uploader.upload(croppedMainImage)
-    const Imageone=await cloudinary.uploader.upload(croppedImage1)
-    const Imagetwo=await cloudinary.uploader.upload(croppedImage2)
-    const Imagethree=await cloudinary.uploader.upload(croppedImage3)
+    const Imageone= croppedImage1 ? await cloudinary.uploader.upload(croppedImage1):null;
+    const Imagetwo= croppedImage2 ? await cloudinary.uploader.upload(croppedImage2):null;
+    const Imagethree= croppedImage3 ? await cloudinary.uploader.upload(croppedImage3):null;
 
 
     const product = new productCollection({
@@ -73,13 +73,12 @@ route.post("/", upload.fields([{name:"images", maxCount:1},{ name :'images1' ,ma
       price: req.body.price,
       category: req.body.category,
       images: mainImage.url,
-      images1: Imageone.url,
-      images2: Imagetwo.url,
-      images3: Imagethree.url,
+      ...(Imageone && {Imageone:Imageone.url}),
+      ...(Imagetwo && {Imagetwo:Imagetwo.url}),
+      ...(Imagethree && {Imagethree:Imagethree.url}),
       brand: req.body.brand,
       color: req.body.color,
       gender: req.body.gender,
-      createdDate: req.body.createdDate,
       countStock: req.body.countStock,
       material: req.body.material,
     });

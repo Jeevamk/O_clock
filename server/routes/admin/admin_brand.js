@@ -14,15 +14,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     return cb(null, "./assets/images/uploads");
-//   },
-//   filename: function (req, file, cb) {
-//     return cb(null, `${Date.now()}-${file.originalname}`);
-//   },
-// });
-
 
 
 route.use(express.json());
@@ -119,11 +110,11 @@ route.put("/update", upload.single('logo'), async (req, res) => {
   const brandid = req.body.id;
   const result = await cloudinary.uploader.upload(logoPath);
 
-  // const croppedLogoData = req.body.croppedLogoData;
-  // const croppedResult = await cloudinary.uploader.upload(croppedLogoData);
+  const croppedLogoData = req.body.croppedLogoData;
+  const croppedResult = await cloudinary.uploader.upload(croppedLogoData);
  
   try {
-    const {name,description} = req.body
+    const {name,description} = req.body;
     const brandUpdate = await brandCollection.findByIdAndUpdate(
       { _id: brandid },
       { $set:  {

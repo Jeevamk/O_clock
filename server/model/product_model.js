@@ -26,13 +26,13 @@ const productSchema = mongoose.Schema({
     images :{
         type : String,
     },
-    images1 :{
+    Imageone :{
         type : String,
     },
-    images2 :{
+    Imagetwo :{
         type : String,
     },
-    images3 :{
+    Imagethree :{
         type : String,
     },
     brand : {
@@ -51,6 +51,7 @@ const productSchema = mongoose.Schema({
     createdDate :{
         type : Date,
         default :Date.now,
+        // timestamps: true,
     },
     countStock :{
         type : Number,

@@ -106,6 +106,7 @@ function brandEdit() {
   const BrandEditedData = document.getElementById("updatebrandForm");
   const myBrandData = new FormData(BrandEditedData);
   console.log(Object.fromEntries(myBrandData));
+  
 
   fetch(`/adminhome/brands/update`, {
     method: "PUT",

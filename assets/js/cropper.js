@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
 //cropper edit brand
 document.addEventListener("DOMContentLoaded", () => {
   const logoEdit = document.getElementById("logo");
-  const ContainerLogo = document.getElementById("ContainerLogo");
   const croppedLogo = document.getElementById("croppedLogo");
   let cropper;
 
@@ -73,6 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     const croppedLogoData = cropper.getCroppedCanvas().toDataURL();
+    
+
+    // const existingHiddenInput = brandEditform.querySelector('input[name="croppedLogoData"]');
+    // if (existingHiddenInput) {
+    //   existingHiddenInput.remove();
+    // }
+
 
     const hiddenInput = document.createElement("input");
     hiddenInput.type = "hidden";

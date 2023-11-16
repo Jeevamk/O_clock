@@ -25,16 +25,6 @@ viewBanner.forEach((btn) => {
                     name="description" value="${bannerdata.description}" readonly>
             </div>
             <div class="mb-4">
-            <label for="createdDate">created Date</label>
-                <input type="text" class="form-control" id="createdDate" 
-                    name="createdDate" value="${bannerdata.createdDate}" readonly>
-            </div>
-            <div class="mb-4">
-            <label for="expireDate">expire Date</label>
-                <input type="text" class="form-control" id="expireDate" 
-                    name="expireDate" value="${bannerdata.expireDate}" readonly>
-            </div>
-            <div class="mb-4">
             <label for="status">status</label>
                 <input type="text" class="form-control" id="status" 
                     name="status" value="${bannerdata.status}" readonly>
@@ -93,20 +83,7 @@ editbanner.forEach((btn) => {
                                          name="description" value="${bannerdata.description}">
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label for="createdDate" class="col-sm-2 col-form-label">created Date</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="createdDate" 
-                                         name="createdDate" value="${bannerdata.createdDate}">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="expireDate" class="col-sm-2 col-form-label">expire Date</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="expireDate" 
-                                         name="expireDate" value="${bannerdata.expireDate}">
-                  </div>
-                </div>
+                
                 <div class="form-group row">
                 <div class="form-check">
                 <input class="form-check-input" type="radio" name="status"

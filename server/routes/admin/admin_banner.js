@@ -39,8 +39,7 @@ route.post("/", upload.single("bannerImg"), async (req, res) => {
       description: req.body.description,
       bannerImg: result.url,
       status:req.body.status,
-      createdDate:req.body.createdDate,
-      expireDate:req.body.expireDate,
+      
     });
     const saveBanner = await banner.save();
 
@@ -113,7 +112,7 @@ route.put("/update", upload.single('bannerImg'), async (req, res) => {
       const bannerUpdate = await bannerCollection.findByIdAndUpdate(
         { _id: bannerid },
         { $set:  {
-          name,description,createdDate,expireDate,bannerImg : result.url
+          name,description,bannerImg : result.url
         }}
       );
   

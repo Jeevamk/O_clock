@@ -13,6 +13,7 @@ const orderSchema = mongoose.Schema ({
     },
     date : {
         type : Date,
+        default:Date.now,
     },
     paymentMethod : {
         type : String,

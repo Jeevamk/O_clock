@@ -14,6 +14,10 @@ const { token } = require("morgan");
 const twilio = require('twilio');
 const dotenv = require('dotenv').config({path:'config.env'});
 const otpCollection = require("../../model/otpPhone_model");
+const productCollection = require("../../model/product_model")
+const brandCollection = require("../../model/brand_model")
+const categoryCollection = require("../../model/category_model")
+
 // const session = require('express-session')
 
 //twilio//
