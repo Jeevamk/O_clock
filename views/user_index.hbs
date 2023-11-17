@@ -50,12 +50,13 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">Blog</a>
                             </li>
-                            
+
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
                             <li class="nav-item">
-                                <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i><span style="color: black; font-family:sanserif">{{user.name}}</span></a>
-                       
+                                <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i><span
+                                        style="color: black; font-family:sanserif">{{user.name}}</span></a>
+
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -78,43 +79,28 @@
 
     {{!-- carousal section starts --}}
     <section class="secOne mt-5">
-        <div class="container-fluid ">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12 car">
                     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                                class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
+                            {{#each topBanners}}
+                            <button type="button" data-bs-target="#carouselExampleCaptions"
+                                data-bs-slide-to="{{@index}}" {{#if @first}}class="active" aria-current="true" {{/if}}
+                                aria-label="Slide {{@index}}"></button>
+                            {{/each}}
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/images/slider1.jpg" class="d-block w-100" alt="carousal1">
-                                <div class="carousel-caption d-none d-md-block">
+                            {{#each topBanners}}
+                            <div class="carousel-item {{#if @first}}active{{/if}}">
+                                <img src="{{this.bannerImg}}" class="d-block w-100" alt="carousal{{@index}}">
+                                <div class="carousel-caption  d-md-block">
                                     <p class="">TIMELESS & ELEGENT</p>
-                                    <h2>THE CLASSICS</h2>
-                                    <h5>Complete Your Everyday Look With Classic Leather Strap Watch</h5>
+                                    <h2>{{this.name}}</h2>
+                                    <h5>{{this.description}}</h5>
                                 </div>
                             </div>
-                            <div class="carousel-item">
-                                <img src="/images/slider2.jpg" class="d-block w-100" alt="carousal2">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <p class="">TIMELESS & ELEGENT</p>
-                                    <h2>NEW ARRAIVALS</h2>
-                                    <h5>Complete Your Everyday Look With Classic Leather Strap Watch</h5>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/images/slider3.jpg" class="d-block w-100" alt="carousal3">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <p class="">TIMELESS & ELEGENT</p>
-                                    <h2>BEST SELLER</h2>
-                                    <h5>Complete Your Everyday Look With Classic Leather Strap Watch</h5>
-                                </div>
-                            </div>
+                            {{/each}}
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                             data-bs-slide="prev">
@@ -127,10 +113,8 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -167,8 +151,6 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 ">
                     <div class="feat3 text-center">
-                        {{!-- <i class="fa-solid fa-rotate-left fa-2xl icon_featr" style="color: #b4b8c0;"></i> --}}
-                        {{!-- <img src="/images/return-icon.png" width="80px" alt="securepayment"> --}}
                         <span class="material-symbols-outlined icon_featr">
                             rotate_left
                         </span>
@@ -196,161 +178,78 @@
                 </div>
             </div>
             <div class="row mt-3">
+                {{#each brands}}
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
-                    <div class="card text-bg-dark">
-                        <img src="/images/img1.png" class="card-img" alt="brand1">
-                        <div class="card-img-overlay text-center">
-                            <button type="button" class="btn btn-light brand-btn">CASTUS FIESTA</button>
+                    <a href="">
+                        <div class="card text-bg-dark shadow-lg">
+                            <img src="{{this.logo}}" class="card-img" alt="{{this.name}}">
+                            <div class="card-img-overlay text-center">
+                                <button type="button" class="btn btn-light brand-btn shadow-lg">{{this.name}}</button>
+                            </div>
                         </div>
-                    </div>
-
+                    </a>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
-                    <div class="card text-bg-dark">
-                        <img src="/images/img2.jpg" class="card-img" alt="brand2">
-                        <div class="card-img-overlay text-center">
-                            <button type="button" class="btn btn-light brand-btn">DANIEL WELLINGTON</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
-                    <div class="card text-bg-dark">
-                        <img src="/images/img3.png" class="card-img" alt="brand3">
-                        <div class="card-img-overlay text-center">
-                            <button type="button" class="btn btn-light brand-btn" id="fos-btn">FOSSIL</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
-                    <div class="card text-bg-dark">
-                        <img src="/images/img4.png" class="card-img" alt="brand4">
-                        <div class="card-img-overlay text-center">
-                            <button type="button" class="btn btn-light brand-btn" id="fos-btn">G-SHOCK</button>
-                        </div>
-                    </div>
-
-                </div>
+                {{/each}}
             </div>
         </div>
-
     </section>
-
     {{!-- brand sec end --}}
 
-    {{!-- store locator sec start --}}
+    {{!-- middlebanner sec start --}}
     <section class="mt-3">
         <div class="container">
             <div class="row">
+                {{#each middleBanners}}
                 <div class="col-12 col-md-12 col-lg-12 ">
                     <div class="card ">
-                        <img src="/images/back.jpg" class="card-img locator" alt="locator">
+                        <img src="{{this.bannerImg}}" class="card-img locator" alt="locator">
                         <div class="card-img-overlay text-center text-light locate-card">
-                            <p class="card-title locat-text">MADE FOR THIS</p>
-                            <h3 class="card-text h3-text">MADE FOR NIGHTS THAT BRING <br>YOU CLOSER TOGETHER</h3>
+                            <p class="card-title locat-text">
+                                {{this.name}}
+                            </p>
+                            <h3 class="card-text h3-text">{{this.description}}</h3>
                             <button type="button" class="btn btn-light store">SHOP NOW</button>
                         </div>
                     </div>
                 </div>
+                {{/each}}
             </div>
-
         </div>
     </section>
 
-    {{!-- store locator sec end --}}
+    {{!-- middlebanner sec end --}}
 
     {{!-- latest arraival start --}}
     <section class="latest mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="text-best text-center">LATEST ARRIVALS
-                    </h3>
+                    <h3 class="text-best text-center">LATEST ARRIVALS</h3>
                 </div>
             </div>
             <div class="row mt-5">
-               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
-                  <div class="card best-card " >
-                                <img src="/images/latest1.jpg" class="card-img-top" alt="...">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-secondary" style="font-size: 17px;">FOSSILE</h5>
-                                    <p class="card-text">BERING AURORA COLLECTION</p>
-                                    <p class="card-text1">Rs:800.00</p>
-                                    <button type="button" class="btn btn-dark ">ADD TO CART</button>
-
-                                </div>
-                            </div>
-
-               </div>
-               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
-                  <div class="card best-card " >
-                                <img src="/images/p9.jpg" class="card-img-top" alt="...">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-secondary" style="font-size: 17px;">CASTUS FEISTA</h5>
-                                    <p class="card-text">BERING AURORA COLLECTION</p>
-                                    <p class="card-text1">Rs:800.00</p>
-                                    <button type="button" class="btn btn-dark ">ADD TO CART</button>
-
-                                </div>
-                            </div>
-                
-
-               </div>
-               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
-                  <div class="card best-card " >
-                                <img src="/images/p10.jpg" class="card-img-top" alt="...">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-secondary" style="font-size: 17px;">FOSSILE</h5>
-                                    <p class="card-text">BERING AURORA COLLECTION</p>
-                                    <p class="card-text1">Rs:800.00</p>
-                                    <button type="button" class="btn btn-dark ">ADD TO CART</button>
-
-                                </div>
-                            </div>
-                
-
-               </div>
-               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
-                  <div class="card best-card" >
-                                <img src="/images/p11.jpg" class="card-img-top" alt="...">
-                                <div class="card-body text-center">
-                                    <p class="card-title text-secondary" style="font-size: 17px;">DANIEL WELLINGTON</p>
-                                    <p class="card-text" >BERING AURORA COLLECTION</p>
-                                    <p class="card-text1">Rs:900.00</p>
-                                    <button type="button" class="btn btn-dark ">ADD TO CART</button>
-
-                                </div>
-                            </div>
-                
-
-               </div>
+                {{#each newarrivalArray}}
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
+                    <div class="card best-card">
+                        <img src="{{this.images}}" class="card-img-top" alt="{{this.name}}"
+                            data-product-id="{{this._id}}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-secondary" style="font-size: 17px;">{{this.brand}}</h5>
+                            <p class="card-text">{{this.name}}</p>
+                            <p class="card-text1">Rs: {{this.price}}</p>
+                            <button type="button" class="btn btn-dark">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
             </div>
         </div>
-
-    </section> 
-    
+    </section>
 
     {{!-- latest sec end --}}
 
-    {{!-- pro section start --}}
-   {{!-- <section class="pro mt-5">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 pro-banner">
-                    <img src="/images/img7.jpg" alt="background_img" class="img-fluid back_img w-100">
-                    {{!-- <div class="text-product">
-                        <img src="/images/clock.png" alt="" class="img-fluid watch-product" width="200vw">
-                    </div> --}} 
-
-                </div>
-            </div>
-        </div>
-
-    </section>  --}}
-    {{!-- pro section end --}}
-
     {{!-- best sellers sec start --}}
-<section class="bestSeller mt-5">
+    <section class="bestSeller mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -359,84 +258,43 @@
                 </div>
             </div>
             <div class="row mt-5">
-               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
-                  <div class="card best-card " >
-                                <img src="/images/p8.jpg" class="card-img-top" alt="...">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-secondary" style="font-size: 17px;">FOSSILE</h5>
-                                    <p class="card-text">BERING AURORA COLLECTION</p>
-                                    <p class="card-text1">Rs:800.00</p>
-                                    <button type="button" class="btn btn-dark ">ADD TO CART</button>
-
-                                </div>
-                            </div>
-
-               </div>
-               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
-                  <div class="card best-card " >
-                                <img src="/images/p9.jpg" class="card-img-top" alt="...">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-secondary" style="font-size: 17px;">CASTUS FEISTA</h5>
-                                    <p class="card-text">BERING AURORA COLLECTION</p>
-                                    <p class="card-text1">Rs:800.00</p>
-                                    <button type="button" class="btn btn-dark ">ADD TO CART</button>
-
-                                </div>
-                            </div>
-                
-
-               </div>
-               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
-                  <div class="card best-card " >
-                                <img src="/images/p10.jpg" class="card-img-top" alt="...">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-secondary" style="font-size: 17px;">FOSSILE</h5>
-                                    <p class="card-text">BERING AURORA COLLECTION</p>
-                                    <p class="card-text1">Rs:800.00</p>
-                                    <button type="button" class="btn btn-dark ">ADD TO CART</button>
-
-                                </div>
-                            </div>
-                
-
-               </div>
-               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
-                  <div class="card best-card" >
-                                <img src="/images/p11.jpg" class="card-img-top" alt="...">
-                                <div class="card-body text-center">
-                                    <p class="card-title text-secondary" style="font-size: 17px;">DANIEL WELLINGTON</p>
-                                    <p class="card-text" >BERING AURORA COLLECTION</p>
-                                    <p class="card-text1">Rs:900.00</p>
-                                    <button type="button" class="btn btn-dark ">ADD TO CART</button>
-
-                                </div>
-                            </div>
-                
-
-               </div>
+                {{#each bestSellersArray}}
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
+                    <div class="card best-card">
+                        <img src="{{this.images}}" class="card-img-top" alt="{{this.name}}"
+                            data-product-id="{{this._id}}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-secondary" style="font-size: 17px;">{{this.brand}}</h5>
+                            <p class="card-text">{{this.name}}</p>
+                            <p class="card-text1">Rs: {{this.price}}</p>
+                            <button type="button" class="btn btn-dark">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
             </div>
         </div>
-
-    </section> 
+    </section>
     {{!-- best sellers end --}}
 
-    {{!-- banner section start --}}
+    {{!-- bottom banner section start --}}
     <section class="banner mt-5">
         <div class="container">
             <div class="row">
+                {{#each bottomBanners}}
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 banner">
                     <div style="width: 100%;background: #000;" class="d-flex justify-content-center">
-                        <img src="/images/blog-3.jpg" class="img-fluid " alt="banner">
+                        <img src="{{this.bannerImg}}" class="img-fluid " alt="banner">
                         <div class="text-light text-center banner-text">
-                            <h3>EXTRA 20% OFF</h3>
-                            <h1 class="feel">FEEL THE NOSTALGIA</h1>
+                            <h3>{{this.name}}</h3>
+                            <h1 class="feel">{{this.description}}</h1>
                         </div>
 
                     </div>
                 </div>
+                {{/each}}
             </div>
         </div>
-
     </section>
 
     {{!-- banner section end --}}
@@ -478,7 +336,7 @@
 
 
     <section>
-        <div class="container-fluid">
+      
             <footer class="text-center text-lg-start text-dark" style="background-color: #fff">
 
                 <div class="container p-4 pb-0">
@@ -493,7 +351,6 @@
                                 the 2010 fiscal year review that cut across the world.
                             </p>
                         </div>
-
 
                         <hr class="w-100 clearfix d-md-none" />
 
@@ -581,7 +438,7 @@
                     </section> --}}
                 </div>
             </footer>
-        </div>
+       
     </section>
 
 

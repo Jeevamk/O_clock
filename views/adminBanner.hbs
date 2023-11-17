@@ -112,6 +112,7 @@
                                         <th scope="col">Logo</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Description</th>
+                                        <th scope="col">Group</th>
                                         {{!-- <th scope="col">Created Date</th>
                                         <th scope="col">Expire Date</th> --}}
                                         <th scope="col">Status</th>
@@ -124,6 +125,7 @@
                                         <td><img src="{{this.bannerImg}}" width="50px" alt="bannerImg"></td>
                                         <td>{{name}}</td>
                                         <td>{{description}}</td>
+                                         <td>{{group}}</td>
                                         {{!-- <td>{{createdDate}}</td>
                                         <td>{{expireDate}}</td> --}}
                                         <td>{{status}}</td>
@@ -237,9 +239,15 @@
                                             style="border: 1px solid black;">
                                     </div>
                                     <div class="form-group">
+                                        <label for="group">Group</label>
+                                        <input type="text" class="form-control" id="group"
+                                            placeholder="Enter Group" name="group"
+                                            style="border: 1px solid black;">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="bannerImg">Select a logo</label><br>
                                         <input type="file" id="bannerImg" name="bannerImg"
-                                            style="border: 1px solid black;">
+                                            style="border: 1px solid black;" enctype="multipart/form-data">
                                     </div>
                                     <div class="form-group">
                                         <div id="bannerContainer">

@@ -6,8 +6,21 @@ const authenticateJWT = require("../../middleware/auth");
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const dotenv = require("dotenv").config({ path: "config.env" });
-const upload = multer({ dest: "assets/img/banners" });
+// const upload = multer({ dest: "assets/img/banners" });
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'assets/img/banners');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1024 * 1024 * 5 } 
+});
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -39,6 +52,7 @@ route.post("/", upload.single("bannerImg"), async (req, res) => {
       description: req.body.description,
       bannerImg: result.url,
       status:req.body.status,
+      group:req.body.group,
       
     });
     const saveBanner = await banner.save();
@@ -102,17 +116,17 @@ route.get("/update/:id", async (req, res) => {
 
 route.put("/update", upload.single('bannerImg'), async (req, res) => {
     console.log(req.file);
-    const imgPath = req.file.path;
     const bannerid = req.body.id;
-    const result = await cloudinary.uploader.upload(imgPath);
+    const result =req.file ? await cloudinary.uploader.upload(req.file.path):null;
   
    
     try {
-      const {name,description} = req.body
+      const {name,description,status,group} = req.body
       const bannerUpdate = await bannerCollection.findByIdAndUpdate(
         { _id: bannerid },
         { $set:  {
-          name,description,bannerImg : result.url
+          name,description,status,group,
+          ...(req.file && {bannerImg:result.url})
         }}
       );
   

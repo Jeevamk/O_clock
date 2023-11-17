@@ -15,6 +15,10 @@ const bannerSchema = mongoose.Schema( {
     status : {
         type : String
     },
+    group:{
+        type :String,
+        required:true,
+    },
     createdDate : {
         type  : Date,
         default:Date.now

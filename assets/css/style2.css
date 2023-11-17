@@ -336,6 +336,7 @@ a {
     max-width: 100%;
 }
 
+
 @media screen and (max-width:550px) {
     .carousel-inner {
         padding-top: 30px;

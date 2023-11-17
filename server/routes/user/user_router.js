@@ -16,7 +16,8 @@ const dotenv = require('dotenv').config({path:'config.env'});
 const otpCollection = require("../../model/otpPhone_model");
 const productCollection = require("../../model/product_model")
 const brandCollection = require("../../model/brand_model")
-const categoryCollection = require("../../model/category_model")
+const categoryCollection = require("../../model/category_model");
+const bannerCollection = require("../../model/banner_model");
 
 // const session = require('express-session')
 
@@ -75,7 +76,16 @@ route.get("/",logauth, async (req, res) => {
   if (!req.cookies.sessions) return res.render("user_index");
   const _id = req.userId
   const user = await userCollection.findById(_id)
-  return res.render("user_index",{user});
+  const topBanners = await bannerCollection.find({group:'Top Banner',status:"Enable"})
+  const middleBanners = await bannerCollection.find({group:'Middle Banner',status:"Enable"})
+  const bottomBanners = await bannerCollection.find({group:'Bottom Banner',status:"Enable"})
+  const brands = await brandCollection.find()
+  const newArrival = await productCollection.find().sort({ createdDate: -1 });
+  const newarrivalArray = newArrival.slice(0, 4);
+  const bestSellers = await productCollection.find().sort({ countStock: -1 });
+  const bestSellersArray = bestSellers.slice(0, 4);
+
+  return res.render("user_index",{user,topBanners,middleBanners,bottomBanners,brands,newarrivalArray,bestSellersArray});
 });
 
 

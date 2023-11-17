@@ -25,6 +25,11 @@ viewBanner.forEach((btn) => {
                     name="description" value="${bannerdata.description}" readonly>
             </div>
             <div class="mb-4">
+            <label for="group">Group</label>
+                <input type="text" class="form-control" id="group" 
+                    name="group" value="${bannerdata.group}" readonly>
+            </div>
+            <div class="mb-4">
             <label for="status">status</label>
                 <input type="text" class="form-control" id="status" 
                     name="status" value="${bannerdata.status}" readonly>
@@ -81,6 +86,13 @@ editbanner.forEach((btn) => {
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="description" 
                                          name="description" value="${bannerdata.description}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="group" class="col-sm-2 col-form-label">Group</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="group" 
+                                         name="group" value="${bannerdata.group}">
                   </div>
                 </div>
                 
