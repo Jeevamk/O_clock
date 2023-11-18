@@ -77,150 +77,97 @@
     </section>
     {{! navsection end }}
 
-    <section class="py-5">
-        <div class="container pt-5">
-            <div class="row gx-5">
-                <aside class="col-lg-6">
-                    <div class="rounded-4 mb-3 d-flex justify-content-center ">
-                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" id="main"
-                            class="rounded-4 fit img-fluid" src="{{product.images}}" />
-                    </div>
-                    <div class="d-flex justify-content-center mb-3">
-                        {{#if product.images}}
-                        <img id="main" onclick="change1()" width="100" height="100" class="rounded-2 "
-                            src="{{product.images}}" />
-                        {{/if}}
-                        {{#if product.Imageone}}
-                        <img id="sub1" onclick="change2()" width="100" height="100" class="rounded-2 "
-                            src="{{product.Imageone}}" />
-                        {{/if}}
-                        {{#if product.Imagetwo}}
-                        <img id="sub2" onclick="change3()" width="100" height="100" class="rounded-2 "
-                            src="{{product.Imagetwo}}" />
-                        {{/if}}
-                        {{#if product.Imagethree}}
-                        <img id="sub3" onclick="change4()" width="100" height="100" class="rounded-2 "
-                            src="{{product.Imagethree}}" />
-                        {{/if}}
-                    </div>
-                    <!-- thumbs-wrap.// -->
-                    <!-- gallery-wrap .end// -->
-                </aside>
-                <main class="col-lg-6">
-                    <div class="ps-lg-3">
-                        <h2 class="title text-dark" style="font-weight: 600;">
-                            {{product.name}}</h2>
+    {{!-- contactsection --}}
+    <section class="about">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                    {{!-- <img src="/images/contactNew.png" alt="" class="img-fluid"> --}}
+                    <video autoplay muted loop="1" width="100%" height="auto">
+                        <source src="/images/contactVideo.mp4">
+                    </video>
+                </div>
 
-                        <p class="text-muted">{{product.brand}}</p>
-                        <div class="mb-3">
-                            <span class="h5">₹{{product.price}} /-</span>
-                        </div>
+            </div>
+        </div>
 
-                        <div class="d-flex flex-row my-3">
-                            <div class="text-warning mb-1 me-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span class="ms-1">
-                                    4.5
-                                </span>
-                            </div>
-                            {{!-- <span class="text-muted"><i
-                                    class="fas fa-shopping-basket fa-sm mx-1"></i>{{product.quantity}}</span> --}}
-                            {{!-- <span class="text-success ms-2">In stock</span> --}}
-                        </div>
-                        <hr>
+    </section>
 
-
-                        <p class="text-dark">
-                            {{product.description1}}
-                        </p>
-                        <p class="text-secondary">
-                            {{product.description2}}
-                        </p>
-
-
-
-                        <div class="row mb-4">
-
-                            <!-- col.// -->
-                            <div class="col-md-4 col-6 mb-3 ">
-                                <label class="mb-2 d-block">Quantity</label>
-                                <div class="input-group mcxb-3 shadow-lg " style="width: 170px;">
-                                    <button class="btn btn-white border-end" type="button" style="border:0 1px "
-                                        id="button-addon1" data-mdb-ripple-color="dark">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input type="text" class="form-control text-center "
-                                        placeholder="0" style="border: none"/>
-                                    <button class="btn btn-white border-start" type="button"
-                                        id="button-addon2" data-mdb-ripple-color="dark">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                        <a href="#" class="btn btn-light shadow-sm border"> <i class="fa-solid fa-cart-shopping"
-                                style="color: #00040a;"></i> Add to cart </a>
-                        <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i
-                                class="me-1 fa fa-heart "></i> </a>
-
-
-
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="accordion" id="accordionExample">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                <strong>More Informations</strong>
-                                            </button>
-
-                                        </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse show"
-                                            data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <dt class="col-3">Category</dt>
-                                                    <dd class="col-9">{{product.category}}</dd>
-
-                                                    <dt class="col-3">Brand</dt>
-                                                    <dd class="col-9">{{product.brand}}</dd>
-
-                                                    <dt class="col-3">Product Name</dt>
-                                                    <dd class="col-9">{{product.name}}</dd>
-
-                                                    <dt class="col-3">Net Price</dt>
-                                                    <dd class="col-9">{{product.price}} /-</dd>
-
-                                                    <dt class="col-3">Color</dt>
-                                                    <dd class="col-9">{{product.color}}</dd>
-
-                                                    <dt class="col-3">Gender</dt>
-                                                    <dd class="col-9">{{product.gender}} </dd>
-                                                </div>
-                                            </div>
+    {{!-- contactform section --}}
+    <section class="p-4">
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xxl-12 col-xl-12">
+                    <div class="container">
+                        <div class="bg-light">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-12 p-5 bg-white rounded-3 shadow-lg">
+                                    <div class="d-flex mb-3 flex-column">
+                                        <h1 class="h5 text-capitalize my-4">Get In Touch</h1>
+                                        <div class="d-flex flex-wrap">
                                         </div>
                                     </div>
-                                </div>
+                                    <form class="row mb-3">
+                                        <div class="col-md-6 p-3">
+                                            <input required placeholder="first name" type="text" name="" id="" />
+                                        </div>
 
+                                        <div class="col-md-6 p-3">
+                                            <input required placeholder="E-mail" type="email" name="" id="" />
+                                        </div>
+                                        <div class="col-md">
+                                            <textarea required name="" placeholder="write your message" id="" cols="30"
+                                                rows="1"></textarea>
+                                        </div>
+                                        <div class="text-end mt-4">
+                                            <input class="btn px-4 py-3 btn-outline-dark" type="submit"
+                                                value="Send Message" />
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-lg-4 col-md-12 text-white aside px-4 py-5">
+                                    <div class="mb-5">
+                                        <h1 class="h3">Contact Information</h1>
+                                        <p class="opacity-50">
+                                            <small>
+                                                Fill out the from and we will get back to you whitin 24 hours
+                                            </small>
+                                        </p>
+                                    </div>
+                                    <div class="d-flex flex-column px-0">
+                                        <ul class="m-0 p-0">
+                                            <li class="d-flex justify-content-start align-items-center mb-4">
+                                                <span class="opacity-50 d-flex align-items-center me-3 fs-2">
+                                                    <ion-icon name="call"></ion-icon>
+                                                </span>
+                                                <span>+134 1234 1234</span>
+                                            </li>
+                                            <li class="d-flex align-items-center r mb-4">
+                                                <span class="opacity-50 d-flex align-items-center me-3 fs-2">
+                                                    <ion-icon name="mail"></ion-icon>
+                                                </span>
+                                                <span>Oclock@contact.com</span>
+                                            </li>
+                                            <li class="d-flex justify-content-start align-items-center mb-4">
+                                                <span class="opacity-50 d-flex align-items-center me-3 fs-2">
+                                                    <ion-icon name="pin"></ion-icon>
+                                                </span>
+                                                <span>52 Buddy Ln Conway, <br />
+                                                    Arkansas(AR), 72032
+                                                </span>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                </main>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
-    <!-- content -->
-
 
 
 
@@ -371,22 +318,6 @@
             </div>
         </footer>
     </div> --}}
-
-
-    <script>
-        function change1() {
-            document.getElementById("main").src = "{{product.images}}"
-        }
-        function change2() {
-            document.getElementById("main").src = "{{product.Imageone}}"
-        }
-        function change3() {
-            document.getElementById("main").src = "{{product.Imagetwo}}"
-        }
-        function change4() {
-            document.getElementById("main").src = "{{product.Imagethree}}"
-        }
-    </script>
 
 </body>
 

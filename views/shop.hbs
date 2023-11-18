@@ -42,7 +42,7 @@
                                 <a class="nav-link active" href="#">Shop</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Contact</a>
+                                <a class="nav-link active" href="/contact">Contact</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">About Us</a>
@@ -102,7 +102,7 @@
                     <div class="row">
                         {{#each products}}
                         <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
-                            <a href=""><div class="card best-card shadow-lg">
+                            <a href="/shop/{{this._id}}"><div class="card best-card shadow-lg">
                                 <img src="{{this.images}}" class="card-img-top" alt="{{this.name}}"
                                     data-product-id="{{this._id}}">
                                 <div class="card-body text-center">

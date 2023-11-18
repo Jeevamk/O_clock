@@ -73,7 +73,6 @@ route.use(express.json());
 //indexpage//
 
 route.get("/",logauth, async (req, res) => {
-  if (!req.cookies.sessions) return res.render("user_index");
   const _id = req.userId
   const user = await userCollection.findById(_id)
   const topBanners = await bannerCollection.find({group:'Top Banner',status:"Enable"})

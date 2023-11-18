@@ -51,7 +51,8 @@ app.use('/adminhome/banner',require('./server/routes/admin/admin_banner'))
 app.use('/',require('./server/routes/user/user_router'))
 app.use('/',require('./server/routes/user/auth_google'))
 app.use('/shop',require('./server/routes/user/shop'))
-app.use('/productDetails',require('./server/routes/user/productDetails'))
+app.use('/contact',require('./server/routes/user/contact'))
+
 
 
 
