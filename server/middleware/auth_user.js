@@ -17,6 +17,7 @@ function auth(req, res, next) {
   }
 }
 
+
 function logauth(req, res, next) {
   const token = req.cookies.sessions;
   if (!token) {

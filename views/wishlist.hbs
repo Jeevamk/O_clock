@@ -77,144 +77,56 @@
     </section>
     {{! navsection end }}
 
-    <section class="py-5">
-        <div class="container pt-5">
-            <div class="row gx-5">
-                <aside class="col-lg-6">
-                    <div class="rounded-4 mb-3 d-flex justify-content-center ">
-                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" id="main"
-                            class="rounded-4 fit img-fluid" src="{{product.images}}" />
-                    </div>
-                    <div class="d-flex justify-content-center mb-3">
-                        {{#if product.images}}
-                        <img id="main" onclick="change1()" width="100" height="100" class="rounded-2 "
-                            src="{{product.images}}" />
-                        {{/if}}
-                        {{#if product.Imageone}}
-                        <img id="sub1" onclick="change2()" width="100" height="100" class="rounded-2 "
-                            src="{{product.Imageone}}" />
-                        {{/if}}
-                        {{#if product.Imagetwo}}
-                        <img id="sub2" onclick="change3()" width="100" height="100" class="rounded-2 "
-                            src="{{product.Imagetwo}}" />
-                        {{/if}}
-                        {{#if product.Imagethree}}
-                        <img id="sub3" onclick="change4()" width="100" height="100" class="rounded-2 "
-                            src="{{product.Imagethree}}" />
-                        {{/if}}
-                    </div>
-                    <!-- thumbs-wrap.// -->
-                    <!-- gallery-wrap .end// -->
-                </aside>
-                <main class="col-lg-6">
-                    <div class="ps-lg-3">
-                        <h2 class="title text-dark" style="font-weight: 600;">
-                            {{product.name}}</h2>
+    {{!-- imagesection --}}
+    <section >
+        <div class="container-fluid" style="margin-top: 100px;">
 
-                        <p class="text-muted">{{product.brand}}</p>  
-                        
-                        <div class="mb-3">
-                            <span class="h5">₹{{product.price}} /-</span>
-                        </div>
-
-                        <div class="d-flex flex-row my-3">
-                            <div class="text-warning mb-1 me-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span class="ms-1">
-                                    4.5
-                                </span>
-                            </div>
-                            {{!-- <span class="text-muted"><i
-                                    class="fas fa-shopping-basket fa-sm mx-1"></i>{{product.countStock}}</span> 
-                            <span class="text-success ms-2">In stock</span> --}}
-                        </div>
-                        <hr>
-
-
-                        <p class="text-dark">
-                            {{product.description1}}
-                        </p>
-                        <p class="text-secondary">
-                            {{product.description2}}
-                        </p>
-
-                        
-
-                        <div class="row mb-4">
-
-                            <!-- col.// -->
-                            <div class="col-md-4 col-6 mb-3 ">
-                                <label class="mb-2 d-block">Quantity</label>
-                                <div class="input-group mcxb-3 shadow-lg " style="width: 170px;">
-                                    <button class="btn btn-white border-end" type="button" style="border:0 1px "
-                                        id="buttonsub" data-mdb-ripple-color="dark">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input type="text" class="form-control text-center" id="quantity"
-                                        placeholder="0" value="1" style="border: none"/>
-                                    <button class="btn btn-white border-start" type="button"
-                                        id="buttonadd" data-mdb-ripple-color="dark">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-light shadow-sm border"> <i class="fa-solid fa-cart-shopping"
-                                style="color: #00040a;"></i> Add to cart </a>
-                        <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3" id="addWishList" data-product-id="{{product._id}}"> <i
-                                class="me-1 fa fa-heart "></i></a>
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="accordion" id="accordionExample">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                <strong>More Informations</strong>
-                                            </button>
-
-                                        </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse show"
-                                            data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <dt class="col-3">Category</dt>
-                                                    <dd class="col-9">{{product.category}}</dd>
-
-                                                    <dt class="col-3">Brand</dt>
-                                                    <dd class="col-9">{{product.brand}}</dd>
-
-                                                    <dt class="col-3">Product Name</dt>
-                                                    <dd class="col-9">{{product.name}}</dd>
-
-                                                    <dt class="col-3">Net Price</dt>
-                                                    <dd class="col-9">{{product.price}} /-</dd>
-
-                                                    <dt class="col-3">Color</dt>
-                                                    <dd class="col-9">{{product.color}}</dd>
-
-                                                    <dt class="col-3">Gender</dt>
-                                                    <dd class="col-9">{{product.gender}} </dd>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                </main>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                    <img src="/images/WISHLIST.png" alt="" class="img-fluid" width="100%">
+                </div>
             </div>
         </div>
     </section>
-    <!-- content -->
+
+    {{!-- tableof wishlist --}}
+    <section class="mt-5" >
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                    <table class="table table-hover">
+                        {{!-- <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead> --}}
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>
+                                    <a href="#" class="btn btn-light shadow-sm border"> <i class="fa-solid fa-cart-shopping"
+                                style="color: #00040a;"></i> Add to cart </a>
+                                    <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="fa-solid fa-trash"
+                                                    style="color: #000714;"></i>
+                                </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
 
 
 
@@ -366,42 +278,6 @@
             </div>
         </footer>
     </div> --}}
-
- {{#if wishalert}}
-      <script>
-        alert("Product already in wishlist")
-      </script>
-    {{/if}}
-
-
-    <script>
-        function change1() {
-            document.getElementById("main").src = "{{product.images}}"
-        }
-        function change2() {
-            document.getElementById("main").src = "{{product.Imageone}}"
-        }
-        function change3() {
-            document.getElementById("main").src = "{{product.Imagetwo}}"
-        }
-        function change4() {
-            document.getElementById("main").src = "{{product.Imagethree}}"
-        }
-
-
-    
-    document.addEventListener('DOMContentLoaded', () => {
-    const quantityElement = document.getElementById('quantity');
-    const buttonAdd = document.getElementById('buttonadd');
-    const buttonSub = document.getElementById('buttonsub');
-
-    buttonAdd.addEventListener('click', () => quantityElement.value = parseInt(quantityElement.value, 10) + 1);
-    buttonSub.addEventListener('click', () => quantityElement.value = Math.max(1, parseInt(quantityElement.value, 10) - 1));
-  });
-
-  
-    </script>
-    <script src="/js/wish.js"></script>
 
 </body>
 

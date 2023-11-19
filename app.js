@@ -52,7 +52,7 @@ app.use('/',require('./server/routes/user/user_router'))
 app.use('/',require('./server/routes/user/auth_google'))
 app.use('/shop',require('./server/routes/user/shop'))
 app.use('/contact',require('./server/routes/user/contact'))
-
+app.use('/wish',require('./server/routes/user/wishlist'))
 
 
 
