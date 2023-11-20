@@ -58,14 +58,14 @@
                                         style="color: black; font-family:sanserif">{{user.name}}</span></a>
 
                             </li>
-                            <li class="nav-item">
+                            {{!-- <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link" href="/wish"><i class="fa-regular fa-heart"></i></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a class="nav-link" href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
                             </li>
 
                         </ul>
@@ -78,7 +78,7 @@
     {{! navsection end }}
 
     {{!-- imagesection --}}
-    {{!-- <section >
+    {{!-- <section>
         <div class="container-fluid" style="margin-top: 100px;">
 
             <div class="row">
@@ -90,20 +90,20 @@
     </section> --}}
 
     {{!-- tableof wishlist --}}
-   <section class="" style="margin-top: 100px;">
+    {{!-- <section class="" style="margin-top: 100px;">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                     <table class="table table-hover">
-                        
-                       <thead>
+
+                        <thead>
                             <tr>
                                 <th scope="col">Product</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Action</th>
                             </tr>
-                        </thead> 
+                        </thead>
                         <tbody>
                             {{#each wishProducts}}
                             {{#each productContent}}
@@ -113,47 +113,113 @@
                                 <td>{{this.name}}</td>
                                 <td>{{this.price}}/-</td>
                                 <td>
-                                    <a href="#" class="btn btn-light shadow-sm border"> <i class="fa-solid fa-cart-shopping"
-                                style="color: #00040a;"></i> Add to cart </a>
-                                    <a href="#" class="deleteWishproduct btn btn-light border border-secondary py-2 icon-hover px-3" data-user-id="{{this._id}}"> <i class="fa-solid fa-trash"
-                                                    style="color: #000714;"></i>
-                                </a>
+                                    <a href="#" class="btn btn-light shadow-sm border"> <i
+                                            class="fa-solid fa-cart-shopping" style="color: #00040a;"></i> Add to cart
+                                    </a>
+                                    <a href="#"
+                                        class="deleteWishproduct btn btn-light border border-secondary py-2 icon-hover px-3"
+                                        data-user-id="{{this._id}}"> <i class="fa-solid fa-trash"
+                                            style="color: #000714;"></i>
+                                    </a>
                                 </td>
                             </tr>
                             {{/each}}
                             {{/each}}
                         </tbody>
-                        
+
                     </table>
 
                 </div>
             </div>
 
 
-        </div>
+        </div> --}}
 
-        <div class="modal fade" id="deleteWish" data-bs-backdrop="static" data-bs-keyboard="false"
-                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                            <a href="/wish" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
-                            {{!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-                        </div>
-                        <div class="modal-body" id="wishDelete">
+{{#if wishProducts}}
+    <section style="background-color: #eee; margin-top:100px">
+        <div class="container py-5">
+            <div class="row justify-content-center mb-3">
+                <div class="col-md-12 col-xl-12 col-12 col-sm-12 col-lg-12 col-xxl-12">
+                    {{#each wishProducts}}
+                    {{#each productContent}}
+                    <div class="card shadow-0 border rounded-3">
+                        <div class="card-body">
+                            <div class="row">
 
-                        </div>
-                        <div class="modal-footer">
-                            <a href="/wish"><button type="button"
-                                    class="btn btn-secondary">Close</button></a>
+                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                        <img src={{this.images}} class="w-50" />
+                                        <a href="#!">
+                                            <div class="hover-overlay">
+                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-6">
+                                    <h5 class="text-dark" style="font-weight: 700;">{{this.name}}</h5>
+
+                                    <p class="text-truncate mb-4 mb-md-0">{{this.brand}}
+                                    <p class="text-danger mb-4 mb-md-0">Rs:{{this.price}}/-
+
+                                    </p>
+                                </div>
+                                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                                    <div class="d-flex flex-column mt-4">
+                                        <button class="deleteWishproduct btn btn-primary btn-sm "
+                                            data-user-id="{{this._id}}" type="button">Delete</button>
+                                        <button class="btn btn-outline-primary btn-sm mt-2" type="button">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
+                    {{/each}}
+                    {{/each}}
                 </div>
             </div>
 
-    </section> 
+        </div>
 
+    </section>
+    {{/if}}
+
+    <div class="container" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3>wishlist is empty</h3>
+            </div>
+        </div>
+    </div>
+
+     {{!-- modal --}}
+        <div class="modal fade" id="deleteWish" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                        <a href="/wish" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                        {{!-- <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button> --}}
+                    </div>
+                    <div class="modal-body" id="wishDelete">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/wish"><button type="button" class="btn btn-secondary">Close</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    <section style="background-color: #eee; ">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -162,8 +228,8 @@
         </div>
 
     </div>
-
-  
+</section>
+ 
 
 
 
@@ -316,7 +382,7 @@
         </footer>
     </div> --}}
 
-<script src="/js/wish.js"></script>
+    <script src="/js/wish.js"></script>
 </body>
 
 </html>

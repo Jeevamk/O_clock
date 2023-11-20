@@ -48,11 +48,14 @@ app.use('/adminhome/brands',require('./server/routes/admin/admin_brand'))
 app.use('/adminhome/products',require('./server/routes/admin/admin_products'))
 app.use('/adminhome/order',require('./server/routes/admin/admin_order'))
 app.use('/adminhome/banner',require('./server/routes/admin/admin_banner'))
+app.use('/adminhome/contact',require('./server/routes/admin/admin_contact'))
 app.use('/',require('./server/routes/user/user_router'))
 app.use('/',require('./server/routes/user/auth_google'))
 app.use('/shop',require('./server/routes/user/shop'))
 app.use('/contact',require('./server/routes/user/contact'))
 app.use('/wish',require('./server/routes/user/wishlist'))
+app.use('/cart',require('./server/routes/user/cart'))
+
 
 
 
