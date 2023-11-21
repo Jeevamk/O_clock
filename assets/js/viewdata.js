@@ -45,6 +45,7 @@
 //   });
 // });
 
+
 //delete part view//
 
 const deletebtn = document.querySelectorAll(".delete-button");

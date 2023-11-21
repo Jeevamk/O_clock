@@ -193,3 +193,50 @@ function forgotForm() {
 
 
 }
+
+
+//contact form//
+function contactForm() {
+    var name = document.forms["contactform"]["name"].value;
+    var email = document.forms["contactform"]["email"].value;
+    var subject = document.forms["contactform"]["subject"].value;
+  
+    var cnameError = document.getElementById("cnameError");
+    var cemailError = document.getElementById("cemailError");
+    var csubjectError = document.getElementById("csubjectError");
+  
+    if (name === "") {
+      cnameError.innerHTML = "**Please fill in your name**";
+      return false;
+    }
+    if (name.length <3 ) {
+      cnameError.innerHTML = "**name must be at  3 characters**";
+      return false;
+    }
+   
+    cnameError.innerHTML = "";
+  
+    if (email === "") {
+      cemailError.innerHTML = "**Please fill in your email**";
+      return false;
+    }
+    if (
+      email.indexOf("@") <= 0 ||
+      (email.charAt(email.length - 4) !== "." &&
+        email.charAt(email.length - 3) !== ".")
+    ) {
+      cemailError.innerHTML = "**Invalid email format**";
+      return false;
+    }
+    cemailError.innerHTML = "";
+  
+    if (subject === "") {
+      csubjectError.innerHTML = "**Please fill the subject**";
+      return false;
+    }
+    
+    csubjectError.innerHTML = "";
+  
+    return true;
+  }
+

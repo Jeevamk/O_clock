@@ -98,19 +98,19 @@
                     </div>
                     <div class="d-flex justify-content-center mb-3">
                         {{#if product.images}}
-                        <img id="main" onclick="change1()" width="100" height="100" class="rounded-2 "
+                        <img id="main" onclick="change1()" width="100" height="100" class="rounded-2"
                             src="{{product.images}}" />
                         {{/if}}
                         {{#if product.Imageone}}
-                        <img id="sub1" onclick="change2()" width="100" height="100" class="rounded-2 "
+                        <img id="sub1" onclick="change2()" width="100" height="100" class="rounded-2"
                             src="{{product.Imageone}}" />
                         {{/if}}
                         {{#if product.Imagetwo}}
-                        <img id="sub2" onclick="change3()" width="100" height="100" class="rounded-2 "
+                        <img id="sub2" onclick="change3()" width="100" height="100" class="rounded-2"
                             src="{{product.Imagetwo}}" />
                         {{/if}}
                         {{#if product.Imagethree}}
-                        <img id="sub3" onclick="change4()" width="100" height="100" class="rounded-2 "
+                        <img id="sub3" onclick="change4()" width="100" height="100" class="rounded-2"
                             src="{{product.Imagethree}}" />
                         {{/if}}
                     </div>
@@ -388,15 +388,23 @@
     <script>
         function change1() {
             document.getElementById("main").src = "{{product.images}}"
+            document.getElementById("zoomImage").src = "{{product.images}}"
+
         }
         function change2() {
             document.getElementById("main").src = "{{product.Imageone}}"
+            document.getElementById("zoomImage").src = "{{product.Imageone}}"
+
         }
         function change3() {
             document.getElementById("main").src = "{{product.Imagetwo}}"
+            document.getElementById("zoomImage").src = "{{product.Imagetwo}}"
+
         }
         function change4() {
             document.getElementById("main").src = "{{product.Imagethree}}"
+            document.getElementById("zoomImage").src = "{{product.Imagethree}}"
+
         }
 
 
@@ -408,17 +416,20 @@
 
             buttonAdd.addEventListener('click', () => quantityElement.value = parseInt(quantityElement.value, 10) + 1);
             buttonSub.addEventListener('click', () => quantityElement.value = Math.max(1, parseInt(quantityElement.value, 10) - 1));
+            
+            //image zoom//
+            var x = $('#main').zoom(3);
+            x.setZoom(3);
+        
+
+            
         });
 
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/js/zoom.js"></script>
-    <script>
-        var x = $('#main').zoom(3);
-        x.setZoom(2);
-
-    </script>
+    
     <script src="/js/wish.js"></script>
 
 </body>

@@ -1,14 +1,22 @@
 const mongoose = require('mongoose')
 
 const contactSchema = mongoose.Schema({
-    userId : {
-        type :mongoose.Schema.Types.ObjectId,
-        ref : 'userCollection',
+    name : {
+        type :String,
+        required : true   
     },
     message : {
         type:String,
         required : true
-    }
+    },
+    email : {
+        type : String,
+        required :true
+    },
+    subject : {
+        type :String,
+        required : true
+    },
 })
 
 const contactcollection = new mongoose.model('contactcollection', contactSchema);
