@@ -104,3 +104,61 @@ function deletecontact() {
       console.log(error);
     });
 }
+
+//reply section//
+
+  // document.addEventListener('DOMContentLoaded', function () {
+  //   const replyButtons = document.querySelectorAll('.reply-contact');
+
+  //   replyButtons.forEach(button => {
+  //     button.addEventListener('click', async function () {
+  //       const contactId = button.getAttribute('data-contact-id');
+
+  //       try {
+  //         const response = await fetch(`/adminhome/contact/reply/${contactId}`, {
+  //           method: 'POST',
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //           },
+  //         })
+          
+  //           if (response.ok) {
+  //             alert('Reply sent successfully!');
+  //           } else {
+  //             alert('Failed to send reply');
+  //           }
+  //       } catch (error) {
+  //         console.error('Error:', error);
+  //         alert('An error occurred');
+  //       }
+  //     });
+  //   });
+  // });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const replyButtons = document.querySelectorAll('.reply-contact');
+  
+    replyButtons.forEach(button => {
+      button.addEventListener('click', async function () {
+        const contactId = button.getAttribute('data-contact-id');
+  
+        try {
+          const response = await fetch(`/adminhome/contact/${contactId}`);
+          if (response.ok) {
+            const contactdata = await response.json();
+
+            const mailtoLink = `mailto:${contactdata.email}?subject=Your%20reply%20subject&body=Your%20reply%20message`;
+  
+            window.location.href = mailtoLink;
+          } else {
+            console.error('Error fetching contact data:', error);
+            alert('Failed to fetch contact data');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An error occurred');
+        }
+      });
+    });
+  });
+  

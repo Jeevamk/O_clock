@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>product</title>
+    <title>Contact</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="container">
-                   
+
                     <div class="row pt-3">
                         <div class="col-12">
                             <table class="table table-striped table-hover">
@@ -116,7 +116,7 @@
                                             <button type="button" class="view-contact p-1 btn  btn-light m-1"
                                                 data-contact-id="{{_id}}"><i class="fa-regular fa-eye"
                                                     style="color:black;"></i></button>
-                                            <button type="button" class="reply-contact btn btn-light p-1 m-1"
+                                            <button type="button" class="reply-contact btn btn-dark p-1 m-1"
                                                 data-contact-id="{{this._id}}">Reply</button>
 
                                             <button type="button" class="delete-contact btn btn-light p-1 m-1"
@@ -197,8 +197,8 @@
 
 
             <!-- Modal2 view single data from the table-->
-            <div class="modal fade" id="contactviewmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="contactviewmodal" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -216,28 +216,29 @@
                 </div>
             </div>
 
-           
 
 
 
 
-                       {{!-- modal4 view delete data from the table --}}
-    <div class="modal fade" id="deletecontactmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="deletecontactbody">
 
-                </div>
-                <div class="modal-footer">
-                    <a href="/adminhome/contact"><button type="button" class="btn btn-secondary">Close</button></a>
+            {{!-- modal4 view delete data from the table --}}
+            <div class="modal fade" id="deletecontactmodal" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="deletecontactbody">
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/adminhome/contact"><button type="button"
+                                    class="btn btn-secondary">Close</button></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 
 

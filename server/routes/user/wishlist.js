@@ -1,6 +1,6 @@
 const express = require('express')
 const route = express.Router()
-const {auth,logauth} = require("../../middleware/auth_user");
+const {auth,logauth,wishauth} = require("../../middleware/auth_user");
 const userCollection = require("../../model/user_model");
 const productCollection = require("../../model/product_model")
 const wishcollection= require("../../model/wish_model")
@@ -9,6 +9,7 @@ const wishcollection= require("../../model/wish_model")
 route.get('/', logauth, async (req, res) => {
     try {
         const userId = req.userId;
+        const user = await userCollection.findById(userId)
         const wishlistProducts = await wishcollection.find({ userId });
 
         const wishProducts = [];
@@ -23,7 +24,7 @@ route.get('/', logauth, async (req, res) => {
             }
         }
         console.log(wishProducts);
-        res.render('wish',{ wishProducts });
+        res.render('wish',{user, wishProducts});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -32,13 +33,14 @@ route.get('/', logauth, async (req, res) => {
 
 
 //add product to the wishlist//
-route.post('/', logauth , async (req, res) => {
+route.post('/', wishauth , async (req, res) => {
     try {
         const { productId } = req.body;
         const userId = req.userId;
-        // if (!userId){
-        //     return res.render("user_login");
-        // }
+        console.log(userId);
+        if (userId==undefined){
+            return res.render("user_login",{wishalert:true});
+        }
 
         const existingWish = await wishcollection.findOne({ userId, productId });
 
@@ -87,7 +89,7 @@ route.get("/delete/:id",logauth, async (req, res) => {
     try {
         const proId = req.body.id;
         await wishcollection.findByIdAndDelete(proId);
-        res.status(204).send(); // 204 No Content: The server successfully processed the request, but there is no content to send.
+        res.status(204).send(); 
     } catch (error) {
         res.status(500).json({ error: "Internal server error" });
     }

@@ -38,9 +38,11 @@ async function mainMail(name,email,subject,message) {
 }
 
 
-route.get("/", async (req, res) => {
+route.get("/",logauth, async (req, res) => {
+  const userId = req.userId;
+        const user = await userCollection.findById(userId)
 
-    return res.render("contact");
+    return res.render("contact",{user});
   });
 
 
