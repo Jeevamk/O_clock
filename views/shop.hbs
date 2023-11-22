@@ -87,33 +87,67 @@
     <section class="mt-5">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 col-xxl-3 p-2 bg-blue">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste voluptates ipsa in! Tenetur quidem
-                        eaque, impedit vero at explicabo eos fugiat id ut facilis veniam ducimus, pariatur hic optio
-                        recusandae.
-                        Ab ex ipsa possimus obcaecati blanditiis! Nihil quasi dolore corrupti aperiam! Non harum cumque
-                        quisquam pariatur, assumenda obcaecati saepe culpa adipisci, exercitationem aut itaque aperiam
-                        sequi vero dicta quas similique.
-                        Veniam sunt mollitia voluptatum commodi delectus, qui illo recusandae atque repellat itaque
-                        earum soluta libero repudiandae vitae totam at molestias vel fugiat inventore omnis quaerat
-                        expedita laborum! Assumenda, aliquid maxime.</p>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 col-xxl-9">
-                    <div class="row">
-                        {{#each products}}
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
-                            <a href="/shop/{{this._id}}"><div class="card best-card shadow-lg">
-                                <img src="{{this.images}}" class="card-img-top" alt="{{this.name}}"
-                                    data-product-id="{{this._id}}">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-secondary" style="font-size: 17px;">{{this.brand}}</h5>
-                                    <span class="card-text">{{this.name}}</span>
-                                    <p class="card-text1">Rs: {{this.price}}</p>
-                                </div>
-                            </div></a>
-                        </div>
-                          {{/each}}
+                <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 col-xxl-3 p-3">
+                    <p style="font-weight: 700;">CATEGORIES</p>
+                    <ul style="list-style: none;">
+                        <a href="">
+                            <li style="color: black; font-weight: 600">All</li>
+                        </a>
+                        {{#each category}}
+                        <li>
+                            <input class="filter_category" type="checkbox" value="{{this.name}}" id="category">
+                            <label class="category" for="category">{{this.name}}</label>
+
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <p style="font-weight: 700;">BRANDS</p>
+                    <ul style="list-style: none;">
+                        <a href="">
+                            <li style="color: black; font-weight: 600">All</li>
+                        </a>
+                        {{#each brands}}
+                        <li>
+                            <input class="filter_category" type="checkbox" value="{{this.name}}" id="category">
+                            <label class="category" for="category">{{this.name}}</label>
+
+                        </li>
+                        {{/each}}
+                    </ul>
+
+                    <div class="price">
+                        <label for="priceRange" style="font-weight: 700;">Price Range</label><br>
+                        <input type="range" id="priceRange" />
+                        <span class="priceValue">10000</span>
                     </div>
+
+                </div>
+                <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9 col-xxl-9">
+                    <div class="container">
+                        <div class="row">
+                            {{#each products}}
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2 pro"
+                                data-category="{{this.category}}" data-brand="{{this.brand}}"
+                                data-price="{{this.price}}">
+                                <a href="/shop/{{this._id}}">
+                                    <div class="card best-card shadow-lg">
+                                        <img src="{{this.images}}" class="card-img-top" alt="{{this.name}}"
+                                            data-product-id="{{this._id}}">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title text-secondary" style="font-size: 17px;">
+                                                {{this.brand}}
+                                            </h5>
+                                            <span class="card-text">{{this.name}}</span>
+                                            <p class="card-text1">Rs: {{this.price}}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {{/each}}
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -268,6 +302,7 @@
         </footer>
     </div> --}}
 
+    <script src="/js/filterProduct.js"></script>
 </body>
 
 </html>
