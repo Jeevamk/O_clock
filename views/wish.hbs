@@ -135,7 +135,23 @@
 
         </div> --}}
 
-{{#if wishProducts}}
+       
+
+{{#if empty}}
+<div class="container text-center" style="margin-top: 150px;">
+    <div class="row ">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 text-center">
+                <img src="/images/empty-wishlist.png" alt="" class="img-fluid">
+              <h4 class="text-danger text-center">Your Wishlist is Empty! </h4>
+              {{!-- <p class="" style="color: skyblue;">seems like you don't have wishes here<br><span>Make a Wish</span></p> --}}
+              <a href="/shop" class="btn btn-outline-dark">Start Shopping</a>
+
+              
+        </div>
+    </div>
+  
+</div>
+ {{else}}
     <section style="background-color: #eee; margin-top:100px">
         <div class="container py-5">
             <div class="row justify-content-center mb-3">
@@ -186,15 +202,8 @@
         </div>
 
     </section>
-    {{/if}}
+   
 
-    {{!-- <div class="container" style="margin-top: 100px;">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h3>wishlist is empty</h3>
-            </div>
-        </div>
-    </div> --}}
 
      {{!-- modal --}}
         <div class="modal fade" id="deleteWish" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -222,12 +231,13 @@
     <section style="background-color: #eee; ">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 text-center">
                 <a href="/shop" class="btn btn-dark text-light">Continue Shopping</a>
             </div>
         </div>
-
     </div>
+
+{{/if}}
 </section>
  
 

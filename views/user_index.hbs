@@ -179,12 +179,12 @@
             </div>
             <div class="row mt-3">
                 {{#each brands}}
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 ">
                     <a href="">
                         <div class="card text-bg-dark shadow-lg">
-                            <img src="{{this.logo}}" class="card-img" alt="{{this.name}}">
+                            <img src="{{this.logo}}" class="card-img" class="img-fluid"  alt="{{this.name}}">
                             <div class="card-img-overlay text-center">
-                                <button type="button" class="btn btn-light brand-btn shadow-lg">{{this.name}}</button>
+                                <button type="button" class="btn btn-light brand-btn shadow-lg text-white" style="background-color: transparent;">{{this.name}}</button>
                             </div>
                         </div>
                     </a>

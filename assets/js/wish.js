@@ -14,16 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify(wishProduct)
           })
-        //   .then(response => {
-        //     if (response.ok) {
-        //         alert("Product add Succefully")
-        //     } else {
-        //       console.error('Error adding product to wishlist:', response.statusText);
-        //     }
-        //   })
-        //   .catch(error => {
-        //     console.error('Fetch error:', error);
-        //   });
+          .then(response => {
+            if (response.ok) {
+                alert("Product Added Succefully")
+            } else {
+              console.error('Error adding product to wishlist:', response.statusText);
+            }
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
+          });
         });
     }
   

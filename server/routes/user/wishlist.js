@@ -6,25 +6,51 @@ const productCollection = require("../../model/product_model")
 const wishcollection= require("../../model/wish_model")
 
 
+// route.get('/', logauth, async (req, res) => {
+//     try {
+//         const userId = req.userId;
+//         const user = await userCollection.findById(userId)
+//         const wishlistProducts = await wishcollection.find({ userId });
+
+//         const wishProducts = [];
+
+//         for (let newWish of wishlistProducts){
+//             const productId = newWish.productId
+
+//             const productContent = await productCollection.find({_id:productId})
+
+//             if(productContent){
+//                 wishProducts.push({productContent,quantity:1})
+//             }
+//         }
+//         console.log(wishProducts);
+//         res.render('wish',{user, wishProducts});
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Internal server error' });
+//     }
+// });
+
 route.get('/', logauth, async (req, res) => {
     try {
         const userId = req.userId;
-        const user = await userCollection.findById(userId)
+        console.log(userId);
+        const user = await userCollection.findById(userId);
         const wishlistProducts = await wishcollection.find({ userId });
 
-        const wishProducts = [];
+        const wishProducts = await Promise.all(wishlistProducts.map(async (newWish) => {
+            const productId = newWish.productId;
+            const productContent = await productCollection.find({ _id: productId });
 
-        for (let newWish of wishlistProducts){
-            const productId = newWish.productId
+            return productContent ? { productContent, quantity: 1 } : null;
+        }));
 
-            const productContent = await productCollection.find({_id:productId})
-
-            if(productContent){
-                wishProducts.push({productContent,quantity:1})
-            }
-        }
         console.log(wishProducts);
-        res.render('wish',{user, wishProducts});
+
+        if (wishProducts.length === 0 || wishProducts[0].productContent.length === 0) {
+            return res.render('wish',{empty:true})
+        }
+        res.render('wish', { user, wishProducts });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -32,15 +58,16 @@ route.get('/', logauth, async (req, res) => {
 });
 
 
+
 //add product to the wishlist//
-route.post('/', wishauth , async (req, res) => {
+route.post('/',wishauth, async (req, res) => {
     try {
-        const { productId } = req.body;
         const userId = req.userId;
         console.log(userId);
-        if (userId==undefined){
-            return res.render("user_login",{wishalert:true});
-        }
+        const { productId } = req.body;
+        // if (!userId){
+        //     return res.render("user_login");
+        // }
 
         const existingWish = await wishcollection.findOne({ userId, productId });
 
@@ -65,6 +92,8 @@ route.post('/', wishauth , async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+
 
 //delete the product//
 route.get("/delete/:id",logauth, async (req, res) => {
