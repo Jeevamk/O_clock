@@ -396,6 +396,7 @@ section.range-slider input {
     height: 18px;
     margin: 0;
     padding: 0;
+    
 }
 
 section.range-slider input::-webkit-slider-thumb {
@@ -426,4 +427,5 @@ section.range-slider input:last-of-type::-moz-range-track {
 }
   section.range-slider input[type=range]::-moz-focus-outer {
   border: 0;
+  
 }
