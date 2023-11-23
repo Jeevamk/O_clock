@@ -1,56 +1,112 @@
-// const priceRange = document.querySelector("#priceRange");
-// const priceValue = document.querySelector(".priceValue");
 
-// function setPrices() {
-//   const priceList = pro.map((products) => products.price);
-//   const minPrice = Math.min(...priceList);
-//   const maxPrice = Math.max(...priceList);
-//   priceRange.min = minPrice;
-//   priceRange.max = maxPrice;
-//   priceValue.textContent = "Rs." + maxPrice;
+// document.addEventListener('DOMContentLoaded', function () {
+//     const priceRangeInput = document.getElementById('priceRange');
+//     const priceValueSpan = document.querySelector('.priceValue');
 
-//   priceRange.addEventListener("input", (e) => {
-//     priceValue.textContent = "Rs." + e.target.value;
-//     displayProducts(data.filter((products) => products.price <= e.target.value));
-//   });
+//     const minPrice = 11900;
+//     const maxPrice = 27500;
+
+//     priceRangeInput.min = minPrice;
+//     priceRangeInput.max = maxPrice;
+
+//     const initialPrice = minPrice;
+//     priceRangeInput.value = initialPrice;
+//     priceValueSpan.textContent = initialPrice;
+
+//     priceRangeInput.addEventListener('input', function () {
+//         const selectedPrice = parseInt(priceRangeInput.value);
+//         priceValueSpan.textContent = selectedPrice;
+
+//         const products = document.querySelectorAll('.pro');
+//         products.forEach(product => {
+//             const productPrice = parseInt(product.dataset.price);
+//             if (productPrice >= minPrice && productPrice <= selectedPrice) {
+//                 product.style.display = 'block';
+//             } else {
+//                 product.style.display = 'none';
+//             }
+//         });
+//     });
+// });
+
+
+// function getVals(){
+//     // Get slider values
+//     var parent = this.parentNode;
+//     var slides = parent.getElementsByTagName("input");
+//       var slide1 = parseFloat( slides[0].value );
+//       var slide2 = parseFloat( slides[1].value );
+//     if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+    
+//     var displayElement = parent.getElementsByClassName("rangeValues")[0];
+//         displayElement.innerHTML = slide1 + " - " + slide2;
+//   }
+  
+//   function filterProductsByPriceRange(minPrice, maxPrice) {
+//     const products = document.querySelectorAll('.pro');
+//     products.forEach(product => {
+//         const productPrice = parseInt(product.dataset.price);
+//         if (productPrice >= minPrice && productPrice <= maxPrice) {
+//             product.style.display = 'block';
+//         } else {
+//             product.style.display = 'none';
+//         }
+//     });
 // }
+//   window.onload = function(){
+//     var sliderSections = document.getElementsByClassName("range-slider");
+//         for( var x = 0; x < sliderSections.length; x++ ){
+//           var sliders = sliderSections[x].getElementsByTagName("input");
+//           for( var y = 0; y < sliders.length; y++ ){
+//             if( sliders[y].type ==="range" ){
+//               sliders[y].oninput = getVals;
+//               sliders[y].oninput();
+//             }
+//           }
+//         }
+//   }
 
+function getVals() {
+    // Get slider values
+    var parent = this.parentNode;
+    var slides = parent.getElementsByTagName("input");
+    var slide1 = parseFloat(slides[0].value);
+    var slide2 = parseFloat(slides[1].value);
 
-// setPrices();
-
-document.addEventListener('DOMContentLoaded', function () {
-    const priceRangeInput = document.getElementById('priceRange');
-    const priceValueSpan = document.querySelector('.priceValue');
-
-    const maxPrice = getMaxPrice();
-    priceRangeInput.max = maxPrice;
-
-    priceRangeInput.addEventListener('input', function () {
-        const selectedPrice = parseInt(priceRangeInput.value);
-        priceValueSpan.textContent = selectedPrice;
-
-        const products = document.querySelectorAll('.pro');
-        products.forEach(product => {
-            const productPrice = parseInt(product.dataset.price);
-            if (productPrice <= selectedPrice) {
-                product.style.display = 'block';
-            } else {
-                product.style.display = 'none';
-            }
-        });
-    });
-
-    function getMaxPrice() {
-        const products = document.querySelectorAll('.pro');
-        let maxPrice = 10000;
-
-        products.forEach(product => {
-            const productPrice = parseInt(product.dataset.price);
-            if (productPrice > maxPrice) {
-                maxPrice = productPrice;
-            }
-        });
-
-        return maxPrice;
+    if (slide1 > slide2) {
+        var tmp = slide2;
+        slide2 = slide1;
+        slide1 = tmp;
     }
-});
+
+    var displayElement = parent.getElementsByClassName("rangeValues")[0];
+    displayElement.innerHTML = slide1 + " - " + slide2;
+
+    // Add your filtering logic here based on the selected price range
+    filterProductsByPriceRange(slide1, slide2);
+}
+
+function filterProductsByPriceRange(minPrice, maxPrice) {
+    const products = document.querySelectorAll('.pro');
+    products.forEach(product => {
+        const productPrice = parseInt(product.dataset.price);
+        if (productPrice >= minPrice && productPrice <= maxPrice) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+window.onload = function () {
+    var sliderSections = document.getElementsByClassName("range-slider");
+    for (var x = 0; x < sliderSections.length; x++) {
+        var sliders = sliderSections[x].getElementsByTagName("input");
+        for (var y = 0; y < sliders.length; y++) {
+            if (sliders[y].type === "range") {
+                sliders[y].oninput = getVals;
+                sliders[y].oninput();
+            }
+        }
+    }
+}
