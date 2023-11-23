@@ -45,87 +45,84 @@ window.onload = function () {
 
 
 //category//
-const categoryCheckboxes = document.querySelectorAll(".filter_category");
-const selectedCategories = [];
 
-categoryCheckboxes.forEach((checkbox) => {
-  checkbox.addEventListener("change", (event) => {
-    if (checkbox.checked) {
-      selectedCategories.push(checkbox.value);
-    } else {
-      selectedCategories.splice(selectedCategories.indexOf(checkbox.value), 1);
+document.addEventListener('DOMContentLoaded', function () {
+    const categoryCheckboxes = document.querySelectorAll('.filter_category');
+
+    categoryCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            filterProducts();
+            updateUrl();
+        });
+    });
+
+    function filterProducts() {
+        const selectedCategories = Array.from(categoryCheckboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+
+        document.querySelectorAll('.pro').forEach(function (products) {
+            const productCategory = products.getAttribute('data-category');
+            products.style.display = selectedCategories.length === 0 || selectedCategories.includes(productCategory)
+                ? 'block'
+                : 'none';
+        });
     }
 
-    filterProducts();
-    updateURL();
-  });
+    function updateUrl() {
+        const selectedCategories = Array.from(categoryCheckboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+
+        const queryString = selectedCategories.length > 0
+            ? `?category=${selectedCategories.join('&category=')}`
+            : '';
+
+        const newUrl = window.location.pathname + queryString;
+
+        history.pushState({}, '', newUrl);
+    }
 });
 
-function filterProducts() {
-  const filteredProducts = products.filter((products) => {
-    return selectedCategories.includes(products.category);
-  });
+//brand//
+document.addEventListener('DOMContentLoaded', function () {
+    const brandCheckboxes = document.querySelectorAll('.filter_brand');
 
-  updateProductList(filteredProducts);
-}
+    brandCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            filterProducts();
+            updateUrl();
+        });
+    });
 
-function updateURL() {
-  const baseUrl = window.location.href.split("?")[0];
-  const urlParams = new URLSearchParams();
+    function filterProducts() {
+        const selectedBrand = Array.from(brandCheckboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
 
-  if (selectedCategories.length > 0) {
-    urlParams.append("category", selectedCategories.join(","));
-  }
+        document.querySelectorAll('.pro').forEach(function (products) {
+            const productBrand = products.getAttribute('data-brand');
+            products.style.display = selectedBrand.length === 0 || selectedBrand.includes(productBrand)
+                ? 'block'
+                : 'none';
+        });
+    }
 
-  const newURL = baseUrl + "?" + urlParams.toString();
-  window.history.pushState({}, "", newURL);
-}
+    function updateUrl() {
+        const selectedBrand = Array.from(brandCheckboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+
+        const queryString = selectedBrand.length > 0
+            ? `?category=${selectedBrand.join('&brand=')}`
+            : '';
+
+        const newUrl = window.location.pathname + queryString;
+
+        history.pushState({}, '', newUrl);
+    }
+});
 
 
 
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     const categoryCheckboxes = document.querySelectorAll(".filter_category");
-//     const selectedCategories = [];
-  
-//     categoryCheckboxes.forEach((checkbox) => {
-//       checkbox.addEventListener("change", (event) => {
-//         if (checkbox.checked) {
-//           selectedCategories.push(checkbox.value);
-//         } else {
-//           selectedCategories.splice(selectedCategories.indexOf(checkbox.value), 1);
-//         }
-  
-//         filterProducts();
-//         updateURL();
-//       });
-//     });
-  
-//     function filterProducts() {
-   
-//       const filteredProducts = products.filter((products) => {
-//         return selectedCategories.includes(products.category);
-//       });
-  
-     
-//       updateProductList(filteredProducts);
-//     }
-  
-//     function updateURL() {
-//       const baseUrl = window.location.href.split("?")[0];
-//       const urlParams = new URLSearchParams();
-  
-//       if (selectedCategories.length > 0) {
-//         urlParams.append("category", selectedCategories.join(","));
-//       }
-  
-//       const newURL = baseUrl + "?" + urlParams.toString();
-//       window.history.pushState({}, "", newURL);
-//     }
-  
-    
-//     function updateProductList(filteredProducts) {
-      
-//     }
-//   });
-  
