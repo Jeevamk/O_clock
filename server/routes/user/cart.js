@@ -7,31 +7,30 @@ const { logauth ,wishauth} = require('../../middleware/auth_user')
 
 
 route.get('/', logauth, async (req, res) => {
-    res.render('cart')
-    // try {
-    //     const userId = req.userId;
-    //     console.log(userId);
-    //     const user = await userCollection.findById(userId);
-    //     const cartProducts = await cartcollection.find({ userId });
-    //     console.log(cartProducts);
+    try {
+        const userId = req.userId;
+        console.log(userId);
+        const user = await userCollection.findById(userId);
+        const cartProducts = await cartcollection.find({ userId });
+        console.log(cartProducts);
 
-    //     const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
-    //         const productId = newcart.productId;
-    //         const productContent = await productCollection.find({ _id: productId });
+        const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
+            const productId = newcart.productId;
+            const productContent = await productCollection.find({ _id: productId });
 
-    //         return productContent ? { productContent, quantity: 1 } : null;
-    //     }));
+            return productContent ? { productContent, quantity: 1 } : null;
+        }));
 
-    //     console.log("dfhushfui",cartItems);
+        console.log(cartItems);
 
-    //     if (cartItems.length === 0 || cartItems[0].productContent.length === 0) {
-    //         return res.render('cart',{emptyCart:true})
-    //     }
-    //     res.render('cart', { user, cartItems });
-    // } catch (error) {
-    //     console.error(error);
-    //     res.status(500).json({ message: 'Internal server error' });
-    // }
+        if (cartItems.length === 0 || cartItems[0].productContent.length === 0) {
+            return res.render('cart',{emptyCart:true})
+        }
+        res.render('cart', { user, cartItems });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 });
 
 
@@ -68,5 +67,35 @@ route.post('/',wishauth, async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+//delete//
+route.get("/delete/:id",logauth, async (req, res) => {
+    
+    const Idproduct = req.params._id;
+
+    try {
+      const product = await cartcollection.findOne({ Idproduct });
+      if (product) {
+        res.json(product);
+      } else {
+        res.status(404).json({ error: "product not found" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "internal server error" });
+    }
+  
+});
+
+
+route.delete("/delete", logauth, async (req, res) => {
+    try {
+        const proId = req.body.id;
+        await cartcollection.findByIdAndDelete(proId);
+        res.status(204).send(); 
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error" });
+    }
+})
 
 module.exports = route;
