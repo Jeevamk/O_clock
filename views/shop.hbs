@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/css/style2.css" />
     <link rel="stylesheet" href="/css/shop.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    
 </head>
 
 <body>
@@ -90,9 +92,9 @@
                 <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 col-xxl-3 p-3">
                     <p style="font-weight: 700;">CATEGORIES</p>
                     <ul style="list-style: none;">
-                        <a href="">
+                        {{!-- <a href="">
                             <li style="color: black; font-weight: 600" id="allCategories">All</li>
-                        </a>
+                        </a> --}}
                         {{#each category}}
                         <li>
                             <input class="filter_category" type="checkbox" value="{{this.name}}" id="category">
@@ -103,9 +105,9 @@
                     </ul>
                     <p style="font-weight: 700;">BRANDS</p>
                     <ul style="list-style: none;">
-                        <a href="">
+                        {{!-- <a href="">
                             <li style="color: black; font-weight: 600">All</li>
-                        </a>
+                        </a> --}}
                         {{#each brands}}
                         <li>
                             <input class="filter_brand" type="checkbox" value="{{this.name}}" id="brand-{{this.name}}">

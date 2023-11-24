@@ -1,34 +1,44 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const addWishList = document.getElementById('addWishList');
-    if(addWishList){
-        addWishList.addEventListener('click', () => {
-        const productId = addWishList.getAttribute('data-product-id');
-        const wishProduct = {
-            productId: productId,
-          };
-    
-          fetch('/wish', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(wishProduct)
-          })
-          .then(response => {
-            if (response.ok) {
-                alert("Product Added Succefully")
-            } else {
-              console.error('Error adding product to wishlist:', response.statusText);
-            }
-          })
-          .catch(error => {
-            console.error('Fetch error:', error);
-          });
-        });
-    }
-  
-    });
+//wish button//
+document.addEventListener("DOMContentLoaded", () => {
+  const addWishList = document.getElementById("addWishList");
+  if (addWishList) {
+    addWishList.addEventListener("click", () => {
+      const productId = addWishList.getAttribute("data-product-id");
+      const wishProduct = {
+        productId: productId,
+      };
 
+      fetch("/wish", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(wishProduct),
+      })
+        .then((response) => {
+          if (response.ok) {
+            // document
+            //   .querySelector(".wish")
+            //   .addEventListener("click", function () {
+            //     toastMixin.fire({
+            //       animation: true,
+            //       title: "Signed in Successfully",
+            //     });
+            //   });
+             alert("Product Added Succefully")
+          } else {
+            console.error(
+              "Error adding product to wishlist:",
+              response.statusText
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+        });
+    });
+  }
+});
 
 //delete product from wishlist//
 const deletebutton = document.querySelectorAll(".deleteWishproduct");
@@ -63,27 +73,110 @@ deletebutton.forEach((btn) => {
   });
 });
 
-
-
 function deleteWish() {
-    const DeleteData = document.getElementById("deleteProductData");
-    const myDeleteData = new FormData(DeleteData);
-  
-    fetch(`/wish/delete`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Object.fromEntries(myDeleteData)),
+  const DeleteData = document.getElementById("deleteProductData");
+  const myDeleteData = new FormData(DeleteData);
+
+  fetch(`/wish/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Object.fromEntries(myDeleteData)),
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "/wish";
+      }
+      throw new Error("not ok");
     })
-      .then((response) => {
-        if (response.ok) {
-          window.location.href = "/wish";
-        }
-        throw new Error("not ok");
+
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+
+//cart button post from product detials page//
+document.addEventListener("DOMContentLoaded", () => {
+  const addCartList = document.getElementById("addCart");
+  if (addCartList) {
+    addCartList.addEventListener("click", () => {
+      const productId = addCartList.getAttribute("data-product-id");
+      const CartProduct = {
+        productId: productId,
+      };
+
+      fetch("/cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(CartProduct),
       })
-  
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          if (response.ok) {
+            // document
+            //   .querySelector(".wish")
+            //   .addEventListener("click", function () {
+            //     toastMixin.fire({
+            //       animation: true,
+            //       title: "Signed in Successfully",
+            //     });
+            //   });
+             alert("Product Added to Cart Succefully")
+          } else {
+            console.error(
+              "Error adding product to Cart:",
+              response.statusText
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+        });
+    });
   }
+});
+
+//add to cart from wishlist page//
+document.addEventListener("DOMContentLoaded", () => {
+  const wishToCart = document.getElementById("wishToCart");
+  if (wishToCart) {
+    wishToCart.addEventListener("click", () => {
+      const productId = wishToCart.getAttribute("data-product-id");
+      const CartProduct = {
+        productId: productId,
+      };
+
+      fetch("/cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(CartProduct),
+      })
+        .then((response) => {
+          if (response.ok) {
+            // document
+            //   .querySelector(".wish")
+            //   .addEventListener("click", function () {
+            //     toastMixin.fire({
+            //       animation: true,
+            //       title: "Signed in Successfully",
+            //     });
+            //   });
+             alert("Product Added to Cart Succefully")
+          } else {
+            console.error(
+              "Error adding product to Cart:",
+              response.statusText
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+        });
+    });
+  }
+});

@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="/css/shop.css" />
         <link rel="stylesheet" href="/css/zoom.css" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 
 <body>
@@ -174,9 +178,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="btn btn-light shadow-sm border"> <i class="fa-solid fa-cart-shopping"
+                        <a href="#" class="btn btn-light shadow-sm border" data-product-id="{{product._id}}" id="addCart"> <i class="fa-solid fa-cart-shopping"
                                 style="color: #00040a;"></i> Add to cart </a>
-                        <button class="btn btn-light border border-secondary py-2 icon-hover px-3" id="addWishList"
+                        <button class="btn btn-light border border-secondary py-2 icon-hover px-3 wish" id="addWishList"
                             data-product-id="{{product._id}}"> <i class="me-1 fa fa-heart "></i></button>
                         <hr>
 
@@ -213,6 +217,9 @@
 
                                                     <dt class="col-3">Gender</dt>
                                                     <dd class="col-9">{{product.gender}} </dd>
+
+                                                    <dt class="col-3">Stock Status</dt>
+                                                    <dd class="col-9">{{product.countStock}}</dd>
                                                 </div>
                                             </div>
                                         </div>
