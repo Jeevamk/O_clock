@@ -40,6 +40,7 @@ route.post('/',wishauth, async (req, res) => {
         const userId = req.userId;
         console.log(userId);
         const { productId } = req.body;
+        console.log(productId);
         // if (!userId){
         //     return res.render("user_login");
         // }

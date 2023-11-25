@@ -112,16 +112,21 @@ route.get("/delete/:id",logauth, async (req, res) => {
         res.status(500).json({ error: "internal server error" });
       }
     
-  });
+});
+
 
   
 route.delete("/delete", logauth, async (req, res) => {
     try {
         const proId = req.body.id;
+
         await wishcollection.findByIdAndDelete(proId);
         res.status(204).send(); 
     } catch (error) {
         res.status(500).json({ error: "Internal server error" });
     }
 })
+
+
+
 module.exports= route;

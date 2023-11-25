@@ -220,13 +220,15 @@ function contactForm() {
       cemailError.innerHTML = "**Please fill in your email**";
       return false;
     }
-    if (
-      email.indexOf("@") <= 0 ||
-      (email.charAt(email.length - 4) !== "." &&
-        email.charAt(email.length - 3) !== ".")
-    ) {
-      cemailError.innerHTML = "**Invalid email format**";
-      return false;
+    email = email.charAt(0).toLowerCase() + email.slice(1);
+    // if (
+    //   email.indexOf("@") <= 0 ||
+    //    (email.match(
+    //       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    //     ))
+    // ) {
+    //   cemailError.innerHTML = "**Invalid email format**";
+    //   return false;
     }
     cemailError.innerHTML = "";
   

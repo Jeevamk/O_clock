@@ -340,7 +340,7 @@
     background: transparent;
     outline: none;
     width: 100%;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     padding: 1rem 0.4rem;
   }
   .aside {

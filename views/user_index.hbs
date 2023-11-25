@@ -184,7 +184,7 @@
                         <div class="card text-bg-dark shadow-lg">
                             <img src="{{this.logo}}" class="card-img" class="img-fluid"  alt="{{this.name}}">
                             <div class="card-img-overlay text-center">
-                                <button type="button" class="btn btn-light brand-btn shadow-lg text-white" style="background-color: transparent;">{{this.name}}</button>
+                                <button type="button" class="btn btn-light brand-btn shadow-lg text-white filter_brand" value="BrandName" style="background-color: transparent;">{{this.name}}</button>
                             </div>
                         </div>
                     </a>
@@ -231,14 +231,14 @@
                 {{#each newarrivalArray}}
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
                     <div class="card best-card">
-                        <img src="{{this.images}}" class="card-img-top" alt="{{this.name}}"
+                        <a href="/shop/{{this._id}}"><img src="{{this.images}}" class="card-img-top" alt="{{this.name}}"
                             data-product-id="{{this._id}}">
                         <div class="card-body text-center">
                             <h5 class="card-title text-secondary" style="font-size: 17px;">{{this.brand}}</h5>
-                            <p class="card-text">{{this.name}}</p>
-                            <p class="card-text1">Rs: {{this.price}}</p>
+                            <p class="card-text text-dark">{{this.name}}</p>
+                            <p class="card-text1 text-muted">Rs: {{this.price}}</p>
                             <button type="button" class="btn btn-dark">ADD TO CART</button>
-                        </div>
+                        </div></a>
                     </div>
                 </div>
                 {{/each}}
@@ -261,14 +261,14 @@
                 {{#each bestSellersArray}}
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
                     <div class="card best-card">
-                        <img src="{{this.images}}" class="card-img-top" alt="{{this.name}}"
+                        <a href="/shop/{{this._id}}"><img src="{{this.images}}" class="card-img-top" alt="{{this.name}}"
                             data-product-id="{{this._id}}">
                         <div class="card-body text-center">
                             <h5 class="card-title text-secondary" style="font-size: 17px;">{{this.brand}}</h5>
-                            <p class="card-text">{{this.name}}</p>
-                            <p class="card-text1">Rs: {{this.price}}</p>
+                            <p class="card-text text-dark">{{this.name}}</p>
+                            <p class="card-text1 text-muted">Rs: {{this.price}}</p>
                             <button type="button" class="btn btn-dark">ADD TO CART</button>
-                        </div>
+                        </div></a>
                     </div>
                 </div>
                 {{/each}}
@@ -300,7 +300,7 @@
     {{!-- banner section end --}}
 
     {{!-- category sec start --}}
-    <section class="category mt-5">
+    {{!-- <section class="category mt-5">
         <div class="container">
             <div class="row">
                 <div class=" col-sm-12 col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
@@ -328,10 +328,9 @@
             </div>
         </div>
 
-    </section>
+    </section> --}}
 
-    {{!-- category sec end --}}
-
+    
     {{!-- footer sec start --}}
 
 
@@ -441,7 +440,7 @@
        
     </section>
 
-
+<script src="/js/filterProduct.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </body>

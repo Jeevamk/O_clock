@@ -174,7 +174,12 @@ document.addEventListener('DOMContentLoaded', function () {
         history.pushState({}, '', newUrl);
     }
 
-    
+    function handleCategoryClick(event) {
+        const checkbox = event.target.previousElementSibling; // Assuming the checkbox comes before the category name
+        checkbox.checked = !checkbox.checked;
+        filterProducts();
+    }
+
     categoryCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener('change', filterProducts);
     });
@@ -182,6 +187,20 @@ document.addEventListener('DOMContentLoaded', function () {
     brandCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener('change', filterProducts);
     });
+
+    document.querySelectorAll('.category-name').forEach(function (category) {
+        category.addEventListener('click', handleCategoryClick);
+    });
 });
 
 
+// document.querySelectorAll('.filter_brand').forEach(function (button) {
+//     button.addEventListener('click', function () {
+//         // Toggle the selected state
+//         button.classList.toggle('selected');
+
+//         // Update URL and navigate to the shop page
+//         updateUrl();
+//         window.location.href = '/shop'; // Modify this URL based on your route
+//     });
+// });

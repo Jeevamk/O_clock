@@ -25,7 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
             //       title: "Signed in Successfully",
             //     });
             //   });
-             alert("Product Added Succefully")
+            //  alert("Product Added Succefully")
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Product Added Succefully...",
+              showConfirmButton: false,
+              timer: 1500
+            });
           } else {
             console.error(
               "Error adding product to wishlist:",
@@ -97,6 +104,7 @@ function deleteWish() {
 }
 
 
+
 //cart button post from product detials page//
 document.addEventListener("DOMContentLoaded", () => {
   const addCartList = document.getElementById("addCart");
@@ -116,15 +124,13 @@ document.addEventListener("DOMContentLoaded", () => {
       })
         .then((response) => {
           if (response.ok) {
-            // document
-            //   .querySelector(".wish")
-            //   .addEventListener("click", function () {
-            //     toastMixin.fire({
-            //       animation: true,
-            //       title: "Signed in Successfully",
-            //     });
-            //   });
-             alert("Product Added to Cart Succefully")
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Product Added to Cart",
+              showConfirmButton: false,
+              timer: 1500
+            })
           } else {
             console.error(
               "Error adding product to Cart:",
@@ -139,9 +145,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
+
 //add to cart from wishlist page//
 document.addEventListener("DOMContentLoaded", () => {
-  const wishToCart = document.getElementById("wishToCart");
+  const wishToCart = document.querySelectorAll(".wishToCart");
   if (wishToCart) {
     wishToCart.addEventListener("click", () => {
       const productId = wishToCart.getAttribute("data-product-id");
