@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-//delete product from wishlist//
+//delete product from cart//
 const deleteCart = document.querySelectorAll(".deleteCartProduct");
 deleteCart.forEach((btn) => {
   btn.addEventListener("click", async (event) => {

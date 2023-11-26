@@ -229,7 +229,7 @@ function contactForm() {
     // ) {
     //   cemailError.innerHTML = "**Invalid email format**";
     //   return false;
-    }
+    // }
     cemailError.innerHTML = "";
   
     if (subject === "") {

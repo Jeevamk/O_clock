@@ -16,6 +16,22 @@
     />
     <link rel="stylesheet" href="/css/style2.css" />
 
+    <style>
+        input[type=email], input[type=password] {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0 5px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=email]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+    </style>
+
   </head>
 
   <body>
@@ -94,69 +110,66 @@
 
     {{! navbar end }}
 
-   <section class="log mt-5">
-      <div class="container">
-        <div class="row content">
-          <div class="col-md-6 mb-3">
-            <img src="/images/loginImg.jpg" class="img-fluid" alt="login" />
+   
+<section class="vh-100" style="margin-top:20px; background-image: url(/images/bacg.jpg);  background-repeat: no-repeat;
+  background-attachment: fixed;">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+              <div class="card-body p-5  shadow-lg">
 
-          </div>
-          <div class="col-md-6">
-            <h2 class="login-text mb-3 text-center">Log In</h2>
-            <form
-              action="/user_login"
-              method="POST"
-              name="loginform"
-              onsubmit="return loginForm()"
-            >
-              <div class="form-row">
+                <h3 class="mb-5 text-center">Log in with</h3>
+            
+                <form action="/user_login" method="POST" name="loginform"
+              onsubmit="return loginForm()">
+                  <label for="email">Email Address</label><br />
 
-                <div class="offset-1 form-group p-2">
-                  <label for="email">Email Address</label>
-                  <input
-                    type="email"
+                  <input type="email"
                     id="email"
-                    class="form-controls"
+                    class="form-control form-control-lg" 
                     name="email"
-                    value=""
-                  />
+                    value="" />
                   <p id="msg1" class="text-danger"></p>
-                </div>
 
-                <div class="offset-1 form-group p-2">
-                  <label for="password">Password</label>
+                  <label for="password">Password</label><br/>
                   <input
                     type="password"
                     id="password"
-                    class="form-controls"
+                    class="form-control form-control-lg" 
                     name="password"
                     value=""
                   />
-                  <p id="msg2" class="text-danger"></p>
-                </div>
-                <div class="offset-1 pt-3">
-                  <a href="/forgotpassword">Forgott Password?</a>
-                  <p class="">Not a member? <a href="user_sign">SignUp</a> </p>
-                </div>
-                <div class="offset-1 col-lg-10 text-center">
+                    <p id="msg2" class="text-danger"></p>
+                  <p style="text-align: right;"><a href="/forgotpassword">Forgott Password?</a></p>
+
+                  {{!-- <span style="text-align: right;"><a href="/forgotpassword">Forgott Password?</a></span><br> --}}
+                  {{!-- <p class="">Not a member? <a href="user_sign">SignUp</a> </p> --}}
+
                   <button
                     type="submit"
-                    class="btn btn-dark mt-4 ms-5"
+                    class="btn  btn-outline-secondary" style="width: 100%;"
                   >Login</button>
-                </div>
-              </div>
-            </form>
-            <a href="/auth/google"><button
-                class="btn btn-dark text-white"
-              >google+</button></a>
+                  <br/>
+                </form>
+                <h5 class="text-center text-muted">OR</h5>
+                  <div class="text-center">
+                    <a href="/auth/google"><button
+                class="btn btn-dark text-white" style="width: 100%;"
+              ><i class="fa-brands fa-google" style="color: #f5f4f4;"></i><span class="ps-2">Sign in with Google</span></button></a>
 
+                  </div><br/>
+                  <p class="text-center">Not a member? <a href="user_sign">SignUp</a></p>
+
+
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section> 
-
+    </section>
     
-
     
 
     {{#if alert}}

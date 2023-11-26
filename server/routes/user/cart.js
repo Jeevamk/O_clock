@@ -16,9 +16,10 @@ route.get('/', logauth, async (req, res) => {
 
         const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
             const productId = newcart.productId;
+            const quantity = newcart.quantity;
             const productContent = await productCollection.find({ _id: productId });
 
-            return productContent ? { productContent, quantity: 1 } : null;
+            return productContent ? { productContent, quantity } : null;
         }));
 
         console.log(cartItems);
@@ -39,7 +40,7 @@ route.post('/',wishauth, async (req, res) => {
     try {
         const userId = req.userId;
         console.log(userId);
-        const { productId } = req.body;
+        const { productId,quantity } = req.body;
         console.log(productId);
         // if (!userId){
         //     return res.render("user_login");
@@ -48,18 +49,20 @@ route.post('/',wishauth, async (req, res) => {
         const existingcart = await cartcollection.findOne({ userId, productId });
 
         if (existingcart) {
-            return res.status(400).json({ message: 'Product already in cart' });
-
+            existingcart.quantity =parseInt(existingcart.quantity) + parseInt(quantity) ;
+            const updatedCart = await existingcart.save();
+            return res.json(updatedCart);
         }
 
-        const cartItem = new cartcollection({ userId, productId });
+        const cartItem = new cartcollection({ userId, productId,quantity});
         const savedcart = await cartItem.save();
 
         if (savedcart) {
-            const _id = savedcart.productId;
-            const product = await productCollection.findById(_id);
+            return res.json(savedcart)
+            // const _id = savedcart.productId;
+            // const product = await productCollection.findById(_id);
 
-            return res.render('productDetails', { product });
+            // return res.render('productDetails', { product });
         } else {
             return res.status(400).json({ message: 'Product not added to cart successfully' });
         }
@@ -72,10 +75,10 @@ route.post('/',wishauth, async (req, res) => {
 //delete//
 route.get("/delete/:id",logauth, async (req, res) => {
     
-    const Idproduct = req.params._id;
+    const Idproduct = req.params.id;
 
     try {
-      const product = await cartcollection.findOne({ Idproduct });
+      const product = await cartcollection.findOne({productId:Idproduct });
       if (product) {
         res.json(product);
       } else {

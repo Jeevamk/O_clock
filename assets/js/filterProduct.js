@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleCategoryClick(event) {
-        const checkbox = event.target.previousElementSibling; // Assuming the checkbox comes before the category name
+        const checkbox = event.target.previousElementSibling; 
         checkbox.checked = !checkbox.checked;
         filterProducts();
     }

@@ -98,10 +98,12 @@ route.post('/',wishauth, async (req, res) => {
 //delete the product//
 route.get("/delete/:id",logauth, async (req, res) => {
     
-      const Idproduct = req.params._id;
+      const Idproduct = req.params.id;
+      console.log(Idproduct);
   
       try {
-        const product = await wishcollection.findOne({ Idproduct });
+        const product = await wishcollection.findOne({ productId:Idproduct });
+        console.log(product);
         if (product) {
           res.json(product);
         } else {
@@ -120,9 +122,10 @@ route.delete("/delete", logauth, async (req, res) => {
     try {
         const proId = req.body.id;
 
-        await wishcollection.findByIdAndDelete(proId);
-        res.status(204).send(); 
-    } catch (error) {
+        const deleteproduct = await wishcollection.findByIdAndDelete(proId);
+        return res.json(deleteproduct)    
+    }
+        catch (error) {
         res.status(500).json({ error: "Internal server error" });
     }
 })
