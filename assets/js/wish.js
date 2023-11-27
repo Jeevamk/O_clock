@@ -104,8 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (addCartList) {
     addCartList.addEventListener("click", () => {
       const productId = addCartList.getAttribute("data-product-id");
+      const quantity = document.getElementById('quantity').value;
+      console.log(quantity);
       const CartProduct = {
         productId: productId,
+        quantity:quantity,
+        
+       
       };
 
       fetch("/cart", {
@@ -149,6 +154,7 @@ document.addEventListener('DOMContentLoaded',()=> {
 
     const cartItem = {
       productId: productId,
+      
       };
 
     await  fetch('/cart', {

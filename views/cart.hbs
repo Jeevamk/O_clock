@@ -100,48 +100,49 @@
                     <div class="card border shadow-0">
                         <div class="m-4">
                             <h4 class="card-title mb-4" style="font-weight: 700;">Your shopping cart</h4>
-                            <div class="row gy-3 mb-4 pt-4">
+                            <div class="row gy-3 mb-4 pt-4 cart">
                                 {{#each cartItems}}
                                 {{#each productContent}}
                                 <div class="col-lg-5">
                                     <div class="me-lg-5">
                                         <div class="d-flex">
-                                            <img src="{{this.images}}" class="border rounded me-3"
-                                                style="width: 96px; height: 96px;" class="img-fluid"
+                                            <img src="{{this.images}}" class="border-none shadow-sm rounded me-3"
+                                                style="width: 80px; height: 80px;" class="img-fluid"
                                                 alt="{{this.name}}" />
                                             <div class="">
                                                 <h5 class="text-dark">{{this.name}}</h5>
+                                            </div>
+                                            <div class="">
+                                                <p class="text-muted price" data-cart-id="{{this._id}}">{{this.price}}/-</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div
                                     class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
+
                                     <div class="">
                                         <div class="input-group mcxb-3 shadow-lg " style="width: 170px;">
                                             <button class="btn btn-white border-end buttonsub" type="button"
-                                                style="border:0 1px " data-mdb-ripple-color="dark">
+                                                style="border:0 1px " data-mdb-ripple-color="dark" onclick="updateQantity('{{this._id}},-1')" >
                                                 <i class="fas fa-minus"></i>
                                             </button>
-                                            <input type="text" class="form-control text-center quantity" placeholder="0"
-                                                value="1" style="border: none" />
+                                            <input type="text" class="form-control text-center quantity" placeholder="0" data-cart-id="{{this._id}}"
+                                                value="{{../quantity}}" style="border: none" />
                                             <button class="btn btn-white border-start buttonadd" type="button"
-                                                data-mdb-ripple-color="dark">
+                                                data-mdb-ripple-color="dark" onclick="updateQantity('{{this._id}},1')">
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                         </div>
                                     </div>
                                     <div class="ps-5 ms-5">
-                                        <text class="h6">{{this.price}}/-</text> <br />
+                                        <text class="text-danger netprice">0</text> <br />
                                     </div>
                                 </div>
                                 <div
                                     class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
                                     <div class="float-md-end">
-                                        {{!-- <a
-                                            class="btn btn-light border text-danger icon-hover-danger deleteCartProduct"
-                                            data-user-id="{{this._id}}">
-                                            Remove</a> --}}
+
                                         <button class="deleteCartProduct btn btn-primary btn-sm "
                                             data-user-id="{{this._id}}" type="button">Delete</button>
                                     </div>
@@ -151,7 +152,6 @@
                             </div>
                         </div>
                     </div>
-
 
                 </div>
                 <!-- cart -->

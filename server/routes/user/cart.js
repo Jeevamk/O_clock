@@ -40,8 +40,9 @@ route.post('/',wishauth, async (req, res) => {
     try {
         const userId = req.userId;
         console.log(userId);
-        const { productId,quantity } = req.body;
-        console.log(productId);
+        const { productId } = req.body;
+        const quantity =  req.body.quantity || 1;
+        console.log(productId , quantity);
         // if (!userId){
         //     return res.render("user_login");
         // }
@@ -49,12 +50,12 @@ route.post('/',wishauth, async (req, res) => {
         const existingcart = await cartcollection.findOne({ userId, productId });
 
         if (existingcart) {
-            existingcart.quantity =parseInt(existingcart.quantity) + parseInt(quantity) ;
+            existingcart.quantity = parseInt(existingcart.quantity) + parseInt(quantity) ;
             const updatedCart = await existingcart.save();
             return res.json(updatedCart);
         }
 
-        const cartItem = new cartcollection({ userId, productId,quantity});
+        const cartItem = new cartcollection({ userId, productId, quantity });
         const savedcart = await cartItem.save();
 
         if (savedcart) {

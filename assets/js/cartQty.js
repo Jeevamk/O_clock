@@ -75,3 +75,47 @@ function deletecart() {
       });
   }
   
+
+//update price//
+// function updateEachProduct() {
+//   let totalPrice = 0;
+
+//   document.querySelectorAll('.cart').forEach(productRow => {
+//     const quantity = parseInt(productRow.querySelectorAll('.quantity').value,10) || 0;
+//     const pricePerItem = parseFloat(productRow.querySelector('.price').textContent.replace('/-', '')) || 0;
+
+//   })
+// }
+
+function updateQantity(id, changeQty) {
+  console.log("dfsd",id,changeQty);
+  // Get the quantity input element for the specific product ID
+  const quantityInput = document.querySelector(`input.quantity[data-cart-id="${id}"]`);
+  console.log(quantityInput);
+
+  // Get the price element for the specific product ID
+  const priceElement = document.querySelector(`.price[data-cart-id="${id}"]`);
+  console.log(priceElement);
+
+  // Get the net price element for the specific product ID
+  const netPriceElement = document.querySelectorAll(`.netprice[data-cart-id="${id}"]`);
+
+  // Check if the quantity input exists
+  if (quantityInput) {
+    // Update the quantity value
+    const newQuantity = parseInt(quantityInput.value, 10) + changeQty;
+    quantityInput.value = newQuantity >= 0 ? newQuantity : 0;
+
+    // Get the price value (remove the trailing '-/')
+    const price = parseFloat(priceElement.textContent.replace('/-', ''));
+
+    // Calculate the net price
+    const netPrice = newQuantity * price;
+
+    // Update the net price element
+    netPriceElement.textContent = netPrice.toFixed(2);
+
+    // You can perform additional logic or update the server here
+  }
+}
+

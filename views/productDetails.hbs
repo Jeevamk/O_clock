@@ -174,7 +174,7 @@
                                         id="buttonsub" data-mdb-ripple-color="dark">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <input type="text" class="form-control text-center" id="quantity" placeholder="0"
+                                    <input type="text" class="form-control text-center" id="quantity" name="quantity" placeholder="0"
                                         value="1" style="border: none" />
                                     <button class="btn btn-white border-start" type="button" id="buttonadd"
                                         data-mdb-ripple-color="dark">
@@ -183,9 +183,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="btn btn-light shadow-sm border" data-product-id="{{product._id}}"
+                        <button class="btn btn-light shadow-sm border" data-product-id="{{product._id}}"
                             id="addCart"> <i class="fa-solid fa-cart-shopping" style="color: #00040a;"></i> Add to cart
-                        </a>
+                        </button>
                         <button class="btn btn-light border border-secondary py-2 icon-hover px-3 wish" id="addWishList"
                             data-product-id="{{product._id}}"> <i class="me-1 fa fa-heart "></i></button>
                         <hr>

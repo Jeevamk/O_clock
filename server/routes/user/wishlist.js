@@ -85,13 +85,14 @@ route.post('/',wishauth, async (req, res) => {
 
             return res.render('productDetails', { product });
         } else {
-            return res.status(400).json({ message: 'Product not added to wishlist successfully' });
+            return res.status(400).json({ message: 'Product not added to wishlist'});
         }
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 
 
