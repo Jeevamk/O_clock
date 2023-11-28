@@ -73,6 +73,7 @@ route.post('/',wishauth, async (req, res) => {
     }
 });
 
+
 //delete//
 route.get("/delete/:id",logauth, async (req, res) => {
     
@@ -102,5 +103,20 @@ route.delete("/delete", logauth, async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 })
+
+
+route.put('/updateQuantity',logauth, async (req,res)=>{
+    const userId = req.userId;
+    const {productId , newQuantity}  = req.body;
+
+    try {
+        const updatedProduct = await cartcollection.findOneAndUpdate({ userId, productId }, { quantity: newQuantity }, { new: true });
+        res.json(updatedProduct);
+      } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+})
+
+
 
 module.exports = route;

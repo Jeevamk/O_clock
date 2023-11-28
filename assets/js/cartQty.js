@@ -1,21 +1,21 @@
 //quantity button//
-document.addEventListener('DOMContentLoaded', () => {
-    const quantityItems = document.querySelectorAll('.quantity');
-    const buttonAdds = document.querySelectorAll('.buttonadd');
-    const buttonSubs = document.querySelectorAll('.buttonsub');
+// document.addEventListener('DOMContentLoaded', () => {
+//     const quantityItems = document.querySelectorAll('.quantity');
+//     const buttonAdds = document.querySelectorAll('.buttonadd');
+//     const buttonSubs = document.querySelectorAll('.buttonsub');
 
-    buttonAdds.forEach((buttonAdd, index) => {
-        buttonAdd.addEventListener('click', () => {
-            quantityItems[index].value = parseInt(quantityItems[index].value, 10) + 1;
-        });
-    });
+//     buttonAdds.forEach((buttonAdd, index) => {
+//         buttonAdd.addEventListener('click', () => {
+//             quantityItems[index].value = parseInt(quantityItems[index].value, 10) ;
+//         });
+//     });
 
-    buttonSubs.forEach((buttonSub, index) => {
-        buttonSub.addEventListener('click', () => {
-            quantityItems[index].value = Math.max(1, parseInt(quantityItems[index].value, 10) - 1);
-        });
-    });
-});
+//     buttonSubs.forEach((buttonSub, index) => {
+//         buttonSub.addEventListener('click', () => {
+//             quantityItems[index].value = Math.max(1, parseInt(quantityItems[index].value, 10) - 1);
+//         });
+//     });
+// });
 
 
 //delete product from cart//
@@ -76,46 +76,47 @@ function deletecart() {
   }
   
 
-//update price//
-// function updateEachProduct() {
-//   let totalPrice = 0;
+//update quantity//
+function updateQuantity(id, changeQty) {
 
-//   document.querySelectorAll('.cart').forEach(productRow => {
-//     const quantity = parseInt(productRow.querySelectorAll('.quantity').value,10) || 0;
-//     const pricePerItem = parseFloat(productRow.querySelector('.price').textContent.replace('/-', '')) || 0;
+  const quantityInput = document.querySelector(`.quantity[data-cart-id="${id}"]`);
 
-//   })
-// }
-
-function updateQantity(id, changeQty) {
-  console.log("dfsd",id,changeQty);
-  // Get the quantity input element for the specific product ID
-  const quantityInput = document.querySelector(`input.quantity[data-cart-id="${id}"]`);
-  console.log(quantityInput);
-
-  // Get the price element for the specific product ID
   const priceElement = document.querySelector(`.price[data-cart-id="${id}"]`);
-  console.log(priceElement);
 
-  // Get the net price element for the specific product ID
   const netPriceElement = document.querySelectorAll(`.netprice[data-cart-id="${id}"]`);
 
-  // Check if the quantity input exists
   if (quantityInput) {
-    // Update the quantity value
-    const newQuantity = parseInt(quantityInput.value, 10) + changeQty;
-    quantityInput.value = newQuantity >= 0 ? newQuantity : 0;
+    let newQuantity = parseInt(quantityInput.value) + changeQty;
+    newQuantity = Math.max(0, newQuantity);
+    
+    if (newQuantity <=0 ){
+      return;
+    }
 
-    // Get the price value (remove the trailing '-/')
-    const price = parseFloat(priceElement.textContent.replace('/-', ''));
+    // if (newQuantity > countStock) {
+    //   alert(`Sorry, only ${countStock} items are available.`);
+    //   return;
+    // }
 
-    // Calculate the net price
-    const netPrice = newQuantity * price;
 
-    // Update the net price element
+    quantityInput.value = newQuantity;
+    let price = parseFloat(priceElement.textContent.replace('/-', ''));
+
+    let netPrice = newQuantity * price;
+    console.log("dfusdhfu",netPrice);
+
     netPriceElement.textContent = netPrice.toFixed(2);
 
-    // You can perform additional logic or update the server here
+    fetch('/cart/updateQuantity', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId: id, newQuantity }),
+    })
+
   }
+  
+  
 }
 

@@ -194,13 +194,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// document.querySelectorAll('.filter_brand').forEach(function (button) {
-//     button.addEventListener('click', function () {
-//         // Toggle the selected state
-//         button.classList.toggle('selected');
-
-//         // Update URL and navigate to the shop page
-//         updateUrl();
-//         window.location.href = '/shop'; // Modify this URL based on your route
-//     });
-// });

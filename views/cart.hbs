@@ -124,19 +124,19 @@
                                     <div class="">
                                         <div class="input-group mcxb-3 shadow-lg " style="width: 170px;">
                                             <button class="btn btn-white border-end buttonsub" type="button"
-                                                style="border:0 1px " data-mdb-ripple-color="dark" onclick="updateQantity('{{this._id}},-1')" >
+                                                style="border:0 1px " data-mdb-ripple-color="dark" onclick="updateQuantity('{{this._id}}',-1)" >
                                                 <i class="fas fa-minus"></i>
                                             </button>
-                                            <input type="text" class="form-control text-center quantity" placeholder="0" data-cart-id="{{this._id}}"
+                                            <input type="text" class="form-control text-center quantity" placeholder="1" data-cart-id="{{this._id}}"
                                                 value="{{../quantity}}" style="border: none" />
                                             <button class="btn btn-white border-start buttonadd" type="button"
-                                                data-mdb-ripple-color="dark" onclick="updateQantity('{{this._id}},1')">
+                                                data-mdb-ripple-color="dark" onclick="updateQuantity('{{this._id}}',1)">
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                         </div>
                                     </div>
                                     <div class="ps-5 ms-5">
-                                        <text class="text-danger netprice">0</text> <br />
+                                        <text class="text-danger netprice">0.00<span>/-</span></text><br/>
                                     </div>
                                 </div>
                                 <div
@@ -362,6 +362,8 @@
             </div>
         </footer>
     </div> --}}
+
+    
 
 
     <script src="/js/cartQty.js"></script>
