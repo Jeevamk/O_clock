@@ -136,7 +136,7 @@
                                         </div>
                                     </div>
                                     <div class="ps-5 ms-5">
-                                        <text class="text-danger netprice">0.00<span>/-</span></text><br/>
+                                        <text class="text-danger netprice" data-cart-id="{{this._id}}"><span>/-</span></text><br/>
                                     </div>
                                 </div>
                                 <div
@@ -209,7 +209,9 @@
         </div>
     </section>
 
-
+    {{#if cartItems}}
+    <div id="cartLength" style="display: none;" >{{cartItems.length}}</div>
+    {{/if}}
 
 
 

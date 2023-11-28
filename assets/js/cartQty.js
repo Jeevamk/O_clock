@@ -1,22 +1,3 @@
-//quantity button//
-// document.addEventListener('DOMContentLoaded', () => {
-//     const quantityItems = document.querySelectorAll('.quantity');
-//     const buttonAdds = document.querySelectorAll('.buttonadd');
-//     const buttonSubs = document.querySelectorAll('.buttonsub');
-
-//     buttonAdds.forEach((buttonAdd, index) => {
-//         buttonAdd.addEventListener('click', () => {
-//             quantityItems[index].value = parseInt(quantityItems[index].value, 10) ;
-//         });
-//     });
-
-//     buttonSubs.forEach((buttonSub, index) => {
-//         buttonSub.addEventListener('click', () => {
-//             quantityItems[index].value = Math.max(1, parseInt(quantityItems[index].value, 10) - 1);
-//         });
-//     });
-// });
-
 
 //delete product from cart//
 const deleteCart = document.querySelectorAll(".deleteCartProduct");
@@ -76,14 +57,13 @@ function deletecart() {
   }
   
 
+
 //update quantity//
 function updateQuantity(id, changeQty) {
 
   const quantityInput = document.querySelector(`.quantity[data-cart-id="${id}"]`);
-
   const priceElement = document.querySelector(`.price[data-cart-id="${id}"]`);
-
-  const netPriceElement = document.querySelectorAll(`.netprice[data-cart-id="${id}"]`);
+  const netPriceElement = document.querySelector(`.netprice[data-cart-id="${id}"]`);
 
   if (quantityInput) {
     let newQuantity = parseInt(quantityInput.value) + changeQty;
@@ -93,19 +73,16 @@ function updateQuantity(id, changeQty) {
       return;
     }
 
-    // if (newQuantity > countStock) {
-    //   alert(`Sorry, only ${countStock} items are available.`);
-    //   return;
-    // }
-
-
     quantityInput.value = newQuantity;
     let price = parseFloat(priceElement.textContent.replace('/-', ''));
 
-    let netPrice = newQuantity * price;
-    console.log("dfusdhfu",netPrice);
-
+    let netPrice =parseInt(newQuantity * price);
     netPriceElement.textContent = netPrice.toFixed(2);
+
+  //   netPriceElement.forEach(netPriceElement => {
+  //     netPriceElement.textContent = netPrice;
+  // });
+  console.log("jdbjsh",netPriceElement);
 
     fetch('/cart/updateQuantity', {
       method: 'PUT',
@@ -116,7 +93,17 @@ function updateQuantity(id, changeQty) {
     })
 
   }
-  
-  
 }
 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cartLength = document.getElementById(cartLength);
+    const quantityItems = document.querySelectorAll('.quantity');
+    const priceItems = document.querySelectorAll('.price');
+    const netPriceItems = document.querySelectorAll('.netPrice');
+
+   
+
+   
+});

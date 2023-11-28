@@ -34,6 +34,9 @@ const wishcollection= require("../../model/wish_model")
 route.get('/', logauth, async (req, res) => {
     try {
         const userId = req.userId;
+        if(userId==undefined) {
+            return res.redirect('/user')
+        }
         console.log(userId);
         const user = await userCollection.findById(userId);
         const wishlistProducts = await wishcollection.find({ userId });
@@ -65,9 +68,10 @@ route.post('/',wishauth, async (req, res) => {
         const userId = req.userId;
         console.log(userId);
         const { productId } = req.body;
-        // if (!userId){
-        //     return res.render("user_login");
-        // }
+
+        if (!userId){
+            return res.redirect("/user");
+        }
 
         const existingWish = await wishcollection.findOne({ userId, productId });
 

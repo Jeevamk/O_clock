@@ -17,13 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
       })
         .then((response) => {
           if (response.ok) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Product Added Succefully...",
-              showConfirmButton: false,
-              timer: 1500
-            });
+            if (response.status === 200) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Product Added Successfully...",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+          } else if (response.status === 401) {
+            window.location.href = '/user';
           } else {
             console.error(
               "Error adding product to wishlist:",
@@ -120,27 +124,52 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify(CartProduct),
       })
-        .then((response) => {
-          if (response.ok) {
+      .then((response) => {
+        if (response.ok) {
+          if (response.status === 200) {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Product Added to Cart",
+              title: "Product Added Successfully...",
               showConfirmButton: false,
               timer: 1500
-            })
-          } else {
-            console.error(
-              "Error adding product to Cart:",
-              response.statusText
-            );
+            });
           }
-        })
-        .catch((error) => {
-          console.error("Fetch error:", error);
-        });
-    });
-  }
+        } else if (response.status === 401) {
+          window.location.href = '/user';
+        } else {
+          console.error(
+            "Error adding product to wishlist:",
+            response.statusText
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
+      });
+  });
+}
+  //       .then((response) => {
+  //         if (response.ok) {
+  //           Swal.fire({
+  //             position: "top-end",
+  //             icon: "success",
+  //             title: "Product Added to Cart",
+  //             showConfirmButton: false,
+  //             timer: 1500
+  //           })
+  //         } else {
+  //           console.error(
+  //             "Error adding product to Cart:",
+  //             response.statusText
+  //           );
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error("Fetch error:", error);
+  //       });
+  //   });
+  // }
 });
 
 

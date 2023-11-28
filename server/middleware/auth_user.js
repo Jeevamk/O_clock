@@ -34,27 +34,13 @@ function logauth(req, res, next) {
 }
 
 
-// function wishauth(req, res, next) {
-//   const token = req.cookies.sessions;
-//   if (!token) {
-//     res.redirect("/user")
-//   } else {
-//     jwt.verify(token, keysecret, (err, decodedToken) => {
-//       if (err) return res.status(401).render({ message: ' failed' });
-//       console.log(decodedToken);
-//       req.userId = decodedToken.userId;
-//       next();
-//     });
-//   }
-// }
-
-
 function wishauth(req, res, next) {
   const token = req.cookies.sessions;
+  const userId =req.userId
 
-  if (!token) {
-    return res.redirect("/user");
-  }
+  // if (!token) {
+  //   return res.redirect("user");
+  // }
   jwt.verify(token, keysecret, (err, decodedToken) => {
     if (err) {
       return res.status(401).render({ message: ' failed' });
@@ -62,6 +48,7 @@ function wishauth(req, res, next) {
 
     console.log(decodedToken);
     req.userId = decodedToken.userId;
+  
     next();
   });
 }
