@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
               });
             }
           } else if (response.status === 401) {
+            alert("Please Login and try again...")
             window.location.href = '/user';
           } else {
             console.error(
@@ -112,9 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(quantity);
       const CartProduct = {
         productId: productId,
-        quantity:quantity,
-        
-       
+        quantity: quantity,
+
+
       };
 
       fetch("/cart", {
@@ -124,95 +125,88 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify(CartProduct),
       })
-      .then((response) => {
-        if (response.ok) {
-          if (response.status === 200) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Product Added Successfully...",
-              showConfirmButton: false,
-              timer: 1500
-            });
+        .then((response) => {
+          if (response.ok) {
+            if (response.status === 200) {
+              // Toastify({
+              //   text: "This is a toast",
+              //   className: "info",
+              //   style: {
+              //     background: "linear-gradient(to right, #00b09b, #96c93d)",
+                  
+              //   },
+              //   newWindow: true,
+              //   close: true,
+              //   gravity: "bottom",
+              //   position: "left",
+              //   stopOnFocus: true,
+              // }).showToast();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Product Added Successfully...",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+          } else if (response.status === 401) {
+            alert("Please Login and try again...")
+            window.location.href = '/user';
+          } else {
+            console.error(
+              "Error adding product to wishlist:",
+              response.statusText
+            );
           }
-        } else if (response.status === 401) {
-          window.location.href = '/user';
-        } else {
-          console.error(
-            "Error adding product to wishlist:",
-            response.statusText
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Fetch error:", error);
-      });
-  });
-}
-  //       .then((response) => {
-  //         if (response.ok) {
-  //           Swal.fire({
-  //             position: "top-end",
-  //             icon: "success",
-  //             title: "Product Added to Cart",
-  //             showConfirmButton: false,
-  //             timer: 1500
-  //           })
-  //         } else {
-  //           console.error(
-  //             "Error adding product to Cart:",
-  //             response.statusText
-  //           );
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error("Fetch error:", error);
-  //       });
-  //   });
-  // }
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+        });
+    });
+  }
 });
 
 
 
 //add to cart from wishlist page//
-document.addEventListener('DOMContentLoaded',()=> {
-  const wishToCart =document.querySelectorAll('.wishToCart');
+document.addEventListener('DOMContentLoaded', () => {
+  const wishToCart = document.querySelectorAll('.wishToCart');
   Array.from(wishToCart).forEach((button) => {
-    button.addEventListener('click', async() => {
-    const productId = button.getAttribute('data-product-id');
+    button.addEventListener('click', async () => {
+      const productId = button.getAttribute('data-product-id');
 
-    const cartItem = {
-      productId: productId,
-      
+      const cartItem = {
+        productId: productId,
+
       };
 
-    await  fetch('/cart', {
+      await fetch('/cart', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(cartItem)
       })
-      .then((response) => {
-        if (response.ok) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Product Added to Cart Succefully...",
-            showConfirmButton: false,
-            timer: 1500
-          });
-        } else {
-          console.error(
-            "Error adding product to wishlist:",
-            response.statusText
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Fetch error:", error);
-      });
-      
+        .then((response) => {
+          if (response.ok) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Product Added to Cart Succefully...",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          } else {
+            console.error(
+              "Error adding product to wishlist:",
+              response.statusText
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+        });
+
     });
-});
+  });
 })

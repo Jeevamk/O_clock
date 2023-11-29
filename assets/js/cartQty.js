@@ -34,55 +34,67 @@ deleteCart.forEach((btn) => {
 
 
 function deletecart() {
-    const DeleteData = document.getElementById("deleteProductData");
-    const myDeleteData = new FormData(DeleteData);
-  
-    fetch(`/cart/delete`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Object.fromEntries(myDeleteData)),
+  const DeleteData = document.getElementById("deleteProductData");
+  const myDeleteData = new FormData(DeleteData);
+
+  fetch(`/cart/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Object.fromEntries(myDeleteData)),
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "/cart";
+      }
+      throw new Error("not ok");
     })
-      .then((response) => {
-        if (response.ok) {
-          window.location.href = "/cart";
-        }
-        throw new Error("not ok");
-      })
-  
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-  
+
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
 
-//update quantity//
+
+//update quantity button//
 function updateQuantity(id, changeQty) {
 
   const quantityInput = document.querySelector(`.quantity[data-cart-id="${id}"]`);
   const priceElement = document.querySelector(`.price[data-cart-id="${id}"]`);
   const netPriceElement = document.querySelector(`.netprice[data-cart-id="${id}"]`);
+  const totalPrice = document.getElementById('totalPrice');
+  const discount = document.getElementById('discount');
+  const Total = document.getElementById('total')
+
 
   if (quantityInput) {
     let newQuantity = parseInt(quantityInput.value) + changeQty;
     newQuantity = Math.max(0, newQuantity);
-    
-    if (newQuantity <=0 ){
+
+    if (newQuantity <= 0) {
       return;
     }
 
     quantityInput.value = newQuantity;
     let price = parseFloat(priceElement.textContent.replace('/-', ''));
 
-    let netPrice =parseInt(newQuantity * price);
+    let netPrice = parseInt(newQuantity * price);
     netPriceElement.textContent = netPrice.toFixed(2);
 
-  //   netPriceElement.forEach(netPriceElement => {
-  //     netPriceElement.textContent = netPrice;
-  // });
-  console.log("jdbjsh",netPriceElement);
+    let netPrices = document.querySelectorAll('.netprice');
+    let totalsum = 0;
+    netPrices.forEach((netPriceElement) => {
+      totalsum += parseFloat(netPriceElement.textContent);
+    });
+
+    totalPrice.textContent = totalsum;
+
+    let grandTotal = parseFloat(totalPrice.textContent) - parseFloat(discount.textContent);
+    Total.textContent = grandTotal;
+
+    console.log("jdbjsh", netPriceElement);
 
     fetch('/cart/updateQuantity', {
       method: 'PUT',
@@ -93,17 +105,37 @@ function updateQuantity(id, changeQty) {
     })
 
   }
+  
 }
 
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
-    const cartLength = document.getElementById(cartLength);
-    const quantityItems = document.querySelectorAll('.quantity');
-    const priceItems = document.querySelectorAll('.price');
-    const netPriceItems = document.querySelectorAll('.netPrice');
+  const cartLength = (document.getElementById('cartlength').textContent)
+  console.log("jhadjhsad", cartLength);
+  const quantityItems = document.querySelectorAll('.quantity');
+  const priceItems = document.querySelectorAll('.price');
+  const netPriceItems = document.querySelectorAll('.netPrice');
+  console.log("sdk", priceItems);
 
-   
+  for (let i = 0; i < cartLength; i++) {
+    let price = parseFloat(priceItems[i].textContent)
+    let quantity = parseInt(quantityItems[i].value)
+    netPriceItems[i].textContent = price * quantity || 0;
 
-   
+  }
+
+  let totalsum = 0;
+  for (i = 0; i < cartLength; i++) {
+    let totalSum = parseFloat(netPriceItems[i].textContent)
+    totalsum = totalsum + totalSum || 0;
+  }
+  const totalPrice = document.getElementById('totalPrice')
+  totalPrice.textContent = totalsum;
+  const discount = document.getElementById('discount')
+  const Total = document.getElementById('total')
+  let grandTotal = parseInt(totalPrice.textContent) - parseInt(discount.textContent)
+  Total.textContent = grandTotal
+
 });

@@ -59,7 +59,6 @@ route.post("/", upload.single("logo"), async (req, res) => {
 });
 
 
-
 //view single data//
 
 route.get("/:id", async (req, res) => {
@@ -81,6 +80,7 @@ route.get("/:id", async (req, res) => {
     res.redirect("/adminhome");
   }
 });
+
 
 //edit//
 route.get("/update/:id", async (req, res) => {

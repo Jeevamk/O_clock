@@ -78,13 +78,14 @@ route.get("/",logauth, async (req, res) => {
   const topBanners = await bannerCollection.find({group:'Top Banner',status:"Enable"})
   const middleBanners = await bannerCollection.find({group:'Middle Banner',status:"Enable"})
   const bottomBanners = await bannerCollection.find({group:'Bottom Banner',status:"Enable"})
-  const brands = await brandCollection.find()
+  const brands = await brandCollection.find();
+  const newbrands = brands.slice(0,4)
   const newArrival = await productCollection.find().sort({ createdDate: -1 });
   const newarrivalArray = newArrival.slice(0, 4);
   const bestSellers = await productCollection.find().sort({ countStock: -1 });
   const bestSellersArray = bestSellers.slice(0, 4);
 
-  return res.render("user_index",{user,topBanners,middleBanners,bottomBanners,brands,newarrivalArray,bestSellersArray});
+  return res.render("user_index",{user,topBanners,middleBanners,bottomBanners,brands,newarrivalArray,bestSellersArray,newbrands});
 });
 
 

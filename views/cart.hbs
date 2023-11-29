@@ -136,7 +136,7 @@
                                         </div>
                                     </div>
                                     <div class="ps-5 ms-5">
-                                        <text class="text-danger netprice" data-cart-id="{{this._id}}"><span>/-</span></text><br/>
+                                        <text class="text-danger netprice" data-cart-id="{{this._id}}"><span></span></text><br/>
                                     </div>
                                 </div>
                                 <div
@@ -184,7 +184,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <p class="mb-2">Total price:</p>
-                                <p class="mb-2"><span id="totalPrice">0</span></p>
+                                <p class="mb-2"><span id="totalPrice">0</span><span> /-</span></p>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p class="mb-2">Discount:</p>
@@ -193,7 +193,7 @@
                             <hr />
                             <div class="d-flex justify-content-between">
                                 <p class="mb-2">Total:</p>
-                                <p class="mb-2 fw-bold"><span id="total"></span></p>
+                                <h5 class="mb-2 fw-bold"><span id="total" class="text-success"></span><span class="text-success"> /-</span></h5>
                             </div>
 
                             <div class="mt-3">
@@ -210,7 +210,7 @@
     </section>
 
     {{#if cartItems}}
-    <div id="cartLength" style="display: none;" >{{cartItems.length}}</div>
+    <div id="cartlength" style="display: none;" >{{cartItems.length}}</div>
     {{/if}}
 
 
