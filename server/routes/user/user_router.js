@@ -18,6 +18,7 @@ const productCollection = require("../../model/product_model")
 const brandCollection = require("../../model/brand_model")
 const categoryCollection = require("../../model/category_model");
 const bannerCollection = require("../../model/banner_model");
+const otpGenerator = require('otp-generator')
 
 // const session = require('express-session')
 
@@ -40,6 +41,7 @@ const trasnporter = nodemailer.createTransport({
   },
 });
 
+//forgot password//
 const sendResetPasswordMail = (email, token) => {
   return new Promise((resolve, reject) => {
     try {
@@ -47,7 +49,7 @@ const sendResetPasswordMail = (email, token) => {
         from: "jeevamk100@gmail.com",
         to: email,
         subject: "For Reset Password",
-        html: `<p> Hii , Please copy the link and reset password:</p><h1>${token}</h1>`,
+        html: `<p> Hii , Please copy the code and reset password:</p><h1>${token}</h1>`,
       };
       trasnporter.sendMail(mailoptions, (error, info) => {
         if (error) {
@@ -66,6 +68,36 @@ const sendResetPasswordMail = (email, token) => {
   })
   
 };
+
+//otp login//
+const sendVerificationEmail = (email, otp) => {
+  return new Promise((resolve, reject) => {
+    try {
+      const mailResponse  = {
+        from: "jeevamk100@gmail.com",
+        to: email,
+        subject: "Verification Email",
+        html: `<p> Hii , Here is your OTP code: ${otp}</p>`,
+      };
+      trasnporter.sendMail(mailResponse , (error, info) => {
+        if (error) {
+          console.log(error);
+          return reject(error)
+          
+        } else {
+          console.log("mail has been sent");
+          resolve (info.response)
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ success: false, msg: error.message });
+    }
+  })
+  
+};
+
+
 
 route.use(express.json());
 
@@ -105,46 +137,6 @@ route.get("/user_sign", (req, res) => {
 });
 
 
-route.post(
-  "/user_registration",
-
-  async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      const err = errors.array();
-      const firsterr = err[0];
-
-      return res.render("user_signup", { errors: firsterr });
-    }
-    try {
-      const password = req.body.password;
-      const cpassword = req.body.cpassword;
-
-      if (password === cpassword) {
-
-        const userData = new userCollection({
-          name: req.body.name,
-          email: req.body.email,
-          phone: req.body.phone,
-          password: req.body.password,
-          cpassword: req.body.cpassword,
-          status: req.body.status,
-        });
-
-        const postingData = await userData.save();
-        res.render("user_login");
-      } else {
-        res.render("user_signup");
-        res.status(400);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
-);
-
-//otp login//
 // route.post(
 //   "/user_registration",
 
@@ -162,38 +154,18 @@ route.post(
 //       const cpassword = req.body.cpassword;
 
 //       if (password === cpassword) {
-//         const otp = Math.floor(100000 + Math.random() * 900000).toString();
-//         console.log(otp);
-//         let userData;
-//         if(otp){
-//           userData = new userCollection({
-//             name: req.body.name,
-//             email: req.body.email,
-//             phone: req.body.phone,
-//             password: req.body.password,
-//             cpassword: req.body.cpassword,
-//             status: req.body.status,
-//           });
-  
-//         }
+
+//         const userData = new userCollection({
+//           name: req.body.name,
+//           email: req.body.email,
+//           phone: req.body.phone,
+//           password: req.body.password,
+//           cpassword: req.body.cpassword,
+//           status: req.body.status,
+//         });
 
 //         const postingData = await userData.save();
-//         try {
-//           const phNumber = req.body.phone;
-//           const phone = `+91${phNumber}`
-//           await twilioClient.messages.create({
-//             body: `Your OTP is: ${otp}`,
-//             to: phone,
-//             from: twilioPhone
-//           });
-
-          
-//           res.render('otpPhone', { phone: req.body.phone });
-//         } catch (twilioError) {
-//           console.error('Twilio Error:', twilioError);
-//           res.status(500).send('Error sending OTP');
-//         }
-//         // res.render("user_login");
+//         res.render("user_login");
 //       } else {
 //         res.render("user_signup");
 //         res.status(400);
@@ -203,6 +175,83 @@ route.post(
 //     }
 //   }
 // );
+
+//otp login//
+route.post(
+  "/user_registration",
+
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const err = errors.array();
+      const firsterr = err[0];
+
+      return res.render("user_signup", { errors: firsterr });
+    }
+    try {
+      const password = req.body.password;
+      const cpassword = req.body.cpassword;
+
+      if (password === cpassword) {
+        let otp = otpGenerator.generate(6, {
+          upperCaseAlphabets: false,
+          lowerCaseAlphabets: false,
+          specialChars: false,
+        });
+        console.log(otp);
+        let userData;
+        if(otp){
+          userData = new userCollection({
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+            password: req.body.password,
+            cpassword: req.body.cpassword,
+            status: req.body.status,
+            otp,
+          });
+  
+        }
+
+        const postingData = await userData.save();
+        console.log('Saved userData:', postingData._id);
+        try {
+          userId = postingData._id;
+          await sendVerificationEmail(req.body.email, otp);
+          res.render('otpPhone', { email: req.body.email,userId });
+        } catch (emailError) {
+          console.error('Email Error:', emailError);
+          res.status(500).send('Error sending verification email');
+        }
+      } else {
+        res.render("user_signup");
+        res.status(400);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+);
+
+route.post('/verifyOTP',async(req,res) =>{
+  try {
+    const { userId,otp } = req.body;
+    const user = await userCollection.findOne({ _id: userId });
+    if (otp==user.otp) {
+    const userData = await userCollection.findOneAndUpdate({ _id: userId },{$set:{otp:""}});
+    if (!userData) {
+      res.status(404).send('User not found');
+      return;
+    }
+
+    res.render('user_login');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+})
 
 
 route.post("/user_login", async (req, res) => {
