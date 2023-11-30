@@ -21,12 +21,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    {{!-- sweet alert --}}
-    {{!--
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
-        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    {{!-- toastify-js --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 </head>
 
@@ -167,7 +163,6 @@
 
                         <div class="row mb-4">
 
-                            <!-- col.// -->
                             <div class="col-md-4 col-6 mb-3 ">
                                 <label class="mb-2 d-block">Quantity</label>
                                 <div class="input-group mcxb-3 shadow-lg " style="width: 170px;">
@@ -226,8 +221,7 @@
                                                     <dd class="col-9">{{product.gender}} </dd>
 
                                                     <dt class="col-3">Stock Status</dt>
-                                                    <dd class="col-9 text-success">{{product.countStock}}<span
-                                                            class="text-success ms-2">In stock</span></dd>
+                                                    <dd class="col-9 text-success">In stock</dd>
                                                 </div>
                                             </div>
                                         </div>
@@ -400,6 +394,7 @@
     {{/if}}
 
 
+
     <script>
         function change1() {
             document.getElementById("main").src = "{{product.images}}"
@@ -429,8 +424,27 @@
             const buttonAdd = document.getElementById('buttonadd');
             const buttonSub = document.getElementById('buttonsub');
 
-            buttonAdd.addEventListener('click', () => quantityElement.value = parseInt(quantityElement.value, 10) + 1);
-            buttonSub.addEventListener('click', () => quantityElement.value = Math.max(1, parseInt(quantityElement.value, 10) - 1));
+            function ButtonSub() {
+                if (quantityElement.value <= 1) {
+                    buttonSub.style.display = "none";
+                } else {
+                    buttonSub.style.display = "block";
+                }
+            }
+            
+
+            buttonAdd.addEventListener('click', () => {
+                quantityElement.value = parseInt(quantityElement.value, 10) + 1;
+                ButtonSub();
+            });
+
+            buttonSub.addEventListener('click', () => {
+                quantityElement.value = Math.max(1, parseInt(quantityElement.value, 10) - 1)
+                ButtonSub();
+            });
+
+
+
 
 
             //image zoom//
@@ -440,17 +454,17 @@
 
         });
 
-    </script>
-    {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.5.0/toastify.js"
-        integrity="sha512-0M1OKuNQKhBhA/vqxH7OaS1LZlDwSrSbL3QzcmrlNbkWV0U4ewn8SWfVuRS5nLGV9IXsuNnkdqzyXOYXc0Eo9w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
-    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/js/zoom.js"></script>
 
-    <script src="/js/wish.js"></script>
+    </script>
+
+    {{!-- if(quantityElement.value <=1){ buttonSub.style.display="none" } --}} <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/toastify-js">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="/js/zoom.js"></script>
+
+        <script src="/js/wish.js"></script>
 
 </body>
 

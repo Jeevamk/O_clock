@@ -74,6 +74,7 @@ function updateQuantity(id, changeQty) {
     newQuantity = Math.max(0, newQuantity);
 
     if (newQuantity <= 0) {
+     
       return;
     }
 
@@ -93,6 +94,14 @@ function updateQuantity(id, changeQty) {
 
     let grandTotal = parseFloat(totalPrice.textContent) - parseFloat(discount.textContent);
     Total.textContent = grandTotal;
+
+    const minusButton = document.getElementById(`minusButton${id}`);
+    if (newQuantity <= 1) {
+        minusButton.style.display = 'none';
+    } else {
+        minusButton.style.display = 'inline-block'; 
+    }
+
 
     console.log("jdbjsh", netPriceElement);
 

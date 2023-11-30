@@ -18,17 +18,41 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => {
           if (response.ok) {
             if (response.status === 200) {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Product Added Successfully...",
-                showConfirmButton: false,
-                timer: 1500
-              });
+              Toastify({
+                text: "Product Added Successfully...",
+                className: "info",
+                style: {
+                  color :"white",
+                  background :"black"
+                  
+                },
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+              }).showToast();
             }
           } else if (response.status === 401) {
             alert("Please Login and try again...")
             window.location.href = '/user';
+          }
+          else if (response.status===400){
+            Toastify({
+              text: "Product is already in wishlist!!",
+              duration: 3000,
+              newWindow: true,
+              close: true,
+              gravity: "top", 
+              position: "right", 
+              stopOnFocus: true, 
+              style: {
+                color :"red",
+                background :"black",
+                
+              },  
+          }).showToast();
+
           } else {
             console.error(
               "Error adding product to wishlist:",
@@ -115,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
         productId: productId,
         quantity: quantity,
 
-
       };
 
       fetch("/cart", {
@@ -128,26 +151,22 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => {
           if (response.ok) {
             if (response.status === 200) {
-              // Toastify({
-              //   text: "This is a toast",
-              //   className: "info",
-              //   style: {
-              //     background: "linear-gradient(to right, #00b09b, #96c93d)",
+              Toastify({
+                text: "Product Added Successfully...",
+                duration: 2500,
+                className: "info",
+                style: {
+                  color :"white",
+                  background :"black",
                   
-              //   },
-              //   newWindow: true,
-              //   close: true,
-              //   gravity: "bottom",
-              //   position: "left",
-              //   stopOnFocus: true,
-              // }).showToast();
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Product Added Successfully...",
-                showConfirmButton: false,
-                timer: 1500
-              });
+                },
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+              }).showToast();
+              
             }
           } else if (response.status === 401) {
             alert("Please Login and try again...")
@@ -189,13 +208,21 @@ document.addEventListener('DOMContentLoaded', () => {
       })
         .then((response) => {
           if (response.ok) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Product Added to Cart Succefully...",
-              showConfirmButton: false,
-              timer: 1500
-            });
+            Toastify({
+              text: "Product Added to Cart Successfully...",
+              className: "info",
+              style: {
+                color :"white",
+                background :"black",
+                
+              },
+              newWindow: true,
+              close: true,
+              gravity: "top",
+              position: "right",
+              stopOnFocus: true,
+            }).showToast();
+            
           } else {
             console.error(
               "Error adding product to wishlist:",

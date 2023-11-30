@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //cropper edit brand
 document.addEventListener("DOMContentLoaded", () => {
-  const logoEdit = document.getElementById("logo");
-  const croppedlogo = document.getElementById("croppedlogo");
+  const logoEdit = document.getElementById("editlogo");
+  const croppedlogo = document.getElementById("croppededitlogo");
   let cropper;
 
   logoEdit.addEventListener("change", (e) => {
