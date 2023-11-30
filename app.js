@@ -55,6 +55,8 @@ app.use('/shop',require('./server/routes/user/shop'))
 app.use('/contact',require('./server/routes/user/contact'))
 app.use('/wish',require('./server/routes/user/wishlist'))
 app.use('/cart',require('./server/routes/user/cart'))
+app.use('/checkout',require('./server/routes/user/checkout'))
+
 
 
 

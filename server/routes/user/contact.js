@@ -40,7 +40,7 @@ async function mainMail(name,email,subject,message) {
 
 route.get("/",logauth, async (req, res) => {
   const userId = req.userId;
-        const user = await userCollection.findById(userId)
+      const user = await userCollection.findById(userId)
 
     return res.render("contact",{user});
   });

@@ -104,11 +104,10 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="/images/person.jpg" alt="Admin"
-                                    class="p-1" width="110">
+                                <img src="/images/person1.png" alt="Admin" class="p-1" width="110">
                                 <div class="mt-1">
-                                    <h2>Hello</h2>
-                                    <h4>{{user.name}}</h4>
+                                    <h3>Hello</h3>
+                                    {{!-- <h4>{{user.name}}</h4> --}}
                                     {{!-- <p class="text-secondary mb-1">Full Stack Developer</p> --}}
                                     <!-- <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p> -->
                                     {{!-- <button class="btn btn-primary">Follow</button>
@@ -116,31 +115,93 @@
                                 </div>
                             </div>
                             <hr class="my-4">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="false" aria-controls="flush-collapseOne">
+                                           <span style="font-weight: 500;">ACCOUNT SETTINGS</span> 
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul style="list-style: circle;">
+                                                <li><a href="/profile">Profile Information</a></li>
+                                                <li><a href="">Manage Addressess</a></li>
+                                            </ul>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                            aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            <span style="font-weight: 500;">MY STUFF</span>
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul style="list-style: circle;">
+                                                <li><a href="/wish">My Wishlist</a></li>
+                                                <li><a href="/cart">My Cart</a></li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            <span style="font-weight: 500;">MY ORDERS</span>
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <a href="">My Orders</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{!-- <ul class="list-group list-group-flush">
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
                                     <h5 class="mb-0"><i class="fa-solid fa-user" style="font-size: 20px;"></i><span
                                             class="p-2 text-muted">ACCOUNT SETTINGS</span></h5>
-                                            
+
 
                                 </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
                                     <h6 class="mb-0"><i class="fa-regular fa-heart" style="font-size: 18px;"></i><span
-                                            class="p-2"><a href="/wish" style="text-decoration: none;">MY WISHLIST</a></span></h6>
+                                            class="p-2"><a href="/wish" style="text-decoration: none;">MY
+                                                WISHLIST</a></span></h6>
                                 </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
                                     <h6 class="mb-0"><i class="fa-solid fa-cart-shopping"
-                                            style="font-size: 18px;"></i><span class="p-2"><a href="/cart">MY CART</a></span></h6>
+                                            style="font-size: 18px;"></i><span class="p-2"><a href="/cart">MY
+                                                CART</a></span></h6>
                                 </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
                                     <h6 class="mb-0"><i class="fa-solid fa-bag-shopping"
                                             style="font-size: 18px;"></i><span class="p-2">MY ORDERS</span></h6>
                                 </li>
-                                
-                               
-                            </ul>
+
+
+                            </ul> --}}
                             <hr class="my-3">
                             <div class="text-center">
-                            <a href="/user_logout"><button type="button" class="btn btn-outline-dark" style="width:100%">LogOut</button></a>
+                                <a href="/user_logout"><button type="button" class="btn btn-outline-dark"
+                                        style="width:100%">LogOut</button></a>
 
                             </div>
 
