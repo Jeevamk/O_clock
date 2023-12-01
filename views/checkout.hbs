@@ -62,10 +62,10 @@
                                 <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                             </li> --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa-regular fa-heart"></i></a>
+                                <a class="nav-link" href="/wish"><i class="fa-regular fa-heart"></i></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a class="nav-link" href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
                             </li>
 
                         </ul>
@@ -77,8 +77,120 @@
     </section>
     {{! navsection end }}
 
-    
 
+    <section style="margin-top: 100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                    <P class="text-center" style="font-size: x-large; font-weight:700">CHECKOUT FORM</P>
+                </div>
+            </div>
+            <div class="row m-5">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 border-end">
+                    <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">+Add New
+                        Address</button>
+
+                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1"
+                        id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">ADD ADDRESS</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <hr>
+                        <div class="offcanvas-body">
+                            <p style="font-weight:600; font-size:25px">Contact Details</p>
+                            <form action="/checkout/address" method="post" name="checkoutForm">
+                                <div class="row g-3">
+                                    <input type="text" class="form-control" value="{{userId}}" hidden>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control-sm" id="name" name="name"
+                                            placeholder="Name" value="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="phone" name="phone"
+                                            placeholder="Phone Number" value="">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="email" class="form-control" id="your-email" name="your-email"
+                                            placeholder="Email">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" id="address" name="address"
+                                            placeholder="Address"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="form-control" id="area" name="area"
+                                            placeholder="Road Name/Area/Colony"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="pincode" name="pincode"
+                                            placeholder="pincode">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="city" name="city"
+                                            placeholder="city">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>State</option>
+                                            <option value="1">Kerala</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="optionaladdress"
+                                            name="optionaladdress" placeholder="Nearby Famous Place/Shop">
+                                    </div>
+                                    <div class="col-12 pt-3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-dark w-100 fw-bold" onsubmit="return checkout()">Save Address
+                                                    And Continue</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                    
+                    <div class="card-body p-3 text-center shadow-lg">
+                        <h3>Cart Details</h3>
+                        <table class="table table-striped p-3">
+                            <tbody>
+                                {{#each cartItems}}
+                                {{#each cartContent}}
+                                <tr>
+                                    <th scope="row"><img src="{{this.images}}" class="img-fluid" width="50px"></th>
+                                    <td>{{this.name}}</td>
+                                    <td>{{../quantity}}</td>
+                                    <td>/-</td>
+                                </tr>
+
+                                
+
+
+                                {{/each}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        </div>
+    </section>
 
     {{!-- <div class="pg-footer">
         <footer class="footer">
@@ -227,7 +339,7 @@
         </footer>
     </div> --}}
 
-  <script src="/js/formValidation.js"></script>
+    <script src="/js/formValidation.js"></script>
 
 </body>
 

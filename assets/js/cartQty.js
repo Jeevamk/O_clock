@@ -103,7 +103,6 @@ function updateQuantity(id, changeQty) {
     }
 
 
-    console.log("jdbjsh", netPriceElement);
 
     fetch('/cart/updateQuantity', {
       method: 'PUT',
@@ -126,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const quantityItems = document.querySelectorAll('.quantity');
   const priceItems = document.querySelectorAll('.price');
   const netPriceItems = document.querySelectorAll('.netPrice');
-  console.log("sdk", priceItems);
 
   for (let i = 0; i < cartLength; i++) {
     let price = parseFloat(priceItems[i].textContent)
