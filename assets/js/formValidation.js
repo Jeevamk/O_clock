@@ -134,8 +134,6 @@ function loginForm() {
 }
 
 
-
-
 //category//
 
 function addcat() {
@@ -242,3 +240,99 @@ function contactForm() {
     return true;
   }
 
+
+//checkout form//
+function checkout(){
+  var name = document.forms["checkoutForm"]["name"].value;
+  var email = document.forms["checkoutForm"]["email"].value;
+  var phone = document.forms["checkoutForm"]["phone"].value;
+  var address = document.forms["checkoutForm"]["address"].value;
+  var area = document.forms["checkoutForm"]["area"].value;
+  var pincode = document.forms["checkoutForm"]["pincode"].value;
+  var city = document.forms["checkoutForm"]["city"].value;
+
+
+  var nameError = document.getElementById("nameAddress");
+  var emailError = document.getElementById("emailAddress");
+  var phoneError = document.getElementById("phoneAddress");
+  var Address = document.getElementById("Address");
+  var areaAddress = document.getElementById("areaAddress");
+  var pinAddress = document.getElementById("pinAddress");
+  var cityAddress = document.getElementById("cityAddress");
+
+
+
+  if (name === "") {
+    nameError.innerHTML = "**Please fill in your name**";
+    return false;
+  }
+  if (name.length <3 ) {
+    nameError.innerHTML = "**name must be at  3 characters**";
+    return false;
+  }
+ 
+  nameError.innerHTML = "";
+
+  if (phone === "") {
+    phoneError.innerHTML = "**Please fill in your phone**";
+    return false;
+  }
+  if (phone.length < 10) {
+    phoneError.innerHTML = "**phone number must be at least 10 characters**";
+    return false;
+  }
+  phoneError.innerHTML = "";
+
+  if (email === "") {
+    emailError.innerHTML = "**Please fill in your email**";
+    return false;
+  }
+  if (
+    email.indexOf("@") <= 0 ||
+    (email.charAt(email.length - 4) !== "." &&
+      email.charAt(email.length - 3) !== ".")
+  ) {
+    emailError.innerHTML = "**Invalid email format**";
+    return false;
+  }
+  emailError.innerHTML = "";
+
+  
+
+  if (address === "") {
+    Address.innerHTML = "**Please fill in your Address**";
+    return false;
+  }
+  if (address.length < 6) {
+    Address.innerHTML = "**must be at least 6 characters**";
+    return false;
+  }
+  Address.innerHTML = "";
+
+  if(area === ""){
+    areaAddress.innerHTML = "**Please fill in your Address**"
+    return false;
+  }
+  areaAddress.innerHTML = "";
+
+  if (pincode === "") {
+    pinAddress.innerHTML = "**Please fill in your Pincode**";
+    return false;
+  }
+  if (pincode.length < 6) {
+    pinAddress.innerHTML = "**must be at least 6 characters**";
+    return false;
+  }
+  pinAddress.innerHTML = "";
+
+  if (city === "") {
+    cityAddress.innerHTML = "**Please fill in your city**";
+    return false;
+  }
+  
+  cityAddress.innerHTML = "";
+
+  
+
+  return true;
+}

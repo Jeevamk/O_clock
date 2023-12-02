@@ -7,36 +7,34 @@ const cartcollection = require('../../model/cart_model');
 const productCollection = require("../../model/product_model");
 
 
-route.get("/",logauth, async (req, res) => {
-    const userId = req.userId;
-        const user = await userCollection.findById(userId)
-  
-      return res.render("checkout",{user});
-    });
 
 
 route.post('/',logauth, async(req,res) =>{
  
   try {
     const userId = req.userId;
+    const user = await userCollection.findById(userId)
+
     console.log(userId);
     const cartProducts = await cartcollection.find({ userId });
     const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
         const productId = newcart.productId;
         const quantity = newcart.quantity;
-        const cartContent = await productCollection.find({ _id: productId });
-         
-     
-        return cartContent ? { cartContent, quantity } : null;
-    }));
 
+        const cartContent = await productCollection.find({ _id: productId });
+        return cartContent ? { cartContent, quantity } : null;
+       
+    }));
+    const grandTotal = req.body.checkoutvalue;
+   
     console.log(cartItems);
-    res.render("checkout", { cartItems });
-} catch (error) {
-    console.error("Error fetching cart or product data:", error);
+    res.render("checkout", { cartItems , user , grandTotal});
+} 
+catch (error) {
     res.status(500).send("Internal Server Error");
 }
 })
+
 
 
 route.post('/address',logauth, async(req,res) => {
@@ -58,8 +56,7 @@ route.post('/address',logauth, async(req,res) => {
     res.status(500).send('Internal Server Error');
 }
 
-
-
 })
+
 
 module.exports = route;

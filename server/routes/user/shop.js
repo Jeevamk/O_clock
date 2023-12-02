@@ -19,10 +19,12 @@ route.get("/",logauth, async (req, res) => {
   });
 
 
-route.get('/:id',async(req,res)=>{
+route.get('/:id', logauth,async(req,res)=>{
+  const userId = req.userId;
+  const user = await userCollection.findById(userId)
     const _id= req.params.id;
     const product = await productCollection.findById(_id)
-    return res.render("productDetails",{product});
+    return res.render("productDetails",{product , user});
    
 })
 

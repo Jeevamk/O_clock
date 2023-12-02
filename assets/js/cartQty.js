@@ -94,6 +94,8 @@ function updateQuantity(id, changeQty) {
 
     let grandTotal = parseFloat(totalPrice.textContent) - parseFloat(discount.textContent);
     Total.textContent = grandTotal;
+    document.getElementById("checkoutvalue").value = grandTotal
+
 
     const minusButton = document.getElementById(`minusButton${id}`);
     if (newQuantity <= 1) {
@@ -121,7 +123,7 @@ function updateQuantity(id, changeQty) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const cartLength = (document.getElementById('cartlength').textContent)
-  console.log("jhadjhsad", cartLength);
+  console.log(cartLength);
   const quantityItems = document.querySelectorAll('.quantity');
   const priceItems = document.querySelectorAll('.price');
   const netPriceItems = document.querySelectorAll('.netPrice');
@@ -144,5 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const Total = document.getElementById('total')
   let grandTotal = parseInt(totalPrice.textContent) - parseInt(discount.textContent)
   Total.textContent = grandTotal
+  document.getElementById("checkoutvalue").value = grandTotal
+
+
+
 
 });
