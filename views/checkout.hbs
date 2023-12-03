@@ -103,7 +103,9 @@
                             <p style="font-weight:600; font-size:25px">Contact Details</p>
                             <form action="/checkout/address" method="post" name="checkoutForm" onsubmit="return checkout()">
                                 <div class="row g-3">
-                                    <input type="text" class="form-control" value="" hidden>
+                                    <input type="text" class="form-control" value="" name="addressId" id="addressId" hidden>
+                                    <input type="text" class="form-control" value="{{grandTotal}}" name="grandTotal" id="grandTotal" hidden>
+
                                     <div class="col-md-6">
                                         <input type="text" class="form-control-sm" id="name" name="name"
                                             placeholder="Name" value="">
@@ -144,9 +146,9 @@
 
                                     </div>
                                     <div class="col-md-6">
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>State</option>
-                                            <option value="1">Kerala</option>
+                                        <select class="form-select" aria-label="Default select example" name="state">
+                                            <option value="">Choose..</option>
+                                            <option>Kerala</option>
                                         </select>
                                     </div>
                                     <div class="col-md-12">
@@ -167,10 +169,15 @@
                                 </div>
                             </form>
                         </div>
-
-
                     </div>
+                     {{#each checkoutAddress}}
+                <p>{{this.name}}</p>
+
+                {{/each}}
+
                 </div>
+
+            
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
 
                     <div class="card-body p-3 text-center shadow-lg">
