@@ -332,7 +332,5 @@ function checkout(){
   
   cityAddress.innerHTML = "";
 
-  
-
   return true;
 }
