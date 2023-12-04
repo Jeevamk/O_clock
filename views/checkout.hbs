@@ -195,6 +195,9 @@
                                         aria-controls="offcanvasWithBothOptions" style="font-weight:bold ;" 
                                         onclick="editAddress('{{this.addressId}}','{{this.name}}', '{{this.phone}}','{{this.email}}','{{this.address}}','{{this.area}}','{{this.pincode}}','{{this.city}}','{{this.state}}','{{this.optionaladdress}}')">Edit
                                     </button>
+
+                                    <button class="deleteAddress btn text-danger btn-sm " style="font-weight: bold;"
+                                                data-address-id="{{this._id}}" type="button">Delete</button>
                                    
                                 </div>
 
@@ -261,6 +264,26 @@
         </div>
     </section>
 
+
+          {{!-- modal --}}
+        <div class="modal fade" id="deleteAddress" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                        <a href="/checkout" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                        
+                    </div>
+                    <div class="modal-body" id="addressDelete">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/checkout"><button type="button" class="btn btn-secondary">Close</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     {{!-- <div class="pg-footer">
         <footer class="footer">
