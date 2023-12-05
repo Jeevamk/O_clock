@@ -8,13 +8,9 @@ const productCollection = require("../../model/product_model");
 
 
 route.get('/', logauth, async (req, res) => {
-  if (req.cookies.address) {
-    const id = req.cookies.address
-    console.log(id);
-    const checkoutAddress = await checkoutCollection.find({ _id: id })
-    console.log(checkoutAddress);
-
     const userId = req.userId;
+    const checkoutAddress = await checkoutCollection.find({ userId: userId })
+
     const cartProducts = await cartcollection.find({ userId });
     const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
       const productId = newcart.productId;
@@ -25,10 +21,7 @@ route.get('/', logauth, async (req, res) => {
     }));
     res.render("checkout", { checkoutAddress, cartItems })
   }
-  else {
-    res.render("checkout")
-  }
-})
+)
 
 
 route.post('/', logauth, async (req, res) => {
@@ -85,12 +78,7 @@ route.post('/address', logauth, async (req, res) => {
       });
 
       await newCheckout.save();
-      let arr=[];
-      arr.push(newCheckout._id.toString());
       
-      res.cookie("address", newCheckout._id.toString())
-      
-
       return res.redirect("/checkout");
     }
   } catch (error) {

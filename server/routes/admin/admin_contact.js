@@ -9,35 +9,6 @@ const dotenv = require('dotenv').config({path:'config.env'});
 
 route.use(express.json())
 
-// async function mainMail(name,email,subject,message) {
-
-//   const trasnporter = nodemailer.createTransport({
-//     service: "Gmail",
-    
-//     auth: {
-//       user: "jeevamk100@gmail.com",
-//       pass: "hexg nlyg mvit mqnt",
-//     },
-//   });
-
-//   const mailOption = {
-//     from :"jeevamk100@gmail.com",
-//     to:email,
-//     subject:subject,
-//     html:`you got a reply message from
-//     Email :${email}
-//     Name:${name}
-//     Message :${message}`,
-//   };
-//   try{
-//     await trasnporter.sendMail(mailOption);
-//     return Promise.resolve("Message sent Successfully!");
-
-//   }catch(err){
-//     return Promise.reject(err);
-//   }
-
-// }
 
 
 route.get("/", authenticateJWT, async (req, res) => {
@@ -104,72 +75,6 @@ route.delete("/delete_contact", async (req,res)=>{
  
 })
 
-
-
-//reply//
-// route.post("/reply/:id", async (req, res) => {
-//   if (req.cookies.session) {
-//     try {
-//       const contactId = req.params.id;
-//       const singleContact = await contactcollection.findOne({ _id: contactId });
-
-//       if (!singleContact) {
-//         return res.status(404).json({ error: "Message not found" })
-//       }
-
-//       const recipientEmail = singleContact.email;
-//       console.log("Recipient email:", recipientEmail);
-
-//       if (!recipientEmail) {
-//         console.error("Recipient email is undefined");
-//         return res.status(500).json({ error: "Recipient email is undefined" });
-//       }
-
-//       try {
-//         await mainMail(recipientEmail, "Subject of the reply", "Your reply message");
-//         res.status(200).json({ success: "Reply sent successfully" });
-//       } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: "Error sending reply email" });
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ error: "Internal Server Error" })
-//     }
-//   } else {
-//     res.redirect("/adminhome")
-//   }
-// });
-
-
-// route.post("/reply/:id", async (req, res) => {
-//   if (req.cookies.session) {
-//     try {
-//       const contactId = req.params.id;
-//       const singleContact = await contactcollection.findOne({ _id: contactId });
-
-//       if (!singleContact) {
-//         return res.status(404).json({ error: "Message not found" });
-//       }
-
-//       const recipientEmail = singleContact.email;
-//       console.log("Recipient email:", recipientEmail);
-
-//       if (!recipientEmail) {
-//         console.error("Recipient email is undefined");
-//         return res.status(500).json({ error: "Recipient email is undefined" });
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ error: "Internal Server Error" });
-//     }
-//   }
-   
-//   else {
-//     res.redirect("/adminhome");
-//   }
-
-// });
 
 
 

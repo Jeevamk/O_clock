@@ -23,8 +23,7 @@ viewBrand.forEach((btn) => {
                 <input type="text" class="form-control" id="description" 
                     name="description" value="${branddata.description}" readonly>
             </div>
-            
-            
+              
         </form>`;
         const showModal = new bootstrap.Modal(
           document.getElementById("brandmodal")
