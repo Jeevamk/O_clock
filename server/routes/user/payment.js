@@ -5,6 +5,7 @@ const cartcollection  =require('../../model/cart_model')
 const checkoutCollection = require('../../model/checkout_model')
 const productCollection = require('../../model/product_model')
 const { logauth } = require("../../middleware/auth_user");
+const orderCollection = require("../../model/order_model")
 
 
 

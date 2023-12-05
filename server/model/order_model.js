@@ -6,20 +6,28 @@ const orderSchema = mongoose.Schema ({
         ref :'userCollection',
        
     },
-    productId: {
+    addressId: {
         type :mongoose.Schema.Types.ObjectId,
-        ref :'productCollection',
+        ref :'checkoutCollection',
        
     },
-    date : {
+    orderDate : {
         type : Date,
         default:Date.now,
+    },
+    expireDate : {
+        type : Date,
+        default: function () {
+            const DateExpire = new Date(this.orderDate);
+            DateExpire.setDate(DateExpire.getDate() + 4);
+            return DateExpire;
+          },
     },
     paymentMethod : {
         type : String,
         required : true,
     },
-    status : {
+    orderStatus : {
         type : String,
         required : true
     },

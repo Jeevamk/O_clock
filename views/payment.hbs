@@ -82,21 +82,20 @@
         <div class="container">
 
             <div class="row m-5">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 border-end">
-                    <div class="card shadow-lg text-center">
-                        <h4>BILLING DETAILS</h4>
-                        <hr>
-                        <h5 class="text-danger">{{addressdata.name}}</h5>
-                        <p>{{addressdata.address}},{{addressdata.area}},{{addressdata.pincode}}</p>
-                        <p>{{addressdata.phone}}</p>
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 border-end">
+                    <div class="card shadow-lg">
 
-                       
+                        <h5 class="text-muted ps-2">Delivery Address</h5>
+                        <hr>
+                        <p class="ps-2"><span style="font-weight: 600;">{{addressdata.name}},</span>
+                            {{addressdata.address}},{{addressdata.area}},{{addressdata.city}},{{addressdata.state}},{{addressdata.pincode}}<br>{{addressdata.phone}}
+                        </p>
+
                     </div>
 
                 </div>
 
-
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
 
                     <h5 class="text-muted">Price Details</h5>
                     <table class="table p-5 shadow-lg">
@@ -107,9 +106,9 @@
                             {{#each cartItems}}
                             {{#each cartContent}}
                             <tr>
-                                
+
                                 <td>{{this.name}}({{../quantity}})</td>
-                                
+
                                 <td><span id="total{{this._id}}"></span>/-</td>
                             </tr>
 
@@ -124,8 +123,6 @@
                             {{/each}}
                             {{/each}}
                             <tr>
-                               
-                                
                                 <td><span style="font-weight: 600;">TOTAL : </span></td>
                                 <td class="text-success" id="grand">{{grandTotal}}/-</td>
 
@@ -140,37 +137,41 @@
 
 
                 </div>
-               
-
             </div>
             <div class="row m-5">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 border-end">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 ">
                     <div class="card shadow-lg">
-                        <div class="card-header">
+                        <div class="card-header ">
                             <h4>Select Payment Method</h4>
                         </div>
                         <div class="card-body">
-                            <div class="form-check p-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1" >
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    CASH ON DELIVERY
-                                </label>
-                            </div>
-                            <hr>
-                            <div class="form-check p-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    RAZORPAY
-                                </label>
+                            <form>
+                                <input type="text" name="addressId" value="" id="addressId" hidden>
+                                <div class="form-check p-3">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        CASH ON DELIVERY
+                                    </label>
+                                </div>
+                                <hr>
+                                <div class="form-check p-3">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault2">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        RAZORPAY
+                                    </label>
 
-                            </div>
+                                </div>
+                                <input type="button" class="btn btn-outline-dark w-100" value="Place your order" onclick="orderPlaced()">
+
+                            </form>
+
 
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
     </section>
 
 
