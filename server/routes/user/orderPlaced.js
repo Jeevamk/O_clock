@@ -18,7 +18,7 @@ route.get("/:id", logauth, async (req, res) => {
   const orderId = req.params.id 
   const orderData = await orderCollection.findById(orderId)
   const address = await checkoutCollection.findById(orderData.addressId);
-  console.log(address.name);
+  console.log(orderData.grandtotal);
 
   const cartData = await cartcollection.find({ userId: userId });
 
