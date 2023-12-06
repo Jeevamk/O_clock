@@ -32,7 +32,9 @@ function orderConfirm() {
             })
             .then((data) => {
                 console.log("Success:", data);
+                
                 window.location.href = `/orderplaced/${data._id}`;
+                
             })
             .catch((error) => {
                 console.error("Error:", error);

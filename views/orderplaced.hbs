@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="/css/style2.css" />
     <link rel="stylesheet" href="/css/shop.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    {{!-- toastify-js --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
@@ -78,17 +81,17 @@
     {{! navsection end }}
 
 
-    <section style="margin-top: 100px;">
+    {{!-- <section style="margin-top: 100px;">
         <div class="container">
 
             <div class="row m-5">
-                <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 border-end">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 ">
                     <div class="card shadow-lg">
 
                         <h5 class="text-muted ps-2">Delivery Address</h5>
                         <hr>
-                        <p class="ps-2"><span style="font-weight: 600;">{{addressdata.name}},</span>
-                            {{addressdata.address}},{{addressdata.area}},{{addressdata.city}},{{addressdata.state}},{{addressdata.pincode}}<br>{{addressdata.phone}}
+                        <p class="ps-2"><span style="font-weight: 600;">{{address.name}},</span>
+                            {{address.address}},{{address.area}},{{address.city}},{{address.state}},{{address.pincode}}<br>{{address.phone}}
                         </p>
 
                     </div>
@@ -100,46 +103,119 @@
                     <h5 class="text-muted">Price Details</h5>
                     <table class="table p-5 shadow-lg">
                         <tbody>
-                            <script>
-                                let grandtotal = 0;
-                            </script>
-                            {{#each cartItems}}
-                            {{#each cartContent}}
+
+                            {{#each Products}}
+
                             <tr>
+                                <td>{{this.productData.name}}</td>
+                                <td>{{this.productData.brand}}</td>
 
-                                <td>{{this.name}}({{../quantity}})</td>
 
-                                <td><span id="total{{this._id}}"></span>/-</td>
                             </tr>
 
-                            <script>
-                                var price = {{ this.price }}
-                                var quantity = {{../quantity}}
-                                var totalPrice = parseInt(price) * parseInt(quantity)
-                                grandtotal += parseInt(totalPrice)
-                                document.getElementById('total{{this._id}}').innerHTML = totalPrice;
-                            </script>
 
                             {{/each}}
-                            {{/each}}
-                            <tr>
-                                <td><span style="font-weight: 600;">TOTAL : </span></td>
-                                <td class="text-success" id="grand">{{grandTotal}}/-</td>
 
-                            </tr>
+
 
 
                         </tbody>
                     </table>
-                    <script>
-                        document.getElementById("grand").textContent = grandtotal;
-                    </script>
+
 
 
                 </div>
             </div>
-            
+
+    </section> --}}
+
+    <section class="h-100 gradient-custom shadow-lg mt-5">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="card" style="border-radius: 10px;">
+                        <div class="card-header px-4 py-5">
+                            <h5 class="text-muted mb-0">Thanks for your Order, <span
+                                    style="color: #000000;">{{address.name}}</span>!</h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <p class="lead fw-normal mb-0" style="color: #000000;">Receipt</p>
+                                <p class="small text-muted mb-0">Receipt id : {{orderData._id}}</p>
+                            </div>
+                            {{#each Products}}
+
+                            <div class="card shadow-0 border mb-4">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src="{{this.productData.images}}" class="img-fluid" alt="product">
+                                        </div>
+                                        <div
+                                            class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0">{{this.productData.name}}</p>
+                                        </div>
+                                        <div
+                                            class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">{{this.productData.category}}</p>
+                                        </div>
+                                        <div
+                                            class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">{{this.productData.brand}}</p>
+                                        </div>
+                                        <div
+                                            class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">Qty: {{this.quantity}}</p>
+                                        </div>
+                                        <div
+                                            class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small" id="grand{{this.productData._id}}"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                var price = {{ this.productData.price }}
+                                var qty = {{ this.quantity }}
+                                var total = price * qty
+                                document.getElementById("grand{{this.productData._id}}").textContent = total
+                            </script>
+                            {{/each}}
+                            <div class="d-flex justify-content-between pt-2">
+                                <p class="fw-bold mb-0">Order Details</p>
+                                <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span>{{grandTotal}}</p>
+                            </div>
+
+                            {{!-- <div class="d-flex justify-content-between pt-2">
+                                <p class="text-muted mb-0">Address Id : {{address._id}}</p>
+                                <p class="text-muted mb-0"><span class="fw-bold me-4">Discound</span> ₹
+                                    <span>{{orderData.discound}}</span> /-</p>
+                            </div> --}}
+
+                            {{!-- <div class="d-flex justify-content-between">
+                                <p class="text-muted mb-0">Invoice Date : {{orderData.orderedDate}}</p>
+
+                            </div> --}}
+
+                            {{!-- <div class="d-flex justify-content-between mb-5">
+                                <p class="text-muted mb-0">Except delivery date : {{orderData.deliveryDate}}</p>
+                                <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Charges</span> Free</p>
+                            </div> --}}
+                        </div>
+                        <div class="card-footer border-0 px-4 py-5"
+                            style="background-color: #000000; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                            <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">
+                                Total
+                                paid: <span class="h2 mb-0 ms-2">₹ {{grandTotal}} /-</span></h5>
+                        </div>
+                        <a href="/shop"><button class="btn btn-dark w-100 mt-3">BACK TO SHOP</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js">
+    </script>
 
     <script src="/js/placedOrder.js"></script>
     <script src="/js/checkoutOrder.js"></script>

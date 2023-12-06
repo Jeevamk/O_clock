@@ -12,13 +12,15 @@ route.get('/', logauth, async (req, res) => {
     const checkoutAddress = await checkoutCollection.find({ userId: userId })
 
     const cartProducts = await cartcollection.find({ userId });
+    
     const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
       const productId = newcart.productId;
       const quantity = newcart.quantity;
-
       const cartContent = await productCollection.find({ _id: productId });
+     
       return cartContent ? { cartContent, quantity } : null;
     }));
+    
     res.render("checkout", { checkoutAddress, cartItems })
   }
 )

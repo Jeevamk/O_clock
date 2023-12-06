@@ -1,48 +1,101 @@
-const express = require ('express')
-const route = express.Router()
-const userCollection = require('../../model/user_model')
-const productCollection = require('../../model/product_model')
-const cartcollection = require('../../model/cart_model')
-const checkoutCollection = require('../../model/checkout_model')
+const express = require("express");
+const route = express.Router();
+const userCollection = require("../../model/user_model");
+const productCollection = require("../../model/product_model");
+const cartcollection = require("../../model/cart_model");
+const checkoutCollection = require("../../model/checkout_model");
 const { logauth } = require("../../middleware/auth_user");
-const orderCollection = require("../../model/order_model")
+const orderCollection = require("../../model/order_model");
 
-route.get('/',logauth,async(req,res) =>{
-    res.render('orderplaced')
-})
+// route.get("/", logauth, async (req, res) => {
+//   res.render("orderplaced");
+// });
 
 
-route.get('/:id',logauth,async(req,res) =>{
-    const userId = req.userId;
-    const user = await userCollection.findById(userId)
-    const addressId = req.params.id;
-    const addressdata= await checkoutCollection.findById(addressId)
-    console.log("dfdsf",addressdata.name);
+route.get("/:id", logauth, async (req, res) => {
+  const userId = req.userId;
+  const user = await userCollection.findById(userId);
+  const orderId = req.params.id 
+  const orderData = await orderCollection.findById(orderId)
+  const address = await checkoutCollection.findById(orderData.addressId);
+  console.log(address.name);
 
-    const cartProducts = await cartcollection.find({ userId });
-    const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
-    const productId = newcart.productId;
-    const quantity = newcart.quantity;
+  const cartData = await cartcollection.find({ userId: userId });
 
-      const cartContent = await productCollection.find({ _id: productId });
-      return cartContent ? { cartContent, quantity } : null;
+  const orderproducts = await Promise.all(
+    cartData.map(async (newcart) => {
+      const productId = newcart.productId;
+      const quantity = newcart.quantity;
+      return  { productId, quantity } ;
     }));
 
-    res.render('orderplaced' , {cartItems ,user,addressdata })
-})
+    let Products=[];
+    let grandtotal = 0;
+    for (let orderproduct of orderproducts) {
+        const productId = orderproduct.productId;
+        const quantity = orderproduct.quantity;
+        const productData = await productCollection.findById(productId);
+        console.log(productData);
+        Products.push({productData,quantity})
+        console.log("price",productData.price);
+
+        grandtotal += productData.price * quantity
+        console.log("grand",grandtotal);
+      }
+      console.log(Products);
+       await cartcollection.deleteMany({ userId });
+  res.render("orderplaced", {  user ,orderData ,address , grandtotal,Products});
+});
 
 
 
-// route.post('/',logauth,async(req,res) =>{
-//     const userId = req.userId;
-//     const orderId = req.body._id;
+
+route.post("/", logauth, async (req, res) => {
+  const userId = req.userId;
+  const { addressDataId, paymentMethod } = req.body;
+  const cartData = await cartcollection.find({ userId: userId });
+
+  const orderproducts = await Promise.all(
+    cartData.map(async (newcart) => {
+      const productId = newcart.productId;
+      const quantity = newcart.quantity;
+      return  { productId, quantity } ;
+    }));
+
+    let Products=[];
+    let grandtotal = 0;
+    for (let orderproduct of orderproducts) {
+        const productId = orderproduct.productId;
+        const quantity = orderproduct.quantity;
+        const productData = await productCollection.findById(productId);
+        console.log(productData);
+        Products.push({productData,quantity})
+        console.log("price",productData.price);
+
+        grandtotal += productData.price * quantity
+        console.log("grand",grandtotal);
+      }
+      
 
 
-//     const orderData = await orderCollection.findById('orderdata')
-
-//     res.json(orderData)
+  if (paymentMethod == "cashOn") {
+    const orderData = new orderCollection({
+      userId,
+      paymentMethod,
+      addressId: addressDataId,
+      orderStatus: "order placed",
+      orderproducts,
+      grandtotal
+      
+    });
+    await orderData.save();
     
-// })
+    
+      res.json(orderData);
+
+   
+  }
+});
 
 
 module.exports = route;
