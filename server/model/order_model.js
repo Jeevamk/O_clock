@@ -11,6 +11,15 @@ const orderSchema = mongoose.Schema ({
         ref :'checkoutCollection',
        
     },
+    grandtotal:{
+        type:Number,
+    },
+    paymentId :{
+        type : String,
+    },
+    orderproducts:{
+        type:Array,
+    },
     orderDate : {
         type : Date,
         default:Date.now,
@@ -22,10 +31,6 @@ const orderSchema = mongoose.Schema ({
             DateExpire.setDate(DateExpire.getDate() + 4);
             return DateExpire;
           },
-    },
-    paymentMethod : {
-        type : String,
-        required : true,
     },
     orderStatus : {
         type : String,

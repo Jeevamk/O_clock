@@ -79,7 +79,7 @@ function deleteAddress() {
 document.querySelectorAll('.checkoutorder').forEach((btn) => {
   btn.addEventListener("click", async (event) => {
     const addressId = await event.target.getAttribute("data-address-id");
-console.log(addressId);
+    console.log(addressId);
     const checkoutData = {
       addressId: addressId,
     };

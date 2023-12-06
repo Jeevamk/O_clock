@@ -334,3 +334,15 @@ function checkout(){
 
   return true;
 }
+
+
+//payment select radio btn//
+function paymentValidate(){
+  var selectedPaymentMethod = document.querySelector( 'input[name="paymentMethod"]:checked');
+  if(selectedPaymentMethod != null) {
+    return true;
+  }else {  
+    document.getElementById("paymenterror").style.display = "block";
+    return false;
+  }
+}

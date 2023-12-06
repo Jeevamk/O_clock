@@ -138,47 +138,8 @@
 
                 </div>
             </div>
-            <div class="row m-5">
-                <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 ">
-                    <div class="card shadow-lg">
-                        <div class="card-header ">
-                            <h4>Select Payment Method</h4>
-                        </div>
-                        <div class="card-body">
-                            <form id="paymentMethods">
-                                <input type="text" name="addressId" value="{{addressdata._id}}" id="addressId" hidden>
-                                <div class="form-check p-3">
-                                    <input class="form-check-input" type="radio" name="paymentMethod"
-                                        id="cashOn" value="cashOn">
-                                    <label class="form-check-label" for="cashOn">
-                                        CASH ON DELIVERY
-                                    </label>
-                                </div>
-                                <hr>
-                                <div class="form-check p-3">
-                                    <input class="form-check-input" type="radio" name="paymentMethod"
-                                        id="razorpay" value="razorpay">
-                                    <label class="form-check-label" for="razorpay">
-                                        RAZORPAY
-                                    </label>
-
-                                </div>
-                                <p id="paymenterror" style="display: none;" class="text-danger">Must check some option!
-                                </p>
-                                <input type="button" class="btn btn-outline-dark w-100" name="paymentBtn" 
-                                    value="Place Order" onclick="return (paymentValidate()&&orderPlaced()&&orderConfirm())">
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
     </section>
-
-
-
-
-
 
     <script src="/js/placedOrder.js"></script>
     <script src="/js/checkoutOrder.js"></script>
