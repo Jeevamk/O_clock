@@ -80,82 +80,38 @@
     </section>
     {{! navsection end }}
 
-
-    {{!-- <section style="margin-top: 100px;">
-        <div class="container">
-
-            <div class="row m-5">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 ">
-                    <div class="card shadow-lg">
-
-                        <h5 class="text-muted ps-2">Delivery Address</h5>
-                        <hr>
-                        <p class="ps-2"><span style="font-weight: 600;">{{address.name}},</span>
-                            {{address.address}},{{address.area}},{{address.city}},{{address.state}},{{address.pincode}}<br>{{address.phone}}
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-
-                    <h5 class="text-muted">Price Details</h5>
-                    <table class="table p-5 shadow-lg">
-                        <tbody>
-
-                            {{#each Products}}
-
-                            <tr>
-                                <td>{{this.productData.name}}</td>
-                                <td>{{this.productData.brand}}</td>
-
-
-                            </tr>
-
-
-                            {{/each}}
-
-
-
-
-                        </tbody>
-                    </table>
-
-
-
-                </div>
-            </div>
-
-    </section> --}}
-
+   
     <section class="h-100 gradient-custom shadow-lg mt-5">
-        <div class="container py-5 h-100">
+        <div class="container py-5 h-100 mb-4">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-lg-10 col-xl-8">
                     <div class="card shadow-lg" style="border-radius: 10px;">
                         <div class="card-header px-4 py-5">
-                            <img src="/images/loginImg.jpg" alt="" class="img-fluid" width="100px"><span style="font-size: larger; font-weight:bold">Thanks For Your Order, <span
-                                    style="color: #000000; font-style:italic" class="text-danger">{{address.name}}</span></span>
+                            <img src="/images/loginImg.jpg" alt="" class="img-fluid" width="100px"><span
+                                style="font-size: larger; font-weight:bold">Thanks For Your Order, <span
+                                    style="color: #000000; font-style:italic"
+                                    class="text-danger">{{address.name}}</span></span>
                             {{!-- <h3 class="text-primary mb-0">Thanks For Your Order, <span
                                     style="color: #000000;">{{address.name}}</span></h3> --}}
                         </div>
                         <div class="d-flex justify-content-between pt-2 ps-4">
-                                <p class="fw-bold mb-0">Delivery Address</p>
-                            </div>
+                            <p class="fw-bold mb-0">Delivery Address</p>
+                        </div>
 
-                            <div class="d-flex justify-content-between pt-2 shadow-sm ps-4 pb-3">
-                                <p class="text-muted mb-0">{{address.name}},{{address.address}},{{address.area}},{{address.city}},{{address.state}}<br>{{address.phone}}
-                                </p>
-                                
-                            </div>
+                        <div class="d-flex justify-content-between pt-2 shadow-sm ps-4 pb-3">
+                            <p class="text-muted mb-0">
+                                {{address.name}},{{address.address}},{{address.area}},{{address.city}},{{address.state}}<br>{{address.phone}}
+                            </p>
+
+                        </div>
 
                         <div class="card-body p-4">
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <p class="lead fw-normal mb-0" style="color: #000000;">Receipt</p>
-                                <p class="small text-muted mb-0">Receipt id : {{orderData._id}}<br><span  class="text-success">{{orderData.orderStatus}}</span></p>
+                                <p class="small text-muted mb-0">Receipt id : {{orderData._id}}<br><span
+                                        class="text-success">{{orderData.orderStatus}}</span></p>
                             </div>
-                            
+
                             {{#each Products}}
 
                             <div class="card shadow-0 border mb-4">
@@ -199,9 +155,10 @@
                             </div>
 
                             <div class="d-flex justify-content-between pt-2 shadow-sm">
-                                <p class="text-muted mb-0">{{address.name}},{{address.address}},{{address.area}},{{address.city}},{{address.state}}<br>{{address.phone}}
+                                <p class="text-muted mb-0">
+                                    {{address.name}},{{address.address}},{{address.area}},{{address.city}},{{address.state}}<br>{{address.phone}}
                                 </p>
-                                
+
                             </div> --}}
 
                             {{!-- <div class="d-flex justify-content-between">
@@ -225,6 +182,28 @@
                 </div>
             </div>
         </div>
+
+         
+         
+{{#if orderData}}
+    <script>
+        Toastify({
+            text: "Product Added to Cart Successfully...",
+            className: "info",
+            style: {
+                color: "white",
+                background: "black",
+            },
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+        }).showToast();
+    </script>
+{{/if}}
+
+
     </section>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js">
     </script>

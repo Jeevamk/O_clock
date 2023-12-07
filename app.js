@@ -58,6 +58,7 @@ app.use('/cart',require('./server/routes/user/cart'))
 app.use('/checkout',require('./server/routes/user/checkout'))
 app.use('/payment',require('./server/routes/user/payment'))
 app.use('/orderplaced',require('./server/routes/user/orderPlaced'))
+app.use('/ordersummary',require('./server/routes/user/orderSummary'))
 
 
 

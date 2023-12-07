@@ -7,10 +7,6 @@ const checkoutCollection = require("../../model/checkout_model");
 const { logauth } = require("../../middleware/auth_user");
 const orderCollection = require("../../model/order_model");
 
-// route.get("/", logauth, async (req, res) => {
-//   res.render("orderplaced");
-// });
-
 
 route.get("/:id", logauth, async (req, res) => {
   const userId = req.userId;
@@ -42,7 +38,7 @@ route.get("/:id", logauth, async (req, res) => {
         grandtotal += productData.price * quantity
         console.log("grand",grandtotal);
       }
-      console.log(Products);
+
        await cartcollection.deleteMany({ userId });
   res.render("orderplaced", {  user ,orderData ,address , grandtotal,Products});
 });
@@ -89,7 +85,19 @@ route.post("/", logauth, async (req, res) => {
       
     });
     await orderData.save();
-    
+
+
+    for (let orderproduct of orderproducts) {
+        const productId = orderproduct.productId;
+        const quantity = orderproduct.quantity;
+
+        
+        await productCollection.findByIdAndUpdate(
+          productId,
+          { $inc: { countStock: -quantity } }
+        );
+      }
+  
     
       res.json(orderData);
 

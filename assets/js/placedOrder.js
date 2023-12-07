@@ -14,6 +14,7 @@ function orderPlaced() {
 }
 
 
+
 function orderConfirm() {
     const paymentForm = document.getElementById("paymentMethods");
     const formData = new FormData(paymentForm);
@@ -32,7 +33,6 @@ function orderConfirm() {
             })
             .then((data) => {
                 console.log("Success:", data);
-                
                 window.location.href = `/orderplaced/${data._id}`;
                 
             })
