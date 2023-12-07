@@ -39,6 +39,7 @@ app.use('/css',express.static(path.resolve(__dirname,"assets/css")))
 app.use('/images',express.static(path.resolve(__dirname,"assets/images")))
 app.use('/js',express.static(path.resolve(__dirname,"assets/js")))
 
+
 //load routers
 app.use('/adminhome',require('./server/routes/admin/router'))
 app.use('/adminhome/users',require('./server/routes/admin/admin_user'))
@@ -59,6 +60,7 @@ app.use('/checkout',require('./server/routes/user/checkout'))
 app.use('/payment',require('./server/routes/user/payment'))
 app.use('/orderplaced',require('./server/routes/user/orderPlaced'))
 app.use('/ordersummary',require('./server/routes/user/orderSummary'))
+app.use('/myaddress',require('./server/routes/user/myaddress'))
 
 
 
