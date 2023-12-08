@@ -33,14 +33,13 @@ route.get("/:id", logauth, async (req, res) => {
         const productData = await productCollection.findById(productId);
         console.log(productData);
         Products.push({productData,quantity})
-        console.log("price",productData.price);
 
         grandtotal += productData.price * quantity
         console.log("grand",grandtotal);
       }
 
        await cartcollection.deleteMany({ userId });
-  res.render("orderplaced", {  user ,orderData ,address , grandtotal,Products});
+       res.render("orderplaced", {  user ,orderData ,address , grandtotal, Products });
 });
 
 

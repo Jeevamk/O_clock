@@ -186,57 +186,108 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row mb-1">
-                                <div class="col-12 col-md-12 col-lg-12">
-                                    <h3 class="text-center">ORDER DETAILS</h3>
-                                </div>
-                                {{!-- {{#each orderDatas}}
                                 <div class="card shadow-0 border mb-4">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-2">
-                                                <img src="{{this.productDetails.images}}" class="img-fluid"
-                                                    alt="product">
-                                            </div>
-                                            <div
-                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0">{{this.productDetails.name}}</p>
-                                            </div>
-                                            <div
-                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0 small">Qty:{{this.quantity}}</p>
-                                            </div>
-                                            <div
-                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0 small"><i class="fa-solid fa-indian-rupee-sign"></i>{{this.total}}</p>
-                                            </div>
-                                            <div
-                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-success mb-0 small" style="font-weight: 600;"><i class="fa-solid fa-circle" style="font-size: 7px;"></i>
-                                                    {{this.status}}</p>
-                                            </div>
-
-                                            <div
-                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <button type="button" class="btn btn-dark text-light">
-                                                    View
-                                                </button>
-                                            </div>
+                                            <h5 class="">Delivery Address</h5>
+                                            <p class=""><span style="font-weight: 600;">{{addressDetails.name}},</span>
+                                                {{addressDetails.address}},{{addressDetails.area}},{{addressDetails.city}},{{addressDetails.state}},{{addressDetails.pincode}}<br>Phone:
+                                                <span style="font-weight: 600;">{{addressDetails.phone}}</span>
+                                            </p>
 
                                         </div>
                                     </div>
                                 </div>
-                                {{/each}} --}}
 
                             </div>
-
-
-
                         </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-1">
+                                    <div class="card shadow-0 border mb-4">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <h5 class="">Order Info</h5>
+                                                <div>
+                                                    <p class="">OrderId : <span class="">{{myOrder._id}}</p></small>
+                                                    <p class="">Payment Method :<span
+                                                            class="">{{myOrder.paymentMethod}}</span></p>
+                                                    <p class="">Status :<span class="text-success"
+                                                            style="font-weight: 700;">{{myOrder.orderStatus}}</span></p>
+                                                    <p class="">Amount :<span class="text-danger"
+                                                            style="font-weight: 700;">{{myOrder.grandtotal}}</span></p>
+                                                    <p class="">Order Date:{{myOrder.orderDate}} </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-1">
+                        <div class="card shadow-0 border mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5>Product Details</h5>
+                                    {{#each orderData}}
+                                    <div class="card shadow-0 border mb-4">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <img src="{{this.orderProduct.images}}" class="img-fluid"
+                                                        alt="product">
+                                                </div>
+                                                <div
+                                                    class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                    <p class="text-muted mb-0">{{this.orderProduct.name}}
+                                                    </p>
+                                                </div>
+                                                <div
+                                                    class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                    <p class="text-muted mb-0"><span
+                                                            class="text-dark">Brand:</span><br>{{this.orderProduct.brand}}
+                                                    </p>
+                                                </div>
+                                                <div
+                                                    class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                    <p class="text-muted mb-0"><span
+                                                            class="text-dark">Category:</span><br>
+                                                        {{this.orderProduct.category}}
+                                                    </p>
+                                                </div>
+                                                <div
+                                                    class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                    <p class="text-muted mb-0 small"><span
+                                                            class="text-dark">Quantity:</span><br>{{this.quantity}}
+                                                    </p>
+                                                </div>
+                                                <div
+                                                    class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                    <p class="text-muted mb-0 small"><i
+                                                            class="fa-solid fa-indian-rupee-sign"></i>{{this.total}}
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
         </div>
-        </div>
+
 
 
     </section>

@@ -95,18 +95,23 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Description</th>
-                                        {{!-- <th scope="col">AvailableStock</th> --}}
+                                        <th scope="col">OrderId</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Total Amount</th>
+                                        <th scope="col">OrderStatus</th>
+                                        <th scope="col">Payment Method</th>
                                         <th scope="col">Action</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{#each categoryList}}
+                                    {{#each orderList}}
                                     <tr>
-                                        <td>{{name}}</td>
-                                        <td>{{description}}</td>
-                                        {{!-- <td>{{availableStock}}</td> --}}
+                                        <td>{{this._id}}</td>
+                                        <td>{{userName}}</td>
+                                        <td>{{this.grandtotal}}</td>
+                                        <td>{{this.orderStatus}}</td>
+                                        <td>{{this.paymentMethod}}</td>
                                         <td>
                                             <button type="button" class="view-cat p-1 btn  btn-light m-1"
                                                 data-cat-id="{{_id}}"><i class="fa-regular fa-eye"

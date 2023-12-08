@@ -33,22 +33,24 @@ route.get('/:id',logauth,async(req,res) =>{
     const orderId = req.params.id;
     const myOrder = await orderCollection.findOne({_id:orderId})
     console.log("myorder",myOrder);
-    const addressDetails = await checkoutCollection.findOne({_id:myOrder.addressId})
+    const addressDetails = await checkoutCollection.findById(myOrder.addressId)
     console.log("addressDetails",addressDetails);
-    // const orderproduct = myOrder.orderproducts;
-    // console.log("orderpro",orderproduct);
     const orderData = []
-    for (let myOrders of myOrder){
-        for (let product of myOrders.orderproducts){
-            const orderProduct = await productCollection.findOne({ _id: product.productId});
-            const quantity = product.quantity
-
-
-        }
-        orderData.push({orderProduct,quantity})
-    }
+    let total = 0;
     
-    res.render("orderDetail",{myOrder,addressDetails,user})
+        for (let product of myOrder.orderproducts){
+            const orderProduct = await productCollection.findOne({ _id: product.productId});
+            const quantity = product.quantity;
+            console.log(orderProduct);
+            total += orderProduct.price * quantity
+            console.log("grand",total);
+
+            orderData.push({orderProduct,quantity,total})
+
+    
+        }
+
+    res.render("orderDetail",{myOrder,addressDetails,user,orderData,total})
 })
 
 
