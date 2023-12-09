@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>order</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style2.css">
+    <!-- Latest compiled and minified CSS -->
+    {{!--
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <section>
+        <div class="wrapper d-flex align-items-stretch">
+            <nav id="sidebar">
+                <div class="custom-menu">
+                    <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <h1><a href="" class="logo">O|o' CLOCK</a></h1>
+                    <span>
+                        <h5 class="text-white" id="admin_name">{{adminid.name}}</h5>
+                    </span>
+                    <ul class="list-unstyled components mb-5" id="list_side">
+                        <li class="active">
+                            <a href="#"><span class="fa fa-home mr-3"></span>Home</a>
+                        </li>
+                        <li class="active">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><span
+                                    class="fa fa-user mr-4"></span>Profile</a>
+                        </li>
+                        <li class="active">
+                            <a href="/adminhome/users"><span class="fa-solid fa-users mr-4"></span>User</a>
+                        </li>
+                        <li class="active">
+                            <a href="/adminhome/order"><span class="fa-solid fa-cart-shopping mr-4"></span>Order</a>
+                        </li>
+                        <li class="active">
+                            <a href="/adminhome/category"><span class="fa fa-sticky-note mr-4"></span>Category</a>
+                        </li>
+                        <li class="active">
+                            <a href="/adminhome/products"><span class="fa fa-suitcase mr-4"></span>Products</a>
+                        </li>
+                        <li class="active">
+                            <a href="/adminhome/brands"><span class="fa fa-cogs mr-4"></span>Brand</a>
+                        </li>
+                        <li class="active">
+                            <a href="/adminhome/banner"><span class="fa fa-paper-plane mr-4"></span>Banner</a>
+                        </li>
+                        <li class="active">
+                            <a href="/adminhome/contact"><span class="fa-solid fa-message mr-4"></span>Messages</a>
+                        </li>
+
+                    </ul>
+
+                    <div class="mb-5">
+                        <a href="/adminhome/admin_logout" id="logout"><span
+                                class="fa-solid fa-right-from-bracket mr-3"></span>Logout</a>
+
+                    </div>
+
+                </div>
+            </nav>
+            {{!-- nav section end --}}
+
+            {{!-- page content --}}
+
+            <div id="content" class="p-4 p-md-5 pt-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 category_head">
+                            <h2 class="text-center text-dark" id="cate" style="font-weight:bold ;">ORDER DETAILS</h2>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+
+                    <div class="row pt-3">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                            <div class="card shadow-lg">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">User Info</h4>
+                                    <h5 class="card-text text-muted">{{userDetails.name}}</h5>
+                                    <h5 class="card-text text-muted">{{userDetails.email}}</h5>
+                                    <h5 class="card-text text-muted">{{userDetails.phone}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 ">
+                            <div class="card">
+                                <div class="card-body shadow-lg">
+                                    <h4 class="card-title text-center">Delivery Address</h4>
+
+                                    <h5 class="text-muted text-center"><span style="">{{addressDetails.name}},</span>
+                                        {{addressDetails.address}},{{addressDetails.area}},{{addressDetails.city}},{{addressDetails.state}},{{addressDetails.pincode}}<br>Phone:
+                                        <span style="">{{addressDetails.phone}}</span>
+                                    </h5>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 ">
+                            <div class="card">
+                                <div class="card-body shadow-lg">
+                                    <h4 class="card-title text-center">Order Info</h4>
+
+                                    <h5 class="text-dark ">{{orders._id}}</h5>
+                                    <h5><span class="text-dark" style="font-size: 17px;">paymentMethod :
+                                        </span>{{orders.paymentMethod}}</h5>
+                                    <h5><span class="text-dark" style="font-size: 17px;">Grandtotal :
+                                        </span>{{orders.grandtotal}}/-</h5>
+                                    <h5 class=""><span class="text-dark" style="font-size: 17px;">orderStatus :
+                                        </span>{{orders.orderStatus}}</h5>
+                                    <p><span class="text-dark" style="font-size: 17px;">orderDate : </span> <span
+                                            style="font-size: 16px;">{{orders.orderDate}}</span></p>
+                                    <p><span class="text-dark" style="font-size: 17px;">orderDate : </span> <span
+                                            style="font-size: 16px;">{{orders.expireDate}}</span></p>
+
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 ">
+                            <div class="card">
+                                <div class="card-body shadow-lg">
+                                    <h4 class="card-title text-center">Product Details</h4>
+                                    {{#each productDetails}}
+
+                                <h5><span class="text-dark" style="font-size: 17px;">Product Name :
+                                        </span>{{this.name}}</h5>
+                                    <h5><span class="text-dark" style="font-size: 17px;">Category :
+                                        </span>{{this.category}}</h5>
+                                    <h5 class=""><span class="text-dark" style="font-size: 17px;">Brand :
+                                        </span>{{this.brand}}</h5>
+                                        <h5 class=""><span class="text-dark" style="font-size: 17px;">Price :
+                                        </span>{{this.price}} /-</h5>
+                                        <h5 class=""><span class="text-dark" style="font-size: 17px;">Quantity :
+                                        </span>{{quantity}}</h5>
+                                    
+                                    <hr>
+
+                                    {{/each}}
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        {{!-------------------------modal1 adminprofile-------------------------------------}}
+        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel">Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container" id="admin_profile">
+                            <div class="col-md-12 text-center">
+                                <img src="/images/profile.png" alt="">
+                                <h2 style="color: red; font-weight:bolder">Welcome </h1>
+                                    <h4>{{adminid.name}}</h4>
+                                    <h5>{{adminid.email}}</h5>
+                                    <h5>{{adminid.phone}}</h5>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-dark" data-bs-target="#exampleModalToggle2"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalToggleLabel2"
+                            style="text-align: center; font-family: cursive; font-weight: bold;">Edit Form</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="myForm">
+                            <div class="mb-4">
+                                <input type="text" class="form-control" id="InputName" placeholder="Enter Name"
+                                    name="name" value="{{adminid.name}}">
+                            </div>
+                            <div class="mb-4">
+                                <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email"
+                                    name="email" value="{{adminid.email}}">
+                            </div>
+                            <div class="mb-4">
+                                <input type="number" class="form-control" id="Inputphone"
+                                    placeholder="Enter Phone number" name="phone" value="{{adminid.phone}}">
+                            </div>
+                            <button type="button" id="submitButton" onclick="fun()" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        {{!----------------------------------- modal3 edit data from the table
+        -------------------------------------------}}
+        <div class="modal fade" id="cateditmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Edit Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="editorder">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/adminhome/order"><button type="button" class="btn btn-secondary">Close</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        {{!-- modal4 view delete data from the table --}}
+        <div class="modal fade" id="deletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="deletebody">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/adminhome/order"><button type="button" class="btn btn-secondary">Close</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/js/orderfetch.js"></script>
+    <script src="/js/formValidation.js"></script>
+    <script src="/js/categoryview.js"></script>
+    <script src="/js/edit.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

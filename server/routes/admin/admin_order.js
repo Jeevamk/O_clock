@@ -30,8 +30,97 @@ route.get ('/',authenticateJWT,async (req,res)=>{
     }else {
         res.redirect("/adminhome");
     }
-
 })
+
+
+route.get('/:id', authenticateJWT,async(req,res) =>{ 
+    if (req.cookies.session) {
+        const adminid = await adminCollection.findOne({ _id: req.adminId });
+        const id = req.params.id;
+
+        try {
+            const orders = await  orderCollection.findOne({_id:id});
+            const userDetails = await userCollection.findById(orders.userId)
+            const addressDetails = await checkoutCollection.findOne({_id : orders.addressId})
+            const orderproducts = orders.orderproducts;
+            const productDetails = [];
+            for (let product of orderproducts) {
+                const productItem = await productCollection.findById(product.productId)
+                const quantity = product.quantity;
+                productDetails.push(productItem , quantity)
+            }
+            console.log("products",productDetails);
+
+            res.render("admin_singleOrder",{adminid,orders,userDetails , addressDetails ,productDetails })
+        }catch(error){
+            res.status(500).json({ error: "Internal server error" });
+        }
+
+    }
+})
+
+
+//update order status//
+route.get('/update/:id', async(req,res) =>{
+    if (req.cookies.session) {
+        const id = req.params.id;
+
+        try {
+            const order = await orderCollection.findOne({_id:id})
+
+            if(order) {
+                return res.json(order)
+            }else {
+                res.status(404).json({error : "user not found"})
+            }
+
+        } catch (error) {
+            res.status(500).json({error: "Internal server error"})
+        }
+    }
+})
+
+route.put("/update",async(req,res) =>{
+    const _id = req.body._id;
+    const orderStatus = req.body.orderStatus;
+    const updateOrder = await orderCollection.findOneAndUpdate({_id}, {$set: {orderStatus}})
+    return res.json(updateOrder)
+})
+
+
+
+//delete//
+route.get("/delete_order/:id", async (req, res) => {
+    if (req.cookies.session) {
+      const orderId = req.params.id;
+  
+      try {
+        const orderDelete = await orderCollection.findOne({ _id: orderId });
+  
+        if (orderDelete) {
+          res.json(orderDelete);
+        } else {
+          res.status(404).json({ error: "order not found" });
+        }
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Internal server error" });
+      }
+    } else {
+      res.redirect("/adminhome");
+    }
+  });
+  
+ 
+  route.delete("/delete_order", async (req, res) => {
+    try {
+      const orderId = req.body.id;
+      await orderCollection.findByIdAndDelete(orderId);
+      res.redirect(303, "/adminhome/order");
+    } catch (error) {
+      res.send(error);
+    }
+  });
 
 
 module.exports = route

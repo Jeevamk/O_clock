@@ -113,15 +113,15 @@
                                         <td>{{this.orderStatus}}</td>
                                         <td>{{this.paymentMethod}}</td>
                                         <td>
-                                            <button type="button" class="view-cat p-1 btn  btn-light m-1"
-                                                data-cat-id="{{_id}}"><i class="fa-regular fa-eye"
-                                                    style="color:black;"></i></button>
-                                            <button type="button" class="edit-cat btn btn-light p-1 m-1"
-                                                data-cat-id="{{this._id}}"><i class="fa-solid fa-pen-to-square"
+                                            <a href="/adminhome/order/{{this._id}}" class="view-order p-1 btn  btn-light m-1" data-order-id="{{this._id}}" ><i class="fa-regular fa-eye"
+                                                    style="color:black;"></i></a>
+                                            
+                                            <button type="button" class="edit-order btn btn-light p-1 m-1"
+                                                data-order-id="{{this._id}}"><i class="fa-solid fa-pen-to-square"
                                                     style="color: #01060e;"></i></button>
 
-                                            <button type="button" class="delete-cat btn btn-light p-1 m-1"
-                                                data-cat-id="{{_id}}"><i class="fa-solid fa-trash"
+                                            <button type="button" class="delete-order btn btn-light p-1 m-1"
+                                                data-order-id="{{_id}}"><i class="fa-solid fa-trash"
                                                     style="color: #000714;"></i></button>
 
                                         </td>
@@ -199,40 +199,21 @@
            
 
 
-            <!-- Modal2 view single data from the table-->
-            <div class="modal fade" id="catmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">View Category</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" id="catbody">
-
-                        </div>
-                        <div class="modal-footer">
-                            <a href="/adminhome/category"><button type="button"
-                                    class="btn btn-secondary">Close</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+           
             {{!----------------------------------- modal3 edit data from the table -------------------------------------------}}
-            <div class="modal fade" id="cateditmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            <div class="modal fade" id="ordereditmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Edit Details</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">Edit Orderstatus</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="editcat">
+                        <div class="modal-body" id="editorder">
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/adminhome/category"><button type="button"
+                            <a href="/adminhome/order"><button type="button"
                                     class="btn btn-secondary">Close</button></a>
                         </div>
                     </div>
@@ -260,11 +241,6 @@
         </div>
     </div>
 
-
-
-
-
-
     </section>
 
 
@@ -278,7 +254,7 @@
 
 
 
-
+    <script src="/js/orderfetch.js"></script>
     <script src="/js/formValidation.js"></script>
     <script src="/js/categoryview.js"></script>
     <script src="/js/edit.js"></script>
