@@ -47,6 +47,7 @@ route.get('/:id', authenticateJWT,async(req,res) =>{
             for (let product of orderproducts) {
                 const productItem = await productCollection.findById(product.productId)
                 const quantity = product.quantity;
+                console.log(quantity);
                 productDetails.push(productItem , quantity)
             }
             console.log("products",productDetails);
@@ -60,30 +61,34 @@ route.get('/:id', authenticateJWT,async(req,res) =>{
 })
 
 
+
 //update order status//
 route.get('/update/:id', async(req,res) =>{
     if (req.cookies.session) {
         const id = req.params.id;
 
         try {
-            const order = await orderCollection.findOne({_id:id})
+            const order = await orderCollection.findOne({_id : id})
 
             if(order) {
                 return res.json(order)
             }else {
-                res.status(404).json({error : "user not found"})
+                res.status(404).json({error : "Order not found"})
             }
 
         } catch (error) {
             res.status(500).json({error: "Internal server error"})
         }
+    }else{
+        return res.redirect("/adminhome");
     }
 })
+
 
 route.put("/update",async(req,res) =>{
     const _id = req.body._id;
     const orderStatus = req.body.orderStatus;
-    const updateOrder = await orderCollection.findOneAndUpdate({_id}, {$set: {orderStatus}})
+    const updateOrder = await orderCollection.findOneAndUpdate({ _id }, {$set: {orderStatus}})
     return res.json(updateOrder)
 })
 

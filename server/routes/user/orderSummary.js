@@ -53,6 +53,63 @@ route.get('/:id',logauth,async(req,res) =>{
     res.render("orderDetail",{myOrder,addressDetails,user,orderData,total})
 })
 
+//cancel//
+route.get('/cancel/:id',logauth, async(req,res) =>{
+    
+        const orderId = req.params.id;
+
+        try {
+            const cancelorder = await orderCollection.findOne({_id : orderId})
+
+            if(cancelorder) {
+                return res.json(cancelorder)
+            }else {
+                res.status(404).json({error : "Order not found"})
+            }
+
+        } catch (error) {
+            res.status(500).json({error: "Internal server error"})
+        }
+    }
+)
+
+
+route.put("/cancel",async(req,res) =>{
+    const _id = req.body._id;
+    const cancelreason = req.body.cancelreason;
+    const cancelOrder = await orderCollection.findOneAndUpdate({ _id }, {$set: {orderStatus:"Cancelled",cancelreason}})
+    return res.json(cancelOrder)
+})
+
+
+route.get("/deleteorder/:id", async (req, res) => {
+
+      const orderId = req.params.id;
+  
+      try {
+        const orderDelete = await orderCollection.findOne({ _id: orderId });
+  
+        if (orderDelete) {
+          res.json(orderDelete);
+        } else {
+          res.status(404).json({ error: "order not found" });
+        }
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Internal server error" });
+      }
+    });
+  
+ 
+  route.delete("/deleteorder", async (req, res) => {
+    try {
+      const orderId = req.body.id;
+      await orderCollection.findByIdAndDelete(orderId);
+      res.redirect(303, "/orderSummary");
+    } catch (error) {
+      res.send(error);
+    }
+  });
 
 
 module.exports = route;
