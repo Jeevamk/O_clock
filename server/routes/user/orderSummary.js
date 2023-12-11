@@ -6,6 +6,7 @@ const orderCollection = require('../../model/order_model')
 const checkoutCollection = require('../../model/checkout_model')
 const { logauth } = require("../../middleware/auth_user");
 
+
 route.get('/',logauth,async(req,res) =>{
     const userId= req.userId;
     const user = await userCollection.findById(userId)
@@ -48,7 +49,9 @@ route.get('/:id',logauth,async(req,res) =>{
             orderData.push({orderProduct,quantity,total})
         }
 
-    res.render("orderDetail",{myOrder,addressDetails,user,orderData,total})
+        const Cancelled = myOrder.orderStatus === "Cancelled" || false;
+
+    res.render("orderDetail",{myOrder,addressDetails,user,orderData,total,Cancelled})
 })
 
 
@@ -79,6 +82,7 @@ route.put("/cancel",async(req,res) =>{
     const cancelOrder = await orderCollection.findOneAndUpdate({ _id }, {$set: {orderStatus:"Cancelled",cancelreason}})
     return res.json(cancelOrder)
 })
+
 
 //delete//
 route.get("/deleteorder/:id",logauth, async (req, res) => {

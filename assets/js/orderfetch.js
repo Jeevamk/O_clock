@@ -143,8 +143,10 @@ const cancelorder = document.getElementById("cancel");
                 <input type="hidden" name="_id" value="${orderdata._id}">
                     <label for="cancelreason">Reason for Cancellation</label>
                     <select id="cancelreason" name="cancelreason">
-                    <option>Bad product</option>
-                    <option>Bad service </option>
+                    <option>Product is taking too long to be delivered</option>
+                    <option>Unexpected Shipping costs</option>
+                    <option>High Shipping costs</option>
+                    <option>No mention of a delivery date</option>
                     
                     </select>
                         

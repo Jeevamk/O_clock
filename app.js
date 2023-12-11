@@ -62,6 +62,7 @@ app.use('/payment',require('./server/routes/user/payment'))
 app.use('/orderplaced',require('./server/routes/user/orderPlaced'))
 app.use('/ordersummary',require('./server/routes/user/orderSummary'))
 app.use('/myaddress',require('./server/routes/user/myaddress'))
+app.use('/about',require('./server/routes/user/about'))
 
 
 
