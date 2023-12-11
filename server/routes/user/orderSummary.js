@@ -81,8 +81,8 @@ route.put("/cancel",async(req,res) =>{
     return res.json(cancelOrder)
 })
 
-
-route.get("/deleteorder/:id", async (req, res) => {
+//delete//
+route.get("/deleteorder/:id",logauth, async (req, res) => {
 
       const orderId = req.params.id;
   
@@ -101,7 +101,7 @@ route.get("/deleteorder/:id", async (req, res) => {
     });
   
  
-  route.delete("/deleteorder", async (req, res) => {
+route.delete("/deleteorder", async (req, res) => {
     try {
       const orderId = req.body.id;
       await orderCollection.findByIdAndDelete(orderId);
@@ -110,6 +110,7 @@ route.get("/deleteorder/:id", async (req, res) => {
       res.send(error);
     }
   });
+
 
 
 module.exports = route;

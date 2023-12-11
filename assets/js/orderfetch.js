@@ -203,8 +203,8 @@ deletebtn.addEventListener("click", async (event) => {
             if (response.ok) {
                 const orderData = await response.json();
                 document.getElementById(
-                    "deleteord"
-                ).innerHTML = `<div id="deletealt"><h5> Are you confirm to delete this Order </h5> </div>
+                    "deleteorder"
+                ).innerHTML = `<div id="deletealt"><h5>Are you confirm to delete this Order</h5> </div>
         <form id="deleteordForm">
         <input type="text" class="form-control" hidden value="${orderData._id}" name="id">
         <div class="col-sm-10">
@@ -213,7 +213,7 @@ deletebtn.addEventListener("click", async (event) => {
       </form>
         `;
                 const showModal = new bootstrap.Modal(
-                    document.getElementById("deleteorder")
+                    document.getElementById("deleteordr")
                 );
                 showModal.show();
             } else {

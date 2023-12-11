@@ -183,18 +183,25 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-
+                    {{#if Cancelled}} 
                     <div class="card">
                         <div class="card-body">
-                            <div class="row mb-1" style="display: none;">
-                                <h3 class="text-center">Order Details  <span><a id="cancel" data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Cancel Order</a></span></h3>
+
+                            <div class="row mb-1">
+                                <h3 class="text-center" style="display: none;">Order Details <span><a id="cancel"
+                                            data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Cancel
+                                            Order</a></span></h3>
                             </div>
                             <div class="row mb-1">
-                                <h3 class="text-center">Order Details  <span><a id="deleteord" data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Delete Order</a></span></h3>
+                                <h3 class="text-center" style="display:block">Order Details <span><a id="deleteord"
+                                            data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Delete
+                                            Order</a></span></h3>
                             </div>
+
+
                         </div>
                     </div>
-
+                     {{/if}} 
                     <div class="card">
                         <div class="card-body">
                             <div class="row mb-1">
@@ -371,54 +378,36 @@
     </div>
 
 
-    {{!----------------------------------- modal3 edit data from the table
-        -------------------------------------------}}
-        {{!-- <div class="modal fade" id="cateditmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Edit Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="editorder">
-
-                    </div>
-                    <div class="modal-footer">
-                        <a href="/adminhome/order"><button type="button" class="btn btn-secondary">Close</button></a>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
 
 
-        {{!----------------------------------- modal3 edit data from the table -------------------------------------------}}
-            <div class="modal fade" id="ordercancelmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">cancel Order</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" id="cancelorder">
-
-                        </div>
-                        <div class="modal-footer">
-                            <a href="/orderSummary"><button type="button"
-                                    class="btn btn-secondary">Close</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-                  {{!-- modal4 view delete data from the table --}}
-    <div class="modal fade" id="deleteord" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    {{!----------------------------------- modal3 edit data from the table -------------------------------------------}}
+    <div class="modal fade" id="ordercancelmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Cancel Order</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="cancelorder">
+
+                </div>
+                <div class="modal-footer">
+                    <a href="/orderSummary"><button type="button" class="btn btn-secondary">Close</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {{!-- modal4 view delete data from the table --}}
+    <div class="modal fade" id="deleteordr" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Delete Order</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="deleteorder">
