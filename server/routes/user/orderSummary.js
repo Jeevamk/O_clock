@@ -46,12 +46,11 @@ route.get('/:id',logauth,async(req,res) =>{
             console.log("grand",total);
 
             orderData.push({orderProduct,quantity,total})
-
-    
         }
 
     res.render("orderDetail",{myOrder,addressDetails,user,orderData,total})
 })
+
 
 //cancel//
 route.get('/cancel/:id',logauth, async(req,res) =>{

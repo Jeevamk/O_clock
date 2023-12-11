@@ -6,15 +6,16 @@ const cartcollection = require("../../model/cart_model");
 const checkoutCollection = require("../../model/checkout_model");
 const { logauth } = require("../../middleware/auth_user");
 const orderCollection = require("../../model/order_model");
+// const Swal = require('sweetalert2')
 
 
 route.get("/:id", logauth, async (req, res) => {
   const userId = req.userId;
   const user = await userCollection.findById(userId);
-  const orderId = req.params.id 
+  const orderId = req.params.id; 
   const orderData = await orderCollection.findById(orderId)
-  const address = await checkoutCollection.findById(orderData.addressId);
-  console.log(orderData.grandtotal);
+  const address = await checkoutCollection.findById(orderData.addressId)
+  console.log(orderData.grandtotal)
 
   const cartData = await cartcollection.find({ userId: userId });
 
@@ -34,12 +35,12 @@ route.get("/:id", logauth, async (req, res) => {
         console.log(productData);
         Products.push({productData,quantity})
 
-        grandtotal += productData.price * quantity
+        grandtotal += productData.price * quantity;
         console.log("grand",grandtotal);
       }
 
        await cartcollection.deleteMany({ userId });
-       res.render("orderplaced", {  user ,orderData ,address , grandtotal, Products });
+       res.render("orderplaced", {  user ,orderData , address , grandtotal, Products });
 });
 
 
@@ -71,8 +72,6 @@ route.post("/", logauth, async (req, res) => {
         console.log("grand",grandtotal);
       }
       
-
-
   if (paymentMethod == "cashOn") {
     const orderData = new orderCollection({
       userId,
@@ -90,17 +89,13 @@ route.post("/", logauth, async (req, res) => {
         const productId = orderproduct.productId;
         const quantity = orderproduct.quantity;
 
-        
         await productCollection.findByIdAndUpdate(
           productId,
           { $inc: { countStock: -quantity } }
         );
       }
-  
-    
+     
       res.json(orderData);
-
-   
   }
 });
 

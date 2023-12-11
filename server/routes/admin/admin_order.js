@@ -46,9 +46,9 @@ route.get('/:id', authenticateJWT,async(req,res) =>{
             const productDetails = [];
             for (let product of orderproducts) {
                 const productItem = await productCollection.findById(product.productId)
-                const quantity = product.quantity;
-                console.log(quantity);
-                productDetails.push(productItem , quantity)
+                const quantity = product.quantity
+                console.log(quantity)
+                productDetails.push({productItem , quantity})
             }
             console.log("products",productDetails);
 
@@ -117,7 +117,7 @@ route.get("/delete_order/:id", async (req, res) => {
   });
   
  
-  route.delete("/delete_order", async (req, res) => {
+route.delete("/delete_order", async (req, res) => {
     try {
       const orderId = req.body.id;
       await orderCollection.findByIdAndDelete(orderId);
@@ -126,6 +126,7 @@ route.get("/delete_order/:id", async (req, res) => {
       res.send(error);
     }
   });
+
 
 
 module.exports = route

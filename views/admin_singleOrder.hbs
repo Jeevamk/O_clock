@@ -144,13 +144,13 @@
                                     {{#each productDetails}}
 
                                 <h5><span class="text-dark" style="font-size: 17px;">Product Name :
-                                        </span>{{this.name}}</h5>
+                                        </span>{{this.productItem.name}}</h5>
                                     <h5><span class="text-dark" style="font-size: 17px;">Category :
-                                        </span>{{this.category}}</h5>
+                                        </span>{{this.productItem.category}}</h5>
                                     <h5 class=""><span class="text-dark" style="font-size: 17px;">Brand :
-                                        </span>{{this.brand}}</h5>
+                                        </span>{{this.productItem.brand}}</h5>
                                         <h5 class=""><span class="text-dark" style="font-size: 17px;">Price :
-                                        </span>{{this.price}} /-</h5>
+                                        </span>{{this.productItem.price}} /-</h5>
                                         <h5 class=""><span class="text-dark" style="font-size: 17px;">Quantity :
                                         </span>{{this.quantity}}</h5>
                                     
@@ -238,8 +238,7 @@
 
 
 
-        {{!----------------------------------- modal3 edit data from the table
-        -------------------------------------------}}
+        {{!----------------------------------- modal3 edit data from the table -----------------------------------------}}
         <div class="modal fade" id="cateditmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
