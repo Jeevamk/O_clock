@@ -4,8 +4,15 @@ const userCollection = require('../../model/user_model')
 const cartcollection  =require('../../model/cart_model')
 const checkoutCollection = require('../../model/checkout_model')
 const productCollection = require('../../model/product_model')
+const orderCollection = require('../../model/order_model')
 const { logauth } = require("../../middleware/auth_user");
+const Razorpay = require('razorpay')
+const dotenv = require('dotenv').config({path:'config.env'});
 
+var instance = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID ,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
 
 
 
@@ -42,6 +49,32 @@ route.post('/',logauth,async(req,res) => {
 
 
 
+route.post('/create/orderId',async (req,res) =>{
+  console.log("orderId:",req.body);
+  var options = {
+    amount: req.body.amount,  // amount in the smallest currency unit
+    currency: "INR",
+    receipt: "rcp1"
+  };
+  instance.orders.create(options, function(err, order) {
+    console.log("order:",order);
+    res.send({ orderId : order.id })
+  });
+})
+
+
+route.post("/payment/verify", (req,res) =>{
+  let body = req.body.response.razorpay_order_id + "|" + req.body.response.razorpay_payment_id;
+
+  var crypto = require('crypto');
+  var expectedSignature = crypto.createHmac('sha256', 'q0VyF2K81WxgvDhSJpsMMtRw').update(body.toString()).digest('hex');
+
+  var response = {"signatureIsvalid":"false"}
+  if (expectedSignature === req.body.response.razorpay_signature)
+  response={"signatureIsvalid":"true"}
+  res.send(response);
+
+})
 
 
 module.exports = route;
