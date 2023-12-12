@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/css/style2.css" />
     <link rel="stylesheet" href="/css/shop.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -146,18 +148,19 @@
                         </div>
                         <div class="card-body">
                             <form id="paymentMethods">
-                                <input type="text" name="addressDataId" value="{{addressdata._id}}" id="addressDataId" hidden>
+                                <input type="text" name="addressDataId" value="{{addressdata._id}}" id="addressDataId"
+                                    hidden>
                                 <div class="form-check p-3">
-                                    <input class="form-check-input" type="radio" name="paymentMethod"
-                                        id="cashOn" value="cashOn">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cashOn"
+                                        value="cashOn">
                                     <label class="form-check-label" for="cashOn">
                                         CASH ON DELIVERY
                                     </label>
                                 </div>
                                 <hr>
                                 <div class="form-check p-3">
-                                    <input class="form-check-input" type="radio" name="paymentMethod"
-                                        id="razorpay" value="razorpay">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="razorpay"
+                                        value="razorpay">
                                     <label class="form-check-label" for="razorpay">
                                         RAZORPAY
                                     </label>
@@ -165,15 +168,94 @@
                                 </div>
                                 <p id="paymenterror" style="display: none;" class="text-danger">Must check some option!
                                 </p>
-                                <input type="button" class="btn btn-outline-dark w-100" name="paymentBtn" 
-                                    value="Place Order" onclick="return (paymentValidate()&&orderPlaced()&&orderConfirm())">
+                                <input type="button" class="btn btn-outline-dark w-100" name="paymentBtn"
+                                    value="Place Order"
+                                    onclick="return (paymentValidate()&&orderPlaced()&&orderConfirm())">
                             </form>
 
                         </div>
                     </div>
                 </div>
             </div>
+            {{!-- <button id="rzp-button1">Pay with Razorpay</button> --}}
     </section>
+
+    <button id="rzp-button1">Pay with Razorpay</button>
+    
+
+    <script>
+        var orderId;
+        $(document).ready(function () {
+            var settings = {
+                "url": "orderPlaced/create/orderId",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({
+                    "amount": "50000"
+                }),
+            };
+
+            //creates new orderId everytime
+            $.ajax(settings).done(function (response) {
+
+                orderId = response.orderId;
+                console.log(orderId);
+                $("button").show();
+            });
+        });
+
+        document.getElementById('rzp-button1').onclick = function (e) {
+            
+            var options = {
+                "key": "rzp_test_gvhn8x6joCBy7N", // Enter the Key ID generated from the Dashboard
+                "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "currency": "INR",
+                "name": "O_Clock",
+                "description": "Test Transaction",
+                "image": "https://example.com/your_logo",
+                "order_id":orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "handler": function (response) {
+                    alert(response.razorpay_payment_id);
+                    alert(response.razorpay_order_id);
+                    alert(response.razorpay_signature)
+                
+
+                var settings = {
+                    "url": "/orderPlaced/payment/verify",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({ response }),
+                }
+
+                //creates new orderId everytime//
+                $.ajax(settings).done(function (response) {
+                    alert(JSON.stringify(response))
+                })},
+        "theme": {
+                    "color": "#99cc33"
+                }
+            };
+            
+            var rzp1 = new Razorpay(options);
+            rzp1.on('payment.failed', function (response) {
+                alert(response.error.code);
+                alert(response.error.description);
+                alert(response.error.source);
+                alert(response.error.step);
+                alert(response.error.reason);
+                alert(response.error.metadata.order_id);
+                alert(response.error.metadata.payment_id);
+            });
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
 
 
 
