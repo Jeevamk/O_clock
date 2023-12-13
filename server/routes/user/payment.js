@@ -50,7 +50,7 @@ route.post('/',logauth,async(req,res) => {
 
 
 route.post('/create/orderId',async (req,res) =>{
-  console.log("orderId:",req.body);
+  console.log("body:",req.body);
   var options = {
     amount: req.body.amount,  // amount in the smallest currency unit
     currency: "INR",
@@ -58,8 +58,9 @@ route.post('/create/orderId',async (req,res) =>{
   };
   instance.orders.create(options, function(err, order) {
     console.log("order:",order);
-    res.send({ orderId : order.id })
-  });
+    const orderId = order.id;
+    res.send({orderId})
+  })
 })
 
 

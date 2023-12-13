@@ -13,8 +13,6 @@ const dotenv = require('dotenv').config({path:'config.env'});
 
 
 
-
-
 route.get("/:id", logauth, async (req, res) => {
   const userId = req.userId;
   const user = await userCollection.findById(userId);
@@ -48,6 +46,7 @@ route.get("/:id", logauth, async (req, res) => {
        await cartcollection.deleteMany({ userId });
        res.render("orderplaced", {  user ,orderData , address , grandtotal, Products });
 });
+
 
 
 route.post("/", logauth, async (req, res) => {
@@ -88,6 +87,30 @@ route.post("/", logauth, async (req, res) => {
     });
     await orderData.save();
 
+    for (let orderproduct of orderproducts) {
+        const productId = orderproduct.productId;
+        const quantity = orderproduct.quantity;
+
+        await productCollection.findByIdAndUpdate(
+          productId,
+          { $inc: { countStock: -quantity } }
+        );
+      }
+     
+      res.json(orderData);
+  } 
+  
+  else {
+    const orderData = new orderCollection({
+      userId,
+      paymentMethod,
+      addressId: addressDataId,
+      orderStatus: "order placed",
+      orderproducts,
+      grandtotal
+      
+    });
+    await orderData.save();
 
     for (let orderproduct of orderproducts) {
         const productId = orderproduct.productId;

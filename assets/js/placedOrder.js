@@ -17,7 +17,7 @@ var orderId;
         })
 
 
-function orderPlaced() {
+function orderPlaced(amount) {
     const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
 
     if (selectedPaymentMethod) {
@@ -25,33 +25,52 @@ function orderPlaced() {
         console.log(paymentMethodValue);
 
         if(paymentMethodValue === "razorpay") {
-            let orderId;
+           
             fetch(`/payment/create/orderId`, {
                 method : "POST",
                 headers : {
                     'Content-Type':'application/json'
                 },
+                body:JSON.stringify({"amount": amount *  100 })
+                
 
             }).then(response => response.json())
+            
             .then(data => {
-                console.log(data);
-                 orderId = data.orderId;
-            })
-            console.log(orderId);
+               var orderId = data.orderId;
+               console.log(orderId);
 
             var options = {
                 "key": "rzp_test_gvhn8x6joCBy7N", // Enter the Key ID generated from the Dashboard
                 "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                 "currency": "INR",
-                "name": "O_Clock",
+                "name": "O|o' Clock",
                 "description": "Test Transaction",
                 "image": "https://example.com/your_logo",
                 "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                 "handler": function (response) {
-                    alert(response.razorpay_payment_id);
-                    alert(response.razorpay_order_id);
-                    alert(response.razorpay_signature)
-
+                   
+                    if (response.razorpay_payment_id) {
+                        
+                        const paymentform = document.getElementById('paymentMethods');
+                        const paymentData = new FormData(paymentform);
+                        let formItems = Object.fromEntries(paymentData);
+                        console.log(formItems)
+                        formItems.paymentMethod = response.razorpay_payment_id;
+                        
+                        fetch('/orderPlaced', {
+                            method : "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body : JSON.stringify(formItems),
+                
+                        }).then((response) => {
+                           return response.json()
+                        }).then((data) => {
+                            console.log("Response from /orderPlaced:", data);
+                            window.location.href = `/orderPlaced/${data._id}`;
+                        })
+                    }
+                    
                     var settings = {
                     "url": "/payment/payment/verify",
                     "method": "POST",
@@ -82,12 +101,12 @@ function orderPlaced() {
 
     rzp1.open();
     e.preventDefault();
-                    
+})             
 
     $.ajax(settings).done(function (response) {
 
         orderId = response.orderId;
-        console.log(orderId);
+        console.log("orderid",orderId);
         $("button").show();
     });
 
