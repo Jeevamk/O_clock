@@ -97,67 +97,54 @@
             <div class="row">
                 <!-- cart -->
                 <div class="col-lg-9">
-                    <div class="card border shadow-0">
-                        <div class="m-4">
-                            <h4 class="card-title mb-4" style="font-weight: 700;">Your shopping cart</h4>
-                            <div class="row gy-3 mb-4 pt-4 cart">
-                                {{#each cartItems}}
-                                {{#each productContent}}
-                                <div class="col-lg-5">
-                                    <div class="me-lg-5">
-                                        <div class="d-flex">
-                                            <img src="{{this.images}}" class="border-none shadow-sm rounded me-3"
-                                                style="width: 80px; height: 80px;" class="img-fluid"
-                                                alt="{{this.name}}" />
-                                            <div class="">
-                                                <h5 class="text-dark">{{this.name}}</h5>
-                                            </div>
-                                            <div class="">
-                                                <p class="text-muted price" data-cart-id="{{this._id}}">{{this.price}}/-
-                                                </p>
-                                            </div>
-                                        </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            {{#each cartItems}}
+                            {{#each productContent}}
+                            <tr>
+                                <th scope="row"><img src="{{this.images}}" class="border-none shadow-sm rounded me-3"
+                                        style="width: 80px; height: 80px;" class="img-fluid" alt="{{this.name}}" /></th>
+                                <td>{{this.name}}</td>
+                                <td class="text price" data-cart-id="{{this._id}}">{{this.price}}/-</td>
+                                <td>
+                                    <div class="input-group mcxb-3" style="width: 130px;">
+                                        <button class="btn btn-white border buttonsub" type="button"
+                                            style="border:0 1px " data-mdb-ripple-color="dark"
+                                            onclick="updateQuantity('{{this._id}}',-1)" id="minusButton{{this._id}}">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input type="text" class="form-control text-center border quantity" placeholder="1"
+                                            data-cart-id="{{this._id}}" value="{{../quantity}}" style="border: none" />
+                                        <button class="btn btn-white border buttonadd" type="button"
+                                            data-mdb-ripple-color="dark" onclick="updateQuantity('{{this._id}}',1)">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
                                     </div>
-                                </div>
-                                <div
-                                    class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
+                                </td>
+                                <td><text class="text-danger netprice" data-cart-id="{{this._id}}"><span></span></text>
+                                </td>
+                                <td><i class="fa-solid fa-trash  deleteCartProduct" data-user-id="{{this._id}}" style="cursor: pointer;"></i></td>
 
-                                    <div class="">
-                                        <div class="input-group mcxb-3 shadow-lg " style="width: 170px;">
-                                            <button class="btn btn-white border-end buttonsub" type="button"
-                                                style="border:0 1px " data-mdb-ripple-color="dark"
-                                                onclick="updateQuantity('{{this._id}}',-1)"
-                                                id="minusButton{{this._id}}">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                            <input type="text" class="form-control text-center quantity" placeholder="1"
-                                                data-cart-id="{{this._id}}" value="{{../quantity}}"
-                                                style="border: none" />
-                                            <button class="btn btn-white border-start buttonadd" type="button"
-                                                data-mdb-ripple-color="dark" onclick="updateQuantity('{{this._id}}',1)">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="ps-5 ms-5">
-                                        <text class="text-danger netprice"
-                                            data-cart-id="{{this._id}}"><span></span></text><br />
-                                    </div>
-                                </div>
-                                <div
-                                    class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                                    <div class="float-md-end">
+                            </tr>
+                            {{/each}}
+                            {{/each}}
+                        </tbody>
+                    </table>
 
-                                        <button class="deleteCartProduct btn btn-primary btn-sm "
-                                            data-user-id="{{this._id}}" type="button">Delete</button>
-                                    </div>
-                                </div>
-                                {{/each}}
-                                {{/each}}
-                            </div>
-                        </div>
                     </div>
-
+                    
+                    
                 </div>
                 <!-- cart -->
 
@@ -207,7 +194,7 @@
                                     <input type="text" class="form-control" hidden id="checkoutvalue" value=""
                                         name="checkoutvalue">
                                     <button type="submit" class="btn btn-dark w-100 shadow-0 mb-2"> Buy Now </button>
-                                </form> 
+                                </form>
                                 <a href="/shop" class="btn btn-light w-100 border mt-2"> Back to shop </a>
                             </div>
                         </div>

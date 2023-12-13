@@ -230,7 +230,7 @@
             </div>
             <div class="row mt-5">
                 {{#each newarrivalArray}}
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-2">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-3">
                     <div class="card best-card">
                         <a href="/shop/{{this._id}}"><img src="{{this.images}}" class="card-img-top newarrival" alt="{{this.name}}"
                             data-product-id="{{this._id}}">
@@ -238,7 +238,6 @@
                             <h5 class="card-title text-secondary" style="font-size: 17px;">{{this.brand}}</h5>
                             <p class="card-text text-dark">{{this.name}}</p>
                             <p class="card-text1 text-muted">Rs: {{this.price}}</p>
-                            {{!-- <button type="button" class="btn btn-dark">ADD TO CART</button> --}}
                         </div></a>
                     </div>
                 </div>
@@ -260,7 +259,7 @@
             </div>
             <div class="row mt-5">
                 {{#each bestSellersArray}}
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-2">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-3">
                     <div class="card best-card">
                         <a href="/shop/{{this._id}}"><img src="{{this.images}}" class="card-img-top" alt="{{this.name}}"
                             data-product-id="{{this._id}}">
@@ -268,7 +267,6 @@
                             <h5 class="card-title text-secondary" style="font-size: 17px;">{{this.brand}}</h5>
                             <p class="card-text text-dark">{{this.name}}</p>
                             <p class="card-text1 text-muted">Rs: {{this.price}}</p>
-                            {{!-- <button type="button" class="btn btn-dark">ADD TO CART</button> --}}
                         </div></a>
                     </div>
                 </div>
@@ -344,10 +342,10 @@
                     <div class="">
                         <h6 class="footer-heading text-uppercase text-white">Information</h6>
                         <ul class="list-unstyled footer-link mt-4">
-                            <li><a href="">Pages</a></li>
-                            <li><a href="">Our Team</a></li>
-                            <li><a href="">Feuchers</a></li>
-                            <li><a href="">Pricing</a></li>
+                            <li><a href="">Home</a></li>
+                            <li><a href="">Shop</a></li>
+                            <li><a href="">About Us</a></li>
+                            <li><a href="">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -404,7 +402,7 @@
 
 <script src="/js/filterProduct.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </body>
 
 </html>

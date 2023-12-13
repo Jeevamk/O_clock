@@ -186,119 +186,121 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row mb-1">
-                                <div class="col-12 col-md-12 col-lg-12">
+                                <div class="col-12 col-md-12 col-lg-12 p-3">
                                     <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"
-                        style="font-weight: bold;">+Add New
-                        Address</button>
+                                        data-bs-target="#offcanvasWithBothOptions"
+                                        aria-controls="offcanvasWithBothOptions" style="font-weight: bold;">+Add New
+                                        Address</button>
 
-                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1"
-                        id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">ADD ADDRESS</h5>
+                                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1"
+                                        id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                                        <div class="offcanvas-header">
+                                            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">ADD ADDRESS
+                                            </h5>
 
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <hr>
-                        <div class="offcanvas-body">
-                            <p style="font-weight:600; font-size:25px">Contact Details</p>
-                            <form action="/myaddress" method="post" name="checkoutForm"
-                                onsubmit="return checkout()">
-                                <div class="row g-3">
-                                    <input type="text" class="form-control" value="" id="addressId" name="addressId"
-                                        hidden>
-                                    <input type="text" class="form-control" value="{{grandTotal}}" name="grandTotal"
-                                        id="grandTotal" hidden>
+                                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <hr>
+                                        <div class="offcanvas-body">
+                                            <p style="font-weight:600; font-size:25px">Contact Details</p>
+                                            <form action="/myaddress" method="post" name="checkoutForm"
+                                                onsubmit="return checkout()">
+                                                <div class="row g-3">
+                                                    <input type="text" class="form-control" value="" id="addressId"
+                                                        name="addressId" hidden>
+                                                    <input type="text" class="form-control" value="{{grandTotal}}"
+                                                        name="grandTotal" id="grandTotal" hidden>
 
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control-sm" id="name" name="name"
-                                            placeholder="Name" value="">
-                                        <small id="nameAddress" class="text-danger"></small>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" id="phone" name="phone"
-                                            placeholder="Phone Number" value="">
-                                        <small id="phoneAddress" class="text-danger"></small>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control-sm" id="name" name="name"
+                                                            placeholder="Name" value="">
+                                                        <small id="nameAddress" class="text-danger"></small>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" id="phone" name="phone"
+                                                            placeholder="Phone Number" value="">
+                                                        <small id="phoneAddress" class="text-danger"></small>
 
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="email" class="form-control" id="email" name="email"
-                                            placeholder="Email">
-                                        <small id="emailAddress" class="text-danger"></small>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="email" class="form-control" id="email" name="email"
+                                                            placeholder="Email">
+                                                        <small id="emailAddress" class="text-danger"></small>
 
-                                    </div>
-                                    <div class="col-md-12">
-                                        <textarea class="form-control" id="address" name="address"
-                                            placeholder="Address"></textarea>
-                                        <small id="Address" class="text-danger"></small>
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea class="form-control" id="area" name="area"
-                                            placeholder="Road Name/Area/Colony"></textarea>
-                                        <small class="text-danger" id="areaAddress"></small>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" id="pincode" name="pincode"
-                                            placeholder="pincode">
-                                        <small id="pinAddress" class="text-danger"></small>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <textarea class="form-control" id="address" name="address"
+                                                            placeholder="Address"></textarea>
+                                                        <small id="Address" class="text-danger"></small>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <textarea class="form-control" id="area" name="area"
+                                                            placeholder="Road Name/Area/Colony"></textarea>
+                                                        <small class="text-danger" id="areaAddress"></small>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="text" class="form-control" id="pincode"
+                                                            name="pincode" placeholder="pincode">
+                                                        <small id="pinAddress" class="text-danger"></small>
 
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" id="city" name="city"
-                                            placeholder="city">
-                                        <small id="cityAddress" class="text-danger"></small>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" id="city" name="city"
+                                                            placeholder="city">
+                                                        <small id="cityAddress" class="text-danger"></small>
 
-                                    </div>
-                                    <div class="col-md-6">
-                                        <select class="form-select" aria-label="Default select example" name="state"
-                                            id="state">
-                                            <option value="">Choose..</option>
-                                            <option>Kerala</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" id="optionaladdress"
-                                            name="optionaladdress" placeholder="Nearby Famous Place/Shop">
-                                        <small id="optAddress" class="text-danger"></small>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <select class="form-select" aria-label="Default select example"
+                                                            name="state" id="state">
+                                                            <option value="">Choose..</option>
+                                                            <option>Kerala</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="text" class="form-control" id="optionaladdress"
+                                                            name="optionaladdress"
+                                                            placeholder="Nearby Famous Place/Shop">
+                                                        <small id="optAddress" class="text-danger"></small>
 
-                                    </div>
-                                    <div class="col-12 pt-3">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <button type="submit" class="btn btn-dark w-100 fw-bold">Save Address
-                                                    And Continue</button>
-                                            </div>
+                                                    </div>
+                                                    <div class="col-12 pt-3">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <button type="submit"
+                                                                    class="btn btn-dark w-100 fw-bold">Save Address
+                                                                    And Continue</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                                 </div>
                                 {{#each addresses}}
                                 <div class="card shadow-0 border mb-4">
                                     <div class="card-body">
                                         <div class="row">
-                                            <h5 class="">{{this.name}}</h5>
-                                            <p class="">{{this.address}} , {{this.area}} ,{{this.city}} </p>
-                                            <p class="">{{this.state}} , {{this.pincode}} </p>
-                                            <p class="">{{this.phone}} </p>
+                                            <div class="col-12">
 
+                                                <h5 class="">{{this.name}}</h5>
+                                                <p class="">{{this.address}} , {{this.area}} ,{{this.city}} </p>
+                                                <p class="">{{this.state}} , {{this.pincode}} </p>
+                                                <p class="">{{this.phone}} </p>
 
-                                            {{!-- <button type="button" class="btn btn-outline-dark checkoutorder"
-                                                data-address-id="{{this._id}}"> Deliver To This Address </button> --}}
+                                                <button class="btn text-black" type="button" data-bs-toggle="offcanvas"
+                                                    data-bs-target="#offcanvasWithBothOptions"
+                                                    aria-controls="offcanvasWithBothOptions" style="font-weight:bold ;"
+                                                    onclick="editAddress('{{this._id}}','{{this.name}}', '{{this.phone}}','{{this.email}}','{{this.address}}','{{this.area}}','{{this.pincode}}','{{this.city}}','{{this.state}}','{{this.optionaladdress}}')">Edit
+                                                </button>
 
-                                            <button class="btn text-black" type="button" data-bs-toggle="offcanvas"
-                                                data-bs-target="#offcanvasWithBothOptions"
-                                                aria-controls="offcanvasWithBothOptions" style="font-weight:bold ;"
-                                                onclick="editAddress('{{this._id}}','{{this.name}}', '{{this.phone}}','{{this.email}}','{{this.address}}','{{this.area}}','{{this.pincode}}','{{this.city}}','{{this.state}}','{{this.optionaladdress}}')">Edit
-                                            </button>
+                                                <button class="dltAddress btn text-danger btn-sm "
+                                                    style="font-weight: bold;" data-address-id="{{this._id}}"
+                                                    type="button">Delete</button>
 
-                                            <button class="dltAddress btn text-danger btn-sm "
-                                                style="font-weight: bold;" data-address-id="{{this._id}}"
-                                                type="button">Delete</button>
-
+                                            </div>
 
                                         </div>
                                     </div>
@@ -318,7 +320,7 @@
 
     </section>
 
-{{!-- modal delete address --}}
+    {{!-- modal delete address --}}
     <div class="modal fade" id="deleteAddress" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

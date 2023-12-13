@@ -10,8 +10,9 @@ const productCollection = require('../../model/product_model')
 route.get("/:id", authenticateJWT, async (req, res) => {
   
     if (req.cookies.session) {
-      const _id=req.params.id;
-      // const orders = await orderCollection.find({ userId: _id })
+      const _id = req.params.id;
+      const orders = await orderCollection.find({ userId: _id })
+      console.log("orders",orders);
       // const orderDetail = orders[0]
       // const productId = orders[0].productId;
       // const orderProduct = await productCollection.findById(productId)
@@ -19,7 +20,7 @@ route.get("/:id", authenticateJWT, async (req, res) => {
       // console.log(orderProduct);
       const adminid = await adminCollection.findOne({ _id: req.adminId });
       const users = await userCollection.findById(_id);
-      res.render("adminSingleUser", { adminid, users});
+      res.render("adminSingleUser", { adminid, users,orders});
       // console.log(users);
     }
   });
