@@ -49,9 +49,26 @@ route.get('/:id',logauth,async(req,res) =>{
             orderData.push({orderProduct,quantity,total})
         }
 
-        const Cancelled = myOrder.orderStatus === "Cancelled" || false;
+        let Orderplaced = false;
+        let shipped = false;
+        let deliverd = false;
+        let Outofdelivery = false;
+        let Cancelled = false;
 
-    res.render("orderDetail",{myOrder,addressDetails,user,orderData,total,Cancelled})
+
+        if (myOrder.orderStatus == "Order placed"){
+          Orderplaced =true 
+        }else if (myOrder.orderStatus == "Shipped"){
+          shipped =true
+        }else if (myOrder.orderStatus == "Deliverd"){
+          deliverd = true
+        }else if (myOrder.orderStatus == "Outof delivery"){
+          Outofdelivery = true
+        }else {
+          Cancelled = true
+        }
+
+    res.render("orderDetail",{myOrder,addressDetails,user,orderData,total,Cancelled,Orderplaced,shipped,deliverd,Outofdelivery})
 })
 
 

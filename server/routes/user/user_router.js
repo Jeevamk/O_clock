@@ -19,6 +19,10 @@ const brandCollection = require("../../model/brand_model")
 const categoryCollection = require("../../model/category_model");
 const bannerCollection = require("../../model/banner_model");
 const otpGenerator = require('otp-generator')
+const orderCollection = require("../../model/order_model")
+const cartCollection = require("../../model/cart_model")
+const wishCollection  = require("../../model/wish_model")
+const checkoutCollection = require("../../model/checkout_model")
 
 // const session = require('express-session')
 
@@ -321,7 +325,14 @@ route.put("/edit", auth, async (req, res) => {
   }
 });
 
+
 //delete//
+
+route.get('/delete',auth,async (req,res)=> {
+  const userId = req.userId
+  res.json(userId)
+})
+
 
 // route.get('/delete/:id', auth, async (req, res) => {
 //     try {
@@ -335,6 +346,19 @@ route.put("/edit", auth, async (req, res) => {
 //         res.send(error);
 //     }
 // })
+
+route.delete("/delete",auth,async(req,res)=>{
+  const userId = req.userId;
+  await orderCollection.deleteMany({userId})
+  await cartCollection.deleteMany({userId})
+  await wishCollection.deleteMany({userId})
+  await checkoutCollection.deleteMany({userId})
+  const userdelete = await userCollection.findOneAndRemove({_id:userId})
+  res.clearCookie("sessions");
+  res.json(userdelete)
+})
+
+
 
 // logout//
 route.get("/user_logout", (req, res) => {

@@ -170,7 +170,7 @@
                                         id="buttonsub" data-mdb-ripple-color="dark">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <input type="text" class="form-control text-center" id="quantity" name="quantity"
+                                    <input type="text" class="form-control text-center" readonly id="quantity" name="quantity"
                                         placeholder="0" value="1" style="border: none" />
                                     <button class="btn btn-white border-start" type="button" id="buttonadd"
                                         data-mdb-ripple-color="dark">
@@ -179,8 +179,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-light shadow-sm border" data-product-id="{{product._id}}" id="addCart">
-                             Buy Now
+                        <button class="btn btn-light shadow-sm border" data-product-id="{{product._id}}" id="buyNow">
+                            <i class="fa-solid fa-bolt"></i> Buy Now
                         </button>
                         <button class="btn btn-light shadow-sm border" data-product-id="{{product._id}}" id="addCart">
                             <i class="fa-solid fa-cart-shopping" style="color: #00040a;"></i> Add to cart
@@ -462,7 +462,7 @@
     </script>
 
     {{!-- if(quantityElement.value <=1){ buttonSub.style.display="none" } --}}
-     <script type="text/javascript"
+        <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/toastify-js">
         </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

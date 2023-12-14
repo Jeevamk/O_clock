@@ -11,6 +11,8 @@ route.get('/', logauth, async (req, res) => {
     const userId = req.userId;
     const checkoutAddress = await checkoutCollection.find({ userId: userId })
 
+  
+
     const cartProducts = await cartcollection.find({ userId });
     
     const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
@@ -123,6 +125,12 @@ route.delete("/delete", logauth, async (req, res) => {
   }
 })
 
-
+route.post("/buynow/:id", logauth, async (req, res) => {
+  const productId = req.params.id;
+  const quantity = parseInt(req.body.quantity);
+  res.cookie("buynowquantity", quantity);
+  res.cookie("buynowproduct", productId);
+  res.json(productId);
+});
 
 module.exports = route;

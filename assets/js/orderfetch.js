@@ -75,11 +75,11 @@ editorder.forEach((btn) => {
                 <input type="hidden" name="_id" value="${orderdata._id}">
                     <label for="orderStatus">order Status</label>
                     <select id="orderStatus" name="orderStatus">
-                    <option>Order placed</option>
-                    <option>Shipped </option>
-                    <option>Out for delivery</option>
-                    <option>Delivered</option>
-                    <option>Cancelled</option>
+                    <option value ="Order placed">Order placed</option>
+                    <option value="Shipped">Shipped </option>
+                    <option value="Outof delivery">Outof delivery</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
                     </select>
                         
                 <div class="form-group row">

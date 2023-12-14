@@ -237,3 +237,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 })
+
+
+
+//buy now//
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buynowProduct = document.getElementById("buyNow");
+  if (buynowProduct) {
+    buynowProduct.addEventListener("click", () => {
+      const productId = buynowProduct.getAttribute("data-product-id");
+      const quantity = document.getElementById('quantity').value;
+      const buyProduct = {
+        productId: productId,
+        quantity:quantity,
+
+      };
+
+      fetch("/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(buyProduct),
+      })
+        .then((response) => {
+          if (response.ok) {
+            window.location.href = '/checkout';
+          } 
+           else {
+            console.error(
+              "Error adding in buynow",
+              response.statusText
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+        });
+    });
+  }
+});

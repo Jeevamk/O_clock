@@ -129,9 +129,9 @@
                                     <h5 class=""><span class="text-dark" style="font-size: 17px;">orderStatus :
                                         </span>{{orders.orderStatus}}</h5>
                                     <p><span class="text-dark" style="font-size: 17px;">orderDate : </span> <span
-                                            style="font-size: 16px;">{{orders.orderDate}}</span></p>
-                                    <p><span class="text-dark" style="font-size: 17px;">orderDate : </span> <span
-                                            style="font-size: 16px;">{{orders.expireDate}}</span></p>
+                                            style="font-size: 16px;" id="orderDatePlace"></span></p>
+                                    <p><span class="text-dark" style="font-size: 17px;">DeliveryDate : </span> <span
+                                            style="font-size: 16px;" id="expiredate"></span></p>
 
                                     </h5>
                                 </div>
@@ -293,7 +293,14 @@
 
 
 
+<script>
+    const orderDate = "{{orders.orderDate}}"
+    document.getElementById("orderDatePlace").innerHTML=orderDate.split(" ").slice(0,4).join(" ");
 
+    const expireDate = "{{orders.expireDate}}"
+    document.getElementById('expiredate').innerHTML=expireDate.split(" ").slice(0,4).join(" ");
+
+</script>
 
 
     <script src="/js/orderfetch.js"></script>

@@ -174,6 +174,12 @@
 
                             <hr class="my-3">
                             <div class="text-center">
+                                <button type="button" class="btn btn-outline-dark"  onclick="deleteuser()"
+                                        style="width:100%">Delete</button>
+
+                            </div>
+                            <hr class="my-3">
+                            <div class="text-center">
                                 <a href="/user_logout"><button type="button" class="btn btn-outline-dark"
                                         style="width:100%">LogOut</button></a>
 
@@ -186,25 +192,42 @@
 
                     <div class="card">
                         <div class="card-body">
-                           {{#if Cancelled }}
+                            {{#if Cancelled }}
                             <div class="row mb-1">
                                 <h3 class="text-center" style="display: none;">Order Details <span><a id="cancel"
                                             data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Cancel
                                             Order</a></span></h3>
                             </div>
-                              
+
                             <div class="row mb-1">
                                 <h3 class="text-center" style="display:block">Order Details <span><a id="deleteord"
                                             data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Delete
                                             Order</a></span></h3>
                             </div>
+                            {{/if}}
+                            {{#if Outofdelivery }}
+                            <div class="row mb-1">
+                                <h3 class="text-center" style="display: none;">Order Details <span><a id="cancel"
+                                            data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Cancel
+                                            Order</a></span></h3>
+                            </div>
+                                                        <div class="row mb-1">
+                                <h3 class="text-center" style="display: block;">Order Details <span></span></h3>
+                            </div>
+
+
+                            <div class="row mb-1">
+                                <h3 class="text-center" style="display:none">Order Details <span><a id="deleteord"
+                                            data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Delete
+                                            Order</a></span></h3>
+                            </div>
                             {{else}}
-                             <div class="row mb-1">
+                            <div class="row mb-1">
                                 <h3 class="text-center" style="display: block;">Order Details <span><a id="cancel"
                                             data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Cancel
                                             Order</a></span></h3>
                             </div>
-                              
+
                             <div class="row mb-1">
                                 <h3 class="text-center" style="display:none">Order Details <span><a id="deleteord"
                                             data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Delete
@@ -212,7 +235,7 @@
                             </div>
                             {{/if}}
 
-                          
+
                         </div>
                     </div>
 
@@ -248,8 +271,28 @@
                                                     <p class="">OrderId : <span class="">{{myOrder._id}}</p></small>
                                                     <p class="">Payment Method :<span
                                                             class="">{{myOrder.paymentMethod}}</span></p>
+                                                            {{!-- <p class="">Status :<span class="text-success"
+                                                            style="font-weight: 700;">{{myOrder.orderStatus}}</span></p> --}}
+                                                    {{#if Orderplaced}}
                                                     <p class="">Status :<span class="text-success"
                                                             style="font-weight: 700;">{{myOrder.orderStatus}}</span></p>
+                                                    {{/if}}
+                                                    {{#if shipped}}
+                                                    <p class="">Status :<span class="text-warning"
+                                                            style="font-weight: 700;">{{myOrder.orderStatus}}</span></p>
+                                                    {{/if}}
+                                                    {{#if deliverd}}
+                                                    <p class="">Status :<span class="text-success"
+                                                            style="font-weight: 700;">{{myOrder.orderStatus}}</span></p>
+                                                    {{/if}}
+                                                    {{#if Cancelled}}
+                                                    <p class="">Status :<span class="text-danger"
+                                                            style="font-weight: 700;">{{myOrder.orderStatus}}</span></p>
+                                                    {{/if}}
+                                                    {{#if Outofdelivery}}
+                                                    <p class="">Status :<span class="text-danger"
+                                                            style="font-weight: 700;">{{myOrder.orderStatus}}</span></p>
+                                                    {{/if}}
                                                     <p class="">Amount :<span class="text-dark"
                                                             style="font-weight: 700;">{{myOrder.grandtotal}}</span></p>
                                                     <p class="">Order Date:{{myOrder.orderDate}} </p>
@@ -433,6 +476,28 @@
             </div>
         </div>
     </div>
+
+
+    {{!-- modal delete user --}}
+
+            <div class="modal fade" id="deletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="deletebody">
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/user"><button type="button"
+                                    class="btn btn-secondary">Close</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
 
     {{#if alert}}

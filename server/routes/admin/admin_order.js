@@ -6,6 +6,37 @@ const adminCollection = require("../../model/admin_model");
 const userCollection = require("../../model/user_model")
 const productCollection = require("../../model/product_model")
 const checkoutCollection = require("../../model/checkout_model")
+const nodemailer = require('nodemailer')
+const dotenv = require('dotenv').config({path:'config.env'})
+
+
+async function orderMail(name,email,orderStatus,date) {
+
+  const trasnporter = nodemailer.createTransport({
+    service: "Gmail",
+    
+    auth: {
+      user: "jeevamk100@gmail.com",
+      pass: "hexg nlyg mvit mqnt",
+    },
+  });
+
+  const mailOption = {
+    from :"jeevamk100@gmail.com",
+    to: email,
+    subject:"About the order Status",
+    html:`Hii ${name}, Your Order from the O|o' Clock is ${orderStatus}  at ${date}...`,
+  };
+  try{
+    await trasnporter.sendMail(mailOption);
+    return Promise.resolve("Message sent Successfully!");
+
+  }catch(err){
+    return Promise.reject(err);
+  }
+
+}
+
 
 route.use(express.json());
 
@@ -88,7 +119,15 @@ route.get('/update/:id', async(req,res) =>{
 route.put("/update",async(req,res) =>{
     const _id = req.body._id;
     const orderStatus = req.body.orderStatus;
-    const updateOrder = await orderCollection.findOneAndUpdate({ _id }, {$set: {orderStatus}})
+    const updateOrder = await orderCollection.findOneAndUpdate({ _id }, {$set: {orderStatus}},{new : true})
+    console.log("updateorder",updateOrder);
+    
+    const addressDetails = await checkoutCollection.findOne({_id :updateOrder.addressId})
+    const email = addressDetails.email;
+    console.log("email:",email);
+    const username = addressDetails.name;
+    const date = new Date().toLocaleString();
+    await orderMail(username,email,orderStatus,date)
     return res.json(updateOrder)
 })
 

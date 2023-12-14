@@ -168,34 +168,13 @@
                                 </div>
                             </div>
 
-                            {{!-- <ul class="list-group list-group-flush">
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
-                                    <h5 class="mb-0"><i class="fa-solid fa-user" style="font-size: 20px;"></i><span
-                                            class="p-2 text-muted">ACCOUNT SETTINGS</span></h5>
+                            
+                            <hr class="my-3">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-outline-dark"  onclick="deleteuser()"
+                                        style="width:100%">Delete</button>
 
-
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
-                                    <h6 class="mb-0"><i class="fa-regular fa-heart" style="font-size: 18px;"></i><span
-                                            class="p-2"><a href="/wish" style="text-decoration: none;">MY
-                                                WISHLIST</a></span></h6>
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
-                                    <h6 class="mb-0"><i class="fa-solid fa-cart-shopping"
-                                            style="font-size: 18px;"></i><span class="p-2"><a href="/cart">MY
-                                                CART</a></span></h6>
-                                </li>
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-3">
-                                    <h6 class="mb-0"><i class="fa-solid fa-bag-shopping"
-                                            style="font-size: 18px;"></i><span class="p-2">MY ORDERS</span></h6>
-                                </li>
-
-
-                            </ul> --}}
+                            </div>
                             <hr class="my-3">
                             <div class="text-center">
                                 <a href="/user_logout"><button type="button" class="btn btn-outline-dark"
@@ -258,60 +237,7 @@
         </div>
         </div>
 
-        {{!-- <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-                <div class="container  shadow-lg P-5" id="admin_profile">
-                    <div class="col-md-12 text-center">
-                        <img src="/images/profile.png" alt="">
-
-                        <h4>{{user.name}}</h4>
-
-                        <button type="button" class="btn-outline-dark">My Orders</button>
-                        <button type="button" class="btn-outline-dark">My Wishlist</button>
-
-                        <div class="container shadow-lg P-5  mt-5 text-center">
-                            <a href="/delete/{{user._id}}"><button type="button"
-                                    class="btn btn-dark">Delete</button></a>
-                            <a href="/user_logout"><button type="button" class="btn btn-dark">LogOut</button></a>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-                <div class="container shadow-lg P-5" style=" background:linear-gradient(rgb(176, 176, 237),lightblue)">
-                    <form action="" method="">
-                        <div class="mb-4">
-                            <label for="InputName">User Name</label>
-                            <input type="text" class="form-control" id="InputName" placeholder="Enter Name" name="name"
-                                value="{{user.name}}" readonly>
-                        </div>
-                        <div class="mb-4">
-                            <label for="InputName">Email Address</label>
-                            <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email"
-                                name="email" value="{{user.email}}" readonly>
-                        </div>
-                        <div class="mb-4">
-                            <label for="InputName">Phone</label>
-                            <input type="number" class="form-control" id="Inputphone" placeholder="Enter Phone number"
-                                name="phone" value="{{user.phone}}" readonly>
-                        </div>
-                        <div class="mb-4">
-                            <button type="button" class="btn btn-dark text-light" data-bs-toggle="modal"
-                                data-bs-target="#passwordchange">
-                                Change Password
-                            </button>
-                            <button type="button" class="btn btn-dark text-light" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Edit
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div> --}}
+        
     </section>
 
     <!-- Modal edit form -->
@@ -379,6 +305,27 @@
 
         </div>
     </div>
+
+
+    {{!-- modal delete user --}}
+
+            <div class="modal fade" id="deletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="deletebody">
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/user"><button type="button"
+                                    class="btn btn-secondary">Close</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
     {{#if alert}}
     <script>
