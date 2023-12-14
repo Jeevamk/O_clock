@@ -11,20 +11,34 @@ route.get('/', logauth, async (req, res) => {
     const userId = req.userId;
     const checkoutAddress = await checkoutCollection.find({ userId: userId })
 
-  
-
-    const cartProducts = await cartcollection.find({ userId });
-    
-    const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
-      const productId = newcart.productId;
-      const quantity = newcart.quantity;
+    if (req.cookies.buynowproduct){
+      const cartItems =[];
+      const productId = req.cookies.buynowproduct;
+      const quantity =parseInt(req.cookies.buynowquantity);
       const cartContent = await productCollection.find({ _id: productId });
-     
-      return cartContent ? { cartContent, quantity } : null;
-    }));
-    
+
+      if(cartContent){
+        cartItems.push({cartContent,quantity})
+      }
+      console.log("buynewo",cartItems,checkoutAddress);
     res.render("checkout", { checkoutAddress, cartItems })
-  }
+
+    }else {
+      const cartProducts = await cartcollection.find({ userId });
+    
+      const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
+        const productId = newcart.productId;
+        const quantity = newcart.quantity;
+        const cartContent = await productCollection.find({ _id: productId });
+       
+        return cartContent ? { cartContent, quantity } : null;
+      }));
+      
+      res.render("checkout", { checkoutAddress, cartItems })
+    }
+
+    }
+
 )
 
 
@@ -92,6 +106,7 @@ route.post('/address', logauth, async (req, res) => {
 });
 
 
+
 //delete//
 route.get("/delete/:id",logauth, async (req, res) => {
     
@@ -125,11 +140,12 @@ route.delete("/delete", logauth, async (req, res) => {
   }
 })
 
+//buynow//
 route.post("/buynow/:id", logauth, async (req, res) => {
   const productId = req.params.id;
   const quantity = parseInt(req.body.quantity);
-  res.cookie("buynowquantity", quantity);
   res.cookie("buynowproduct", productId);
+  res.cookie("buynowquantity", quantity);
   res.json(productId);
 });
 

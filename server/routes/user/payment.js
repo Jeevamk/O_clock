@@ -21,8 +21,21 @@ route.get('/:id',logauth,async(req,res) =>{
     const user = await userCollection.findById(userId)
     const addressId = req.params.id;
     const addressdata= await checkoutCollection.findById(addressId)
+    
+    if (req.cookies.buynowproduct){
+      const cartItems =[];
+      const productId = req.cookies.buynowproduct;
+      const quantity =parseInt(req.cookies.buynowquantity);
+      const cartContent = await productCollection.find({ _id: productId });
 
-    const cartProducts = await cartcollection.find({ userId });
+      if(cartContent){
+        cartItems.push({cartContent,quantity})
+      }
+      console.log("buynow",cartItems,addressdata);
+    res.render("payment", { addressdata, cartItems,user })
+
+    }else {
+      const cartProducts = await cartcollection.find({ userId });
     const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
     const productId = newcart.productId;
     const quantity = newcart.quantity;
@@ -32,7 +45,10 @@ route.get('/:id',logauth,async(req,res) =>{
     }));
 
     res.render('payment' , {cartItems ,user,addressdata })
+    }
+ 
 })
+
 
 
 route.post('/',logauth,async(req,res) => {

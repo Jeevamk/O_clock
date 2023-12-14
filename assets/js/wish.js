@@ -248,18 +248,13 @@ document.addEventListener("DOMContentLoaded", () => {
     buynowProduct.addEventListener("click", () => {
       const productId = buynowProduct.getAttribute("data-product-id");
       const quantity = document.getElementById('quantity').value;
-      const buyProduct = {
-        productId: productId,
-        quantity:quantity,
-
-      };
-
-      fetch("/checkout", {
+      
+      fetch(`/checkout/buynow/${productId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(buyProduct),
+        body: JSON.stringify({quantity}),
       })
         .then((response) => {
           if (response.ok) {
