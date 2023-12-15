@@ -19,8 +19,35 @@ route.get("/:id", logauth, async (req, res) => {
   const orderId = req.params.id; 
   const orderData = await orderCollection.findById(orderId)
   const address = await checkoutCollection.findById(orderData.addressId)
+  if(req.cookies.buynowproduct){
 
-  const cartData = await cartcollection.find({ userId: userId });
+    const cartItems =[];
+    const productId = req.cookies.buynowproduct;
+    const quantity =parseInt(req.cookies.buynowquantity);
+    const cartContent = await productCollection.find({ _id: productId });
+
+    if(cartContent){
+      cartItems.push({cartContent,quantity})
+    }
+
+    let Products =[]
+    let grandtotal = 0;
+
+        const productid =  cartItems[0].cartContent;
+        const Quantity = cartItems[0].quantity;
+        const productData = await productCollection.findById(productid);
+        console.log(productData);
+        Products.push({productData,Quantity})
+
+        grandtotal += productData.price * Quantity
+        console.log("grand",grandtotal);
+        res.clearCookie("buynowproduct")
+        res.clearCookie("buynowquantity")
+       res.render("orderplaced", {  user ,orderData , address , grandtotal, Products });
+
+  }else{
+
+    const cartData = await cartcollection.find({ userId: userId });
 
   const orderproducts = await Promise.all(
     cartData.map(async (newcart) => {
@@ -44,6 +71,9 @@ route.get("/:id", logauth, async (req, res) => {
 
        await cartcollection.deleteMany({ userId });
        res.render("orderplaced", {  user ,orderData , address , grandtotal, Products });
+
+  }
+  
 });
 
 
@@ -65,17 +95,18 @@ route.post("/", logauth, async (req, res) => {
     }
     console.log("buynow",cartItems,addressdata);
 
+    let Products =[]
     let grandtotal = 0;
-    for (let orderproduct of cartItems) {
-        const productId = orderproduct.productId;
-        const quantity = orderproduct.quantity;
-        const productData = await productCollection.findById(productId);
-        console.log(productData);
-        Products.push({productData,quantity})
 
-        grandtotal += productData.price * quantity
+        const productid =  cartItems[0].cartContent;
+        const Quantity = cartItems[0].quantity;
+        const productData = await productCollection.findById(productid);
+        console.log(productData);
+        Products.push({productData,Quantity})
+
+        grandtotal += productData.price * Quantity
         console.log("grand",grandtotal);
-      }
+      
       
   if (paymentMethod == "cashOn") {
     const orderData = new orderCollection({
@@ -83,23 +114,18 @@ route.post("/", logauth, async (req, res) => {
       paymentMethod,
       addressId: addressDataId,
       orderStatus: "order placed",
-      orderproducts,
+      // orderproducts,
       grandtotal
       
     });
     await orderData.save();
-    res.clearCookie("buynowproduct");
-    res.clearCookie("buynowquantity");
-
-    for (let orderproduct of orderproducts) {
-        const productId = orderproduct.productId;
-        const quantity = orderproduct.quantity;
-
-        await productCollection.findByIdAndUpdate(
-          productId,
-          { $inc: { countStock: -quantity } }
-        );
-      }
+  
+    const productid =  cartItems[0].cartContent;
+    const Quantity = cartItems[0].quantity;
+    await productCollection.findByIdAndUpdate(
+      productid,
+            { $inc: { countStock: -Quantity } }
+          );
      
       res.json(orderData);
   } 
@@ -110,27 +136,21 @@ route.post("/", logauth, async (req, res) => {
       paymentMethod,
       addressId: addressDataId,
       orderStatus: "order placed",
-      orderproducts,
       grandtotal
       
     });
     await orderData.save();
-    res.clearCookie("buynowproduct");
-    res.clearCookie("buynowquantity");
+   
 
-    for (let orderproduct of orderproducts) {
-        const productId = orderproduct.productId;
-        const quantity = orderproduct.quantity;
-
-        await productCollection.findByIdAndUpdate(
-          productId,
-          { $inc: { countStock: -quantity } }
-        );
-      }
+    const productid =  cartItems[0].cartContent;
+    const Quantity = cartItems[0].quantity;
+    await productCollection.findByIdAndUpdate(
+      productid,
+            { $inc: { countStock: -Quantity } }
+          );
      
       res.json(orderData);
   }
-  // res.render("payment", { addressdata, cartItems })
 
   }else {
 
