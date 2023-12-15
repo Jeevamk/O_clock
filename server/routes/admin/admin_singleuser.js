@@ -13,15 +13,17 @@ route.get("/:id", authenticateJWT, async (req, res) => {
       const _id = req.params.id;
       const orders = await orderCollection.find({ userId: _id })
       console.log("orders",orders);
-      // const orderDetail = orders[0]
-      // const productId = orders[0].productId;
-      // const orderProduct = await productCollection.findById(productId)
-      // console.log(productId);
-      // console.log(orderProduct);
+      const orderProductsArray = [];
+      
+      for (const order of orders) {
+        const orderProducts = order.orderproducts;
+        orderProductsArray.push(orderProducts,);
+      }
+      console.log("orderProductsArray:",orderProductsArray);
+      
       const adminid = await adminCollection.findOne({ _id: req.adminId });
       const users = await userCollection.findById(_id);
       res.render("adminSingleUser", { adminid, users,orders});
-      // console.log(users);
     }
   });
 

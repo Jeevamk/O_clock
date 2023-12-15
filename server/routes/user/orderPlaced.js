@@ -33,13 +33,12 @@ route.get("/:id", logauth, async (req, res) => {
     let Products =[]
     let grandtotal = 0;
 
-        const productid =  cartItems[0].cartContent;
-        const Quantity = cartItems[0].quantity;
-        const productData = await productCollection.findById(productid);
+        
+        const productData = await productCollection.findById(productId);
         console.log(productData);
-        Products.push({productData,Quantity})
+        Products.push({productData,quantity})
 
-        grandtotal += productData.price * Quantity
+        grandtotal += productData.price * quantity
         console.log("grand",grandtotal);
         res.clearCookie("buynowproduct")
         res.clearCookie("buynowquantity")
@@ -47,7 +46,7 @@ route.get("/:id", logauth, async (req, res) => {
 
   }else{
 
-    const cartData = await cartcollection.find({ userId: userId });
+  const cartData = await cartcollection.find({ userId: userId });
 
   const orderproducts = await Promise.all(
     cartData.map(async (newcart) => {
@@ -87,47 +86,45 @@ route.post("/", logauth, async (req, res) => {
   if (req.cookies.buynowproduct){
     const cartItems =[];
     const productId = req.cookies.buynowproduct;
-    const quantity =parseInt(req.cookies.buynowquantity);
+    const Quantity =parseInt(req.cookies.buynowquantity);
     const cartContent = await productCollection.find({ _id: productId });
 
+
     if(cartContent){
-      cartItems.push({cartContent,quantity})
+      cartItems.push({cartContent,Quantity})
     }
-    console.log("buynow",cartItems,addressdata);
 
     let Products =[]
     let grandtotal = 0;
 
         const productid =  cartItems[0].cartContent;
-        const Quantity = cartItems[0].quantity;
+        const quantity = cartItems[0].Quantity;
         const productData = await productCollection.findById(productid);
-        console.log(productData);
-        Products.push({productData,Quantity})
-
-        grandtotal += productData.price * Quantity
+        Products.push({productData,quantity})
+        const orderproducts=[{productId:productData._id,quantity}]
+        grandtotal += productData.price * quantity
         console.log("grand",grandtotal);
-      
-      
   if (paymentMethod == "cashOn") {
     const orderData = new orderCollection({
       userId,
       paymentMethod,
       addressId: addressDataId,
-      orderStatus: "order placed",
-      // orderproducts,
+      orderStatus: "Order placed",
+      orderproducts,
       grandtotal
       
     });
     await orderData.save();
   
     const productid =  cartItems[0].cartContent;
-    const Quantity = cartItems[0].quantity;
+    const quantity = cartItems[0].Quantity;
+    
     await productCollection.findByIdAndUpdate(
       productid,
             { $inc: { countStock: -Quantity } }
           );
      
-      res.json(orderData);
+      res.json(orderData); 
   } 
   
   else {
@@ -135,7 +132,8 @@ route.post("/", logauth, async (req, res) => {
       userId,
       paymentMethod,
       addressId: addressDataId,
-      orderStatus: "order placed",
+      orderStatus: "Order placed",
+      orderproducts,
       grandtotal
       
     });
@@ -182,7 +180,7 @@ route.post("/", logauth, async (req, res) => {
       userId,
       paymentMethod,
       addressId: addressDataId,
-      orderStatus: "order placed",
+      orderStatus: "Order placed",
       orderproducts,
       grandtotal
       
@@ -207,7 +205,7 @@ route.post("/", logauth, async (req, res) => {
       userId,
       paymentMethod,
       addressId: addressDataId,
-      orderStatus: "order placed",
+      orderStatus: "Order placed",
       orderproducts,
       grandtotal
       

@@ -125,19 +125,39 @@
                         </div>
                         <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 col-xxl-7 shadow-2-strong">
                             <div class="" style="background-color: hsl(223, 30%, 95%);">
-                                
-                                    <div class="text-center py-3">
-                                        <img src="{{orderProduct.images.[0]}}" alt="" width="100px"><br>
-                                        <h5 style="font-weight: bolder;">{{orderProduct.name}}</h5>
-                                        <p style="color: black;font-weight:800">Rs:{{orderProduct.price}}/-</p>
-                                        <p class="text-danger">{{orderDetail.paymentMethod}}</p>
-                                        <p style="color: green;">{{orderDetail.status}} <span style="color: black;">
-                                            {{!-- On</span>{{orderDetail.date}} --}}
-                                            </p>
-                                        <p></p>
-                                       
-                                    
+                                {{#each orders}}
+                                <div class="card shadow-0 border mb-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div
+                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                <p class="text-muted mb-0"></p>
+                                            </div>
+                                            <div
+                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                <p class="text-muted mb-0 small">Qty:{{this.quantity}}</p>
+                                            </div>
+                                            <div
+                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                <p class="text-muted mb-0 small"><i class="fa-solid fa-indian-rupee-sign"></i>{{this.grandtotal}}</p>
+                                            </div>
+                                            <div
+                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                <p class="text-success mb-0 small" style="font-weight: 600;"><i class="fa-solid fa-circle" style="font-size: 7px;"></i>
+                                                    {{this.orderStatus}}</p>
+                                            </div>
+
+                                            <div
+                                                class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            
+                                                <a href="/adminhome/order/{{this._id}}" class="btn btn-dark text-light">View</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
+                                {{/each}}
+                                    
                             </div>
                             
                         </div>

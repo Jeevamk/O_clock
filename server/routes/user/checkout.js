@@ -21,7 +21,7 @@ route.get('/', logauth, async (req, res) => {
         cartItems.push({cartContent,quantity})
       }
       console.log("buynewo",cartItems,checkoutAddress);
-    res.render("checkout", { checkoutAddress, cartItems })
+      res.render("checkout", { checkoutAddress, cartItems })
 
     }else {
       const cartProducts = await cartcollection.find({ userId });

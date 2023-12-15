@@ -111,9 +111,9 @@ function orderPlaced(amount) {
     });
 
 
-    }
-
+    }else{
         return true;
+    }   
     } else {
         console.log('Please select a payment method.');
         return false;
