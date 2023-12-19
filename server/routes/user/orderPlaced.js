@@ -121,7 +121,7 @@ route.post("/", logauth, async (req, res) => {
     
     await productCollection.findByIdAndUpdate(
       productid,
-            { $inc: { countStock: -Quantity } }
+            { $inc: { countStock: -quantity } }
           );
      
       res.json(orderData); 
@@ -141,10 +141,10 @@ route.post("/", logauth, async (req, res) => {
    
 
     const productid =  cartItems[0].cartContent;
-    const Quantity = cartItems[0].quantity;
+    const quantity = cartItems[0].Quantity;
     await productCollection.findByIdAndUpdate(
       productid,
-            { $inc: { countStock: -Quantity } }
+            { $inc: { countStock: -quantity } }
           );
      
       res.json(orderData);
@@ -299,6 +299,8 @@ route.post("/", logauth, async (req, res) => {
      
   //     res.json(orderData);
   // }
+
+  
 });
 
 

@@ -19,12 +19,13 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    {{!-- chartjs --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-    {{!--
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 
 </head>
@@ -91,7 +92,7 @@
 
 
             <!-- Page Content  -->
-            <div id="content" class="p-4 p-md-5 pt-5" style="background-color: rgb(248, 251, 253);">
+            <div id="content" class="p-4 p-md-5 pt-5">
                 <section class="mt-3">
                     <div class="container-fluid">
                         <div class="row">
@@ -100,8 +101,8 @@
                                     <div class="card-body">
                                         <div class="mr-5 text-primary text-center"
                                             style="font-weight: 600; font-size:large">
-                                            <h2 class="text-center text-dark">{{revenue}}/-</h2>TOTAL
-                                            REVENUE
+                                            <h2 class="text-center text-dark">{{orderCount.totalOrders}}</h2>TOTAL
+                                            ORDERS
                                         </div>
                                     </div>
                                     <a class="card-footer text-dark clearfix small z-1" href="/adminhome/order">
@@ -118,7 +119,7 @@
 
                                         <div class="mr-5 text-success text-center"
                                             style="font-weight: 600; font-size:large">
-                                            <h2 class="text-center text-dark">{{totalOrders}}</h2>TOTAL
+                                            <h2 class="text-center text-dark">{{orderCount.deliverdOrders}}</h2>DELIVERD
                                             ORDERS
                                         </div>
                                     </div>
@@ -136,11 +137,11 @@
 
                                         <div class="mr-5 text-warning text-center"
                                             style="font-weight: 600; font-size:large">
-                                            <h2 class="text-center text-dark">{{totalUsers}}</h2>TOTAL
-                                            USERS
+                                            <h2 class="text-center text-dark">{{orderCount.pendingOrders}}</h2>PENDING
+                                            ORDERS
                                         </div>
                                     </div>
-                                    <a class="card-footer text-dark clearfix small z-1" href="/adminhome/user">
+                                    <a class="card-footer text-dark clearfix small z-1" href="/adminhome/order">
                                         <span class="float-left">View Details</span>
                                         <span class="float-right">
                                             <i class="fa fa-angle-right"></i>
@@ -154,8 +155,8 @@
 
                                         <div class="mr-5 text-danger text-center"
                                             style="font-weight: 600; font-size:17px">
-                                            <h2 class="text-center text-dark">{{totalProducts}}</h2>TOTAL
-                                            PRODUCTS
+                                            <h2 class="text-center text-dark">{{orderCount.cancelled}}</h2>CANCELLED
+                                            ORDERS
                                         </div>
                                     </div>
                                     <a class="card-footer text-dark clearfix small z-1" href="/adminhome/order">
@@ -173,23 +174,81 @@
 
                 </section>
 
-
-                {{!-- recent order --}}
-                <section class="mt-5">
-                    <div class="container-fluid">
+                {{!-- graph of a days --}}
+                <section>
+                    <div class="container">
                         <div class="row">
-                            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 p-3">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <div class="card text-dark bg-white shadow-lg o-hidden h-100 ">
                                     <div class="card-body">
-                                        <h4>Recent Orders</h4>
+                                        <h3>Daily Report</h3>
+                                        <div class="mr-5">
+                                            <canvas id="myChart" style="width:100%;"></canvas>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+
+
+                {{!-- graph of a weeks --}}
+                <section class="mt-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 p-2">
+                                <div class="card text-dark bg-white shadow-lg o-hidden h-100 ">
+                                    <div class="card-body">
+                                        <h3>Weekly Report</h3>
+                                        <div class="mr-5">
+                                            <canvas id="weeklyorder" style="width:100%;"></canvas>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 p-2">
+                                <div class="card text-dark bg-white shadow-lg o-hidden h-100 ">
+                                    <div class="card-body">
+                                        <h3>Monthly Report</h3>
+                                        <div class="mr-5">
+                                            <canvas id="yearchart" style="width:100%;"></canvas>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section class="mt-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                <div class="card text-dark bg-white shadow-lg o-hidden h-100 ">
+                                    <div class="card-body">
+                                        <h3>LAST ORDERS</h3>
                                         <div class="mr-5 table-responsive">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">Id</th>
-                                                        <th scope="col">Payment</th>
-                                                        <th scope="col">Total</th>
-                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Payment Method</th>
+                                                        <th scope="col">GrandTotal</th>
+                                                        <th scope="col">OrderStatus</th>
+                                                        {{!-- <th scope="col">Order Date</th> --}}
+
                                                         <th scope="col">Action</th>
 
                                                     </tr>
@@ -201,22 +260,16 @@
                                                         <td>{{this.paymentMethod}}</td>
                                                         <td>{{this.grandtotal}}</td>
                                                         <td>{{this.orderStatus}}</td>
-                                                        <td><a href="/adminhome/order/{{this._id}}"
-                                                                class="view-order p-1 btn  btn-light m-1"
-                                                                data-order-id="{{this._id}}"><i
-                                                                    class="fa-regular fa-eye"
-                                                                    style="color:black;"></i></a></td>
+                                                        <td><a href="/adminhome/order/{{this._id}}" class="view-order p-1 btn  btn-light m-1" data-order-id="{{this._id}}" ><i class="fa-regular fa-eye"
+                                                    style="color:black;"></i></a></td>
+                                                        {{!-- <td>
+                                                            <p><span style="font-size: 16px;"
+                                                                    class="orderDatePlace{{@index}}"></span>
+                                                            </p>
+                                                        </td> --}}
+
                                                     </tr>
                                                     {{/each}}
-
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td> <a href="/adminhome/order"
-                                                                class="btn btn-outline-dark">View Orders</a>
-                                                        </td>
-                                                    </tr>
 
                                                 </tbody>
                                             </table>
@@ -224,48 +277,6 @@
                                     </div>
 
                                 </div>
-                            </div>
-
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 p-1">
-                                <div class="card text-dark bg-white shadow-lg o-hidden h-100 ">
-                                    <div>
-                                        <h4>Sales Report</h4>
-                                        <div class="mr-5">
-                                            <canvas id="weeklyorder" style="width:100%;"></canvas>
-
-                                        </div>
-                                        <div class="m-4">
-                                            <h6 class="text-dark">Total Orders: <span
-                                                    class="text-primary p-5">{{orderCount.totalorders}}</span></h6>
-                                            <h6 class="text-dark">Deliverd Orders: <span
-                                                    class="text-primary p-4">{{orderCount.deliverdOrders}}</span></h6>
-                                            <h6 class="text-dark">Pending Orders: <span
-                                                    class="text-primary p-4">{{orderCount.pendingOrders}}</span></h6>
-                                            <h6 class="text-dark">Cancelled Orders: <span
-                                                    class="text-primary p-3">{{orderCount.cancelled}}</span></h6>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="mt-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
-
-                                <div id="yearorder" style="width:100%;" class="shadow-lg"></div>
-
-                            </div>
-
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 shadow-lg">
-                               <div class="card text-center">
-                                <canvas id="fiveyears" style="width:100%;max-width:350px" class="text-center"></canvas>
-
-                               </div>
 
                             </div>
                         </div>
@@ -273,147 +284,104 @@
 
                 </section>
 
-                <section class="mt-5">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xl-3 col-sm-6 mb-3">
-                                <div class="card text-dark bg-white shadow-lg o-hidden h-100 ">
-                                    <div class="card-body">
-                                        <a href="/adminhome/category"><div class="mr-5  text-center"
-                                            style="font-weight: 600; font-size:large">
-                                            <h2 class="text-center text-dark">{{totalCategory}}</h2>Total
-                                            Categories
-                                        </div></a>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-sm-6 mb-3">
-                                <div class="card text-dark bg-white shadow-lg o-hidden h-100">
-                                    <div class="card-body">
+              </script>
 
-                                        <a href="/adminhome/brands"><div class="mr-5  text-center"
-                                            style="font-weight: 600; font-size:large">
-                                            <h2 class="text-center text-dark">{{totalBrand}}</h2>Total
-                                            Brands
-                                        </div></a>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-sm-6 mb-3">
-                                <div class="card text-dark bg-white shadow-lg o-hidden h-100">
-                                    <div class="card-body">
+                <script>
+                    const xValues = [{{ MonthOrders }}];
+                    const yValues = [{{ grandTotalSum }}];
 
-                                        <a href="/adminhome/banner"><div class="mr-5  text-center"
-                                            style="font-weight: 600; font-size:large">
-                                            <h2 class="text-center text-dark">{{totalBanner}}</h2>Total
-                                            Banners
-                                        </div></a>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-sm-6 mb-3">
-                                <div class="card text-dark bg-white shadow-lg o-hidden h-100">
-                                    <div class="card-body">
 
-                                        <a href=""><div class="mr-5  text-center"
-                                            style="font-weight: 600; font-size:17px">
-                                            <h2 class="text-center text-dark">{{totalProducts}}</h2>TOTAL
-                                            PRODUCTS
-                                        </div></a>
-                                    </div>
-                                    
-                                </div>
-                            </div>
+                    new Chart("myChart", {
+                        type: "line",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                fill: false,
+                                lineTension: 0,
+                                backgroundColor: "lightblue",
+                                borderColor: "blue",
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            legend: { display: false },
+                            scales: {
+                                yAxes: [{ ticks: { min: 0, max: 150000 } }],
+                                xAxes: [{ ticks: { min: 0, max: 31 } }],
+                            }
+                        }
+                    });
+                </script>
 
-                        </div>
 
-                    </div>
+                {{!-- weekly --}}
+                <script>
+                    var XValues = ["Day1", "Day2", "Day3", "Day4", "Day5", "Day6", "Day7",];
+                    var YValues = [{{ weekOrders }}];
+                    var barColors = ["black", "grey", "lightgrey", "black", "grey", "lightgrey", "black"];
 
-                </section>
+                    new Chart("weeklyorder", {
+                        type: "bar",
+                        data: {
+                            labels: XValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: YValues
+                            }]
+                        },
+                        options: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                            }
+                        }
+                    });
+                </script>
+
+
+
+                {{!-- year chart --}}
+                <script>
+                    var x = ["Jan", "Feb", "Mar", "Apr", "May", "june", "july", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var y = [{{ yearOrders }}];
+                    var barColors = [
+                        "#0a0404",
+                        "#3b3838",
+                        "#4f4e4e",
+                        "#575454",
+                        "##6b6a6a",
+                        "#706b6b",
+                        "#858383",
+                        "##999090",
+                        "#a8a5a5",
+                        "#c2bebe",
+                        "#c7bbbb",
+                        "lightgrey",
+
+                    ];
+
+                    new Chart("yearchart", {
+                        type: "doughnut",
+                        data: {
+                            labels: x,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: y
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: "Year Report" + " " + (new Date().getFullYear())
+                            }
+                        }
+                    });
+                </script>
+
+
 
 
             </div>
-
-
-
-            {{!-- weekly --}}
-            <script>
-                var XValues = ["Day1", "Day2", "Day3", "Day4", "Day5", "Day6", "Day7",];
-                var YValues = [{{ weekOrders }}];
-                var barColors = ["black", "grey", "lightgrey", "black", "grey", "lightgrey", "black"];
-
-                new Chart("weeklyorder", {
-                    type: "bar",
-                    data: {
-                        labels: XValues,
-                        datasets: [{
-                            backgroundColor: barColors,
-                            data: YValues
-                        }]
-                    },
-                    options: {
-                        legend: { display: false },
-                        title: {
-                            display: true,
-                        }
-                    }
-                });
-            </script>
-
-
-            {{!-- monthly --}}
-            <script>
-                const xArray = ["Jan", "Feb", "M6", "Apr", "May", "june", "july", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                const yArray = [{{ yearOrders }}];
-
-                const data = [{
-                    x: xArray,
-                    y: yArray,
-                    mode: "lines"
-                }];
-                const layout = {
-
-                    title: "Monthly Report"
-                };
-
-                Plotly.newPlot("yearorder", data, layout);
-            </script>
-
-            {{!-- fiveyears --}}
-            <script>
-                var yValues = [{{fiveYearAmounts}}];
-                var xValues = [{{fiveYears}}];
-                var barColors = [
-                    "#d3e9f2",
-                    "#aed5e6",
-                    "#8dc3d9",
-                    "#aee1f5",
-                    "#bae6f7"
-                ];
-
-                new Chart("fiveyears", {
-                    type: "pie",
-                    data: {
-                        labels: xValues,
-                        datasets: [{
-                            backgroundColor: barColors,
-                            data: yValues
-                        }]
-                    },
-                    options: {
-                        title: {
-                            display: true,
-                            text: "last 5 years order"
-                            
-                        }
-                    }
-                });
-            </script>
-
-
 
     </section>
 
@@ -475,14 +443,14 @@
             </div>
         </div>
     </div>
-
-
-
     {{#if errors}}
     <script>
         alert('{{errors.msg}}')
     </script>
     {{/if}}
+
+
+
 
 
 

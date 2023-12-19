@@ -238,6 +238,7 @@ route.post(
   }
 );
 
+
 route.post('/verifyOTP',async(req,res) =>{
   try {
     const { userId,otp } = req.body;
