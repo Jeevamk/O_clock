@@ -69,7 +69,6 @@ route.get("/", authenticateJWT, async (req, res) => {
         },
       },
     ]);
-    // console.log("currentMonthOrders:",currentMonthOrders);
 
     const MonthOrders = [];
     const grandTotalSum = [];
@@ -91,8 +90,8 @@ route.get("/", authenticateJWT, async (req, res) => {
       let grandTotal = 0;
       for (j = 0; j < filterData.length; j++) {
         grandTotal += filterData[j].grandtotal;
-        grandTotalSum.push(grandTotal)
       }
+      grandTotalSum.push(grandTotal)
 
       MonthOrders.push(i)
     }
@@ -120,7 +119,7 @@ route.get("/", authenticateJWT, async (req, res) => {
         },
       },
     ]);
-    console.log("currentWeekOrders:", currentWeekOrders);
+
     const weekOrders = [];
     for (i = 0; i < 7; i++) {
       var currentDate = new Date();
@@ -134,8 +133,7 @@ route.get("/", authenticateJWT, async (req, res) => {
       }
       weekOrders.push(grandSumTotal);
     }
-    console.log("weekOrders", weekOrders);
-
+ 
 
     //year//
     const currentYearOrders = await orderCollection.aggregate([
@@ -157,7 +155,7 @@ route.get("/", authenticateJWT, async (req, res) => {
       },
     ]);
 
-    console.log("currentYearOrders:", currentYearOrders);
+
     const yearOrders = [];
     for (i = 0; i < 12; i++) {
       var currentMonth = i;
@@ -172,13 +170,13 @@ route.get("/", authenticateJWT, async (req, res) => {
       }
       yearOrders.push(grandTotal);
     }
-    console.log("yearOrders", yearOrders);
+  
 
 
-    lastOrders = await orderCollection.find()
-    lastThreeOrders = lastOrders.slice(0,3)
+    lastThreeOrders = await orderCollection.find().sort({_id:-1}).limit(5)
 
-    console.log("lastThreeOrders",lastThreeOrders);
+
+
 
 
 

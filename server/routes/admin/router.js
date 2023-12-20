@@ -8,14 +8,12 @@ const authenticateJWT = require("../../middleware/auth");
 const bodyparser = require("body-parser");
 const { body, validationResult } = require("express-validator");
 const parserencoded = bodyparser.urlencoded({ extended: false });
-const productCollection = require("../../model/product_model")
+const productCollection = require("../../model/product_model");
 const orderCollection = require("../../model/order_model");
 const userCollection = require("../../model/user_model");
 const categoryCollection = require("../../model/category_model");
 const brandCollection = require("../../model/brand_model");
-const bannerCollection = require("../../model/banner_model")
-
-
+const bannerCollection = require("../../model/banner_model");
 
 const isSameDay = (date1, date2) => {
   const day1 = new Date(date1);
@@ -41,53 +39,75 @@ route.get("/index", authenticateJWT, async (req, res) => {
   const admin_detail = await adminCollection.findOne({ _id: req.adminId });
 
   //recent orders//
-  lastOrders = await orderCollection.find()
-  lastThreeOrders = lastOrders.slice(0,3)
+  lastThreeOrders = await orderCollection.find().sort({ _id: -1 }).limit(3);
 
   //count of user//
-  const totalUsers = await userCollection.countDocuments({})
+  const totalUsers = await userCollection.countDocuments({});
   //count of order//
-  const totalOrders = await orderCollection.countDocuments({})
+  const totalOrders = await orderCollection.countDocuments({});
   //count of products//
-  const totalProducts = await productCollection.countDocuments({})
- 
+  const totalProducts = await productCollection.countDocuments({});
+
   //total revenue//
- const totalRevenue = await orderCollection.aggregate([
-  {
-    $group: {
-      _id: null,
-      total: {
-        $sum: "$grandtotal",
+  const totalRevenue = await orderCollection.aggregate([
+    {
+      $group: {
+        _id: null,
+        total: {
+          $sum: "$grandtotal",
+        },
       },
     },
-  },
-]);
-const revenue = totalRevenue[0].total;
-console.log("revenue",revenue);
+  ]);
+  const revenue = totalRevenue[0].total;
+  console.log("revenue", revenue);
 
+  const CODAmount = await orderCollection.aggregate([
+    {
+      $match: {
+        paymentMethod: "COD",
+        orderStatus: { $ne: "Cancelled" },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        totalAmountSum: {
+          $sum: "$grandtotal",
+        },
+      },
+    },
+  ]);
 
-//orders details//
-const orders = await orderCollection.aggregate([
-  { $group: { _id: '$orderStatus', count: { $sum: 1 } } },
+  const cashOnDeliveryAmount =
+    CODAmount.length > 0 ? CODAmount[0].totalAmountSum : 0;
 
-])
+  console.log("Total amount for cash on delivery:", cashOnDeliveryAmount);
 
-let totalorders = 0;
-let deliverdOrders;
-let cancelled;
-let pendingOrders = 0;
-for (let order of orders) {
-  totalorders += order.count;
+  const onlinePayment = revenue - cashOnDeliveryAmount;
+  console.log("onlinePayment", onlinePayment);
 
-  if (order._id == "Delivered") {
-    deliverdOrders = order.count
-  } else if (order._id == "Cancelled") {
-    cancelled = order.count
-  } else {
-    pendingOrders += order.count
+  //orders details//
+  const orders = await orderCollection.aggregate([
+    { $group: { _id: "$orderStatus", count: { $sum: 1 } } },
+  ]);
+
+  let totalorders = 0;
+  let deliverdOrders;
+  let cancelled;
+  let pendingOrders = 0;
+  for (let order of orders) {
+    totalorders += order.count;
+
+    if (order._id == "Delivered") {
+      deliverdOrders = order.count;
+    } else if (order._id == "Cancelled") {
+      cancelled = order.count;
+    } else {
+      pendingOrders += order.count;
+    }
   }
-}
-const orderCount = { totalorders, deliverdOrders, cancelled, pendingOrders }
+  const orderCount = { totalorders, deliverdOrders, cancelled, pendingOrders };
 
   //weeks//
   const currentWeekOrders = await orderCollection.aggregate([
@@ -114,7 +134,9 @@ const orderCount = { totalorders, deliverdOrders, cancelled, pendingOrders }
     var currentDate = new Date();
     currentDate.setDate(currentDate.getDate() - i);
 
-    var filterData = currentWeekOrders.filter((obj) => isSameDay(obj.orderDate, currentDate));
+    var filterData = currentWeekOrders.filter((obj) =>
+      isSameDay(obj.orderDate, currentDate)
+    );
     var grandSumTotal = 0;
 
     for (j = 0; j < filterData.length; j++) {
@@ -124,6 +146,9 @@ const orderCount = { totalorders, deliverdOrders, cancelled, pendingOrders }
   }
   console.log("weekOrders", weekOrders);
 
+  //today sale//
+  const todayIncome = weekOrders[0];
+  console.log("todayincome", todayIncome);
 
   //year//
   const currentYearOrders = await orderCollection.aggregate([
@@ -152,7 +177,7 @@ const orderCount = { totalorders, deliverdOrders, cancelled, pendingOrders }
 
     var filteredData = currentYearOrders.filter((obj) => {
       return obj.orderDate.getMonth() === currentMonth;
-    }); 
+    });
     var grandTotal = 0;
 
     for (j = 0; j < filteredData.length; j++) {
@@ -183,7 +208,7 @@ const orderCount = { totalorders, deliverdOrders, cancelled, pendingOrders }
   ]);
 
   const fiveYears = [];
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < 3; i++) {
     var current = new Date();
     current.setFullYear(current.getFullYear() - i);
     fiveYears.push(current.getFullYear());
@@ -200,23 +225,84 @@ const orderCount = { totalorders, deliverdOrders, cancelled, pendingOrders }
     fiveYearAmounts.push(grandTotalSum);
   }
 
-
   //count of category,brand,banner//
   totalCategory = await categoryCollection.countDocuments({});
   totalBanner = await bannerCollection.countDocuments({});
   totalBrand = await brandCollection.countDocuments({});
 
-  
+  const currentMonthOrders = await orderCollection.aggregate([
+    {
+      $match: {
+        $expr: {
+          $gt: [
+            "$orderDate",
+            {
+              $dateSubtract: {
+                startDate: "$$NOW",
+                unit: "month",
+                amount: 1,
+              },
+            },
+          ],
+        },
+      },
+    },
+  ]);
 
+  const MonthOrders = [];
+  const grandTotalSum = [];
+  function getDaysInCurrentMonth() {
+    const currentDate = new Date();
 
+    const lastDayOfMonth = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1,
+      0
+    );
 
+    const numberOfDays = lastDayOfMonth.getDate();
 
+    return numberOfDays;
+  }
 
-  res.render("admin_home", { admin: admin_detail ,lastThreeOrders,weekOrders,totalUsers,totalOrders ,totalProducts,revenue,orderCount,yearOrders,fiveYearAmounts,fiveYears,totalCategory,totalBanner,totalBrand});
+  for (let i = 1; i <= getDaysInCurrentMonth(); i++) {
+    const filterData = currentMonthOrders.filter((obj) => {
+      return new Date(obj.orderDate).getDate() === i;
+    });
+    let grandTotal = 0;
+    for (j = 0; j < filterData.length; j++) {
+      grandTotal += filterData[j].grandtotal;
+    }
+    grandTotalSum.push(grandTotal);
+
+    MonthOrders.push(i);
+  }
+
+  console.log("MonthOrders:", MonthOrders);
+  console.log("grandTotalSum:", grandTotalSum);
+
+  res.render("admin_home", {
+    admin: admin_detail,
+    grandTotalSum,
+    MonthOrders,
+    cashOnDeliveryAmount,
+    onlinePayment,
+    lastThreeOrders,
+    weekOrders,
+    totalUsers,
+    totalOrders,
+    totalProducts,
+    revenue,
+    orderCount,
+    yearOrders,
+    fiveYearAmounts,
+    fiveYears,
+    totalCategory,
+    totalBanner,
+    totalBrand,
+    todayIncome,
+  });
 });
-
-
-
 
 // route.get('/signup',(req,res) =>{
 //     res.render('signup')
@@ -303,7 +389,6 @@ route.put("/update", authenticateJWT, async (req, res) => {
   }
 });
 
-
 //logout//
 route.get("/admin_logout", (req, res) => {
   if (req.cookies.session) {
@@ -313,13 +398,5 @@ route.get("/admin_logout", (req, res) => {
     res.render("login");
   }
 });
-
-
-
-
-
-
-
-
 
 module.exports = route;

@@ -31,6 +31,7 @@ deletebutton.forEach((btn) => {
     });
 });
 
+
 //delete part//
 
 function deleteorder() {
@@ -55,6 +56,7 @@ function deleteorder() {
             console.log(error);
         });
 }
+
 
 //update orderstatus//
 const editorder = document.querySelectorAll(".edit-order");
@@ -124,6 +126,7 @@ function orderEdit() {
         console.error("Error:", error);
       });
   }
+
 
 
 //cancel//

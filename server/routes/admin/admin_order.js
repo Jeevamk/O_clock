@@ -7,7 +7,8 @@ const userCollection = require("../../model/user_model")
 const productCollection = require("../../model/product_model")
 const checkoutCollection = require("../../model/checkout_model")
 const nodemailer = require('nodemailer')
-const dotenv = require('dotenv').config({path:'config.env'})
+const dotenv = require('dotenv').config({path:'config.env'});
+const { format } = require("date-fns")
 
 
 async function orderMail(name,email,orderStatus,date) {

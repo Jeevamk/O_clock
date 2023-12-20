@@ -104,7 +104,7 @@ route.post("/", logauth, async (req, res) => {
         const orderproducts=[{productId:productData._id,quantity}]
         grandtotal += productData.price * quantity
         console.log("grand",grandtotal);
-  if (paymentMethod == "cashOn") {
+  if (paymentMethod == "COD") {
     const orderData = new orderCollection({
       userId,
       paymentMethod,
@@ -130,7 +130,7 @@ route.post("/", logauth, async (req, res) => {
   else {
     const orderData = new orderCollection({
       userId,
-      paymentMethod,
+      paymentMethod:"Razorpay",
       addressId: addressDataId,
       orderStatus: "Order placed",
       orderproducts,
@@ -175,7 +175,7 @@ route.post("/", logauth, async (req, res) => {
         console.log("grand",grandtotal);
       }
       
-  if (paymentMethod == "cashOn") {
+  if (paymentMethod == "COD") {
     const orderData = new orderCollection({
       userId,
       paymentMethod,
@@ -203,7 +203,7 @@ route.post("/", logauth, async (req, res) => {
   else {
     const orderData = new orderCollection({
       userId,
-      paymentMethod,
+      paymentMethod:"Razorpay",
       addressId: addressDataId,
       orderStatus: "Order placed",
       orderproducts,
@@ -250,7 +250,7 @@ route.post("/", logauth, async (req, res) => {
   //       console.log("grand",grandtotal);
   //     }
       
-  // if (paymentMethod == "cashOn") {
+  // if (paymentMethod == "COD") {
   //   const orderData = new orderCollection({
   //     userId,
   //     paymentMethod,

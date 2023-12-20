@@ -15,3 +15,4 @@ const otpSchema = mongoose.Schema( {
 const otpCollection = new mongoose.model('otpCollection', otpSchema);
 
 module.exports = otpCollection;
+

@@ -98,9 +98,9 @@
                             <div class="col-xl-3 col-sm-6 mb-3">
                                 <div class="card text-dark bg-white shadow-lg o-hidden h-100 ">
                                     <div class="card-body">
-                                        <div class="mr-5 text-primary text-center"
-                                            style="font-weight: 600; font-size:large">
-                                            <h2 class="text-center text-dark">{{revenue}}/-</h2>TOTAL
+                                        <div class="mr-5  text-center"
+                                            style="font-weight: 600; font-size:large;color:#2b2b4d;">
+                                            <h3 class="text-center text-dark">{{revenue}}/-</h3>TOTAL
                                             REVENUE
                                         </div>
                                     </div>
@@ -116,8 +116,8 @@
                                 <div class="card text-dark bg-white shadow-lg o-hidden h-100">
                                     <div class="card-body">
 
-                                        <div class="mr-5 text-success text-center"
-                                            style="font-weight: 600; font-size:large">
+                                        <div class="mr-5  text-center"
+                                            style="font-weight: 600; font-size:large;color:#2b2b4d">
                                             <h2 class="text-center text-dark">{{totalOrders}}</h2>TOTAL
                                             ORDERS
                                         </div>
@@ -134,8 +134,8 @@
                                 <div class="card text-dark bg-white shadow-lg o-hidden h-100">
                                     <div class="card-body">
 
-                                        <div class="mr-5 text-warning text-center"
-                                            style="font-weight: 600; font-size:large">
+                                        <div class="mr-5  text-center"
+                                            style="font-weight: 600; font-size:large;color:#2b2b4d">
                                             <h2 class="text-center text-dark">{{totalUsers}}</h2>TOTAL
                                             USERS
                                         </div>
@@ -152,8 +152,8 @@
                                 <div class="card text-dark bg-white shadow-lg o-hidden h-100">
                                     <div class="card-body">
 
-                                        <div class="mr-5 text-danger text-center"
-                                            style="font-weight: 600; font-size:17px">
+                                        <div class="mr-5  text-center" 
+                                            style="font-weight: 600; font-size:17px; color:#2b2b4d">
                                             <h2 class="text-center text-dark">{{totalProducts}}</h2>TOTAL
                                             PRODUCTS
                                         </div>
@@ -229,7 +229,7 @@
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 p-1">
                                 <div class="card text-dark bg-white shadow-lg o-hidden h-100 ">
                                     <div>
-                                        <h4>Sales Report</h4>
+                                        <h5 class="text-center">Sales Report</h5>
                                         <div class="mr-5">
                                             <canvas id="weeklyorder" style="width:100%;"></canvas>
 
@@ -243,6 +243,9 @@
                                                     class="text-primary p-4">{{orderCount.pendingOrders}}</span></h6>
                                             <h6 class="text-dark">Cancelled Orders: <span
                                                     class="text-primary p-3">{{orderCount.cancelled}}</span></h6>
+                                        </div>
+                                        <div class="m-4">
+                                            <h6 style="color: brown;" >Today Income: <span class="text-success p-4" style="font-size: 20px;">{{todayIncome}}/-</span></h6>
                                         </div>
                                     </div>
 
@@ -320,8 +323,8 @@
 
                                         <a href=""><div class="mr-5  text-center"
                                             style="font-weight: 600; font-size:17px">
-                                            <h2 class="text-center text-dark">{{totalProducts}}</h2>TOTAL
-                                            PRODUCTS
+                                            <h2 class="text-center text-dark">{{totalProducts}}</h2>Total
+                                            Products
                                         </div></a>
                                     </div>
                                     
@@ -334,9 +337,105 @@
 
                 </section>
 
+                {{!-- daily details --}}
+                <section class="mt-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                <div class="card text-dark bg-white shadow-lg o-hidden h-100 ">
+                                    <div class="card-body">
+                                        <h3>Daily Report</h3>
+                                        <div class="mr-5">
+                                            <canvas id="myChart" style="width:100%;"></canvas>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                {{!-- cash details --}}
+                <section class="mt-5">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-4 col-sm-6 mb-4">
+                                <div class="card text-dark bg-white shadow-lg o-hidden h-100 ">
+                                    <div class="card-body">
+                                        <div class="mr-5  text-center"
+                                            style="font-weight: 600; font-size:large">
+                                            <h4 class="text-center text-success">{{revenue}}/-</h4>Total
+                                            Revenue
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-6 mb-4">
+                                <div class="card text-dark bg-white shadow-lg o-hidden h-100">
+                                    <div class="card-body">
+
+                                        <div class="mr-5  text-center"
+                                            style="font-weight: 600; font-size:large">
+                                            <h4 class="text-center text-success">{{cashOnDeliveryAmount}}/-</h4>
+                                            Cash On Delivery
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-6 mb-4">
+                                <div class="card text-dark bg-white shadow-lg o-hidden h-100">
+                                    <div class="card-body">
+
+                                        <div class="mr-5  text-center"
+                                            style="font-weight: 600; font-size:large">
+                                            <h4 class="text-center text-success">{{onlinePayment}}/-</h4>
+                                            Online Payments
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                </section>
+
 
             </div>
 
+            {{!-- daily report --}}
+            <script>
+                    const xVal = [{{ MonthOrders }}];
+                    const yVal = [{{ grandTotalSum }}];
+
+
+                    new Chart("myChart", {
+                        type: "line",
+                        data: {
+                            labels: xVal,
+                            datasets: [{
+                                fill: false,
+                                lineTension: 0,
+                                backgroundColor: "#32768c",
+                                borderColor: "#2b5866",
+                                data: yVal
+                            }]
+                        },
+                        options: {
+                            legend: { display: false },
+                            scales: {
+                                yAxes: [{ ticks: { min: 0, max: 150000 } }],
+                                xAxes: [{ ticks: { min: 0, max: 31 } }],
+                            }
+                        }
+                    });
+                </script>
 
 
             {{!-- weekly --}}
@@ -366,7 +465,7 @@
 
             {{!-- monthly --}}
             <script>
-                const xArray = ["Jan", "Feb", "M6", "Apr", "May", "june", "july", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                const xArray = ["Jan", "Feb", "Mar", "Apr", "May", "june", "july", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 const yArray = [{{ yearOrders }}];
 
                 const data = [{
@@ -406,7 +505,7 @@
                     options: {
                         title: {
                             display: true,
-                            text: "last 5 years order"
+                            text: "last 3 years order"
                             
                         }
                     }
