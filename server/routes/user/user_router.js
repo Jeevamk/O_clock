@@ -335,19 +335,6 @@ route.get('/delete',auth,async (req,res)=> {
 })
 
 
-// route.get('/delete/:id', auth, async (req, res) => {
-//     try {
-//         const userId = req.params.id;
-//         await userCollection.findByIdAndDelete(userId);
-//         res.clearCookie('sessions');
-//         res.redirect('/');
-
-//     }
-//     catch (error) {
-//         res.send(error);
-//     }
-// })
-
 route.delete("/delete",auth,async(req,res)=>{
   const userId = req.userId;
   await orderCollection.deleteMany({userId})
@@ -424,7 +411,6 @@ route.post("/forget-password", async (req, res) => {
   const email = req.body.email;
   try {
     const userData = await userCollection.findOne({ email });
-    console.log(userData); 
     if (userData.status == 'active') {
       const randomString = randomstring.generate({ length: 5 });
       console.log(randomString);
@@ -466,7 +452,6 @@ route.post("/token-password", async (req, res) => {
       res.status(400).send({ success: false, msg: "Invalid token." });
       // res.render('token', {tokenalert:true})
     }
-    // console.log(tokenData);
   } catch (error) {
     console.error("Error:", error);
     res.status(500).send({ success: false, msg: error.message });
@@ -477,7 +462,6 @@ route.post("/token-password", async (req, res) => {
 
 route.post("/reset-password", async (req, res) => {
   const userId = req.body._id;
-  console.log(userId);
   const newpass = req.body.newpass;
   const cnewpass = req.body.cpass;
 

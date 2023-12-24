@@ -71,6 +71,7 @@ function orderPlaced(amount) {
                         })
                     }
                     
+                    
                     var settings = {
                     "url": "/payment/payment/verify",
                     "method": "POST",

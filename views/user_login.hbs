@@ -64,17 +64,15 @@ input[type=email]:focus, input[type=password]:focus {
                   >Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Shop</a>
+                  <a class="nav-link active" href="/shop">Shop</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Contact</a>
+                  <a class="nav-link active" href="/contact">Contact</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">About Us</a>
+                  <a class="nav-link active" href="/about">About Us</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="#">Blog</a>
-                </li>
+                
 
               </ul>
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
@@ -84,11 +82,7 @@ input[type=email]:focus, input[type=password]:focus {
                     ></i>{{user.name}}</a>
 
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"><i
-                      class="fa-solid fa-magnifying-glass"
-                    ></i></a>
-                </li>
+                
                 <li class="nav-item">
                   <a class="nav-link" href="#"><i
                       class="fa-regular fa-heart"
@@ -111,12 +105,11 @@ input[type=email]:focus, input[type=password]:focus {
     {{! navbar end }}
 
    
-<section class="vh-100" style="margin-top:20px; background-image: url(/images/bacg.jpg);  background-repeat: no-repeat;
-  background-attachment: fixed;">
+<section class="vh-100" style="margin-top:20px;">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card shadow-2-strong mt-3" style="border-radius: 1rem;">
               <div class="card-body p-5  shadow-lg">
 
                 <h3 class="mb-5 text-center">Log in with</h3>
@@ -125,7 +118,7 @@ input[type=email]:focus, input[type=password]:focus {
               onsubmit="return loginForm()">
                   <label for="email">Email Address</label><br />
 
-                  <input type="email"
+                  <input type="email" 
                     id="email"
                     class="form-control form-control-lg" 
                     name="email"
@@ -160,9 +153,6 @@ input[type=email]:focus, input[type=password]:focus {
 
                   </div><br/>
                   <p class="text-center">Not a member? <a href="user_sign">SignUp</a></p>
-
-
-
               </div>
             </div>
           </div>

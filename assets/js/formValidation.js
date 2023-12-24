@@ -178,18 +178,69 @@ function addbrand() {
 function forgotForm() {
   var forgotemail = document.forms["forgotform"]["email"].value;
 
-  var forgotemailError = document.getElementById("forgoterror");
+  var forgotemailError = document.getElementById("forgotemailError");
 
   if (forgotemail === "") {
-    forgotemailError.innerHTML = "**Please fill in email**";
+    forgotemailError.innerHTML = "**Please fill the email**";
     return false;
   }
  
   forgotemailError.innerHTML = "";
   
   return true;
+}
+
+//token//
+
+function token() {
+  var forgottoken = document.forms["tokenbox"]["token"].value;
+
+  var forgotetokenError = document.getElementById("tokenmsg");
+
+  if (forgottoken === "") {
+    forgotetokenError.innerHTML = "**Please fill the token**";
+    return false;
+  }
+ 
+  
+  return true;
+}
 
 
+//reset password//
+function resetpassword() {
+  var newresetPass = document.forms["reset"]["newpass"].value;
+  var confirmresetPass = document.forms["reset"]["cpass"].value;
+
+  var newresetPassError = document.getElementById("newpas");
+  var confirmresetPassError = document.getElementById("conpas")
+
+  if (newresetPass === "") {
+    newresetPassError.innerHTML = "**Please fill the new password**";
+    return false;
+  }
+  if (newresetPass.length < 6) {
+    newresetPassError.innerHTML = "**Password must be at least 6 characters**";
+    return false;
+  }
+  newresetPassError.innerHTML = "";
+ 
+  if (confirmresetPass === "") {
+    confirmresetPassError.innerHTML = "**Please fill the confirm password**";
+    return false;
+  }
+  confirmresetPassError.innerHTML = "";
+
+  if (confirmresetPass !== newresetPass) {
+    confirmresetPassError.innerHTML = "**Passwords do not match**";
+    return false;
+  }
+  confirmresetPassError.innerHTML = "";
+
+
+ 
+  
+  return true;
 }
 
 

@@ -1,4 +1,4 @@
-<html lang="en">
+ <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -14,8 +14,8 @@
 /* Full-width input fields */
   input[type=text], input[type=password],input[type=email],input[type=number] {
   width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
+  padding: 10px;
+  margin: 5px 0 10px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
@@ -26,17 +26,14 @@ input[type=text]:focus, input[type=password]:focus,input[type=email]:focus,input
   outline: none;
 }
 
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
+
 
 /* Set a style for all buttons */
 button {
-  background-color: #04AA6D;
+  background-color:black;
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin: 4px 0;
   border: none;
   cursor: pointer;
   width: 100%;
@@ -46,8 +43,6 @@ button {
 button:hover {
   opacity:1;
 }
-
-
 
 /* Add padding to container elements */
 .container {
@@ -82,17 +77,15 @@ button:hover {
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Shop</a>
+                <a class="nav-link active" href="/shop">Shop</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Contact</a>
+                <a class="nav-link active" href="/contact">Contact</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">About Us</a>
+                <a class="nav-link active" href="/about">About Us</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Blog</a>
-              </li>
+              
 
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
@@ -100,9 +93,7 @@ button:hover {
                 <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i>{{user.name}}</a>
 
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-              </li>
+              
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fa-regular fa-heart"></i></a>
               </li>
@@ -127,72 +118,32 @@ button:hover {
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-5 shadow-lg">
 
-              {{!-- <h3 class="mb-5 text-center">SIGN UP</h3> --}}
-
-              {{!-- <form action="/user_registration" method="POST" onsubmit="return validateForm()" name="myform">
-                <div class="form-row">
-                  <div class="offset-1 col-lg-10 pt-3">
-                    <input type="text" class="form-control" name="name" placeholder="User Name" id="name" value="" />
-                    <p id="error" class="text-danger"></p>
-
-                  </div>
-                  <div class="offset-1 col-lg-10 pt-3">
-                    <input type="email" class="form-control" name="email" placeholder="Email address" id="email"
-                      value="" />
-                    <p id="error1" class="text-danger"></p>
-                  </div>
-                  <div class="offset-1 col-lg-10 pt-3">
-                    <input type="number" class="form-control" name="phone" placeholder="Phone Number" id="phone"
-                      value="" />
-                    <p id="error2" class="text-danger"></p>
-                  </div>
-                  <div class="offset-1 col-lg-10 pt-3">
-                    <input type="password" class="form-control" name="password" placeholder="Password" id="password"
-                      value="" />
-                    <p id="error3" class="text-danger"></p>
-                  </div>
-                  <div class="offset-1 col-lg-10 pt-3">
-                    <input type="password" class="form-control" name="cpassword" placeholder="Confirm Password"
-                      id="cpassword" value="" />
-                    <p id="error4" class="text-danger"></p>
-                  </div>
-                  <div class="offset-1 col-lg-10 pt-3">
-                    <input type="text" class="form-control" name="status" value="active" hidden />
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-dark mt-4" style="width: 70%;">Sign Up</button>
-
-                  </div>
-                  <a href="/user" class="mt-5">i am already a member</a>
-
-                </div>
-              </form> --}}
               <form action="/user_registration" method="POST" onsubmit="return validateForm()" name="myform" style="border:1px solid #ccc">
                 <div class="container">
-                  <h1 class="text-center">Sign Up</h1>
-                  <hr>
-                  <label for="name"><b>Name</b></label>
+                  <h2 class="text-center">Sign Up</h2>
+          
+                  {{!-- <label for="name"><b>Name</b></label> --}}
                   <input type="text" name="name" placeholder="User Name" id="name" value="" >
                   <p id="error" class="text-danger"></p>
 
 
-                  <label for="email"><b>Email</b></label>
+                  {{!-- <label for="email"><b>Email</b></label> --}}
                   <input type="text" name="email" placeholder="Email address" id="email"
                     value="" >
                   <p id="error1" class="text-danger"></p>
 
-                  <label for="phone"><b>Phone Number</b></label>
+                  {{!-- <label for="phone"><b>Phone Number</b></label> --}}
                   <input type="number" class="form-control" name="phone" placeholder="Phone Number" id="phone"
                       value=""  >
                   <p id="error2" class="text-danger"></p>
 
-                  <label for="password"><b>Password</b></label>
+                  {{!-- <label for="password"><b>Password</b></label> --}}
                   <input type="password" class="form-control" name="password" placeholder="Password" id="password"
                       value=""  >
                     <p id="error3" class="text-danger"></p>
 
 
-                  <label for="cpassword"><b>Confirm Password</b></label>
+                  {{!-- <label for="cpassword"><b>Confirm Password</b></label> --}}
                   <input type="password" name="cpassword" placeholder="Confirm Password"
                       id="cpassword" value="" >
                   <p id="error4" class="text-danger"></p>
@@ -201,7 +152,8 @@ button:hover {
                   <div class="clearfix text-center">
                     <button type="submit" class="signupbtn">Sign Up</button>
                   </div>
-                                <a href="/user"  style="text-decoration:none">i am already a member</a>
+                  <hr>
+                  <h6 class="text-center"><a href="/user"  style="text-decoration:none">i am already a member</a></h6>             
 
                 </div>
               </form>
@@ -226,4 +178,10 @@ button:hover {
     crossorigin="anonymous"></script>
 </body>
 
-</html>
+</html> 
+
+
+
+
+
+

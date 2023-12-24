@@ -29,23 +29,25 @@
 
                 <h3 class="mb-5">Reset Password</h3>
 
-                <form action="/reset-password" method="POST">
+                <form action="/reset-password" method="POST" onsubmit="return resetpassword()" name="reset">
                   <input type="text" hidden name="_id" value="{{_id}}" />
                   <label for="newpass">New Password</label><br />
                   <input
                     type="password"
                     id="newpass"
                     name="newpass"
-                    class="form-control form-control-lg"
-                  /><br />
+                    class="form-control form-control-lg" value=""
+                  />
+                  <p id="newpas" class="text-danger"></p><br>
                   <label for="cpass">Confirm Password</label><br />
                   <input
                     type="password"
                     id="cpass"
                     name="cpass"
-                    class="form-control form-control-lg"
-                  /><br />
-                  <input type="submit" value="Submit" />
+                    class="form-control form-control-lg" value=""
+                  />
+                  <p id="conpas" class="text-danger"></p><br>
+                  <input type="submit" value="Submit" class="btn btn-dark"/>
                 </form>
 
               </div>
@@ -54,6 +56,9 @@
         </div>
       </div>
     </section>
+
+        <script src="/js/formValidation.js"></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

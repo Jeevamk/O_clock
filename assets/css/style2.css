@@ -402,6 +402,9 @@ a {
     .locate-card{
         top: 0px;
     }
+    .time{
+        display: none;
+    }
 
 }
 

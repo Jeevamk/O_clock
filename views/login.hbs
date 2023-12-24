@@ -4,7 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/css/style2.css">
+ 
+  {{!-- <link rel="stylesheet" href="/css/style2.css">  --}}
+  <link rel="stylesheet" href="/css/admin.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -13,35 +15,69 @@
 </head>
 
 <body>
-  <div class="container-fluid">
+  {{!-- <div class="container-fluid">
     <form class="login_form mx-auto" action="/adminhome/login_admin" method="POST">
       <h4 class="text-center" style="font-size: 2rem;">Login</h4>
       <div class="mb-3 mt-5">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+        <p class="text-danger" id="err1"></p>
       </div>
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
         <input type="password" class="form-control" id="exampleInputPassword1" name="loginpassword">
-        <a href="">Forgot Password?</a>
+        <p class="text-danger" id="err2"></p>
+
       </div>
-      
+
       <button type="submit" class="btn btn-primary mt-4" id="login_btn">Login</button>
     </form>
+  </div> --}}
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card my-5 shadow-sm border border-3">
+          <form class="card-body cardbody-color p-lg-5 " action="/adminhome/login_admin" method="POST">
+
+            <div class="text-center">
+              <img src="/images/img2.jpg" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                width="200px" alt="profile">
+              <h2 class="text-center text-dark" style="font-weight: bold;">O|o' CLOCK</h2>
+            </div>
+            <div class="mb-3 mt-4">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                name="email" placeholder="Email Address">
+              <p class="text-danger" id="err1"></p>
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" id="exampleInputPassword1" name="loginpassword" placeholder="Password">
+              <p class="text-danger" id="err2"></p>
+            </div>
+            <div class="text-center"><button type="submit" class="btn px-5 mb-5 w-100 btn-dark"
+                id="login_btn">Login</button></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
   </div>
-  
-{{#if alert}}
+
+
+  {{#if alert}}
   <script>
-    alert("password is not match")
+    document.getElementById('err2').innerHTML = "***Password is not match***";
   </script>
   {{/if}}
 
 
   {{#if show}}
   <script>
-    alert("Email is not found")
+    document.getElementById('err1').innerHTML = "***Email is not match***";
   </script>
   {{/if}}
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

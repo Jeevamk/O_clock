@@ -26,9 +26,7 @@
           <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <div class="card shadow-2-strong" style="border-radius: 1rem;">
               <div class="card-body p-5 text-center">
-
-                
-                <form action="/token-password" method="POST">
+                <form action="/token-password" method="POST" onsubmit="return token()" name="tokenbox">
                   <input type="text" hidden name="id" value="{{_id}}" />
                   <p style="font-weight: bold;">Enter Access Code</p>
                   <input
@@ -36,9 +34,9 @@
                     id="token"
                     name="token"
                     class="form-control form-control-lg"
-                    placeholder="Enter Access Code"
+                    placeholder="Enter Access Code" value=""
                   /><br />
-                  <p id="msg1" class="text-danger"></p>
+                  <p id="tokenmsg" class="text-danger"></p>
                   <input
                     type="submit"
                     value="Submit"
@@ -58,6 +56,8 @@
         document.getElementById("msg1").innerHTML="Access Code is incorrect"
       </script>
     {{/if}}
+
+    <script src="/js/formValidation.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
