@@ -19,16 +19,7 @@
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
-    <style>
-        .abt{
-            background-image: url('/images/bg.jpg');
-            background-repeat: no-repeat;
-            background-position: center ;
-             
-            background-attachment: fixed;
-        }
-    </style>
-    
+
 </head>
 
 <body>
@@ -59,7 +50,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="/about">About Us</a>
                             </li>
-                        
+
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
                             <li class="nav-item">
@@ -67,7 +58,7 @@
                                         style="color: black; font-family:sanserif">{{user.name}}</span></a>
 
                             </li>
-                            
+
                             <li class="nav-item ">
                                 <a class="nav-link" href="/wish"><i class="fa-regular fa-heart"></i></a>
                             </li>
@@ -84,12 +75,12 @@
     </section>
     {{!-- navsection end --}}
 
-    <section>
+    <section class="">
         <div class="container-fluid">
             <div class="row" style="margin-top: 20px;">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                     <div>
-                        <img src="/images/about.jpg" class="img-fluid" alt="">
+                        <img src="/images/about.jpg" class="img-fluid abt-img" alt="">
                     </div>
                 </div>
             </div>
@@ -97,38 +88,18 @@
 
 
     </section>
+    {{!-- ------------------------------------------------------------------------------------------------------------
+    --}}
 
-    <section class="mt-5 abt" >
-        <div class="container">
+    <section class="mt-5 abt">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 ">
-                    <div class="card shadow-lg">
-                        <div class="card-body  text-dark text-center">
-                            <h2 class="card-title p-3" style="font-family: italic;">About Us</h2>
-                            {{!-- <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6> --}}
-                            <p class="card-text pb-5" style="line-height: 27px;">O|o'Clock is an American watch and
-                                lifestyle company, creatively rooted in authentic vintage and classic design. We strive
-                                to create high-quality watches, bags, jewelry and more that preserve the best of the
-                                past while updating it for today. When the clean lines of the mid-century meet the
-                                modern looks of today, the result is key items that represent the best of what we stand
-                                for: bags that pair portability with streamlined design, traditional watches created in
-                                fresh hues and materials, and timeless clothes and accessories that accompany you
-                                wherever you are traveling.Our eye-catching men’s watches and women’s watches come
-                                stylishly strapped with leather or merry metallic bands, while our must-have bags pair
-                                fashion and functionality. Lovely rose gold-tone watches for her and handsome Swiss
-                                watches for him retain all the qualities you love the most in a classic Fossil. Pair
-                                them with our covetable cuffs, sparkling studs or glamorous necklaces for a look that
-                                goes from day to night with ease.</p>
 
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6  p-3">
-                    <div class="card shadow-lg">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12  p-3">
+                    <div class="card shadow-sm">
                         <div class="card-body   text-dark text-center">
-                            <h1 class="card-title p-3" style="font-family: italic;">WELCOME TO O|o' CLOCK</h1>
-                            {{!-- <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6> --}}
+                            <h1 class="card-title p-3" style="font-family: italic;">WELCOME TO <span
+                                    style="font-weight: bold;">O|o' CLOCK</span> </h1>
                             <h5 class="card-text pb-5" style="line-height: 30px;">One of the world’s leading
                                 watchmakers,
                                 Frank was founded in Switzerland in 1881. Recognized for its iconic Museum dial and
@@ -142,95 +113,193 @@
         </div>
     </section>
 
-<section class="mt-5 abt">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 p-5">
-                <img src="/images/p18.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 p-5">
-               <img src="/images/blog-4.jpg" class="img-fluid" alt="">
 
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 p-5">
-                <img src="/images/p17.jpg" class="img-fluid" alt="">
+    {{!-- ------------------------------------------------------------------------------------------------------------
+    --}}
+    <section class="mt-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                    <div class="card ">
+                        <div class="card-body  text-dark text-center">
+                            <h2 class="card-title p-3" style="font-family: italic;">About Us</h2>
+                            <p class="card-text pb-5" style="line-height: 27px;">O|o'Clock is an American watch and
+                                lifestyle company, creatively rooted in authentic vintage and classic design. We strive
+                                to create high-quality watches. When the clean lines of the mid-century meet the
+                                modern looks of today.Our eye-catching men’s watches and women’s watches come
+                                stylishly strapped with leather or merry metallic bands. Lovely rose gold-tone watches
+                                for her and handsome Swiss
+                                watches for him retain all the qualities you love the most in a classic Fossil. Pair
+                                them with our covetable cuffs, sparkling studs or glamorous necklaces for a look that
+                                goes from day to night with ease.Our diverse portfolio is made up of brands we own and
+                                brands we partner with who share our passion for design, innovation and doing good.</p>
 
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                    <img src="/images/p19.png" alt="" class="img-fluid">
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-</section>
+
+    {{!-- ---------------------------------------------------------------------------------------------------------}}
 
     <section class="mt-5">
-
-        <footer class="section bg-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="">
-                            <h6 class="footer-heading text-uppercase text-white">Information</h6>
-                            <ul class="list-unstyled footer-link mt-4">
-                                <li><a href="">Pages</a></li>
-                                <li><a href="">Our Team</a></li>
-                                <li><a href="">Feuchers</a></li>
-                                <li><a href="">Pricing</a></li>
-                            </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center" style="font-family: cursive;">Features Of Watches</h2>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-2">
+                    <div class="card" >
+                        <img src="/images/blog-1.jpg" class="card-img-top img-fluid">
+                        <div class="card-body shadow-sm">
+                            <h6>Elegant and Timeless Design</h6>
+                            <p class="card-text">It is Elegant and Timeless Design , characterozed by clean
+                                lines,minimalistic dials and sophisticated aesthetic. </p>
                         </div>
                     </div>
 
-                    <div class="col-lg-3">
-                        <div class="">
-                            <h6 class="footer-heading text-uppercase text-white">Ressources</h6>
-                            <ul class="list-unstyled footer-link mt-4">
-                                <li><a href="">Monitoring Grader </a></li>
-                                <li><a href="">Video Tutorial</a></li>
-                                <li><a href="">Term &amp; Service</a></li>
-                                <li><a href="">Zeeko API</a></li>
-                            </ul>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-2">
+                    <div class="card" >
+                        <img src="/images/blog-2.jpg" class="card-img-top" alt="...">
+                        <div class="card-body shadow-sm">
+                            <h6>Water Resistance</h6>
+                            <p class="card-text">It is a common mark stamped on the back of wrist watches to indicate
+                                how well a watch is sealed against the ingress of water.</p>
                         </div>
                     </div>
 
-                    <div class="col-lg-2">
-                        <div class="">
-                            <h6 class="footer-heading text-uppercase text-white">Help</h6>
-                            <ul class="list-unstyled footer-link mt-4">
-                                <li><a href="/user">Sign Up </a></li>
-                                <li><a href="/user">Login</a></li>
-                                <li><a href="/about">About Us</a></li>
-                                {{!-- <li><a href="">Privacy Policy</a></li> --}}
-                            </ul>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-2">
+                    <div class="card" >
+                        <img src="/images/blog-3.jpg" class="card-img-top" alt="...">
+                        <div class="card-body shadow-sm">
+                            <h6>Comfortable Fit</h6>
+                            <p class="card-text">Designed with wearer comfort in mind , watch offers a comfortable fit
+                                on the wrist making it suitable for prolonged wear.</p>
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
-                        <div class="">
-                            <h6 class="footer-heading text-uppercase text-white">Contact Us</h6>
-                            <p class="contact-info mt-4">Contact us if need help withanything</p>
-                            <p class="contact-info">+01 123-456-7890</p>
-                            <div class="mt-5">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item"><a href="#"><i
-                                                class="fab facebook footer-social-icon fa-facebook-f"></i></i></a></li>
-                                    <li class="list-inline-item"><a href="#"><i
-                                                class="fab twitter footer-social-icon fa-twitter"></i></i></a></li>
-                                    <li class="list-inline-item"><a href="#"><i
-                                                class="fab google footer-social-icon fa-google"></i></i></a></li>
-                                    <li class="list-inline-item"><a href="#"><i
-                                                class="fab apple footer-social-icon fa-apple"></i></i></a></li>
-                                </ul>
-                            </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-2">
+                    <div class="card" >
+                        <img src="/images/feature.jpg" class="card-img-top" alt="...">
+                        <div class="card-body shadow-sm">
+                            <h6>Interchangable Straps</h6>
+                            <p class="card-text">Watch to match your personal style and mood.The watch comes with
+                                interchangale straps allowing you switch. </p>
                         </div>
                     </div>
 
                 </div>
             </div>
+        </div>
 
-            <div class="text-center mt-5">
-                <p class="footer-alt mb-0 f-14">2023 © O_Clock, All Rights Reserved</p>
+    </section>
+
+    {{!-- ---------------------------------------------------------------------------------------------------------}}
+
+
+    <section class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                    <h1 class="text-danger" style="font-family:serif">When timeless design meets the power of <br>
+                        innovation, everything is possible.</h1>
+                    <h3 class="text-muted" style="font-family:serif">Our diverse portfolio is made up of brands we own
+                        and brands we partner with who <br>share our passion for design, innovation and doing good.</h3>
+
+                </div>
+            </div>
+
+            
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+
+    {{!-- footer sec start --}}
+
+    <section class="mt-5">
+        <footer>
+            <div class="footer-top">
+                <div class="container">
+                    <div class="footer-day-time">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <div class="phone-no">
+                                    <a><i class="fa fa-mobile" aria-hidden="true"></i>Call +12 34 56 78 90</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+
+                            <h4>About us</h4>
+                            <p>O|o'Clock is an American watch and
+                                lifestyle company, creatively rooted in authentic vintage and classic design.We strive
+                                to create high-quality watches. </p>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <h4>Information</h4>
+                            <ul class="address1">
+                                <li><i class="fa fa-map-marker"></i>Vadakara , Calicut</li>
+                                <li><i class="fa fa-envelope"></i><a href="mailto:#">info@test.com</a></li>
+                                <li><i class="fa fa-mobile" aria-hidden="true"></i> <a>12 34 56 78 90</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h4>Follow us</h4>
+                            <ul class="social-icon">
+                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-google"></i></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/about">About Us</a></li>
+                                <li><a href="/shop">Shop</a></li>
+                                <li><a href="/contact">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </footer>
 
+
     </section>
+
+
 
     <script src="/js/filterProduct.js"></script>
 

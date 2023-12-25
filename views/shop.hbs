@@ -49,9 +49,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">About Us</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Blog</a>
-                            </li>
+                            
 
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
@@ -79,17 +77,17 @@
     </section>
     {{! navsection end }}
 
-    <section class="shop" style="margin-top: 70px;">
+    {{!-- <section class="shop" style="margin-top: 70px;">
         <div>
             <img src="/images/carousal.jpg" alt="" class="img-fluid">
         </div>
-    </section>
+    </section> --}}
 
 
-    <section class="mt-5">
+    <section class="" style="margin-top: 70px;">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 col-xxl-3 p-3">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 col-xxl-3 p-3">
                     <p style="font-weight: 700;">CATEGORIES</p>
                     <ul style="list-style: none;">
                         {{!-- <a href="">
@@ -126,11 +124,11 @@
                     </div>
                     
                 </div>
-                <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9 col-xxl-9">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-9 col-xl-9 col-xxl-9">
                     <div class="container">
                         <div class="row">
                             {{#each products}}
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 p-2 pro"
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-2 pro"
                                 data-category="{{this.category}}" data-brand="{{this.brand}}"
                                 data-price="{{this.price}}">
                                 <a href="/shop/{{this._id}}">
