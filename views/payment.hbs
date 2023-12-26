@@ -47,11 +47,9 @@
                                 <a class="nav-link active" href="/contact">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">About Us</a>
+                                <a class="nav-link active" href="/about">About Us</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Blog</a>
-                            </li>
+                            
 
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
@@ -82,67 +80,82 @@
 
     <section style="margin-top: 100px;">
         <div class="container">
-
-            <div class="row m-5">
-                <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 border-end">
-                    <div class="card shadow-lg">
-
+            <div class="row ">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 col-xxl-7">
+                    <div class="card shadow-0 border mb-4 rounded border border-dark-subtle">
                         <h5 class="text-muted ps-2">Delivery Address</h5>
                         <hr>
-                        <p class="ps-2"><span style="font-weight: 600;">{{addressdata.name}},</span>
-                            {{addressdata.address}},{{addressdata.area}},{{addressdata.city}},{{addressdata.state}},{{addressdata.pincode}}<br>{{addressdata.phone}}
-                        </p>
-
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="" style="font-weight: 600;">{{addressdata.name}}</h5>
+                                    <p class="">{{addressdata.address}} , {{addressdata.area}} ,{{addressdata.city}}
+                                    </p>
+                                    <p class="">{{addressdata.state}} , {{addressdata.pincode}} </p>
+                                    <p class="">{{addressdata.phone}} </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
+                
                 </div>
 
-                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
 
-                    <h5 class="text-muted">Price Details</h5>
-                    <table class="table p-5 shadow-lg">
-                        <tbody>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 col-xxl-5">
+                    <div class="card shadow-sm rounded border border-dark-subtle">
+                        <div class="card-body">
+                            <h5 class="text-center" style="font-family: sans-serif; font-weight:700">Cart Details</h5>
+                            <ul class="list-group mb-3">
+                                <script>
+                                    let grandtotal = 0;
+                                </script>
+                                {{#each cartItems}}
+                                {{#each cartContent}}
+
+                                <li class="list-group-item d-flex justify-content-between 1h-condensed">
+                                    <img class="me-3" src="{{this.images}}" width="15%" height="15%">
+
+                                    <div>
+                                        <h6 class="my-0">{{this.name}}</h6>
+
+
+                                    </div>
+                                    <p class="ms-auto me-5">{{../quantity}}</p>
+                                    <span id="total{{this._id}}"></span>
+
+                                </li>
+
+                                <script>
+                                    var price = {{ this.price }}
+                                    var quantity = {{../quantity}}
+                                    var totalPrice = parseInt(price) * parseInt(quantity)
+                                    grandtotal += parseInt(totalPrice)
+                                    document.getElementById('total{{this._id}}').innerHTML = totalPrice;
+                                </script>
+
+                                {{/each}}
+                                {{/each}}
+
+                                <li class="list-group-item d-flex justify-content-between 1h-condensed">
+                                    <span>TOTAL : </span>
+                                    <p class="text-success" id="grand">{{grandTotal}} <span>/-</span></p>
+
+                                </li>
+
+                            </ul>
+
                             <script>
-                                let grandtotal = 0;
-                            </script>
-                            {{#each cartItems}}
-                            {{#each cartContent}}
-                            <tr>
-
-                                <td>{{this.name}}({{../quantity}})</td>
-
-                                <td><span id="total{{this._id}}"></span>/-</td>
-                            </tr>
-
-                            <script>
-                                var price = {{ this.price }}
-                                var quantity = {{../quantity}}
-                                var totalPrice = parseInt(price) * parseInt(quantity)
-                                grandtotal += parseInt(totalPrice)
-                                document.getElementById('total{{this._id}}').innerHTML = totalPrice;
+                                document.getElementById("grand").textContent = grandtotal;
                             </script>
 
-                            {{/each}}
-                            {{/each}}
-                            <tr>
-                                <td><span style="font-weight: 600;">TOTAL : </span></td>
-                                <td class="text-success" id="grand">{{grandTotal}}/-</td>
-
-                            </tr>
-
-
-                        </tbody>
-                    </table>
-                    <script>
-                        document.getElementById("grand").textContent = grandtotal;
-                    </script>
-
-
+                        </div>
+                    </div>
                 </div>
+
             </div>
-            <div class="row m-5">
-                <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 ">
-                    <div class="card shadow-lg">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 col-xxl-7 ">
+                    <div class="card shadow-lg rounded border border-dark-subtle">
                         <div class="card-header ">
                             <h4>Select Payment Method</h4>
                         </div>
@@ -180,11 +193,11 @@
             {{!-- <button id="rzp-button1">Pay with Razorpay</button> --}}
     </section>
 
-    
 
-    
 
-    
+
+
+
 
 
 

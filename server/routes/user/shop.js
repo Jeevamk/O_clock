@@ -23,8 +23,10 @@ route.get('/:id', logauth,async(req,res)=>{
   const userId = req.userId;
   const user = await userCollection.findById(userId)
     const _id= req.params.id;
-    const product = await productCollection.findById(_id)
-    return res.render("productDetails",{product , user});
+    const product = await productCollection.findById(_id);
+    const newArrival = await productCollection.find().sort({ createdDate: -1 });
+  const newarrivalArray = newArrival.slice(0, 4);
+    return res.render("productDetails",{product , user,newarrivalArray});
    
 })
 

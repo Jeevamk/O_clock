@@ -45,11 +45,9 @@
                                 <a class="nav-link active" href="/contact">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">About Us</a>
+                                <a class="nav-link active" href="/about">About Us</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Blog</a>
-                            </li>
+
 
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
@@ -58,9 +56,7 @@
                                         style="color: black; font-family:sanserif">{{user.name}}</span></a>
 
                             </li>
-                            {{!-- <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                            </li> --}}
+
                             <li class="nav-item">
                                 <a class="nav-link" href="/wish"><i class="fa-regular fa-heart"></i></a>
                             </li>
@@ -77,8 +73,202 @@
     </section>
     {{! navsection end }}
 
+    <section  style="margin-top: 100px;">
+        <div class="container p-3" >
+            <div class="row mt-2">
+                <div class="col-12">
+                    <h2 class="text-center">Checkout Form</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-1">
+                                <div class="col-12 col-md-12 col-lg-12 p-2">
+                                    <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvasWithBothOptions"
+                                        aria-controls="offcanvasWithBothOptions" style="font-weight: bold;">+Add New
+                                        Address</button>
 
-    <section style="margin-top: 100px;">
+                                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1"
+                                        id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                                        <div class="offcanvas-header">
+                                            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">ADDRESS DETAILS
+                                            </h5>
+
+                                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <hr>
+                                        <div class="offcanvas-body">
+                                            <p style="font-weight:600; font-size:25px">Contact Details</p>
+                                            <form action="/checkout/address" method="post" name="checkoutForm"
+                                                onsubmit="return checkout()">
+                                                <div class="row g-3">
+                                                    <input type="text" class="form-control" value="" id="addressId"
+                                                        name="addressId" hidden>
+                                                    <input type="text" class="form-control" value="{{grandTotal}}"
+                                                        name="grandTotal" id="grandTotal" hidden>
+
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control-sm" id="name" name="name"
+                                                            placeholder="Name" value="">
+                                                        <small id="nameAddress" class="text-danger"></small>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" id="phone" name="phone"
+                                                            placeholder="Phone Number" value="">
+                                                        <small id="phoneAddress" class="text-danger"></small>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="email" class="form-control" id="email" name="email"
+                                                            placeholder="Email">
+                                                        <small id="emailAddress" class="text-danger"></small>
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <textarea class="form-control" id="address" name="address"
+                                                            placeholder="Address"></textarea>
+                                                        <small id="Address" class="text-danger"></small>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <textarea class="form-control" id="area" name="area"
+                                                            placeholder="Road Name/Area/Colony"></textarea>
+                                                        <small class="text-danger" id="areaAddress"></small>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="text" class="form-control" id="pincode"
+                                                            name="pincode" placeholder="pincode">
+                                                        <small id="pinAddress" class="text-danger"></small>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" id="city" name="city"
+                                                            placeholder="city">
+                                                        <small id="cityAddress" class="text-danger"></small>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <select class="form-select" aria-label="Default select example"
+                                                            name="state" id="state">
+                                                            <option value="">State</option>
+                                                            <option>Kerala</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="text" class="form-control" id="optionaladdress"
+                                                            name="optionaladdress"
+                                                            placeholder="Nearby Famous Place/Shop">
+                                                        <small id="optAddress" class="text-danger"></small>
+
+                                                    </div>
+                                                    <div class="col-12 pt-3">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <button type="submit"
+                                                                    class="btn btn-dark w-100 fw-bold">Save Address
+                                                                    And Continue</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{#each checkoutAddress}}
+                                <div class="card shadow-0 border mb-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+
+                                                <h5 class="">{{this.name}}</h5>
+                                                <p class="">{{this.address}} , {{this.area}} ,{{this.city}} </p>
+                                                <p class="">{{this.state}} , {{this.pincode}} </p>
+                                                <p class="">{{this.phone}} </p>
+
+                                                <button type="button" class="btn btn-outline-dark checkoutorder"
+                                                    data-address-id="{{this._id}}"> Continue</button>
+
+                                                <button class="btn text-black" type="button" data-bs-toggle="offcanvas"
+                                                    data-bs-target="#offcanvasWithBothOptions"
+                                                    aria-controls="offcanvasWithBothOptions" style="font-weight:bold ;"
+                                                    onclick="editAddress('{{this._id}}','{{this.name}}', '{{this.phone}}','{{this.email}}','{{this.address}}','{{this.area}}','{{this.pincode}}','{{this.city}}','{{this.state}}','{{this.optionaladdress}}')">Edit
+                                                </button>
+
+                                                <button class="deleteAddress btn text-danger btn-sm "
+                                                    style="font-weight: bold;" data-address-id="{{this._id}}"
+                                                    type="button">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                     <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="text-center" style="font-family: sans-serif; font-weight:700">Cart Details</h5>
+                            <ul class="list-group mb-3">
+                                <script>
+                                let grandtotal = 0;
+                                </script>
+                                {{#each cartItems}}
+                                {{#each cartContent}}
+
+                                <li class="list-group-item d-flex justify-content-between 1h-condensed">
+                                    <img class="me-3" src="{{this.images}}" width="15%" height="15%">
+
+                                    <div>
+                                        <h6 class="my-0">{{this.name}}</h6>
+                                        
+
+                                    </div>
+                                    <p class="ms-auto me-5">{{../quantity}}</p>
+                                    <span id="total{{this._id}}"></span>
+
+                                </li>
+
+                                <script>
+                                var price = {{ this.price }}
+                                var quantity = {{../quantity}}
+                                var totalPrice = parseInt(price) * parseInt(quantity)
+                                grandtotal += parseInt(totalPrice)
+                                document.getElementById('total{{this._id}}').innerHTML = totalPrice;
+                                </script>
+
+                            {{/each}}
+                            {{/each}}
+
+                                <li class="list-group-item d-flex justify-content-between 1h-condensed">
+                                <span>TOTAL : </span>
+                                <p class="text-success" id="grand">{{grandTotal}} <span>/-</span></p>
+
+                                </li>
+
+                            </ul>
+
+                            <script>
+                        document.getElementById("grand").textContent = grandtotal;
+                    </script>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+
+
+    </section>
+
+    {{!-- <section style="margin-top: 100px;">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -86,7 +276,7 @@
                 </div>
             </div>
             <div class="row m-5">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 border-end">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 border-end">
                     <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"
                         style="font-weight: bold;">+Add New
@@ -153,7 +343,7 @@
                                     <div class="col-md-6">
                                         <select class="form-select" aria-label="Default select example" name="state"
                                             id="state">
-                                            <option value="">Choose..</option>
+                                            <option value="">State</option>
                                             <option>Kerala</option>
                                         </select>
                                     </div>
@@ -175,8 +365,10 @@
                             </form>
                         </div>
                     </div>
-
-
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-7 col-xl-7 col-xxl-7">
                     {{#each checkoutAddress}}
 
                     <div class="text-center p-3 m-3 shadow-sm">
@@ -187,8 +379,9 @@
                             <p class="">{{this.state}} , {{this.pincode}} </p>
                             <p class="">{{this.phone}} </p>
 
-                                    
-                            <button type="button" class="btn btn-outline-dark checkoutorder" data-address-id="{{this._id}}"> Deliver To This Address </button>
+
+                            <button type="button" class="btn btn-outline-dark checkoutorder"
+                                data-address-id="{{this._id}}"> Deliver To This Address </button>
                         </div>
                         <hr>
                         <div class="">
@@ -207,63 +400,60 @@
 
 
                     {{/each}}
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 col-xxl-5">
+                    <h3 class="text-center">Cart Details</h3>
+
+                    <table class="table p-5 shadow-lg">
+                        <tbody>
+                            <script>
+                                let grandtotal = 0;
+                            </script>
+                            {{#each cartItems}}
+                            {{#each cartContent}}
+                            <tr>
+                                <td scope="row"><img src="{{this.images}}" class="img-fluid" width="80px"></td>
+                                <td>{{this.name}}</td>
+                                <td>{{../quantity}}</td>
+                                <td><span id="total{{this._id}}"></span>/-</td>
+                            </tr>
+
+                            <script>
+                                var price = {{ this.price }}
+                                var quantity = {{../quantity}}
+                                var totalPrice = parseInt(price) * parseInt(quantity)
+                                grandtotal += parseInt(totalPrice)
+                                document.getElementById('total{{this._id}}').innerHTML = totalPrice;
+                            </script>
+
+                            {{/each}}
+                            {{/each}}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td><span>TOTAL : </span></td>
+                                <td class="text-success" id="grand">{{grandTotal}}/-</td>
+
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                    <script>
+                        document.getElementById("grand").textContent = grandtotal;
+                    </script>
+
+
 
                 </div>
 
 
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-
-                    {{!-- <div class="card-body p-3 text-center shadow-lg"> --}}
-                        <h3 class="text-center">Cart Details</h3>
-                        
-                        <table class="table p-5 shadow-lg">
-                            <tbody>
-                                <script>
-                                    let grandtotal = 0;
-                                </script>
-                                {{#each cartItems}}
-                                {{#each cartContent}}
-                                <tr>
-                                    <td scope="row"><img src="{{this.images}}" class="img-fluid" width="80px"></td>
-                                    <td>{{this.name}}</td>
-                                    <td>{{../quantity}}</td>
-                                    <td><span id="total{{this._id}}"></span>/-</td>
-                                </tr>
-
-                                <script>
-                                    var price = {{ this.price }}
-                                    var quantity = {{../quantity}}
-                                    var totalPrice = parseInt(price) * parseInt(quantity)
-                                    grandtotal += parseInt(totalPrice)
-                                    document.getElementById('total{{this._id}}').innerHTML = totalPrice;
-                                </script>
-
-                                {{/each}}
-                                {{/each}}
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td><span>TOTAL : </span></td>  
-                                    <td class="text-success" id="grand">{{grandTotal}}/-</td>
-
-                                </tr>
-
-
-                            </tbody>
-                        </table>
-                        <script>
-                            document.getElementById("grand").textContent = grandtotal;
-                        </script>
-
-
-
-                    </div>
-
-
-                </div>
             </div>
+
         </div>
-    </section>
+
+    </section> --}}
 
 
     {{!-- modal --}}
@@ -286,7 +476,7 @@
         </div>
     </div>
 
-    
+
 
     <script src="/js/checkoutOrder.js"></script>
     <script src="/js/formValidation.js"></script>

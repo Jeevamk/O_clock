@@ -45,11 +45,9 @@
                                 <a class="nav-link active" href="/contact">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">About Us</a>
+                                <a class="nav-link active" href="/about">About Us</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Blog</a>
-                            </li>
+                            
 
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
@@ -124,7 +122,7 @@
                                             onclick="updateQuantity('{{this._id}}',-1)" id="minusButton{{this._id}}">
                                             <i class="fas fa-minus"></i>
                                         </button>
-                                        <input type="text" class="form-control text-center border quantity" placeholder="1"
+                                        <input type="text" class="form-control text-center border quantity" readonly placeholder="1"
                                             data-cart-id="{{this._id}}" value="{{../quantity}}" style="border: none" />
                                         <button class="btn btn-white border buttonadd" type="button"
                                             data-mdb-ripple-color="dark" onclick="updateQuantity('{{this._id}}',1)">

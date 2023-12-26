@@ -204,8 +204,8 @@
                                             data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Delete
                                             Order</a></span></h3>
                             </div>
-                            {{/if}}
-                            {{#if Outofdelivery }}
+                            {{!-- {{/if}} --}}
+                            {{else if Outofdelivery }}
                             <div class="row mb-1">
                                 <h3 class="text-center" style="display: none;">Order Details <span><a id="cancel"
                                             data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Cancel
@@ -221,7 +221,7 @@
                                             data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Delete
                                             Order</a></span></h3>
                             </div>
-                            {{else}}
+                            {{else }}
                             <div class="row mb-1">
                                 <h3 class="text-center" style="display: block;">Order Details <span><a id="cancel"
                                             data-order-id="{{myOrder._id}}" class="btn text-danger float-end">Cancel
