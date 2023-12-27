@@ -19,6 +19,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
      {{!-- toastify-js --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <style>
+        @media screen and (min-width:315px) and (max-width:573px) {
+    .img-wish {
+       text-align: center;
+    }
+    .wish-text{
+        text-align: center;
+
+    }
+}
+    </style>
 </head>
 
 <body>
@@ -47,11 +59,9 @@
                                 <a class="nav-link active" href="/contact">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">About Us</a>
+                                <a class="nav-link active" href="/about">About Us</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Blog</a>
-                            </li>
+                            
 
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
@@ -60,9 +70,7 @@
                                         style="color: black; font-family:sanserif">{{user.name}}</span></a>
 
                             </li>
-                            {{!-- <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                            </li> --}}
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="/wish"><i class="fa-regular fa-heart"></i></a>
                             </li>
@@ -79,17 +87,7 @@
     </section>
     {{! navsection end }}
 
-    {{!-- imagesection --}}
-    {{!-- <section>
-        <div class="container-fluid" style="margin-top: 100px;">
-
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                    <img src="/images/WISHLIST.png" alt="" class="img-fluid" width="100%">
-                </div>
-            </div>
-        </div>
-    </section> --}}
+    
 
 
         {{#if empty}}
@@ -108,7 +106,7 @@
 
         </div>
         {{else}}
-        <section style="background-color: #eee; margin-top:100px">
+        <section style="margin-top:100px" class="bg-light">
             <div class="container py-5 ">
                 <div class="row justify-content-center mb-3">
                     <div class="col-md-12 col-xl-12 col-12 col-sm-12 col-lg-12 col-xxl-12">
@@ -117,10 +115,9 @@
                         <div class="card shadow-0 border rounded-3">
                             <div class="card-body">
                                 <div class="row">
-
-                                    <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-4 mb-lg-0 img-wish">
                                         <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                            <img src={{this.images}} class="w-50 img-fluid text-center" />
+                                            <img src={{this.images}} class="w-50 img-fluid text-center " />
                                             <a href="#!">
                                                 <div class="hover-overlay">
                                                     <div class="mask"
@@ -130,7 +127,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-lg-6 col-xl-6">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-6 col-xl-6 wish-text">
                                         <h5 class="text-dark" style="font-weight: 700;">{{this.name}}</h5>
 
                                         <p class="text-truncate mb-4 mb-md-0">{{this.brand}}
@@ -138,11 +135,12 @@
 
                                         </p>
                                     </div>
-                                    <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                                    <div class="col-sm-12 col-12 col-md-4 col-lg-3 col-xl-3 border-sm-start-none border-start">
                                         <div class="d-flex flex-column mt-4">
-                                            <button class="deleteWishproduct btn btn-primary btn-sm "
+                                            
+                                            <button class="deleteWishproduct btn btn-dark btn-sm "
                                                 data-user-id="{{this._id}}" type="button">Delete</button>
-                                            <button class="btn btn-outline-primary btn-sm mt-2 wishToCart" type="button"  data-product-id="{{this._id}}">
+                                            <button class="btn btn-outline-dark btn-sm mt-2 wishToCart" type="button"  data-product-id="{{this._id}}">
                                                 Add to Cart
                                             </button>
                                         </div>
@@ -185,18 +183,26 @@
 
 
 
-        <section style="background-color: #eee; ">
+        <section class="bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 text-center">
-                        <a href="/shop" class="btn btn-dark text-light">Continue Shopping</a>
+                    <div class="col-12 ">
+                        <a href="/shop" class="btn btn-dark text-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Continue Shopping"><i class="fa-solid fa-backward"></i></a>
                     </div>
                 </div>
             </div>
 
+          
+
             {{/if}}
         </section>
 
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+</script>
 
 
 
