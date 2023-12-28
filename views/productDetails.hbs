@@ -89,7 +89,7 @@
                     <div class="rounded-4 mb-3 d-flex justify-content-center ">
                         <div class="zoom">
                             <div class="original">
-                                <img style="max-width: 100%; max-height: 100vh; margin: auto;" id="main"
+                                <img  id="main"
                                     class="rounded-4 fit img-fluid" src="{{product.images}}" />
 
                             </div>
@@ -102,19 +102,19 @@
                     </div>
                     <div class="d-flex justify-content-center mb-3">
                         {{#if product.images}}
-                        <img id="main" onclick="change1()" width="100" height="100" class="rounded-2"
+                        <img id="main" onclick="change1()" width="80" height="80" class="rounded-2"
                             src="{{product.images}}" />
                         {{/if}}
                         {{#if product.Imageone}}
-                        <img id="sub1" onclick="change2()" width="100" height="100" class="rounded-2"
+                        <img id="sub1" onclick="change2()" width="80" height="80" class="rounded-2"
                             src="{{product.Imageone}}" />
                         {{/if}}
                         {{#if product.Imagetwo}}
-                        <img id="sub2" onclick="change3()" width="100" height="100" class="rounded-2"
+                        <img id="sub2" onclick="change3()" width="80" height="80" class="rounded-2"
                             src="{{product.Imagetwo}}" />
                         {{/if}}
                         {{#if product.Imagethree}}
-                        <img id="sub3" onclick="change4()" width="100" height="100" class="rounded-2"
+                        <img id="sub3" onclick="change4()" width="80" height="80" class="rounded-2"
                             src="{{product.Imagethree}}" />
                         {{/if}}
                     </div>
@@ -223,7 +223,7 @@
                                                     <dd class="col-9">{{product.gender}} </dd>
 
                                                     <dt class="col-3">Stock Status</dt>
-                                                    <dd class="col-9 ">{{product.countStock}} <span class="text-success">In stock</span></dd>
+                                                    <dd class="col-9 ">{{product.countStock}} <span  id="stockStatus"></span></dd>
                                                 </div>
                                             </div>
                                         </div>
@@ -250,7 +250,7 @@
             <div class="row mt-5">
                 {{#each newarrivalArray}}
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-3">
-                    <div class="card best-card">
+                    <div class="card shadow-sm">
                         <a href="/shop/{{this._id}}"><img src="{{this.images}}" class="card-img-top newarrival" alt="{{this.name}}"
                             data-product-id="{{this._id}}">
                         <div class="card-body text-center">
@@ -340,6 +340,19 @@
     {{/if}}
 
 
+<script>
+
+    if ({{product.countStock}} >= 5) {
+       document.getElementById("stockStatus").innerHTML="In Stock"
+       document.getElementById("stockStatus").style.color="green"
+
+    }else if ({{product.countStock}} < 5){
+        document.getElementById("stockStatus").innerHTML="Low Stock"
+       document.getElementById("stockStatus").style.color="red"
+    }
+
+</script>
+
 
     <script>
         function change1() {
@@ -388,8 +401,6 @@
                 quantityElement.value = Math.max(1, parseInt(quantityElement.value, 10) - 1)
                 ButtonSub();
             });
-
-
 
 
 

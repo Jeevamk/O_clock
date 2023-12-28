@@ -286,6 +286,7 @@ a {
     border: none;
     border-radius: 0;
   } 
+  
   .inner_carousal {
     padding: 1em;
   }
@@ -442,6 +443,8 @@ a {
     }
     }
 
+
+    
 .divider:after,
 .divider:before {
     content: "";
@@ -453,7 +456,7 @@ a {
 
 
  
-    .best-card:hover  {
+.best-card:hover  {
         transform: scale(1.1);  
         transition: transform 0.3s ease;  
     }

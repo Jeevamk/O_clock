@@ -134,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
     addCartList.addEventListener("click", () => {
       const productId = addCartList.getAttribute("data-product-id");
       const quantity = document.getElementById('quantity').value;
-      console.log(quantity);
       const CartProduct = {
         productId: productId,
         quantity: quantity,

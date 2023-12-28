@@ -36,6 +36,7 @@
     bottom: 0;
     z-index: 1;
   }
+
   .magnifier {
     position: absolute;
     background: #000;
@@ -47,3 +48,18 @@
   .magnifier, .viewer {
     display: none;
   }
+
+
+  
+  /* @media screen and (min-width:300px ) and (max-width:1024px) {
+    
+    .zoom .viewer {
+      position: absolute;
+      top: 10%;
+      left: 100%;
+      width: 75%;
+      height: 75%;
+      overflow: hidden;
+    }
+    
+    } */

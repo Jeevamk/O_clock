@@ -397,3 +397,6 @@ function paymentValidate(){
     return false;
   }
 }
+
+
+//change password//

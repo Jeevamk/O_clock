@@ -39,7 +39,6 @@ route.get('/', logauth, async (req, res) => {
 route.post('/',wishauth, async (req, res) => {
     try {
         const userId = req.userId;
-        console.log(userId);
         const { productId } = req.body;
         const quantity =  req.body.quantity || 1;
         console.log(productId , quantity);
