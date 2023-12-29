@@ -59,30 +59,61 @@ function deletecart() {
 
 
 //update quantity button//
-function updateQuantity(id, changeQty) {
+function updateQuantity(id,changeQty) {
 
   const quantityInput = document.querySelector(`.quantity[data-cart-id="${id}"]`);
   const priceElement = document.querySelector(`.price[data-cart-id="${id}"]`);
   const netPriceElement = document.querySelector(`.netprice[data-cart-id="${id}"]`);
   const totalPrice = document.getElementById('totalPrice');
   const discount = document.getElementById('discount');
-  const Total = document.getElementById('total')
+  const Total = document.getElementById('total');
+  const countStock = document.querySelector(`.stock[data-cart-id="${id}"]`).value;
+  console.log("countstock",countStock)
 
 
   if (quantityInput) {
     let newQuantity = parseInt(quantityInput.value) + changeQty;
-    newQuantity = Math.max(0, newQuantity);
-
+    newQuantity = Math.max(0, Math.min(4, newQuantity));
+    
+  
     if (newQuantity <= 0) {
-     
       return;
+    }else if(newQuantity === 4){
+      Toastify({
+        text: "Quantity limit reached (3 pcs).",
+        duration: 1000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "center",
+        stopOnFocus: true,
+        style: {
+            background: "black",
+        },
+    }).showToast();
+    return;  
+    }else if(newQuantity > countStock){
+      Toastify({
+        text: `Only ${countStock} products are available in stock`,
+        duration: 1000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "center",
+        stopOnFocus: true,
+        style: {
+            background: "black",
+        },
+    }).showToast();
+    return
     }
+
 
     quantityInput.value = newQuantity;
     let price = parseFloat(priceElement.textContent.replace('/-', ''));
 
     let netPrice = parseInt(newQuantity * price);
-    netPriceElement.textContent = netPrice.toFixed(2);
+    netPriceElement.textContent = netPrice;
 
     let netPrices = document.querySelectorAll('.netprice');
     let totalsum = 0;
@@ -91,11 +122,9 @@ function updateQuantity(id, changeQty) {
     });
 
     totalPrice.textContent = totalsum;
-
     let grandTotal = parseFloat(totalPrice.textContent) - parseFloat(discount.textContent);
     Total.textContent = grandTotal;
     document.getElementById("checkoutvalue").value = grandTotal
-
 
     const minusButton = document.getElementById(`minusButton${id}`);
     if (newQuantity <= 1) {
@@ -123,18 +152,15 @@ function updateQuantity(id, changeQty) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const cartLength = (document.getElementById('cartlength').textContent)
-  console.log(cartLength);
   const quantityItems = document.querySelectorAll('.quantity');
   const priceItems = document.querySelectorAll('.price');
   const netPriceItems = document.querySelectorAll('.netPrice');
-
   for (let i = 0; i < cartLength; i++) {
     let price = parseFloat(priceItems[i].textContent)
     let quantity = parseInt(quantityItems[i].value)
     netPriceItems[i].textContent = price * quantity || 0;
 
   }
-
   let totalsum = 0;
   for (i = 0; i < cartLength; i++) {
     let totalSum = parseFloat(netPriceItems[i].textContent)
@@ -147,8 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let grandTotal = parseInt(totalPrice.textContent) - parseInt(discount.textContent)
   Total.textContent = grandTotal
   document.getElementById("checkoutvalue").value = grandTotal
-
-
 
 
 });

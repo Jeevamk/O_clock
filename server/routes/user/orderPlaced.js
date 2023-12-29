@@ -39,7 +39,6 @@ route.get("/:id", logauth, async (req, res) => {
         Products.push({productData,quantity})
 
         grandtotal += productData.price * quantity
-        console.log("grand",grandtotal);
         res.clearCookie("buynowproduct")
         res.clearCookie("buynowquantity")
        res.render("orderplaced", {  user ,orderData , address , grandtotal, Products });
@@ -103,7 +102,6 @@ route.post("/", logauth, async (req, res) => {
         Products.push({productData,quantity})
         const orderproducts=[{productId:productData._id,quantity}]
         grandtotal += productData.price * quantity
-        console.log("grand",grandtotal);
   if (paymentMethod == "COD") {
     const orderData = new orderCollection({
       userId,
@@ -167,12 +165,9 @@ route.post("/", logauth, async (req, res) => {
         const productId = orderproduct.productId;
         const quantity = orderproduct.quantity;
         const productData = await productCollection.findById(productId);
-        console.log(productData);
         Products.push({productData,quantity})
-        console.log("price",productData.price);
 
         grandtotal += productData.price * quantity
-        console.log("grand",grandtotal);
       }
       
   if (paymentMethod == "COD") {

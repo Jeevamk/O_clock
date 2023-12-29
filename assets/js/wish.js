@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+
 //delete product from wishlist//
 
 document.querySelectorAll(".deleteWishproduct").forEach((btn) => {
@@ -147,11 +148,12 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify(CartProduct),
       })
-        .then((response) => {
+        .then(async(response) => {
           if (response.ok) {
             if (response.status === 200) {
+              const message = await response.json()
               Toastify({
-                text: "Product Added Successfully...",
+                text: message.msg,
                 duration: 2500,
                 className: "info",
                 style: {
@@ -205,10 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         body: JSON.stringify(cartItem)
       })
-        .then((response) => {
+        .then(async(response) => {
           if (response.ok) {
+            const message = await response.json()
             Toastify({
-              text: "Product Added to Cart Successfully...",
+              text: message.msg,
               className: "info",
               style: {
                 color :"white",

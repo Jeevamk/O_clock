@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/css/style2.css" />
     <link rel="stylesheet" href="/css/shop.css" />
     <link rel="stylesheet" href="/css/zoom.css" />
-        <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/footer.css">
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
@@ -56,7 +56,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="/about">About Us</a>
                             </li>
-                            
+
 
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
@@ -65,7 +65,7 @@
                                         style="color: black; font-family:sanserif">{{user.name}}</span></a>
 
                             </li>
-                           
+
                             <li class="nav-item">
                                 <a class="nav-link" href="/wish"><i class="fa-regular fa-heart"></i></a>
                             </li>
@@ -89,8 +89,7 @@
                     <div class="rounded-4 mb-3 d-flex justify-content-center ">
                         <div class="zoom">
                             <div class="original">
-                                <img  id="main"
-                                    class="rounded-4 fit img-fluid" src="{{product.images}}" />
+                                <img id="main" class="rounded-4 fit img-fluid" src="{{product.images}}" />
 
                             </div>
                             <div class="viewer" style="z-index: 3;">
@@ -168,8 +167,8 @@
                                         id="buttonsub" data-mdb-ripple-color="dark">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <input type="text" class="form-control text-center" readonly id="quantity" name="quantity"
-                                        placeholder="0" value="1" style="border: none" />
+                                    <input type="text" class="form-control text-center" readonly id="quantity"
+                                        name="quantity" placeholder="0" value="1" style="border: none" />
                                     <button class="btn btn-white border-start" type="button" id="buttonadd"
                                         data-mdb-ripple-color="dark">
                                         <i class="fas fa-plus"></i>
@@ -223,7 +222,7 @@
                                                     <dd class="col-9">{{product.gender}} </dd>
 
                                                     <dt class="col-3">Stock Status</dt>
-                                                    <dd class="col-9 ">{{product.countStock}} <span  id="stockStatus"></span></dd>
+                                                    <dd class="col-9 "><span id="stockStatus" style="font-family: fantacy; font-weight:bold; font-size:large"></span></dd>
                                                 </div>
                                             </div>
                                         </div>
@@ -251,13 +250,14 @@
                 {{#each newarrivalArray}}
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 p-3">
                     <div class="card shadow-sm">
-                        <a href="/shop/{{this._id}}"><img src="{{this.images}}" class="card-img-top newarrival" alt="{{this.name}}"
-                            data-product-id="{{this._id}}">
-                        <div class="card-body text-center">
-                            <h5 class="card-title text-secondary" style="font-size: 17px;">{{this.brand}}</h5>
-                            <p class="card-text text-dark">{{this.name}}</p>
-                            <p class="card-text1 text-muted">Rs: {{this.price}}</p>
-                        </div></a>
+                        <a href="/shop/{{this._id}}"><img src="{{this.images}}" class="card-img-top newarrival"
+                                alt="{{this.name}}" data-product-id="{{this._id}}">
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-secondary" style="font-size: 17px;">{{this.brand}}</h5>
+                                <p class="card-text text-dark">{{this.name}}</p>
+                                <p class="card-text1 text-muted">Rs: {{this.price}}</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 {{/each}}
@@ -269,69 +269,69 @@
 
 
 
-     {{!-- footer sec start --}}
+    {{!-- footer sec start --}}
 
-  <section class="mt-5">
-    <footer>
-        <div class="footer-top">
-            <div class="container">
-                <div class="footer-day-time">
-                    <div class="row">
-                        
-                        <div class="col-lg-12">
-                            <div class="phone-no">
-                                <a ><i class="fa fa-mobile" aria-hidden="true"></i>Call +91 7510328839</a>
+    <section class="mt-5">
+        <footer>
+            <div class="footer-top">
+                <div class="container">
+                    <div class="footer-day-time">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <div class="phone-no">
+                                    <a><i class="fa fa-mobile" aria-hidden="true"></i>Call +91 7510328839</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        
-                        <h4>About us</h4>
-                        <p>O|o'Clock is an American watch and
+                    <div class="row">
+                        <div class="col-lg-4">
+
+                            <h4>About us</h4>
+                            <p>O|o'Clock is an American watch and
                                 lifestyle company, creatively rooted in authentic vintage and classic design.We strive
-                                to create high-quality watches.   </p>
+                                to create high-quality watches. </p>
 
-                    </div>
+                        </div>
 
-                    <div class="col-md-4">
-                        <h4>Information</h4>
-                        <ul class="address1">
-                            <li><i class="fa fa-map-marker"></i>Hilite Businesspark , Calicut</li>
-                            <li><i class="fa fa-envelope"></i><a href="mailto:#">timeoclock23@gmail.com</a></li>
-                            <li><i class="fa fa-mobile" aria-hidden="true"></i> <a>7510328839</a></li>
-                        </ul>
-                    </div>
+                        <div class="col-md-4">
+                            <h4>Information</h4>
+                            <ul class="address1">
+                                <li><i class="fa fa-map-marker"></i>Hilite Businesspark , Calicut</li>
+                                <li><i class="fa fa-envelope"></i><a href="mailto:#">timeoclock23@gmail.com</a></li>
+                                <li><i class="fa fa-mobile" aria-hidden="true"></i> <a>7510328839</a></li>
+                            </ul>
+                        </div>
 
-                    <div class="col-md-4">
-                        <h4>Follow us</h4>
-                        <ul class="social-icon">
-                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-google"></i></a></li>
-                        </ul>
-                    </div>
+                        <div class="col-md-4">
+                            <h4>Follow us</h4>
+                            <ul class="social-icon">
+                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-google"></i></a></li>
+                            </ul>
+                        </div>
 
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="/shop">Shop</a></li>
-                            <li><a href="/contact">Contact Us</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-  </section>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/about">About Us</a></li>
+                                <li><a href="/shop">Shop</a></li>
+                                <li><a href="/contact">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
 
     {{#if wishalert}}
     <script>
@@ -340,18 +340,21 @@
     {{/if}}
 
 
-<script>
+    <script>
 
-    if ({{product.countStock}} >= 5) {
-       document.getElementById("stockStatus").innerHTML="In Stock"
-       document.getElementById("stockStatus").style.color="green"
+        if ({{ product.countStock }} >= 5) {
+            document.getElementById("stockStatus").innerHTML = "In Stock"
+            document.getElementById("stockStatus").style.color = "green"
 
-    }else if ({{product.countStock}} < 5){
-        document.getElementById("stockStatus").innerHTML="Low Stock"
-       document.getElementById("stockStatus").style.color="red"
-    }
+        }else if ({{ product.countStock }} == 0) {
+            document.getElementById("stockStatus").innerHTML = "Out of Stock"
+            document.getElementById("stockStatus").style.color = "red"
+        }else {
+            document.getElementById("stockStatus").innerHTML = `{{product.countStock}} Low Stock`
+            document.getElementById("stockStatus").style.color = "red"
+        }
 
-</script>
+    </script>
 
 
     <script>
@@ -390,12 +393,45 @@
                     buttonSub.style.display = "block";
                 }
             }
-            
+
 
             buttonAdd.addEventListener('click', () => {
-                quantityElement.value = parseInt(quantityElement.value, 10) + 1;
-                ButtonSub();
+                if ({{product.countStock}} > parseInt(quantityElement.value, 10)) {
+                    if (parseInt(quantityElement.value, 10) < 3) {
+                    quantityElement.value = parseInt(quantityElement.value, 10) + 1;
+                    ButtonSub();
+                } else {
+                    Toastify({
+                        text: "Quantity limit reached (3 pcs).",
+                        duration: 1000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        stopOnFocus: true,
+                        style: {
+                            background: "black",
+                        },
+                    }).showToast();
+                }
+                }else{
+                    Toastify({
+                        text: "Only {{product.countStock}} products are available in stock",
+                        duration: 1000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        stopOnFocus: true,
+                        style: {
+                            background: "black",
+                        },
+                    }).showToast();
+                }
             });
+                
+               
+
 
             buttonSub.addEventListener('click', () => {
                 quantityElement.value = Math.max(1, parseInt(quantityElement.value, 10) - 1)
@@ -415,8 +451,8 @@
 
     </script>
 
-    {{!-- if(quantityElement.value <=1){ buttonSub.style.display="none" } --}}
-        <script type="text/javascript"
+    {{!-- if(quantityElement.value <=1){ buttonSub.style.display="none" } --}} 
+    <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/toastify-js">
         </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

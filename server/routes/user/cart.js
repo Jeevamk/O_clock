@@ -8,6 +8,10 @@ const { logauth ,wishauth} = require('../../middleware/auth_user')
 
 route.get('/', logauth, async (req, res) => {
     try {
+        if (req.cookies.buynowproduct){
+            res.clearCookie("buynowproduct")
+            res.clearCookie("buynowquantity")
+        }
         const userId = req.userId;
         console.log(userId);
         const user = await userCollection.findById(userId);
@@ -22,7 +26,6 @@ route.get('/', logauth, async (req, res) => {
             return productContent ? { productContent, quantity } : null;
         }));
 
-        console.log(cartItems);
 
         if (cartItems.length === 0 || cartItems[0].productContent.length === 0) {
             return res.render('cart',{emptyCart:true})
@@ -41,7 +44,6 @@ route.post('/',wishauth, async (req, res) => {
         const userId = req.userId;
         const { productId } = req.body;
         const quantity =  req.body.quantity || 1;
-        console.log(productId , quantity);
         // if (!userId){
         //     return res.render("user_login");
         // }
@@ -49,9 +51,16 @@ route.post('/',wishauth, async (req, res) => {
         const existingcart = await cartcollection.findOne({ userId, productId });
 
         if (existingcart) {
-            existingcart.quantity = parseInt(existingcart.quantity) + parseInt(quantity) ;
-            const updatedCart = await existingcart.save();
-            return res.json(updatedCart);
+            const product = await productCollection.findById(productId)
+            if (existingcart.quantity < product.countStock){
+                existingcart.quantity = parseInt(existingcart.quantity) + parseInt(quantity) ;
+                const updatedCart = await existingcart.save();
+                const msg = {msg:"item added to cart succesfully"}
+                return res.json(msg);
+            }else{
+                const msg = {msg : `Only ${product.countStock} product available in stock`}
+                return res.json(msg);
+            }
         }
 
         const cartItem = new cartcollection({ userId, productId, quantity });
