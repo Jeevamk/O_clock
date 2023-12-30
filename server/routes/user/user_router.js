@@ -181,18 +181,11 @@ route.get("/user_sign", (req, res) => {
 // );
 
 //otp login//
-route.post(
-  "/user_registration",
-
-  async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      const err = errors.array();
-      const firsterr = err[0];
-
-      return res.render("user_signup", { errors: firsterr });
-    }
+route.post("/user_registration",async (req, res) => {
+  const existedUser = await userCollection.findOne({ email: req.body.email });
+  if (existedUser) {
+    return res.render("user_signup", { existed: true });
+  }
     try {
       const password = req.body.password;
       const cpassword = req.body.cpassword;
@@ -206,7 +199,7 @@ route.post(
         console.log(otp);
         let userData;
         if(otp){
-          userData = new userCollection({
+          userData = new otpCollection({
             name: req.body.name,
             email: req.body.email,
             phone: req.body.phone,
@@ -242,15 +235,30 @@ route.post(
 route.post('/verifyOTP',async(req,res) =>{
   try {
     const { userId,otp } = req.body;
-    const user = await userCollection.findOne({ _id: userId });
+    const user = await otpCollection.findOne({ _id: userId });
+    let otpData;
     if (otp==user.otp) {
-    const userData = await userCollection.findOneAndUpdate({ _id: userId },{$set:{otp:""}});
-    if (!userData) {
+      otpData = new userCollection({
+        name:user.name,
+        email:user.email,
+        phone:user.phone,
+        password:user.password,
+        cpassword:user.cpassword,
+        status: user.status,
+        otp,
+      });
+      await otpData.save();
+      await otpCollection.findOneAndRemove({ userId });
+
+      if (!otpData) {
       res.status(404).send('User not found');
       return;
     }
 
     res.render('user_login');
+    }else {
+      return res.render("otpPhone", { userId,otpalert: true });
+
     }
   } catch (error) {
     console.error('Error:', error);

@@ -36,7 +36,6 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function (next) {
-    console.log("grfe",this.googleId);
   if (this.googleId) {
     next();
   } else {
