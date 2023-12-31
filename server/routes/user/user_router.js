@@ -412,10 +412,15 @@ route.put("/password-change", async (req, res) => {
 
 
 route.get("/forgotpassword", (req, res) => {
+  if (req.cookies.sessions) {
+    return res.redirect("/")
+  }
   res.render("forgotpassword");
 });
 
-route.post("/forget-password", async (req, res) => {
+
+
+route.post("/forgotpassword", async (req, res) => {
   const email = req.body.email;
   try {
     const userData = await userCollection.findOne({ email });
@@ -457,8 +462,9 @@ route.post("/token-password", async (req, res) => {
       const _id = tokenData._id;
       res.render('reset', {_id} )
     }else {
-      res.status(400).send({ success: false, msg: "Invalid token." });
-      // res.render('token', {tokenalert:true})
+      console.log("id:",_id);
+      // res.status(400).send({ success: false, msg: "Invalid token." });
+      res.render('token', {_id,tokenalert:true})
     }
   } catch (error) {
     console.error("Error:", error);

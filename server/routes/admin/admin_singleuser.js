@@ -17,7 +17,7 @@ route.get("/:id", authenticateJWT, async (req, res) => {
       
       for (const order of orders) {
         const orderProducts = order.orderproducts;
-        orderProductsArray.push(orderProducts,);
+        orderProductsArray.push(orderProducts);
       }
       console.log("orderProductsArray:",orderProductsArray);
       

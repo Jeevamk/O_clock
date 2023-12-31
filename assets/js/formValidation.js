@@ -58,11 +58,7 @@ function validateForm() {
     emailError.innerHTML = "**Please fill in your email**";
     return false;
   }
-  if (
-    email.indexOf("@") <= 0 ||
-    (email.charAt(email.length - 4) !== "." &&
-      email.charAt(email.length - 3) !== ".")
-  ) {
+  if (! /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
     emailError.innerHTML = "**Invalid email format**";
     return false;
   }
@@ -82,10 +78,11 @@ function validateForm() {
     passwordError.innerHTML = "**Please fill in your password**";
     return false;
   }
-  if (password.length < 6) {
-    passwordError.innerHTML = "**Password must be at least 6 characters**";
+
+  if (!/(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{6,}/.test(password)) {
+    passwordError.innerHTML = "**Password must contain at least one alphanumeric character,special character and minimum 6 characters**";
     return false;
-  }
+}
   passwordError.innerHTML = "";
 
   if(confirmPassword === ""){
@@ -219,10 +216,10 @@ function resetpassword() {
     newresetPassError.innerHTML = "**Please fill the new password**";
     return false;
   }
-  if (newresetPass.length < 6) {
-    newresetPassError.innerHTML = "**Password must be at least 6 characters**";
+  if (!/(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{6,}/.test(newresetPass)) {
+    newresetPassError.innerHTML = "**Password must contain at least one alphanumeric character,special character and minimum 6 characters**";
     return false;
-  }
+}
   newresetPassError.innerHTML = "";
  
   if (confirmresetPass === "") {
