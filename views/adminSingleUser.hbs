@@ -71,6 +71,9 @@
                         <li class="active">
                             <a href="/adminhome/contact"><span class="fa-solid fa-message mr-4"></span>MESSAGES</a>
                         </li>
+                        <li class="active">
+                            <a href="/adminhome/coupon"><i class="fa-solid fa-ticket mr-4" style="color: #fcfcfc;"></i></span>COUPON</a>
+                        </li>
                         
                     </ul>
 
@@ -129,12 +132,13 @@
                         <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 col-xxl-7 shadow-2-strong">
                             <div class="" style="background-color: hsl(223, 30%, 95%);">
                                 {{#each orders}}
+                                {{#each this.orderproducts}}
                                 <div class="card shadow-0 border mb-4">
                                     <div class="card-body">
                                         <div class="row">
                                             <div
                                                 class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0"></p>
+                                                <p class="text-muted mb-0">{{this.productDetails.name}}</p>
                                             </div>
                                             <div
                                                 class="col-md-2 text-center d-flex justify-content-center align-items-center">
@@ -142,23 +146,24 @@
                                             </div>
                                             <div
                                                 class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="text-muted mb-0 small"><i class="fa-solid fa-indian-rupee-sign"></i>{{this.grandtotal}}</p>
+                                                <p class="text-muted mb-0 small"><i class="fa-solid fa-indian-rupee-sign"></i>{{../grandtotal}}</p>
                                             </div>
                                             <div
                                                 class="col-md-2 text-center d-flex justify-content-center align-items-center">
                                                 <p class="text-success mb-0 small" style="font-weight: 600;"><i class="fa-solid fa-circle" style="font-size: 7px;"></i>
-                                                    {{this.orderStatus}}</p>
+                                                    {{../orderStatus}}</p>
                                             </div>
 
                                             <div
                                                 class="col-md-2 text-center d-flex justify-content-center align-items-center">
                                             
-                                                <a href="/adminhome/order/{{this._id}}" class="btn btn-dark text-light">View</a>
+                                                <a href="/adminhome/order/{{../_id}}" class="btn btn-dark text-light">View</a>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
+                                {{/each}}
                                 {{/each}}
                                     
                             </div>

@@ -222,78 +222,7 @@ route.post("/", logauth, async (req, res) => {
 
   }
 
-  // const cartData = await cartcollection.find({ userId: userId });
-
-  // const orderproducts = await Promise.all(
-  //   cartData.map(async (newcart) => {
-  //     const productId = newcart.productId;
-  //     const quantity = newcart.quantity;
-  //     return  { productId, quantity } ;
-  //   }));
-
-  //   let Products=[];
-  //   let grandtotal = 0;
-  //   for (let orderproduct of orderproducts) {
-  //       const productId = orderproduct.productId;
-  //       const quantity = orderproduct.quantity;
-  //       const productData = await productCollection.findById(productId);
-  //       console.log(productData);
-  //       Products.push({productData,quantity})
-  //       console.log("price",productData.price);
-
-  //       grandtotal += productData.price * quantity
-  //       console.log("grand",grandtotal);
-  //     }
-      
-  // if (paymentMethod == "COD") {
-  //   const orderData = new orderCollection({
-  //     userId,
-  //     paymentMethod,
-  //     addressId: addressDataId,
-  //     orderStatus: "order placed",
-  //     orderproducts,
-  //     grandtotal
-      
-  //   });
-  //   await orderData.save();
-
-  //   for (let orderproduct of orderproducts) {
-  //       const productId = orderproduct.productId;
-  //       const quantity = orderproduct.quantity;
-
-  //       await productCollection.findByIdAndUpdate(
-  //         productId,
-  //         { $inc: { countStock: -quantity } }
-  //       );
-  //     }
-     
-  //     res.json(orderData);
-  // } 
-  
-  // else {
-  //   const orderData = new orderCollection({
-  //     userId,
-  //     paymentMethod,
-  //     addressId: addressDataId,
-  //     orderStatus: "order placed",
-  //     orderproducts,
-  //     grandtotal
-      
-  //   });
-  //   await orderData.save();
-
-  //   for (let orderproduct of orderproducts) {
-  //       const productId = orderproduct.productId;
-  //       const quantity = orderproduct.quantity;
-
-  //       await productCollection.findByIdAndUpdate(
-  //         productId,
-  //         { $inc: { countStock: -quantity } }
-  //       );
-  //     }
-     
-  //     res.json(orderData);
-  // }
+ 
 
   
 });

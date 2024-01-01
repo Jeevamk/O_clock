@@ -75,6 +75,7 @@ route.get('/:id', authenticateJWT,async(req,res) =>{
             const userDetails = await userCollection.findById(orders.userId)
             const addressDetails = await checkoutCollection.findOne({_id : orders.addressId})
             const orderproducts = orders.orderproducts;
+            console.log("orderproducts:",orderproducts)
             const productDetails = [];
             for (let product of orderproducts) {
                 const productItem = await productCollection.findById(product.productId)
@@ -82,7 +83,6 @@ route.get('/:id', authenticateJWT,async(req,res) =>{
                 console.log(quantity)
                 productDetails.push({productItem , quantity})
             }
-            console.log("products",productDetails);
 
             res.render("admin_singleOrder",{adminid,orders,userDetails , addressDetails ,productDetails })
         }catch(error){

@@ -118,9 +118,34 @@ route.get("/",logauth, async (req, res) => {
   const newbrands = brands.slice(0,4)
   const newArrival = await productCollection.find().sort({ createdDate: -1 });
   const newarrivalArray = newArrival.slice(0, 4);
-  const bestSellers = await productCollection.find().sort({ countStock: -1 });
-  const bestSellersArray = bestSellers.slice(0, 4);
+  const bestSellers = await orderCollection.aggregate([
+    {
+      $unwind : {
+        path:"$orderproducts",
+      },
+    },{
+      $group: {
+        _id : "$orderproducts.productId",
+        totalSold: {
+          $sum: "$orderproducts.quantity",
+        },
+      },
+    },
+    {
+      $sort :{
+        totalSold: -1,
+      },
+    },
+    {
+      $limit: 4,
+    },
+  ])
 
+  const bestSellersArray = [];
+  for (let i=0;i<bestSellers.length ;i++) {
+    var bestseller = await productCollection.findById(bestSellers[i]._id)
+    bestSellersArray.push(bestseller)
+  } 
   return res.render("user_index",{user,topBanners,middleBanners,bottomBanners,brands,newarrivalArray,bestSellersArray,newbrands});
 });
 

@@ -67,6 +67,9 @@
                         <li class="active">
                             <a href="/adminhome/contact"><span class="fa-solid fa-message mr-4"></span>MESSAGES</a>
                         </li>
+                        <li class="active">
+                            <a href="/adminhome/coupon"><i class="fa-solid fa-ticket mr-4" style="color: #fcfcfc;"></i></span>COUPON</a>
+                        </li>
 
                     </ul>
 
@@ -117,8 +120,7 @@
                                         <td>{{this.grandtotal}}</td>
                                         <td>{{this.orderStatus}}</td>
                                         <td>{{this.paymentMethod}}</td>
-                                        <td>{{this.orderDate}}</td>
-                                        <td>
+                                        <td class="orderDatePlace" data-order-id="{{this._id}}" data-order-date="{{this.orderDate}}">{{this.orderDate}}</td>                                        <td>
                                             <a href="/adminhome/order/{{this._id}}"
                                                 class="view-order p-1 btn  btn-light m-1"
                                                 data-order-id="{{this._id}}"><i class="fa-regular fa-eye"
@@ -257,6 +259,23 @@
 
 
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const orderDatePlaces = document.querySelectorAll('.orderDatePlace');
+        orderDatePlaces.forEach(function (element) {
+            const orderDate = element.getAttribute('data-order-date');
+            const formattedOrderDate = formatDateString(orderDate);
+            element.innerHTML = formattedOrderDate;
+        });
+    });
+
+    function formatDateString(dateString) {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'long', day: 'numeric'};
+        return date.toLocaleDateString('en-US', options);
+    }
+</script>
 
 
 
