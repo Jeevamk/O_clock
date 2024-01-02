@@ -434,6 +434,10 @@ a {
     margin-top: 40px;
 }
 
+ .magnifier{
+    display: none;
+ }
+
 }
 
 @media screen and (max-width:525px) {

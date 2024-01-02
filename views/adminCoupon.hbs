@@ -132,14 +132,14 @@
                                         <td>{{expDate}}</td>
 
                                         <td>
-                                            <button type="button" class="view-brand p-1 btn  btn-light m-1"
+                                            <button type="button" class="view-coupon p-1 btn  btn-light m-1"
                                                 data-coupon-id="{{_id}}"><i class="fa-regular fa-eye"
                                                     style="color:black;"></i></button>
-                                            <button type="button" class="edit-brand btn btn-light p-1 m-1"
+                                            <button type="button" class="edit-coupon btn btn-light p-1 m-1"
                                                 data-coupon-id="{{_id}}"><i class="fa-solid fa-pen-to-square"
                                                     style="color: #01060e;"></i></button>
 
-                                            <button type="button" class="delete-brand btn btn-light p-1 m-1"
+                                            <button type="button" class="delete-coupon btn btn-light p-1 m-1"
                                                 data-coupon-id="{{_id}}"><i class="fa-solid fa-trash"
                                                     style="color: #000714;"></i></button>
 
@@ -275,29 +275,28 @@
 
 
             <!-- Modal2 view single data from the table-->
-            <div class="modal fade" id="brandmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            <div class="modal fade" id="couponmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">View Brand</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">View Coupon</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="brandbody">
+                        <div class="modal-body" id="couponbody">
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/adminhome/brands"><button type="button"
+                            <a href="/adminhome/coupon"><button type="button"
                                     class="btn btn-secondary">Close</button></a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {{!----------------------------------- modal3 edit data from the
-            table---------------------------------------}}
+            {{!-------------------------------- modal3 edit data from the table---------------------------------------}}
 
-            <div class="modal fade" id="brandeditmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            <div class="modal fade" id="couponeditmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -305,11 +304,11 @@
                             <h5 class="modal-title" id="staticBackdropLabel">Edit Details</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="editbrand">
+                        <div class="modal-body" id="editcoupon">
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/adminhome/brands"><button type="button"
+                            <a href="/adminhome/coupon"><button type="button"
                                     class="btn btn-secondary">Close</button></a>
                         </div>
                     </div>
@@ -329,7 +328,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/adminhome/brands"><button type="button"
+                            <a href="/adminhome/coupon"><button type="button"
                                     class="btn btn-secondary">Close</button></a>
                         </div>
                     </div>
@@ -342,7 +341,7 @@
 
     </section>
 
-
+    <script src="/js/coupon.js"></script>
     <script src="/js/formValidation.js"></script>
     <script src="/js/edit.js"></script>
     <script src="/js/jquery.min.js"></script>

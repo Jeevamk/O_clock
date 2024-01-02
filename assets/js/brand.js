@@ -42,7 +42,6 @@ viewBrand.forEach((btn) => {
 //update view//
 
 const editbrand = document.querySelectorAll(".edit-brand");
-
 editbrand.forEach((btn) => {
   btn.addEventListener("click", async (event) => {
     const brandId = await event.target.getAttribute("data-brand-id");
@@ -123,6 +122,7 @@ function brandEdit() {
       console.log(error);
     });
 }
+
 
 //delete part view//
 

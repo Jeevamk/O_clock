@@ -37,7 +37,6 @@ route.get('/', logauth, async (req, res) => {
         if(userId==undefined) {
             return res.redirect('/user')
         }
-        console.log(userId);
         const user = await userCollection.findById(userId);
         const wishlistProducts = await wishcollection.find({ userId });
 
@@ -46,8 +45,8 @@ route.get('/', logauth, async (req, res) => {
             const productContent = await productCollection.find({ _id: productId });
 
             return productContent ? { productContent, quantity: 1 } : null;
-        }));
 
+        }));
         console.log(wishProducts);
 
         if (wishProducts.length === 0 || wishProducts[0].productContent.length === 0) {
@@ -66,7 +65,6 @@ route.get('/', logauth, async (req, res) => {
 route.post('/',wishauth, async (req, res) => {
     try {
         const userId = req.userId;
-        console.log(userId);
         const { productId } = req.body;
 
         if (!userId){

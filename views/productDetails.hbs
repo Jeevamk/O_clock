@@ -33,8 +33,7 @@
         <div class="container-fluid nav_bar">
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <div class="container-fluid">
-                    {{! <a class="navbar-brand" href="#"><img src="/images/logo.png" alt="logo"
-                            class="logo_img img-fluid"></a> }}
+                    
                     <a class="navbar-brand text-dark" href="#" id="logo_img">O|o' CLOCK</a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -93,7 +92,7 @@
 
                             </div>
                             <div class="viewer" style="z-index: 3;">
-                                <img id="zoomImage" src="{{product.images}}">
+                                <img id="zoomImage" src="{{product.images}}" style="max-width: 100%; max-height: 100vh; margin: auto;">
                             </div>
                             <div class="magnifier"></div>
                         </div>
@@ -182,6 +181,8 @@
                         <button class="btn btn-light shadow-sm border" data-product-id="{{product._id}}" id="addCart">
                             <i class="fa-solid fa-cart-shopping" style="color: #00040a;"></i> Add to cart
                         </button>
+
+
 
                         <button class="btn btn-light border border-secondary py-2 icon-hover px-3 wish" id="addWishList"
                             data-product-id="{{product._id}}"> <i class="me-1 fa fa-heart "></i></button>
@@ -355,6 +356,20 @@
         }
 
     </script>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buyNowButton = document.getElementById('buyNow');
+        const addCartButton = document.getElementById('addCart');
+        const countStock = {{ product.countStock }};
+
+        if (countStock === 0) {
+            buyNowButton.style.display = 'none';
+            addCartButton.style.display = 'none';
+        }
+    });
+</script>
 
 
     <script>
