@@ -38,6 +38,7 @@ viewBrand.forEach((btn) => {
   });
 });
 
+
 //update view//
 
 const editbrand = document.querySelectorAll(".edit-brand");

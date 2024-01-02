@@ -396,4 +396,61 @@ function paymentValidate(){
 }
 
 
-//change password//
+//coupon//
+function addcoupon() {
+
+  var promoCode = document.forms["couponForm"]["promoCode"].value;
+  var couponType = document.forms["couponForm"]["couponType"].value;
+  var profit = document.forms["couponForm"]["profit"].value;
+  var startDate = document.forms["couponForm"]["startDate"].value;
+  var expDate = document.forms["couponForm"]["expDate"].value;
+
+  var promoCodeError = document.getElementById("couponmsg");
+  var couponTypeError = document.getElementById("couponmsg1");
+  var profitError = document.getElementById("couponmsg2");
+  var startDateError = document.getElementById("couponmsg3");
+  var expDateError = document.getElementById("couponmsg4");
+  
+
+  if (promoCode === "") {
+    promoCodeError.innerHTML = "**Please fill the required field**";
+    return false;
+  }
+  if (promoCode.length <3 ) {
+    promoCodeError.innerHTML = "**code must be at  3 characters**";
+    return false;
+  }
+ 
+  promoCodeError.innerHTML = "";
+
+  if (couponType === "") {
+    couponTypeError.innerHTML = "**Please fill the required field**";
+    return false;
+  }
+  
+  couponTypeError.innerHTML = "";
+
+  if (profit === "") {
+    profitError.innerHTML = "**Please fill the required field**";
+    return false;
+  }
+  
+  profitError.innerHTML = "";
+
+  if (startDate === "") {
+    startDateError.innerHTML = "**Please fill the required field**";
+    return false;
+  }
+
+  startDateError.innerHTML = "";
+
+  if(expDate === ""){
+    expDateError.innerHTML = "**Please fill the required field**"
+    return false;
+  }
+  expDateError.innerHTML = "";
+
+
+  return true;
+
+}

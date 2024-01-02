@@ -66,15 +66,17 @@
                             <a href="/adminhome/banner"><span class="fa fa-paper-plane mr-4"></span>BANNER</a>
                         </li>
                         <li class="active">
-                            <a href="/adminhome/report"><i class="fa-solid fa-chart-simple mr-4" style="color: #ffffff;"></i></span>REPORT</a>
+                            <a href="/adminhome/report"><i class="fa-solid fa-chart-simple mr-4"
+                                    style="color: #ffffff;"></i></span>REPORT</a>
                         </li>
                         <li class="active">
                             <a href="/adminhome/contact"><span class="fa-solid fa-message mr-4"></span>MESSAGES</a>
                         </li>
                         <li class="active">
-                            <a href="/adminhome/coupon"><i class="fa-solid fa-ticket mr-4" style="color: #fcfcfc;"></i></span>COUPON</a>
+                            <a href="/adminhome/coupon"><i class="fa-solid fa-ticket mr-4"
+                                    style="color: #fcfcfc;"></i></span>COUPON</a>
                         </li>
-                        
+
                     </ul>
 
                     <div class="mb-5">
@@ -103,7 +105,7 @@
                     <div class="row">
                         <div class="d-flex justify-content-end w-100">
                             <button class="btn btn-dark text-white" data-bs-toggle="modal"
-                                data-bs-target="#brandModal">Add Coupons</button>
+                                data-bs-target="#couponModal">Add Coupons</button>
                         </div>
                     </div>
 
@@ -114,27 +116,31 @@
                                     <tr>
                                         <th scope="col">Promo Code</th>
                                         <th scope="col">Coupon Type</th>
+                                        <th scope="col">Coupon Profit</th>
                                         <th scope="col">Start Date</th>
                                         <th scope="col">End Date</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{#each brands}}
+                                    {{#each coupons}}
                                     <tr>
-                                        <td><img src="{{this.logo}}" width="50px" alt="logo"></td>
-                                        <td>{{name}}</td>
-                                        <td>{{description}}</td>
+                                        <td>{{promoCode}}</td>
+                                        <td>{{couponType}}</td>
+                                        <td>{{profit}}</td>
+                                        <td>{{startDate}}</td>
+                                        <td>{{expDate}}</td>
+
                                         <td>
                                             <button type="button" class="view-brand p-1 btn  btn-light m-1"
-                                                data-brand-id="{{_id}}"><i class="fa-regular fa-eye"
+                                                data-coupon-id="{{_id}}"><i class="fa-regular fa-eye"
                                                     style="color:black;"></i></button>
                                             <button type="button" class="edit-brand btn btn-light p-1 m-1"
-                                                data-brand-id="{{_id}}"><i class="fa-solid fa-pen-to-square"
+                                                data-coupon-id="{{_id}}"><i class="fa-solid fa-pen-to-square"
                                                     style="color: #01060e;"></i></button>
 
                                             <button type="button" class="delete-brand btn btn-light p-1 m-1"
-                                                data-brand-id="{{_id}}"><i class="fa-solid fa-trash"
+                                                data-coupon-id="{{_id}}"><i class="fa-solid fa-trash"
                                                     style="color: #000714;"></i></button>
 
                                         </td>
@@ -208,40 +214,51 @@
                 </div>
             </div>
 
-            {{!------------------------------ modal add brand ---------------------------------------}}
+            {{!------------------------------ modal add coupon ---------------------------------------}}
 
-            <div class="modal fade" id="brandModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="couponModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title fs-5" id="exampleModalLabel">Add Brand</h3>
+                            <h3 class="modal-title fs-5" id="exampleModalLabel">Add Coupons</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="container">
-                                <form action="/adminhome/brands" method="POST" onsubmit="return addbrand()"
-                                    enctype="multipart/form-data" id="brandAddForm">
+                                <form action="/adminhome/coupon" method="POST" name="couponForm" onsubmit="return addcoupon()" id="couponAddForm">
                                     <div class="form-group">
-                                        <label for="name">Brand Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Brand Name"
-                                            name="name" style="border: 1px solid black;">
+                                        <label for="promoCode">Promo Code</label>
+                                        <input type="text" class="form-control" id="promoCode" placeholder="Promo Code"
+                                            name="promoCode" style="border: 1px solid black;" value="">
                                     </div>
+                                    <p id="couponmsg"></p>
                                     <div class="form-group">
-                                        <label for="disc">Discription</label>
-                                        <input type="text" class="form-control" id="disc"
-                                            placeholder="Enter Discription" name="description"
-                                            style="border: 1px solid black;">
+                                        <label for="couponType" class="form-label">coupon Type</label><br>
+                                        <select id="couponType" class="form-select form-control" name="couponType" style="border: 1px solid black; width:100%" >
+                                            <option selected>%</option>
+                                            
+                                        </select>
                                     </div>
+                                    <p id="couponmsg1"></p>
+
                                     <div class="form-group">
-                                        <label for="logo">Select a logo</label><br>
-                                        <input type="file" id="logo" name="logo" style="border: 1px solid black;">
+                                        <label for="profit">Coupon profit</label><br>
+                                        <input type="text" id="profit" name="profit" class="form-control" style="border: 1px solid black;" value="">
                                     </div>
+                                    <p id="couponmsg2"></p>
+
                                     <div class="form-group">
-                                        <div id="logoContainer">
-                                            <img id="croppedlogo" name="croppedlogo" hidden src="#"  alt="Cropped Logo">
-                                        </div>
+                                        <label for="startDate">startDate</label><br>
+                                        <input type="date" id="startDate" name="startDate" class="form-control" style="border: 1px solid black;" value="">
                                     </div>
+                                    <p id="couponmsg3"></p>
+
+                                    <div class="form-group">
+                                        <label for="expDate">Expire Date</label><br>
+                                        <input type="date" id="expDate" name="expDate" class="form-control" style="border: 1px solid black;" value="">
+                                    </div>
+                                    <p id="couponmsg4"></p>
 
                                     <button type="submit" class="btn btn-dark">Submit</button>
                                 </form>
@@ -277,7 +294,8 @@
                 </div>
             </div>
 
-            {{!----------------------------------- modal3 edit data from the table---------------------------------------}}
+            {{!----------------------------------- modal3 edit data from the
+            table---------------------------------------}}
 
             <div class="modal fade" id="brandeditmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">

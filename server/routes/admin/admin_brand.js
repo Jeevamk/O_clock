@@ -34,9 +34,7 @@ route.post("/", upload.single("logo"), async (req, res) => {
   try {
     
     const croppedlogo = req.body.croppedData
-    console.log(croppedlogo);
     const result = await cloudinary.uploader.upload(croppedlogo);
-    console.log(result);
 
     const brand = new brandCollection({
       name: req.body.name,

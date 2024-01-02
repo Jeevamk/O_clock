@@ -21,7 +21,6 @@ route.post("/", async (req, res) => {
   const category = new categoryCollection({
     name: req.body.name,
     description: req.body.description,
-    // availableStock : req.body.availableStock,
   });
   category == (await category.save());
 
