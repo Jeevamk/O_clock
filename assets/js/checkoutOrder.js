@@ -79,9 +79,11 @@ function deleteAddress() {
 document.querySelectorAll('.checkoutorder').forEach((btn) => {
   btn.addEventListener("click", async (event) => {
     const addressId = await event.target.getAttribute("data-address-id");
+    const couponCode= await event.target.getAttribute("couponId");
     console.log(addressId);
     const checkoutData = {
       addressId: addressId,
+      couponCode
     };
 
     try {
@@ -163,4 +165,37 @@ function dltAddress() {
     .catch((error) => {
       console.error("Error:", error);
     });
+}
+
+ 
+//coupon//
+
+async function applyCoupon() {
+  const grandTotal = document.getElementById("grand").textContent;
+  console.log("grandTotal",grandTotal);
+  const promoCode = document.getElementById("promoCode").value;
+  try{
+    const response = await fetch(`/checkout/coupon/${promoCode}`);
+    if (response.ok){
+      const couponData = await response.json();
+      console.log(couponData);
+      let discount;
+      let Total;
+      discount = parseInt((grandTotal*couponData.profit)/100);
+      Total = grandTotal-discount;
+      console.log("Total",Total);
+      document.getElementById("grand").innerHTML = Total;
+      document.getElementById("discount").innerHTML = discount;
+      document.getElementById("couponInput").style.display="none";
+      const buttons = document.querySelectorAll('.checkoutorder');
+      buttons.forEach(button => {
+        button.setAttribute('couponId', couponData._id);
+      });
+
+    }
+
+  }catch(error){
+
+  }
+
 }

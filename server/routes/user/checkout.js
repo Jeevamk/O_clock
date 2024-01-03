@@ -5,6 +5,7 @@ const userCollection = require("../../model/user_model");
 const checkoutCollection = require("../../model/checkout_model");
 const cartcollection = require('../../model/cart_model');
 const productCollection = require("../../model/product_model");
+const couponCollection = require("../../model/coupon_model")
 
 
 route.get('/', logauth, async (req, res) => {
@@ -48,9 +49,7 @@ route.post('/', logauth, async (req, res) => {
     const userId = req.userId;
     const user = await userCollection.findById(userId)
     const checkoutAddress = await checkoutCollection.find({ userId })
-    console.log("jdhfjhf", checkoutAddress);
 
-    console.log(userId);
     const cartProducts = await cartcollection.find({ userId });
     const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
       const productId = newcart.productId;
@@ -62,7 +61,6 @@ route.post('/', logauth, async (req, res) => {
     }));
     const grandTotal = req.body.checkoutvalue;
 
-    console.log(cartItems);
     res.render("checkout", { cartItems, user, grandTotal, checkoutAddress });
   }
   catch (error) {
@@ -75,7 +73,6 @@ route.post('/address', logauth, async (req, res) => {
   try {
     const userId = req.userId;
     const { name, phone, email, address, area, pincode, city, state, optionaladdress, addressId, grandTotal } = req.body;
-    console.log('User ID:', userId);
     console.log('Address Data:', { name, phone, email, address, area, pincode, city, state, optionaladdress, addressId });
 
     if (addressId) {
@@ -111,11 +108,9 @@ route.post('/address', logauth, async (req, res) => {
 route.get("/delete/:id",logauth, async (req, res) => {
     
   const Idaddress = req.params.id;
-  console.log(Idaddress);
 
   try {
     const address = await checkoutCollection.findOne({ _id:Idaddress });
-    console.log(address);
     if (address) {
       res.json(address);
     } else {
@@ -140,6 +135,7 @@ route.delete("/delete", logauth, async (req, res) => {
   }
 })
 
+
 //buynow//
 route.post("/buynow/:id", logauth, async (req, res) => {
   const productId = req.params.id;
@@ -148,5 +144,23 @@ route.post("/buynow/:id", logauth, async (req, res) => {
   res.cookie("buynowquantity", quantity);
   res.json(productId);
 });
+
+//coupon//
+route.get('/coupon/:promoCode',logauth,async(req,res)=>{
+  const userId = req.userId;
+  const promoCode = req.params.promoCode; 
+  const check = await couponCollection.findOne({promoCode:promoCode})
+  if(check){
+    const valid=check.startDate > new Date() < check.expDate;
+    if(valid){
+      res.json(check)
+    }
+    else {
+      res.status(400).json({ error: 'Invalid coupon' });
+    }
+  }else {
+    res.status(404).json({ error: 'Coupon not found' });
+  }
+})
 
 module.exports = route;

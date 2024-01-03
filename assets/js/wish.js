@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = await response.json()
             Toastify({
               text: message.msg,
-              className: "info",
+              // className: "info",
               style: {
                 color :"white",
                 background :"black",

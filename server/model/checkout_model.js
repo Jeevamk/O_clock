@@ -49,6 +49,10 @@ const checkoutSchema = mongoose.Schema ({
     optionaladdress : {
         type : String
     },
+    couponId :{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'couponCollection'
+    }
 
 
 })

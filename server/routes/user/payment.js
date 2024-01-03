@@ -53,7 +53,8 @@ route.get('/:id',logauth,async(req,res) =>{
 
 route.post('/',logauth,async(req,res) => {
     const userId = req.userId;
-    console.log("hdfsjusdh",req.body);
+    const promoCode = req.body.couponId; 
+    const check = await couponCollection.findOne({promoCode:promoCode})
     const addressId  = req.body.addressId;
 
     const checkoutData = await checkoutCollection.findById(addressId)
