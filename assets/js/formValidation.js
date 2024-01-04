@@ -47,11 +47,27 @@ function validateForm() {
     nameError.innerHTML = "**Please fill in your name**";
     return false;
   }
-  if (name.length <3 ) {
-    nameError.innerHTML = "**name must be at  3 characters**";
+  // if (name.length <3 ) {
+  //   nameError.innerHTML = "**Name must be at  3 characters**";
+  //   return false;
+  // }
+  const minLength = 3;
+  const maxLength = 15;
+
+  if (name.length < minLength) {
+    nameError.innerHTML = `**Name must be at least ${minLength} characters**`;
     return false;
   }
- 
+
+  if (name.length > maxLength) {
+    nameError.innerHTML = `**Name must be at most ${maxLength} characters**`;
+    return false;
+  }
+  if (!/^[a-zA-Z]+$/.test(name)) {
+    nameError.innerHTML = "**Name must only contain letters**";
+    return false;
+  }
+
   nameError.innerHTML = "";
 
   if (email === "") {
@@ -82,10 +98,10 @@ function validateForm() {
   if (!/(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{6,}/.test(password)) {
     passwordError.innerHTML = "**Password must contain at least one alphanumeric character,special character and minimum 6 characters**";
     return false;
-}
+  }
   passwordError.innerHTML = "";
 
-  if(confirmPassword === ""){
+  if (confirmPassword === "") {
     confirmPasswordError.innerHTML = "**Please fill in your confirm password**"
     return false;
   }
@@ -125,8 +141,8 @@ function loginForm() {
     return false;
   }
   logpasswordError.innerHTML = "";
-  
-  
+
+
   return true;
 }
 
@@ -181,9 +197,9 @@ function forgotForm() {
     forgotemailError.innerHTML = "**Please fill the email**";
     return false;
   }
- 
+
   forgotemailError.innerHTML = "";
-  
+
   return true;
 }
 
@@ -198,8 +214,8 @@ function token() {
     forgotetokenError.innerHTML = "**Please fill the token**";
     return false;
   }
- 
-  
+
+
   return true;
 }
 
@@ -219,9 +235,9 @@ function resetpassword() {
   if (!/(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{6,}/.test(newresetPass)) {
     newresetPassError.innerHTML = "**Password must contain at least one alphanumeric character,special character and minimum 6 characters**";
     return false;
-}
+  }
   newresetPassError.innerHTML = "";
- 
+
   if (confirmresetPass === "") {
     confirmresetPassError.innerHTML = "**Please fill the confirm password**";
     return false;
@@ -235,62 +251,62 @@ function resetpassword() {
   confirmresetPassError.innerHTML = "";
 
 
- 
-  
+
+
   return true;
 }
 
 
 //contact form//
 function contactForm() {
-    var name = document.forms["contactform"]["name"].value;
-    var email = document.forms["contactform"]["email"].value;
-    var subject = document.forms["contactform"]["subject"].value;
-  
-    var cnameError = document.getElementById("cnameError");
-    var cemailError = document.getElementById("cemailError");
-    var csubjectError = document.getElementById("csubjectError");
-  
-    if (name === "") {
-      cnameError.innerHTML = "**Please fill in your name**";
-      return false;
-    }
-    if (name.length <3 ) {
-      cnameError.innerHTML = "**name must be at  3 characters**";
-      return false;
-    }
-   
-    cnameError.innerHTML = "";
-  
-    if (email === "") {
-      cemailError.innerHTML = "**Please fill in your email**";
-      return false;
-    }
-    email = email.charAt(0).toLowerCase() + email.slice(1);
-    // if (
-    //   email.indexOf("@") <= 0 ||
-    //    (email.match(
-    //       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    //     ))
-    // ) {
-    //   cemailError.innerHTML = "**Invalid email format**";
-    //   return false;
-    // }
-    cemailError.innerHTML = "";
-  
-    if (subject === "") {
-      csubjectError.innerHTML = "**Please fill the subject**";
-      return false;
-    }
-    
-    csubjectError.innerHTML = "";
-  
-    return true;
+  var name = document.forms["contactform"]["name"].value;
+  var email = document.forms["contactform"]["email"].value;
+  var subject = document.forms["contactform"]["subject"].value;
+
+  var cnameError = document.getElementById("cnameError");
+  var cemailError = document.getElementById("cemailError");
+  var csubjectError = document.getElementById("csubjectError");
+
+  if (name === "") {
+    cnameError.innerHTML = "**Please fill in your name**";
+    return false;
   }
+  if (name.length < 3) {
+    cnameError.innerHTML = "**name must be at  3 characters**";
+    return false;
+  }
+
+  cnameError.innerHTML = "";
+
+  if (email === "") {
+    cemailError.innerHTML = "**Please fill in your email**";
+    return false;
+  }
+  email = email.charAt(0).toLowerCase() + email.slice(1);
+  // if (
+  //   email.indexOf("@") <= 0 ||
+  //    (email.match(
+  //       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  //     ))
+  // ) {
+  //   cemailError.innerHTML = "**Invalid email format**";
+  //   return false;
+  // }
+  cemailError.innerHTML = "";
+
+  if (subject === "") {
+    csubjectError.innerHTML = "**Please fill the subject**";
+    return false;
+  }
+
+  csubjectError.innerHTML = "";
+
+  return true;
+}
 
 
 //checkout form//
-function checkout(){
+function checkout() {
   var name = document.forms["checkoutForm"]["name"].value;
   var email = document.forms["checkoutForm"]["email"].value;
   var phone = document.forms["checkoutForm"]["phone"].value;
@@ -314,11 +330,11 @@ function checkout(){
     nameError.innerHTML = "**Please fill in your name**";
     return false;
   }
-  if (name.length <3 ) {
+  if (name.length < 3) {
     nameError.innerHTML = "**name must be at  3 characters**";
     return false;
   }
- 
+
   nameError.innerHTML = "";
 
   if (phone === "") {
@@ -345,7 +361,7 @@ function checkout(){
   }
   emailError.innerHTML = "";
 
-  
+
 
   if (address === "") {
     Address.innerHTML = "**Please fill in your Address**";
@@ -357,7 +373,7 @@ function checkout(){
   }
   Address.innerHTML = "";
 
-  if(area === ""){
+  if (area === "") {
     areaAddress.innerHTML = "**Please fill in your Address**"
     return false;
   }
@@ -377,7 +393,7 @@ function checkout(){
     cityAddress.innerHTML = "**Please fill in your city**";
     return false;
   }
-  
+
   cityAddress.innerHTML = "";
 
   return true;
@@ -385,11 +401,11 @@ function checkout(){
 
 
 //payment select radio btn//
-function paymentValidate(){
-  var selectedPaymentMethod = document.querySelector( 'input[name="paymentMethod"]:checked');
-  if(selectedPaymentMethod != null) {
+function paymentValidate() {
+  var selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+  if (selectedPaymentMethod != null) {
     return true;
-  }else {  
+  } else {
     document.getElementById("paymenterror").style.display = "block";
     return false;
   }
@@ -410,31 +426,31 @@ function addcoupon() {
   var profitError = document.getElementById("couponmsg2");
   var startDateError = document.getElementById("couponmsg3");
   var expDateError = document.getElementById("couponmsg4");
-  
+
 
   if (promoCode === "") {
     promoCodeError.innerHTML = "**Please fill the required field**";
     return false;
   }
-  if (promoCode.length <3 ) {
+  if (promoCode.length < 3) {
     promoCodeError.innerHTML = "**code must be at  3 characters**";
     return false;
   }
- 
+
   promoCodeError.innerHTML = "";
 
   if (couponType === "") {
     couponTypeError.innerHTML = "**Please fill the required field**";
     return false;
   }
-  
+
   couponTypeError.innerHTML = "";
 
   if (profit === "") {
     profitError.innerHTML = "**Please fill the required field**";
     return false;
   }
-  
+
   profitError.innerHTML = "";
 
   if (startDate === "") {
@@ -444,7 +460,7 @@ function addcoupon() {
 
   startDateError.innerHTML = "";
 
-  if(expDate === ""){
+  if (expDate === "") {
     expDateError.innerHTML = "**Please fill the required field**"
     return false;
   }

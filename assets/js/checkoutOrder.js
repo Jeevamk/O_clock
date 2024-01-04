@@ -81,9 +81,10 @@ document.querySelectorAll('.checkoutorder').forEach((btn) => {
     const addressId = await event.target.getAttribute("data-address-id");
     const couponCode= await event.target.getAttribute("couponId");
     console.log(addressId);
+
     const checkoutData = {
       addressId: addressId,
-      couponCode
+      couponCode:couponCode
     };
 
     try {

@@ -5,6 +5,7 @@ const cartcollection  =require('../../model/cart_model')
 const checkoutCollection = require('../../model/checkout_model')
 const productCollection = require('../../model/product_model')
 const orderCollection = require('../../model/order_model')
+const couponCollection =  require("../../model/coupon_model")
 const { logauth } = require("../../middleware/auth_user");
 const Razorpay = require('razorpay')
 const dotenv = require('dotenv').config({path:'config.env'});
@@ -21,44 +22,83 @@ route.get('/:id',logauth,async(req,res) =>{
     const user = await userCollection.findById(userId)
     const addressId = req.params.id;
     const addressdata= await checkoutCollection.findById(addressId)
-    
-    if (req.cookies.buynowproduct){
-      const cartItems =[];
-      const productId = req.cookies.buynowproduct;
-      const quantity =parseInt(req.cookies.buynowquantity);
-      const cartContent = await productCollection.find({ _id: productId });
+   
+    const couponId = addressdata.couponId;
+    console.log("couponId",couponId);
 
-      if(cartContent){
-        cartItems.push({cartContent,quantity})
-      }
-      console.log("buynow",cartItems,addressdata);
-    res.render("payment", { addressdata, cartItems,user })
-
-    }else {
+    if (couponId != "" || null){
+      const couponData = await couponCollection.findById(couponId);
+      if (req.cookies.buynowproduct){
+        const cartItems =[];
+        const productId = req.cookies.buynowproduct;
+        const quantity =parseInt(req.cookies.buynowquantity);
+        const cartContent = await productCollection.find({ _id: productId });
+  
+        if(cartContent){
+          cartItems.push({cartContent,quantity})
+        }
+        console.log("buynow",cartItems,addressdata);
+        
+        res.render("payment", { addressdata, cartItems,user,couponData })
+  
+      }else {
       const cartProducts = await cartcollection.find({ userId });
-    const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
-    const productId = newcart.productId;
-    const quantity = newcart.quantity;
-
-      const cartContent = await productCollection.find({ _id: productId });
-      return cartContent ? { cartContent, quantity } : null;
-    }));
-
-    res.render('payment' , {cartItems ,user,addressdata })
+      const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
+      const productId = newcart.productId;
+      const quantity = newcart.quantity;
+  
+        const cartContent = await productCollection.find({ _id: productId });
+        return cartContent ? { cartContent, quantity } : null;
+      }));
+  
+      res.render('payment' , {cartItems ,user,addressdata,couponData})
+      }
+   
+    }else{
+      if (req.cookies.buynowproduct){
+        const cartItems =[];
+        const productId = req.cookies.buynowproduct;
+        const quantity =parseInt(req.cookies.buynowquantity);
+        const cartContent = await productCollection.find({ _id: productId });
+  
+        if(cartContent){
+          cartItems.push({cartContent,quantity})
+        }
+        console.log("buynow",cartItems,addressdata);
+        res.render("payment", { addressdata, cartItems,user })
+  
+      }else {
+      const cartProducts = await cartcollection.find({ userId });
+      const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
+      const productId = newcart.productId;
+      const quantity = newcart.quantity;
+  
+        const cartContent = await productCollection.find({ _id: productId });
+        return cartContent ? { cartContent, quantity } : null;
+      }));
+  
+      res.render('payment' , {cartItems ,user,addressdata })
+      }
+   
     }
- 
+
 })
 
 
 
 route.post('/',logauth,async(req,res) => {
     const userId = req.userId;
-    const promoCode = req.body.couponId; 
-    const check = await couponCollection.findOne({promoCode:promoCode})
+    const promoCode = req.body.couponCode; 
     const addressId  = req.body.addressId;
-
-    const checkoutData = await checkoutCollection.findById(addressId)
-    console.log("address",checkoutData);
+    // if(promoCode !=""){
+      const checkoutDataUpdate = await checkoutCollection.updateOne({_id:addressId},{$set: {couponId:promoCode}})
+      const checkoutData = await checkoutCollection.findById(addressId);
+      
+    // }else{
+    //   const checkoutDataUpdate = await checkoutCollection.updateOne({_id:addressId},{$set: {couponId:""}})
+    //   const checkoutData = await checkoutCollection.findById(addressId);
+      
+    // }
     
     res.json(checkoutData);
 
