@@ -72,14 +72,16 @@ route.post('/', logauth, async (req, res) => {
 route.post('/address', logauth, async (req, res) => {
   try {
     const userId = req.userId;
-    const { name, phone, email, address, area, pincode, city, state, optionaladdress, addressId, grandTotal } = req.body;
+    const { name, phone, email, address, area, pincode, city, state, optionaladdress, addressId, grandTotal,couponId } = req.body;
     console.log('Address Data:', { name, phone, email, address, area, pincode, city, state, optionaladdress, addressId });
+
+    const newCouponId = couponId || "";
 
     if (addressId) {
       const existdata = await checkoutCollection.findOne({ userId, _id: addressId });
 
       if (existdata) {
-       const editedData= await checkoutCollection.updateOne({ _id: addressId }, { $set: req.body });
+       const editedData= await checkoutCollection.updateOne({ _id: addressId }, { $set: req.body,couponId: newCouponId  });
        if(editedData){
          await checkoutCollection.findOne({ _id: addressId, userId });
 
@@ -89,7 +91,7 @@ route.post('/address', logauth, async (req, res) => {
 
     } else {
       const newCheckout = new checkoutCollection({
-        userId, name, phone, email, address, area, pincode, city, state, optionaladdress
+        userId, name, phone, email, address, area, pincode, city, state, optionaladdress,couponId:newCouponId
       });
 
       await newCheckout.save();

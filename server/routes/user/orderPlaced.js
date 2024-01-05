@@ -6,7 +6,8 @@ const cartcollection = require("../../model/cart_model");
 const checkoutCollection = require("../../model/checkout_model");
 const { logauth } = require("../../middleware/auth_user");
 const orderCollection = require("../../model/order_model");
-const Razorpay = require('razorpay')
+const Razorpay = require('razorpay');
+const couponCollection = require("../../model/coupon_model");
 const dotenv = require('dotenv').config({path:'config.env'});
 
 
@@ -80,8 +81,14 @@ route.post("/", logauth, async (req, res) => {
   const userId = req.userId;
   const { addressDataId, paymentMethod } = req.body;
   const addressdata = await checkoutCollection.findById(addressDataId)
-  console.log("addressDataId",addressdata);
-   
+  console.log("addressDataId",addressdata)
+
+  // const couponId = addressdata.couponId;
+  // console.log("couponId",couponId);
+
+  // if (couponId != "" || null){
+ 
+  // }
   if (req.cookies.buynowproduct){
     const cartItems =[];
     const productId = req.cookies.buynowproduct;
@@ -101,7 +108,8 @@ route.post("/", logauth, async (req, res) => {
         const productData = await productCollection.findById(productid);
         Products.push({productData,quantity})
         const orderproducts=[{productId:productData._id,quantity}]
-        grandtotal += productData.price * quantity
+        grandtotal += productData.price * quantity;
+
   if (paymentMethod == "COD") {
     const orderData = new orderCollection({
       userId,
@@ -221,10 +229,7 @@ route.post("/", logauth, async (req, res) => {
   }
 
   }
-
  
-
-  
 });
 
 

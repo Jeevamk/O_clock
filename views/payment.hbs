@@ -127,6 +127,7 @@
                                     var totalPrice = parseInt(price) * parseInt(quantity)
                                     grandtotal += parseInt(totalPrice)
                                     document.getElementById('total{{this._id}}').innerHTML = totalPrice;
+                                    
                                 </script>
 
                                 {{/each}}
@@ -139,20 +140,21 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between 1h-condensed">
                                     <span>TOTAL : </span>
-                                    <p class="text-success" id="grand">{{grandTotal}} <span>/-</span></p>
-
+                                    <p class="text-success" id="grand">  <span>/-</span></p>
+                                    <script>
+                                        document.getElementById("grand").innerHTML = grandtotal
+                                    </script>
                                 </li>
                             </ul>
                             
 
 
                         
-                            <script>
-                                
+                            <script> 
                                 let discount = grandtotal/100*{{couponData.profit}}
                                 const afterDiscount = grandtotal-discount
                                 document.getElementById("grand").textContent = afterDiscount;
-                                document.getElementById("discount").textContent = discount;
+                                document.getElementById("discount").textContent = discount;   
                             </script>
                         
 

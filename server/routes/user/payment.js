@@ -24,9 +24,9 @@ route.get('/:id',logauth,async(req,res) =>{
     const addressdata= await checkoutCollection.findById(addressId)
    
     const couponId = addressdata.couponId;
-    console.log("couponId",couponId);
+    
 
-    if (couponId != "" || null){
+    if (couponId != undefined || null || ""){
       const couponData = await couponCollection.findById(couponId);
       if (req.cookies.buynowproduct){
         const cartItems =[];
@@ -72,7 +72,6 @@ route.get('/:id',logauth,async(req,res) =>{
       const cartItems = await Promise.all(cartProducts.map(async (newcart) => {
       const productId = newcart.productId;
       const quantity = newcart.quantity;
-  
         const cartContent = await productCollection.find({ _id: productId });
         return cartContent ? { cartContent, quantity } : null;
       }));
@@ -86,23 +85,22 @@ route.get('/:id',logauth,async(req,res) =>{
 
 
 
-route.post('/',logauth,async(req,res) => {
-    const userId = req.userId;
-    const promoCode = req.body.couponCode; 
-    const addressId  = req.body.addressId;
-    // if(promoCode !=""){
-      const checkoutDataUpdate = await checkoutCollection.updateOne({_id:addressId},{$set: {couponId:promoCode}})
-      const checkoutData = await checkoutCollection.findById(addressId);
-      
-    // }else{
-    //   const checkoutDataUpdate = await checkoutCollection.updateOne({_id:addressId},{$set: {couponId:""}})
-    //   const checkoutData = await checkoutCollection.findById(addressId);
-      
-    // }
-    
-    res.json(checkoutData);
+route.post('/', logauth, async (req, res) => {
+  const userId = req.userId;
+  const promoCode = req.body.couponCode;
+  const addressId = req.body.addressId;
+  let checkoutData; 
 
-})
+  if (promoCode !== "" && promoCode !== null) {
+      await checkoutCollection.updateOne({ _id: addressId }, { $set: { couponId: promoCode } });
+      checkoutData = await checkoutCollection.findById(addressId);
+  } else {
+      await checkoutCollection.updateOne({ _id: addressId }, { $unset: { couponId: 1 } });
+      checkoutData = await checkoutCollection.findById(addressId);
+  }
+
+  res.json(checkoutData);
+});
 
 
 
