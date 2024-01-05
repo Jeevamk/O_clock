@@ -14,6 +14,9 @@ const orderSchema = mongoose.Schema ({
     grandtotal:{
         type:Number,
     },
+    totalAmountAfterDiscount:{
+        type:Number,
+    },
     paymentMethod :{
         type : String,
     },

@@ -142,20 +142,17 @@
                                     <span>TOTAL : </span>
                                     <p class="text-success" id="grand">  <span>/-</span></p>
                                     <script>
-                                        document.getElementById("grand").innerHTML = grandtotal
+                
+                                        let value = parseInt({{couponData.profit}})||0
+                                        let discount = grandtotal/100*value
+                                        const afterDiscount = grandtotal-discount
+                                        document.getElementById("grand").textContent = afterDiscount;
+                                        document.getElementById("discount").textContent = discount;   
+                                
                                     </script>
                                 </li>
                             </ul>
-                            
 
-
-                        
-                            <script> 
-                                let discount = grandtotal/100*{{couponData.profit}}
-                                const afterDiscount = grandtotal-discount
-                                document.getElementById("grand").textContent = afterDiscount;
-                                document.getElementById("discount").textContent = discount;   
-                            </script>
                         
 
                         </div>

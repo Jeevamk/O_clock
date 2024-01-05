@@ -25,7 +25,6 @@ route.get('/:id',logauth,async(req,res) =>{
    
     const couponId = addressdata.couponId;
     
-
     if (couponId != undefined || null || ""){
       const couponData = await couponCollection.findById(couponId);
       if (req.cookies.buynowproduct){
@@ -37,7 +36,6 @@ route.get('/:id',logauth,async(req,res) =>{
         if(cartContent){
           cartItems.push({cartContent,quantity})
         }
-        console.log("buynow",cartItems,addressdata);
         
         res.render("payment", { addressdata, cartItems,user,couponData })
   
@@ -64,9 +62,7 @@ route.get('/:id',logauth,async(req,res) =>{
         if(cartContent){
           cartItems.push({cartContent,quantity})
         }
-        console.log("buynow",cartItems,addressdata);
         res.render("payment", { addressdata, cartItems,user })
-  
       }else {
       const cartProducts = await cartcollection.find({ userId });
       const cartItems = await Promise.all(cartProducts.map(async (newcart) => {

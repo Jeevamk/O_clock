@@ -24,7 +24,7 @@ function orderPlaced(amount) {
         const paymentMethodValue = selectedPaymentMethod.value;
         console.log(paymentMethodValue);
 
-        if(paymentMethodValue === "razorpay") {
+        if(paymentMethodValue === "razorpay") { 
            
             fetch(`/payment/create/orderId`, {
                 method : "POST",
