@@ -151,41 +151,69 @@ route.get("/index", authenticateJWT, async (req, res) => {
   console.log("todayincome", todayIncome);
 
   //year//
+  // const currentYearOrders = await orderCollection.aggregate([
+  //   {
+  //     $match: {
+  //       $expr: {
+  //         $gt: [
+  //           "$orderDate",
+  //           {
+  //             $dateSubtract: {
+  //               startDate: "$$NOW",
+  //               unit: "month",
+  //               amount: 12,
+  //             },
+  //           },
+  //         ],
+  //       },
+  //     },
+  //   },
+  // ]);
+
+  // console.log("currentYearOrders:", currentYearOrders);
+  // const yearOrders = [];
+  // for (i = 0; i < 12; i++) {
+  //   var currentMonth = i;
+
+  //   var filteredData = currentYearOrders.filter((obj) => {
+  //     return obj.orderDate.getMonth() === currentMonth;
+  //   });
+  //   var grandTotal = 0;
+
+  //   for (j = 0; j < filteredData.length; j++) {
+  //     grandTotal += filteredData[j].grandtotal;
+  //   }
+  //   yearOrders.push(grandTotal);
+  // }
+
   const currentYearOrders = await orderCollection.aggregate([
     {
       $match: {
         $expr: {
-          $gt: [
-            "$orderDate",
-            {
-              $dateSubtract: {
-                startDate: "$$NOW",
-                unit: "month",
-                amount: 12,
-              },
-            },
-          ],
+          $eq: [{ $year: "$orderDate" }, new Date().getFullYear()],
         },
       },
     },
   ]);
-
+  
   console.log("currentYearOrders:", currentYearOrders);
-  const yearOrders = [];
-  for (i = 0; i < 12; i++) {
-    var currentMonth = i;
-
-    var filteredData = currentYearOrders.filter((obj) => {
-      return obj.orderDate.getMonth() === currentMonth;
-    });
-    var grandTotal = 0;
-
-    for (j = 0; j < filteredData.length; j++) {
-      grandTotal += filteredData[j].grandtotal;
-    }
-    yearOrders.push(grandTotal);
-  }
-
+  
+  const yearOrders = Array.from({ length: 12 }, (_, i) => {
+    const currentMonth = i;
+    const filteredData = currentYearOrders.filter(
+      (obj) => obj.orderDate.getMonth() === currentMonth
+    );
+  
+    const grandTotal = filteredData.reduce(
+      (total, order) => total + order.grandtotal,
+      0
+    );
+  
+    return grandTotal;
+  });
+  
+  console.log("yearOrders:", yearOrders);
+  
   //five years//
 
   const lastFiveYearOrders = await orderCollection.aggregate([
