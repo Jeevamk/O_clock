@@ -232,20 +232,25 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editForm">
+                    <form id="editForm" name="editform">
                         <div class="mb-4">
                             <input type="text" class="form-control" id="InputName1" placeholder="Enter Name" name="name"
                                 value="{{user.name}}">
+                                <small class="text-danger" id="error"></small>
                         </div>
                         <div class="mb-4">
                             <input type="email" class="form-control" id="InputEmail1" placeholder="Enter Email"
                                 name="email" value="{{user.email}}">
+                                <small class="text-danger" id="error1"></small>
+
                         </div>
                         <div class="mb-4">
                             <input type="number" class="form-control" id="Inputphone1" placeholder="Enter Phone number"
                                 name="phone" value="{{user.phone}}">
+                            <small class="text-danger" id="error2"></small>
+
                         </div>
-                        <button type="button" id="userButton" onclick="func()" class="btn btn-outline-dark"
+                        <button type="button" id="userButton" onclick="return (editprofile() && func())" class="btn btn-outline-dark"
                             data-bs-toggle="modal" data-bs-dismiss="modal">Save Changes</button>
                     </form>
 
@@ -317,6 +322,7 @@
     {{/if}}
 
 
+    <script src="/js/formValidation.js"></script>
     <script src="/js/userEdit.js"></script>
 
 </body>

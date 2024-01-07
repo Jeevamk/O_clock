@@ -76,7 +76,7 @@ route.get("/:id", logauth, async (req, res) => {
           console.log("grand",grandtotal);
   
          await cartcollection.deleteMany({ userId });
-         res.render("orderplaced", {  user ,orderData , address , grandtotal, Products ,discount});
+         res.render("orderplaced", {  user ,orderData , address , grandtotal, Products});
   
     }
   }else{

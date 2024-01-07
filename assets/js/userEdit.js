@@ -1,4 +1,6 @@
-function func() {
+
+
+async function func() {
   const UserData = document.getElementById("editForm");
   const myeditData = new FormData(UserData);
   fetch("/edit", {

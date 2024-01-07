@@ -47,10 +47,6 @@ function validateForm() {
     nameError.innerHTML = "**Please fill in your name**";
     return false;
   }
-  // if (name.length <3 ) {
-  //   nameError.innerHTML = "**Name must be at  3 characters**";
-  //   return false;
-  // }
   const minLength = 3;
   const maxLength = 15;
 
@@ -469,4 +465,62 @@ function addcoupon() {
 
   return true;
 
+}
+
+
+//edit profile//
+function editprofile() {
+  var name = document.forms["editform"]["name"].value;
+  var email = document.forms["editform"]["email"].value;
+  var phone = document.forms["editform"]["phone"].value;
+  
+  var nameError = document.getElementById("error");
+  var emailError = document.getElementById("error1");
+  var phoneError = document.getElementById("error2");
+  
+
+  if (name === "") {
+    nameError.innerHTML = "**Please fill in your name**";
+    return false;
+  }
+  const minLength = 3;
+  const maxLength = 15;
+
+  if (name.length < minLength) {
+    nameError.innerHTML = `**Name must be at least ${minLength} characters**`;
+    return false;
+  }
+
+  if (name.length > maxLength) {
+    nameError.innerHTML = `**Name must be at most ${maxLength} characters**`;
+    return false;
+  }
+  if (!/^[a-zA-Z]+$/.test(name)) {
+    nameError.innerHTML = "**Name must only contain letters**";
+    return false;
+  }
+
+  nameError.innerHTML = "";
+
+  if (email === "") {
+    emailError.innerHTML = "**Please fill in your email**";
+    return false;
+  }
+  if (! /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+    emailError.innerHTML = "**Invalid email format**";
+    return false;
+  }
+  emailError.innerHTML = "";
+
+  if (phone === "") {
+    phoneError.innerHTML = "**Please fill in your phone**";
+    return false;
+  }
+  if (phone.length < 10) {
+    phoneError.innerHTML = "**phone number must be at least 10 characters**";
+    return false;
+  }
+  phoneError.innerHTML = "";
+
+  return true;
 }
