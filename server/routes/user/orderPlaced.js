@@ -71,9 +71,9 @@ route.get("/:id", logauth, async (req, res) => {
           
         }
 
-        const discount = parseInt( grandtotal/ 100) * couponData.profit;
-          grandtotal = grandtotal - discount;
-          console.log("grand",grandtotal);
+        // const discount = parseInt( grandtotal/ 100) * couponData.profit;
+        //   grandtotal = grandtotal - discount;
+        //   console.log("grand",grandtotal);
   
          await cartcollection.deleteMany({ userId });
          res.render("orderplaced", {  user ,orderData , address , grandtotal, Products});
