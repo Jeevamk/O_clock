@@ -45,7 +45,7 @@ route.get("/:id", logauth, async (req, res) => {
          
           res.clearCookie("buynowproduct")
           res.clearCookie("buynowquantity")
-         res.render("orderplaced", {  user ,orderData , address , grandtotal, Products,discount });
+         res.render("orderplaced", {  user ,orderData , address , grandtotal, Products });
   
     }else{
   

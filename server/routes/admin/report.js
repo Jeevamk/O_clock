@@ -55,19 +55,29 @@ route.get("/", authenticateJWT, async (req, res) => {
       {
         $match: {
           $expr: {
-            $gt: [
-              "$orderDate",
-              {
-                $dateSubtract: {
-                  startDate: "$$NOW",
-                  unit: "month",
-                  amount: 1,
-                },
-              },
+            $and: [
+              { $eq: [{ $year: "$orderDate" }, { $year: "$$NOW" }] },
+              { $eq: [{ $month: "$orderDate" }, { $month: "$$NOW" }] },
             ],
           },
         },
       },
+      // {
+      //   $match: {
+      //     $expr: {
+      //       $gt: [
+      //         "$orderDate",
+      //         {
+      //           $dateSubtract: {
+      //             startDate: "$$NOW",
+      //             unit: "month",
+      //             amount: 1,
+      //           },
+      //         },
+      //       ],
+      //     },
+      //   },
+      // },
     ]);
 
     const MonthOrders = [];
