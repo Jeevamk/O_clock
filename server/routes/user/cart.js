@@ -3,17 +3,18 @@ const route = express.Router()
 const userCollection = require("../../model/user_model")
 const productCollection = require("../../model/product_model")
 const cartcollection = require("../../model/cart_model")
-const { logauth ,wishauth} = require('../../middleware/auth_user')
+const { logauth ,wishauth,cartauth} = require('../../middleware/auth_user')
 
 
-route.get('/', logauth, async (req, res) => {
+route.get('/', cartauth, async (req, res) => {
     try {
         if (req.cookies.buynowproduct){
             res.clearCookie("buynowproduct")
             res.clearCookie("buynowquantity")
         }
         const userId = req.userId;
-        console.log(userId);
+
+        
         const user = await userCollection.findById(userId);
         const cartProducts = await cartcollection.find({ userId });
         console.log(cartProducts);
@@ -44,9 +45,11 @@ route.post('/',wishauth, async (req, res) => {
         const userId = req.userId;
         const { productId } = req.body;
         const quantity =  req.body.quantity || 1;
-        // if (!userId){
-        //     return res.render("user_login");
-        // }
+
+        if (!userId){
+            return res.render("user_login");
+        }
+        
 
         const existingcart = await cartcollection.findOne({ userId, productId });
 
