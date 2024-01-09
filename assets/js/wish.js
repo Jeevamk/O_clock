@@ -265,6 +265,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => {
           if (response.ok) {
             window.location.href = '/checkout';
+          } else if(response.status === 401) {
+            console.log(response.error);
+            alert("Please Login and try again...")
+            window.location.href = '/user';
           } 
            else {
             console.error(

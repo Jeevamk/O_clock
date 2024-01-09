@@ -137,18 +137,20 @@ route.delete("/delete", logauth, async (req, res) => {
 
 
 //buynow//
-route.post("/buynow/:id", wishauth, async (req, res) => {
+route.post("/buynow/:id", logauth, async (req, res) => {
   const userId = req.userId;
 
-  // if (!userId){
-  //   return res.redirect("/user_login");
-  // }
+  if (!userId){
+    return res.status(401).json({error:'user not found'});
+  } else{
+    const productId = req.params.id;
+    const quantity = parseInt(req.body.quantity);
+    res.cookie("buynowproduct", productId);
+    res.cookie("buynowquantity", quantity);
+    res.json(productId);
+  }
 
-  const productId = req.params.id;
-  const quantity = parseInt(req.body.quantity);
-  res.cookie("buynowproduct", productId);
-  res.cookie("buynowquantity", quantity);
-  res.json(productId);
+  
 });
 
 
