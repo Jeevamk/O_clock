@@ -68,7 +68,7 @@ route.post('/',logauth, async (req, res) => {
         const { productId } = req.body;
 
         if (!userId){
-            return res.status(304).json({error:'user not found'});
+            return res.status(401).json({error:'user not found'});
         }
 
         const existingWish = await wishcollection.findOne({ userId, productId });

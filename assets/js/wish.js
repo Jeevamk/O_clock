@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 stopOnFocus: true,
               }).showToast();
             }
-          } else if (response.status === 304 ) {
+          } else if (response.status === 401 ) {
             console.log(response.error);
             alert("Please Login and try again...")
             window.location.href = '/user';
