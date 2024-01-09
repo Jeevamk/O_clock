@@ -154,8 +154,10 @@ route.get("/user", (req, res) => {
   
   if (!req.cookies.sessions) {
     return res.render("user_login");
+  }else{
+    return res.redirect("/profile");
   }
-  return res.redirect("/profile");
+  
 });
 
 

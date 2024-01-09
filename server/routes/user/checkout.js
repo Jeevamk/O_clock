@@ -1,6 +1,6 @@
 const express = require('express')
 const route = express.Router()
-const { logauth } = require("../../middleware/auth_user");
+const { logauth,wishauth } = require("../../middleware/auth_user");
 const userCollection = require("../../model/user_model");
 const checkoutCollection = require("../../model/checkout_model");
 const cartcollection = require('../../model/cart_model');
@@ -137,13 +137,20 @@ route.delete("/delete", logauth, async (req, res) => {
 
 
 //buynow//
-route.post("/buynow/:id", logauth, async (req, res) => {
+route.post("/buynow/:id", wishauth, async (req, res) => {
+  const userId = req.userId;
+
+  // if (!userId){
+  //   return res.redirect("/user_login");
+  // }
+
   const productId = req.params.id;
   const quantity = parseInt(req.body.quantity);
   res.cookie("buynowproduct", productId);
   res.cookie("buynowquantity", quantity);
   res.json(productId);
 });
+
 
 //coupon//
 route.get('/coupon/:promoCode',logauth,async(req,res)=>{

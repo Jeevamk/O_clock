@@ -39,9 +39,9 @@ function wishauth(req, res, next) {
   // const userId =req.userId
 
   if (!token) {
-    return res.redirect("/user");
-  }
-  jwt.verify(token, keysecret, (err, decodedToken) => {
+   return res.redirect("/user");
+  }else{
+      jwt.verify(token, keysecret, (err, decodedToken) => {
     if (err) {
       return res.status(401).render({ message: ' failed' });
     }
@@ -51,6 +51,8 @@ function wishauth(req, res, next) {
   
     next();
   });
+  }
+
 }
 
 

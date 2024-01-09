@@ -40,17 +40,16 @@ route.get('/', cartauth, async (req, res) => {
 
 
 //post//
-route.post('/',wishauth, async (req, res) => {
+route.post('/',logauth, async (req, res) => {
     try {
         const userId = req.userId;
         const { productId } = req.body;
         const quantity =  req.body.quantity || 1;
 
         if (!userId){
-            return res.render("user_login");
+            return res.status(304).json({error:'user not found'});
         }
         
-
         const existingcart = await cartcollection.findOne({ userId, productId });
 
         if (existingcart) {

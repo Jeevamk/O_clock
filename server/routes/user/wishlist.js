@@ -62,13 +62,13 @@ route.get('/', logauth, async (req, res) => {
 
 
 //add product to the wishlist//
-route.post('/',wishauth, async (req, res) => {
+route.post('/',logauth, async (req, res) => {
     try {
         const userId = req.userId;
         const { productId } = req.body;
 
         if (!userId){
-            return res.redirect("/user");
+            return res.status(304).json({error:'user not found'});
         }
 
         const existingWish = await wishcollection.findOne({ userId, productId });

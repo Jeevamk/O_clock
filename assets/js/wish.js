@@ -33,11 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 stopOnFocus: true,
               }).showToast();
             }
-          } else if (response.status === 401) {
+          } else if (response.status === 304 ) {
+            console.log(response.error);
             alert("Please Login and try again...")
             window.location.href = '/user';
           }
-          else if (response.status===400){
+          else if (response.status === 400){
             Toastify({
               text: "Product is already in wishlist!!",
               duration: 3000,
@@ -169,14 +170,17 @@ document.addEventListener("DOMContentLoaded", () => {
               }).showToast();
               
             }
-          } else if (response.status === 401) {
+          } else if (response.status === 304) {
+            console.log(response.error);
             alert("Please Login and try again...")
             window.location.href = '/user';
           } else {
+            console.log(response);
             console.error(
               "Error adding product to wishlist:",
               response.statusText
             );
+
           }
         })
         .catch((error) => {
