@@ -32,7 +32,7 @@
                 <div class="container-fluid">
                     {{! <a class="navbar-brand" href="#"><img src="/images/logo.png" alt="logo"
                             class="logo_img img-fluid"></a> }}
-                    <a class="navbar-brand text-dark" href="#" id="logo_img">O|o' CLOCK</a>
+                    <a class="navbar-brand text-dark" href="/" id="logo_img">O|o' CLOCK</a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -115,8 +115,8 @@
                             {{#each cartItems}}
                             {{#each productContent}}
                             <tr>
-                                <th scope="row"><img src="{{this.images}}" class="border-none shadow-sm rounded me-3"
-                                        style="width: 80px; height: 80px;" class="img-fluid" alt="{{this.name}}" /></th>
+                                <th scope="row"><a href="/shop/{{this._id}}"><img src="{{this.images}}" class="border-none shadow-sm rounded me-3"
+                                        style="width: 80px; height: 80px;" class="img-fluid" alt="{{this.name}}" /></a></th>
                                 <td>{{this.name}}</td>
                                 <td class="text price" data-cart-id="{{this._id}}">{{this.price}}/-</td>
 
