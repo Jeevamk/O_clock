@@ -330,6 +330,11 @@ function checkout() {
     nameError.innerHTML = "**name must be at  3 characters**";
     return false;
   }
+  if (!/^[a-zA-Z\s]+$/.test(name)) {
+    nameError.innerHTML = "**Name must only contain letters**";
+    return false;
+  }
+
 
   nameError.innerHTML = "";
 
@@ -379,10 +384,15 @@ function checkout() {
     pinAddress.innerHTML = "**Please fill in your Pincode**";
     return false;
   }
-  if (pincode.length < 6) {
-    pinAddress.innerHTML = "**must be at least 6 characters**";
+  // if (pincode.length < 6) {
+  //   pinAddress.innerHTML = "**must be at least 6 characters**";
+  //   return false;
+  // }
+  if (!/^\d{6}$/.test(pincode)) {
+    pinAddress.innerHTML = "**Pincode must  contain digits and 6 characters**";
     return false;
   }
+
   pinAddress.innerHTML = "";
 
   if (city === "") {
@@ -524,3 +534,4 @@ function editprofile() {
 
   return true;
 }
+
