@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.status === 200) {
               const message = await response.json()
               Toastify({
-                text: message.msg,
+                text: "product added to cart succesfully",
                 duration: 2500,
                 className: "info",
                 style: {
