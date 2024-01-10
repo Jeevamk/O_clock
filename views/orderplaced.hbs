@@ -81,7 +81,7 @@
     {{! navsection end }}
 
 
-    <section class="gradient-custom mt-5">
+    <section class="gradient-custom mt-5 border-dark">
         <div class="container py-5 h-100 mb-4">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-lg-10 col-xl-8">
@@ -100,7 +100,7 @@
 
                         <div class="d-flex justify-content-between pt-2 shadow-sm ps-4 pb-3">
                             <p class="text-muted mb-0">
-                                {{address.name}},{{address.address}},{{address.area}},{{address.city}},{{address.state}}<br>{{address.phone}}
+                                {{address.name}},{{address.address}},{{address.area}},{{address.city}}<br>{{address.state}},{{address.phone}}
                             </p>
                         </div>
 
@@ -108,7 +108,7 @@
                             <ul class="list-group mb-3">
                                 <li class="list-group-item d-flex justify-content-between 1h-condensed">
                                     <p class="my-0">Receipt id : <small>{{orderData._id}}</small></p>
-                                    <small class="me-5 ms-auto text-success">{{orderData.orderStatus}}</small>
+                                    <small class="me-4 ms-auto text-success">{{orderData.orderStatus}}</small>
                                 </li>
 
                             </ul>
