@@ -467,5 +467,12 @@ a {
 
     
 
+@media screen and (min-width:990px ) and (max-width:1228px) {
+    
+        #productname {
+            margin-left: 20px;
+        }
+        }
 
 
+       
