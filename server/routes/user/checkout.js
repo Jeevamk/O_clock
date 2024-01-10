@@ -5,7 +5,8 @@ const userCollection = require("../../model/user_model");
 const checkoutCollection = require("../../model/checkout_model");
 const cartcollection = require('../../model/cart_model');
 const productCollection = require("../../model/product_model");
-const couponCollection = require("../../model/coupon_model")
+const couponCollection = require("../../model/coupon_model");
+const orderCollection = require("../../model/order_model")
 
 
 route.get('/', logauth, async (req, res) => {
@@ -128,7 +129,7 @@ route.delete("/delete", logauth, async (req, res) => {
       const addrsId = req.body.id;
 
       const deleteaddress = await checkoutCollection.findByIdAndDelete(addrsId);
-      return res.json(deleteaddress)    
+      return res.json(deleteaddress);   
   }
       catch (error) {
       res.status(500).json({ error: "Internal server error" });

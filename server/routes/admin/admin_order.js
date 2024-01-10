@@ -134,38 +134,38 @@ route.put("/update",async(req,res) =>{
 
 
 
-//delete//
-route.get("/delete_order/:id", async (req, res) => {
-    if (req.cookies.session) {
-      const orderId = req.params.id;
+// //delete//
+// route.get("/delete_order/:id", async (req, res) => {
+//     if (req.cookies.session) {
+//       const orderId = req.params.id;
   
-      try {
-        const orderDelete = await orderCollection.findOne({ _id: orderId });
+//       try {
+//         const orderDelete = await orderCollection.findOne({ _id: orderId });
   
-        if (orderDelete) {
-          res.json(orderDelete);
-        } else {
-          res.status(404).json({ error: "order not found" });
-        }
-      } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: "Internal server error" });
-      }
-    } else {
-      res.redirect("/adminhome");
-    }
-  });
+//         if (orderDelete) {
+//           res.json(orderDelete);
+//         } else {
+//           res.status(404).json({ error: "order not found" });
+//         }
+//       } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ error: "Internal server error" });
+//       }
+//     } else {
+//       res.redirect("/adminhome");
+//     }
+//   });
   
  
-route.delete("/delete_order", async (req, res) => {
-    try {
-      const orderId = req.body.id;
-      await orderCollection.findByIdAndDelete(orderId);
-      res.redirect(303, "/adminhome/order");
-    } catch (error) {
-      res.send(error);
-    }
-  });
+// route.delete("/delete_order", async (req, res) => {
+//     try {
+//       const orderId = req.body.id;
+//       await orderCollection.findByIdAndDelete(orderId);
+//       res.redirect(303, "/adminhome/order");
+//     } catch (error) {
+//       res.send(error);
+//     }
+//   });
 
 
 
