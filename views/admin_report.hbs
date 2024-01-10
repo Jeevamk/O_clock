@@ -27,6 +27,19 @@
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+    <!-- Add this in the head section of your HTML -->
+    {{!--
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script> --}}
+
+<!-- Include jsPDF from a CDN -->
+    {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> --}}
+
+{{!-- favicon --}}
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dsqsfves6/image/upload/v1704874674/fav_mrsyym.jpg">
+
+   
+
+
 
 </head>
 
@@ -79,7 +92,8 @@
                             <a href="/adminhome/contact"><span class="fa-solid fa-message mr-4"></span>MESSAGES</a>
                         </li>
                         <li class="active">
-                            <a href="/adminhome/coupon"><i class="fa-solid fa-ticket mr-4" style="color: #fcfcfc;"></i></span>COUPON</a>
+                            <a href="/adminhome/coupon"><i class="fa-solid fa-ticket mr-4"
+                                    style="color: #fcfcfc;"></i></span>COUPON</a>
                         </li>
 
                     </ul>
@@ -95,6 +109,7 @@
 
 
             <!-- Page Content  -->
+
             <div id="content" class="p-4 p-md-5 pt-5">
                 <section class="mt-3">
                     <div class="container-fluid">
@@ -263,8 +278,11 @@
                                                         <td>{{this.paymentMethod}}</td>
                                                         <td>{{this.grandtotal}}</td>
                                                         <td>{{this.orderStatus}}</td>
-                                                        <td><a href="/adminhome/order/{{this._id}}" class="view-order p-1 btn  btn-light m-1" data-order-id="{{this._id}}" ><i class="fa-regular fa-eye"
-                                                    style="color:black;"></i></a></td>
+                                                        <td><a href="/adminhome/order/{{this._id}}"
+                                                                class="view-order p-1 btn  btn-light m-1"
+                                                                data-order-id="{{this._id}}"><i
+                                                                    class="fa-regular fa-eye"
+                                                                    style="color:black;"></i></a></td>
                                                         {{!-- <td>
                                                             <p><span style="font-size: 16px;"
                                                                     class="orderDatePlace{{@index}}"></span>
@@ -287,8 +305,9 @@
 
                 </section>
 
-              </script>
 
+               
+        
                 <script>
                     const xValues = [{{ MonthOrders }}];
                     const yValues = [{{ grandTotalSum }}];
@@ -381,6 +400,26 @@
                     });
                 </script>
 
+                {{!--
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const exportBtn = document.getElementById("exportBtn");
+
+                        exportBtn.addEventListener("click", function () {
+                            const contentToExport = document.documentElement;
+
+                            const options = {
+                                margin: 10,
+                                filename: 'exported-document.pdf',
+                                image: { type: 'jpeg', quality: 0.98 },
+                                html2canvas: { scale: 2 },
+                                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                            };
+
+                            html2pdf(contentToExport, options);
+                        });
+                    });
+                </script> --}}
 
 
 
@@ -455,7 +494,7 @@
 
 
 
-
+ 
 
     <script src="/js/edit.js"></script>
     <script src="/js/jquery.min.js"></script>
