@@ -32,17 +32,17 @@ route.get("/", authenticateJWT, async (req, res) => {
     ])
 
     let totalOrders = 0;
-    let deliverdOrders;
-    let cancelled;
+    let deliverdOrders = 0;;
+    let cancelled =0;;
     let pendingOrders = 0;
     for (let order of orders) {
       console.log("order",order);
       totalOrders += order.count;
 
       if (order._id == "Delivered") {
-        deliverdOrders = order.count || 0
+        deliverdOrders = order.count ?? 0
       } else if (order._id == "Cancelled") {
-        cancelled = order.count || 0
+        cancelled = order.count ?? 0
       } else {
         pendingOrders += order.count
       }
