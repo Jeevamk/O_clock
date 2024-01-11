@@ -30,7 +30,6 @@ passport.use(
       
 
       await userData.save();
-      console.log("ssdds",userData);
 
        done(null, userData);
     }

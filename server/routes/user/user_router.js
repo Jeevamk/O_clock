@@ -487,7 +487,8 @@ route.post("/token-password", async (req, res) => {
     const tokenData = await userCollection.findOne( { _id } );
     if(token==tokenData.token){
       const _id = tokenData._id;
-      res.render('reset', {_id} )
+      await userCollection.updateOne({_id},{$unset: {token:1}})
+      res.render('reset', {_id})
     }else {
       console.log("id:",_id);
       // res.status(400).send({ success: false, msg: "Invalid token." });

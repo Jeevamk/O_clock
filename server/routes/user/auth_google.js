@@ -12,7 +12,6 @@ const jwt =require("jsonwebtoken")
 // })
 
 function isLoggedIn(req, res, next) {
-  console.log("dsdf",req.user);
   req.user ? next() : res.sendStatus(401);
   
 }
@@ -50,14 +49,10 @@ route.get("/google/failure", (req, res) => {
 
 
 route.get("/protected", isLoggedIn, (req, res) => {
-  // console.log("gyu",req.user);
-  // const name = req.userData.name;
-  // console.log(name);
   const userId = req.user._id; 
   const token = jwt.sign({ userId }, keySecret);
   res.cookie("sessions", token);
   return res.redirect("/");
-  // res.send(`hello${name}`);
 });
 
 
