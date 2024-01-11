@@ -54,11 +54,18 @@ route.post('/',logauth, async (req, res) => {
 
         if (existingcart) {
             const product = await productCollection.findById(productId)
-            if (existingcart.quantity < product.countStock){
-                existingcart.quantity = parseInt(existingcart.quantity) + parseInt(quantity) ;
-                const updatedCart = await existingcart.save();
-                const msg = {msg:"item added to cart succesfully"}
-                return res.json(msg);
+            existingcart.quantity = parseInt(existingcart.quantity) + parseInt(quantity) ;
+            if (existingcart.quantity <= product.countStock){
+                    
+                if(existingcart.quantity <= 3){
+                    const updatedCart = await existingcart.save();
+                    const msg = {msg:"item added to cart succesfully"}
+                    return res.json(msg);
+                }else{
+                    const msg = {msg : `Only 3 products can buy at a time...`}
+                    return res.json(msg);
+                }
+                
             }else{
                 const msg = {msg : `Only ${product.countStock} product available in stock`}
                 return res.json(msg);

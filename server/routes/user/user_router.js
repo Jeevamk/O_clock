@@ -474,6 +474,7 @@ route.post("/forgotpassword", async (req, res) => {
   }
 });
 
+
 route.get("/token", (req, res) => {
   res.render("token");
 });
@@ -499,7 +500,6 @@ route.post("/token-password", async (req, res) => {
     res.status(500).send({ success: false, msg: error.message });
   } 
 });
-
 
 
 route.post("/reset-password", async (req, res) => {
