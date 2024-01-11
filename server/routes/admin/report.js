@@ -36,6 +36,7 @@ route.get("/", authenticateJWT, async (req, res) => {
     let cancelled;
     let pendingOrders = 0;
     for (let order of orders) {
+      console.log("order",order);
       totalOrders += order.count;
 
       if (order._id == "Delivered") {
@@ -106,8 +107,6 @@ route.get("/", authenticateJWT, async (req, res) => {
       MonthOrders.push(i)
     }
 
-    console.log("MonthOrders:", MonthOrders);
-    console.log("grandTotalSum:", grandTotalSum);
 
 
     //weeks//
