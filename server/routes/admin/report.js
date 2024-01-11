@@ -182,7 +182,7 @@ route.get("/", authenticateJWT, async (req, res) => {
   
 
 
-    lastThreeOrders = await orderCollection.find().sort({_id:-1}).limit(5)
+    lastThreeOrders = await orderCollection.find().sort({_id:1}).limit(5)
 
 
 
