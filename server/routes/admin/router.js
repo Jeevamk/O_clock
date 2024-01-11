@@ -39,7 +39,8 @@ route.get("/index", authenticateJWT, async (req, res) => {
   const admin_detail = await adminCollection.findOne({ _id: req.adminId });
 
   //recent orders//
-  lastThreeOrders = await orderCollection.find().sort({ _id: -1 }).limit(3);
+  lastThreeOrders = await orderCollection.find().sort({ _id: 1 }).limit(3);
+  console.log("last",lastThreeOrders);
 
   //count of user//
   const totalUsers = await userCollection.countDocuments({});
@@ -60,7 +61,6 @@ route.get("/index", authenticateJWT, async (req, res) => {
     },
   ]);
   const revenue = totalRevenue[0].total;
-  console.log("revenue", revenue);
 
   const CODAmount = await orderCollection.aggregate([
     {
@@ -82,10 +82,7 @@ route.get("/index", authenticateJWT, async (req, res) => {
   const cashOnDeliveryAmount =
     CODAmount.length > 0 ? CODAmount[0].totalAmountSum : 0;
 
-  console.log("Total amount for cash on delivery:", cashOnDeliveryAmount);
-
   const onlinePayment = revenue - cashOnDeliveryAmount;
-  console.log("onlinePayment", onlinePayment);
 
   //orders details//
   const orders = await orderCollection.aggregate([
@@ -128,7 +125,6 @@ route.get("/index", authenticateJWT, async (req, res) => {
       },
     },
   ]);
-  console.log("currentWeekOrders:", currentWeekOrders);
   const weekOrders = [];
   for (i = 0; i < 7; i++) {
     var currentDate = new Date();
@@ -144,11 +140,9 @@ route.get("/index", authenticateJWT, async (req, res) => {
     }
     weekOrders.push(grandSumTotal);
   }
-  console.log("weekOrders", weekOrders);
 
   //today sale//
   const todayIncome = weekOrders[0];
-  console.log("todayincome", todayIncome);
 
   //year//
   // const currentYearOrders = await orderCollection.aggregate([
@@ -196,7 +190,6 @@ route.get("/index", authenticateJWT, async (req, res) => {
     },
   ]);
   
-  console.log("currentYearOrders:", currentYearOrders);
   
   const yearOrders = Array.from({ length: 12 }, (_, i) => {
     const currentMonth = i;
@@ -212,7 +205,6 @@ route.get("/index", authenticateJWT, async (req, res) => {
     return grandTotal;
   });
   
-  console.log("yearOrders:", yearOrders);
   
   //five years//
 
@@ -316,8 +308,6 @@ route.get("/index", authenticateJWT, async (req, res) => {
     MonthOrders.push(i);
   }
 
-  console.log("MonthOrders:", MonthOrders);
-  console.log("grandTotalSum:", grandTotalSum);
 
   res.render("admin_home", {
     admin: admin_detail,
