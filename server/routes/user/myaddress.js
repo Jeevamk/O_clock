@@ -3,6 +3,8 @@ const route = express.Router()
 const {logauth} = require('../../middleware/auth_user')
 const userCollection = require('../../model/user_model')
 const checkoutCollection = require('../../model/checkout_model')
+const orderCollection = require("../../model/order_model")
+
 
 route.get('/',logauth,async(req,res)=>{
     const userId = req.userId
@@ -72,6 +74,11 @@ route.get("/delete/:id",logauth, async (req, res) => {
   route.delete("/delete", logauth, async (req, res) => {
     try {
         const addrsId = req.body.id;
+        const order = await orderCollection.find({addressId})
+        console.log("order",order);
+      if(order.length > 0){
+        await orderCollection.deleteMany({addressId})
+      }
   
         const deleteaddress = await checkoutCollection.findByIdAndDelete(addrsId);
         return res.json(deleteaddress)    

@@ -42,7 +42,7 @@ route.get("/", authenticateJWT, async (req, res) => {
       if (order._id == "Delivered") {
         deliverdOrders = order.count ?? 0
       } else if (order._id == "Cancelled") {
-        cancelled = order.count ?? 0
+        cancelled = order.count ?? 0 
       } else {
         pendingOrders += order.count
       }

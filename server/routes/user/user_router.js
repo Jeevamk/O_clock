@@ -168,6 +168,7 @@ route.get("/user_sign", (req, res) => {
 });
 
 
+
 // route.post(
 //   "/user_registration",
 
@@ -239,7 +240,6 @@ route.post("/user_registration",async (req, res) => {
         }
 
         const postingData = await userData.save();
-        console.log('Saved userData:', postingData._id);
         try {
           userId = postingData._id;
           await sendVerificationEmail(req.body.email, otp);

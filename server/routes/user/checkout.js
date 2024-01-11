@@ -128,6 +128,7 @@ route.delete("/delete", logauth, async (req, res) => {
   try {
       const addressId = req.body.id;
       const order = await orderCollection.find({addressId})
+      console.log("order",order);
       if(order.length > 0){
         await orderCollection.deleteMany({addressId})
       }
