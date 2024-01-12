@@ -39,8 +39,7 @@ route.get("/index", authenticateJWT, async (req, res) => {
   const admin_detail = await adminCollection.findOne({ _id: req.adminId });
 
   //recent orders//
-  lastThreeOrders = await orderCollection.find().sort({ _id: 1 }).limit(3);
-  console.log("last",lastThreeOrders);
+  lastThreeOrders = await orderCollection.find().sort({ orderDate: -1 }).limit(3);
 
   //count of user//
   const totalUsers = await userCollection.countDocuments({});
