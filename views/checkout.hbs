@@ -250,20 +250,23 @@
                                 {{/each}}
                                 {{/each}}
 
-                               
-
+                                <li class="list-group-item d-flex justify-content-between 1h-condensed ">
+                                    <span>Total : </span>
+                                    <p class="text-danger" id="Totl">0<span>/-</span></p>
+                                </li>
                                 <li class="list-group-item d-flex justify-content-between 1h-condensed ">
                                     <span>Discount : </span>
                                     <p class="text-danger" id="discount">0<span>/-</span></p>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between 1h-condensed">
-                                    <span>TOTAL : </span>
-                                    <p class="text-success" id="grand"><span>/-</span></p>
+                                    <span>GRANDTOTAL : </span>
+                                    <p class="text-success" id="grand" style="font-weight: bold; font-size:large"><span>/-</span></p>
                                 </li>
 
                             </ul>
 
                             <script>
+                                document.getElementById("Totl").textContent = grandtotal;
                                 document.getElementById("grand").textContent = grandtotal;
                             </script>
 
