@@ -93,12 +93,51 @@ route.get('/cancel/:id',logauth, async(req,res) =>{
 )
 
 
-route.put("/cancel",async(req,res) =>{
-    const _id = req.body._id;
-    const cancelreason = req.body.cancelreason;
-    const cancelOrder = await orderCollection.findOneAndUpdate({ _id }, {$set: {orderStatus:"Cancelled",cancelreason}})
-    return res.json(cancelOrder)
-})
+// route.put("/cancel",async(req,res) =>{
+//     const _id = req.body._id;
+//     const cancelreason = req.body.cancelreason;
+//     const cancelOrder = await orderCollection.findOneAndUpdate({ _id }, {$set: {orderStatus:"Cancelled",cancelreason}})
+//     return res.json(cancelOrder)
+// })
+
+route.put("/cancel", async (req, res) => {
+  const orderId = req.body._id;
+  const cancelreason = req.body.cancelreason;
+
+  try {
+      const cancelledOrder = await orderCollection.findOne({ _id: orderId });
+
+      if (!cancelledOrder) {
+          return res.status(404).json({ error: "Order not found" });
+      }
+
+      for (const orderProduct of cancelledOrder.orderproducts) {
+          const productId = orderProduct.productId;
+          const quantity = orderProduct.quantity;
+
+          await productCollection.findByIdAndUpdate(
+              productId,
+              { $inc: { countStock: quantity } }
+          );
+      }
+
+      const updatedOrder = await orderCollection.findOneAndUpdate(
+          { _id: orderId },
+          { $set: { orderStatus: "Cancelled", cancelreason } },
+          { new: true } 
+      );
+
+      if (updatedOrder) {
+          res.json(updatedOrder);
+      } else {
+          res.status(500).json({ error: "Failed to update order" });
+      }
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 
 //delete//

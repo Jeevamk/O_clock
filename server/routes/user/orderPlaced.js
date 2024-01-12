@@ -452,19 +452,8 @@ route.post("/", logauth, async (req, res) => {
     }
   
     }
-
-
-
-
-
-
-
   }
 
-
-
-
- 
 });
 
 

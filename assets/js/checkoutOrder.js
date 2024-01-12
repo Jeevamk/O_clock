@@ -196,7 +196,7 @@ async function applyCoupon() {
     }
 
   }catch(error){
-
+    
   }
 
 }
