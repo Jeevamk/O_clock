@@ -293,7 +293,7 @@
                                                     {{/if}}
                                                     <p class="">Amount :<span class="text-dark"
                                                             style="font-weight: 700;">{{myOrder.grandtotal}}</span></p>
-                                                    <p class="">Order Date:{{myOrder.orderDate}} </p>
+                                                    <p class="">Order Date: <span id="orderDate"></span> </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -496,7 +496,10 @@
                 </div>
             </div>
 
-
+<script>
+    const orderDate = "{{myOrder.orderDate}}"
+    document.getElementById("orderDate").innerHTML=orderDate.split(" ").slice(0,4).join(" ");
+</script>
 
     {{#if alert}}
     <script>
