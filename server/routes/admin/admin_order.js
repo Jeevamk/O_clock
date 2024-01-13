@@ -44,7 +44,7 @@ route.use(express.json());
 route.get ('/',authenticateJWT,async (req,res)=>{ 
     if(req.cookies.session) {
         const adminid = await adminCollection.findOne({ _id: req.adminId });
-        const orderList = await orderCollection.find();
+        const orderList = await orderCollection.find().sort({ orderDate: -1 });
         console.log("orderlist",orderList);
 
         const userDetails = [];
