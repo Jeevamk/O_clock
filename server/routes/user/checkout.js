@@ -167,7 +167,6 @@ route.get('/coupon/:promoCode',logauth,async(req,res)=>{
   const check = await couponCollection.findOne({promoCode:promoCode})
   if(check){
     const valid=check.startDate > new Date() < check.expDate;
-    // const valid = check.startDate > new Date() && check.expDate > new Date();
 
     if(valid){
       res.json(check)

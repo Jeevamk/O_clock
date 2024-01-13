@@ -64,7 +64,6 @@ route.get("/:id", logauth, async (req, res) => {
           const productId = orderproduct.productId;
           const quantity = orderproduct.quantity;
           const productData = await productCollection.findById(productId);
-          console.log(productData);
           Products.push({productData,quantity})
   
           grandtotal += productData.price * quantity;
@@ -129,7 +128,6 @@ route.get("/:id", logauth, async (req, res) => {
           Products.push({productData,quantity})
   
           grandtotal += productData.price * quantity;
-          console.log("grand",grandtotal);
         }
         const discount = parseInt( grandtotal/ 100) * couponData.profit;
         grandtotal = grandtotal - discount;

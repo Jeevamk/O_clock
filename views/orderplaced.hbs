@@ -18,15 +18,16 @@
     <link rel="stylesheet" href="/css/shop.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{!-- toastify-js --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     {{!-- favicon --}}
-    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dsqsfves6/image/upload/v1704874674/fav_mrsyym.jpg">
+    <link rel="icon" type="image/x-icon"
+        href="https://res.cloudinary.com/dsqsfves6/image/upload/v1704874674/fav_mrsyym.jpg">
 </head>
 
 <body>
@@ -57,16 +58,17 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="/about">About Us</a>
                             </li>
-                            
+
 
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navicons">
                             <li class="nav-item">
-                               <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i><span
-                                        style="color: black; font-family:sanserif; font-weight:800" class="ps-2">{{user.name}}</span></a>
+                                <a class="nav-link" href="/user"><i class="fa-solid fa-user"></i><span
+                                        style="color: black; font-family:sanserif; font-weight:800"
+                                        class="ps-2">{{user.name}}</span></a>
 
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link" href="/wish"><i class="fa-regular fa-heart"></i></a>
                             </li>
@@ -91,11 +93,10 @@
                     <div class="card shadow-lg" style="border-radius: 10px;">
                         <div class="card-header px-4 py-5">
                             {{!-- <img src="/images/loginImg.jpg" alt="" class="img-fluid" width="100px"> --}}
-                            <span
-                                style="font-size: larger; font-weight:bold">Thanks For Your Order, <span
+                            <span style="font-size: larger; font-weight:bold">Thanks For Your Order, <span
                                     style="color: #000000; font-style:italic"
                                     class="text-danger">{{address.name}}</span></span>
-                            
+
                         </div>
                         <div class="d-flex justify-content-between pt-2 ps-4">
                             <p class="fw-bold mb-0">Delivery Address</p>
@@ -161,6 +162,22 @@
                             {{/each}}
 
                         </div>
+                        <div class="bg-muted">
+                            <div class="d-flex justify-content-between pt-2 container">
+                            <p class="d-flex align-items-center justify-content-end text-dark  mb-0"><span
+                                    class="mb-0 ms-2" id="dis"></span></p>
+                            <p class="d-flex align-items-center justify-content-end text-dark  mb-0">Total<span
+                                    class="mb-0 ms-2" id="total">₹{{orderData.grandtotal}} /-</span></p>
+                        </div>
+                        <div class="d-flex justify-content-between pt-2 container">
+                            <p class="d-flex align-items-center justify-content-end text-dark  mb-0"><span 
+                                    class="mb-0 ms-2" id="dis"></span></p>
+                            <p class="d-flex align-items-center justify-content-end text-dark  mb-0">Discount<span
+                                    class="mb-0 ms-2" id="dis">₹ {{discount}} /-</span></p>
+                        </div>
+
+                        </div>
+                        
                         <div class="card-footer border-0 px-4 py-5"
                             style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                             <h5 class="d-flex align-items-center justify-content-end text-dark text-uppercase mb-0">
@@ -168,7 +185,7 @@
                                 paid: <span class="h2 mb-0 ms-2" id="totalPay">₹ {{grandtotal}} /-</span></h5>
                         </div>
 
-                        
+
                         <a href="/shop"><button class="btn btn-outline-dark w-100 mt-3">BACK TO SHOP</button></a>
                     </div>
                 </div>
@@ -177,21 +194,20 @@
 
     </section>
 
-     {{#if orderData}}
-        <script>
-            Swal.fire({
-                title: "Order Placed Succussfully.....",
-               
-                icon: "success"
-            })
-        </script>
+    {{#if orderData}}
+    <script>
+        Swal.fire({
+            title: "Order Placed Succussfully.....",
+            icon: "success"
+        })
+    </script>
     {{/if}}
 
 
-     
 
 
-   
+
+
 
 
     <script src="/js/placedOrder.js"></script>

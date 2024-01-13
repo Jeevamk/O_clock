@@ -171,86 +171,82 @@ function dltAddress() {
  
 //coupon//
 
+// async function applyCoupon() {
+//   const grandTotal = document.getElementById("grand").textContent;
+//   const promoCode = document.getElementById("promoCode").value;
+//   try{
+//     const response = await fetch(`/checkout/coupon/${promoCode}`);
+//     if (response.ok){
+//       const couponData = await response.json();
+//       console.log(couponData);
+//       let discount;
+//       let Total;
+//       discount = parseInt((grandTotal*couponData.profit)/100);
+//       Total = grandTotal-discount;
+//       console.log("Total",Total);
+//       document.getElementById("grand").innerHTML = Total;
+//       document.getElementById("discount").innerHTML = discount;
+//       document.getElementById("couponInput").style.display="none";
+//       const buttons = document.querySelectorAll('.checkoutorder');
+//       buttons.forEach(button => {
+//         button.setAttribute('couponId', couponData._id);
+//       });
+
+//     }
+
+//   }catch(error){
+    
+//   }
+
+// }
+
+
 async function applyCoupon() {
   const grandTotal = document.getElementById("grand").textContent;
-  console.log("grandTotal",grandTotal);
   const promoCode = document.getElementById("promoCode").value;
-  try{
+
+  try {
     const response = await fetch(`/checkout/coupon/${promoCode}`);
-    if (response.ok){
+    if (response.ok) {
       const couponData = await response.json();
-      console.log(couponData);
-      let discount;
-      let Total;
-      discount = parseInt((grandTotal*couponData.profit)/100);
-      Total = grandTotal-discount;
-      console.log("Total",Total);
-      document.getElementById("grand").innerHTML = Total;
-      document.getElementById("discount").innerHTML = discount;
-      document.getElementById("couponInput").style.display="none";
-      const buttons = document.querySelectorAll('.checkoutorder');
-      buttons.forEach(button => {
-        button.setAttribute('couponId', couponData._id);
-      });
 
+      if (couponData.error) {
+        showToast(couponData.error, "Black");
+      } else {
+        let discount = parseInt((grandTotal * couponData.profit) / 100);
+        let Total = grandTotal-discount;
+
+        document.getElementById("grand").innerHTML = Total;
+        document.getElementById("discount").innerHTML = discount;
+        document.getElementById("couponInput").style.display = "none";
+
+        const buttons = document.querySelectorAll('.checkoutorder');
+        buttons.forEach(button => {
+          button.setAttribute('couponId', couponData._id);
+        });
+
+        showToast("Coupon applied successfully", "black");
+      }
+    } else {
+      showToast("Invalid Coupon", "black");
     }
-
-  }catch(error){
-    
+  } catch (error) {
+    console.error(error);
   }
-
 }
 
 
-// async function applyCoupon() {
-//   const grandTotalElement = document.getElementById("grand");
-//   const promoCodeElement = document.getElementById("promoCode");
-
-//   const grandTotal = grandTotalElement.textContent;
-//   const promoCode = promoCodeElement.value;
-
-//   try {
-//     const response = await fetch(`/checkout/coupon/${promoCode}`);
-//     if (response.ok) {
-//       const couponData = await response.json();
-
-//       if (couponData.error) {
-//         showToast(couponData.error, "Black");
-//       } else {
-//         let discount = parseInt((grandTotal * couponData.profit) / 100);
-//         let total = grandTotal - discount;
-
-//         grandTotalElement.innerHTML = total;
-//         document.getElementById("discount").innerHTML = discount;
-//         document.getElementById("couponInput").style.display = "none";
-
-//         const buttons = document.querySelectorAll('.checkoutorder');
-//         buttons.forEach(button => {
-//           button.setAttribute('couponId', couponData._id);
-//         });
-
-//         showToast("Coupon applied successfully", "black");
-//       }
-//     } else {
-//       showToast("Invalid Coupon", "black");
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-
-// function showToast(text, background) {
-//   Toastify({
-//     text,
-//     duration: 2000,
-//     newWindow: true,
-//     close: true,
-//     gravity: "top",
-//     position: "center",
-//     stopOnFocus: true,
-//     style: {
-//       background,
-//     },
-//   }).showToast();
-// }
+function showToast(text, background) {
+  Toastify({
+    text,
+    duration: 2000,
+    newWindow: true,
+    close: true,
+    gravity: "top",
+    position: "center",
+    stopOnFocus: true,
+    style: {
+      background,
+    },
+  }).showToast();
+}
