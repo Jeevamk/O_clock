@@ -29,10 +29,41 @@ async function func() {
 
 //change password//
 
+// function change() {
+//   const passchange = document.getElementById("changepassword");
+//   const changedata = new FormData(passchange);
+//   console.log(changedata);
+//   fetch('/password-change', {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(Object.fromEntries(changedata)),
+//   })
+//     .then((response) => {
+//       if (response.ok) {
+//         alert("Password updated successfully");
+//         return window.location.href = "/user"
+//       } else if(response.message==400) {
+//         alert("New password and confirm password do not match");
+
+//       } else if(response.message == 401) {
+//         alert("Current password is incorrect")
+//       }else{
+//         alert("Password change failed")
+//       }
+//       // throw new Error("not ok");
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// }
+
+
 function change() {
   const passchange = document.getElementById("changepassword");
   const changedata = new FormData(passchange);
-  console.log(changedata);
+
   fetch('/password-change', {
     method: "PUT",
     headers: {
@@ -40,16 +71,22 @@ function change() {
     },
     body: JSON.stringify(Object.fromEntries(changedata)),
   })
-    .then((response) => {
+    .then(async (response) => {
+      const data = await response.json();
+
       if (response.ok) {
         alert("Password updated successfully");
-        return window.location.href = "/user"
+        window.location.href = "/user";
+      } else if (response.status === 400) {
+        alert("New password and confirm password do not match");
+      } else if (response.status === 401) {
+        alert("Current password is incorrect");
+      } else {
+        alert("Password change failed");
       }
-      alert("Password change failed. Please try again.");
-      // throw new Error("not ok");
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
 }
 

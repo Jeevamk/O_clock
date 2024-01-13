@@ -223,16 +223,18 @@
                         <div class="modal-body">
                             <div class="container">
                                 <form class="row g-3" action="/adminhome/products" method="POST"
-                                    onsubmit="return addproduct()" enctype="multipart/form-data" id="productAddForm">
+                                    onsubmit="return addproduct()" enctype="multipart/form-data" id="productAddForm" name="productForm">
                                     <div class="col-md-6">
                                         <label for="name" class="form-label">Product Name</label>
                                         <input type="text" class="form-control" id="name" placeholder="product Name"
                                             name="name" style="border: 1px solid black;">
+                                            <p id="err1" class="text-danger"></p>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="price">Price</label>
                                         <input type="text" class="form-control" id="price" placeholder="Enter price"
                                             name="price" style="border: 1px solid black;">
+                                            <p id="err2" class="text-danger"></p>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="category" class="form-label">Category</label><br>
@@ -260,6 +262,7 @@
                                         <textarea type="text" class="form-control" id="description1" 
                                             placeholder="Enter Discription" name="description1"
                                             style="border: 1px solid black;"></textarea>
+                                            <p id="err3" class="text-danger"></p>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
@@ -300,6 +303,8 @@
                                         <label for="images" class="form-label">Main Image</label><br>
                                         <input type="file" id="images" name="images" class="form-control"
                                             style="border: 1px solid black;">
+                                                                                        <p id="err4" class="text-danger"></p>
+
                                     </div>
                                     <div class="col-md-6">
                                         <div id="ImageContainer">
@@ -344,6 +349,8 @@
                                         <label for="countStock" class="form-label">Stock</label><br>
                                         <input type="number" id="countStock" name="countStock" class="form-control"
                                             style="border: 1px solid black;">
+                                        <p id="err5" class="text-danger"></p>
+
 
                                     </div>
                                     <div class="col-12 mt-2">

@@ -276,14 +276,19 @@
                         <div class="mb-4">
                             <input type="password" class="form-control" id="currentpassword"
                                 placeholder="Enter current password" name="currentpassword">
+                                <small id="err1" class="text-danger"></small>
                         </div>
                         <div class="mb-4">
                             <input type="password" class="form-control" id="newpassword"
                                 placeholder="Enter New password" name="newpassword">
+                            <small id="err2" class="text-danger"></small>
+
                         </div>
                         <div class="mb-4">
                             <input type="password" class="form-control" id="cnewpassword"
                                 placeholder="Confirm New password" name="cnewpassword">
+                             <small id="err3" class="text-danger"></small>
+
                         </div>
                         <button type="button" id="changeButton" onclick="change()" class="btn btn-outline-dark"
                             data-bs-toggle="modal" data-bs-dismiss="modal">Save Changes</button>

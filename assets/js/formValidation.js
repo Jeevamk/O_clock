@@ -535,3 +535,104 @@ function editprofile() {
   return true;
 }
 
+
+//banner//
+function addbanner() {
+  let bannerName = document.forms["bannerForm"]["name"].value;
+  let description = document.forms["bannerForm"]["description"].value;
+  let group = document.forms["bannerForm"]["group"].value;
+  let BannerImg = document.forms["bannerForm"]["bannerImg"].value;
+  let status = document.forms["bannerForm"]["status"].value;
+
+  let err1= document.getElementById('err1');
+  let err2= document.getElementById('err2')                                                                      
+  let err3= document.getElementById('err3')                                                                      
+  let err4= document.getElementById('err4')                                                                      
+  let err5= document.getElementById('err5')                                                                      
+                                                                     
+
+  if (bannerName == "") {
+    err1.innerHTML="Banner Name must be filled out";
+    return false;
+  } 
+  err1.innerHTML = "";
+
+  if (description == "") {
+    err2.innerHTML="Description must be filled out";
+    return false;
+  } 
+  err2.innerHTML = "";
+
+  if (group == "") {
+    err3.innerHTML="group must be filled out";
+    return false;
+  } 
+  err3.innerHTML = "";
+
+   if (BannerImg == "") {
+    err4.innerHTML="BannerImg must be filled out";
+    return false;
+  }   err4.innerHTML = "";
+
+  if (status == "") {
+    err5.innerHTML="status must be filled out";
+    return false;
+  }
+  err5.innerHTML = "";
+
+
+    return true;
+  
+}
+
+
+//product//
+function addproduct() {
+  let productName = document.forms["productForm"]["name"].value;
+  let price = document.forms["productForm"]["price"].value;
+  let description1 = document.forms["productForm"]["description1"].value;
+  let images = document.forms["productForm"]["images"].value;
+  let countStock = document.forms["productForm"]["countStock"].value;
+
+  let err1= document.getElementById('err1');
+  let err2= document.getElementById('err2')                                                                      
+  let err3= document.getElementById('err3')                                                                      
+  let err4= document.getElementById('err4')                                                                      
+  let err5= document.getElementById('err5')                                                                      
+                                                                     
+
+  if (productName == "") {
+    err1.innerHTML="product Name must be filled out";
+    return false;
+  } 
+  err1.innerHTML = "";
+
+  if (price == "") {
+    err2.innerHTML="price must be filled out";
+    return false;
+  } 
+  err2.innerHTML = "";
+
+  if (description1 == "") {
+    err3.innerHTML="description must be filled out";
+    return false;
+  } 
+  err3.innerHTML = "";
+
+   if (images == "") {
+    err4.innerHTML="image must be filled out";
+    return false;
+  }   err4.innerHTML = "";
+
+  if (countStock == "") {
+    err5.innerHTML="countStock must be filled out";
+    return false;
+  }
+  err5.innerHTML = "";
+
+
+    return true;
+  
+}
+
+
