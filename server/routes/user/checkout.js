@@ -11,6 +11,7 @@ const orderCollection = require("../../model/order_model")
 
 route.get('/', logauth, async (req, res) => {
     const userId = req.userId;
+    const user = await userCollection.findById(userId)
     const checkoutAddress = await checkoutCollection.find({ userId: userId })
 
     if (req.cookies.buynowproduct){
@@ -22,7 +23,6 @@ route.get('/', logauth, async (req, res) => {
       if(cartContent){
         cartItems.push({cartContent,quantity})
       }
-      console.log("buynewo",cartItems,checkoutAddress);
       res.render("checkout", { checkoutAddress, cartItems })
 
     }else {
@@ -36,7 +36,7 @@ route.get('/', logauth, async (req, res) => {
         return cartContent ? { cartContent, quantity } : null;
       }));
       
-      res.render("checkout", { checkoutAddress, cartItems })
+      res.render("checkout", { checkoutAddress, cartItems ,user})
     }
 
     }
@@ -167,6 +167,8 @@ route.get('/coupon/:promoCode',logauth,async(req,res)=>{
   const check = await couponCollection.findOne({promoCode:promoCode})
   if(check){
     const valid=check.startDate > new Date() < check.expDate;
+    // const valid = check.startDate > new Date() && check.expDate > new Date();
+
     if(valid){
       res.json(check)
     }
@@ -177,5 +179,29 @@ route.get('/coupon/:promoCode',logauth,async(req,res)=>{
     res.status(404).json({ error: 'Coupon not found' });
   }
 })
+
+
+
+// route.get('/coupon/:promoCode', logauth, async (req, res) => {
+//   const userId = req.userId;
+//   const promoCode = req.params.promoCode; 
+//   const check = await couponCollection.findOne({ promoCode: promoCode });
+
+//   if (check) {
+//     const valid = check.startDate > new Date() && check.expDate > new Date();
+
+//     if (valid) {
+//       res.json(check);
+//     } else {
+//       res.status(400).json({ error: 'Invalid coupon' });
+//     }
+//   } else {
+//     res.status(404).json({ error: 'Coupon not found' });
+//   }
+// });
+
+
+
+
 
 module.exports = route;

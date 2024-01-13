@@ -200,3 +200,57 @@ async function applyCoupon() {
   }
 
 }
+
+
+// async function applyCoupon() {
+//   const grandTotalElement = document.getElementById("grand");
+//   const promoCodeElement = document.getElementById("promoCode");
+
+//   const grandTotal = grandTotalElement.textContent;
+//   const promoCode = promoCodeElement.value;
+
+//   try {
+//     const response = await fetch(`/checkout/coupon/${promoCode}`);
+//     if (response.ok) {
+//       const couponData = await response.json();
+
+//       if (couponData.error) {
+//         showToast(couponData.error, "Black");
+//       } else {
+//         let discount = parseInt((grandTotal * couponData.profit) / 100);
+//         let total = grandTotal - discount;
+
+//         grandTotalElement.innerHTML = total;
+//         document.getElementById("discount").innerHTML = discount;
+//         document.getElementById("couponInput").style.display = "none";
+
+//         const buttons = document.querySelectorAll('.checkoutorder');
+//         buttons.forEach(button => {
+//           button.setAttribute('couponId', couponData._id);
+//         });
+
+//         showToast("Coupon applied successfully", "black");
+//       }
+//     } else {
+//       showToast("Invalid Coupon", "black");
+//     }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
+
+// function showToast(text, background) {
+//   Toastify({
+//     text,
+//     duration: 2000,
+//     newWindow: true,
+//     close: true,
+//     gravity: "top",
+//     position: "center",
+//     stopOnFocus: true,
+//     style: {
+//       background,
+//     },
+//   }).showToast();
+// }
