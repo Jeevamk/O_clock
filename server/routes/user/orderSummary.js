@@ -10,8 +10,7 @@ const { logauth } = require("../../middleware/auth_user");
 route.get('/',logauth,async(req,res) =>{
     const userId= req.userId;
     const user = await userCollection.findById(userId)
-    const orderDetails = await orderCollection.find({userId})
-    console.log("orderdetails : ",orderDetails);
+    const orderDetails = await orderCollection.find({ userId }).sort({ orderDate: -1 });
     const orderDatas = [];
     for (let orderDetail of orderDetails){
         for (let product of orderDetail.orderproducts){

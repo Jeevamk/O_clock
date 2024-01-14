@@ -167,4 +167,20 @@ route.delete("/delete_brand", async (req, res) => {
 });
 
 
+// route.delete("/delete_brand", async (req, res) => {
+//   try {
+//     const brandId = req.body.id;
+//     const associatedProducts = await productCollection.find({ brandId: brandId });
+//     for (let product of associatedProducts) {
+//       await productCollection.findByIdAndDelete(product._id);
+//     }
+//     await brandCollection.findByIdAndDelete(brandId);
+
+//     res.redirect(303, "/adminhome/brands");
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
+
+
 module.exports = route;

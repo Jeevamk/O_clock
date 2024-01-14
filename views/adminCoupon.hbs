@@ -131,8 +131,8 @@
                                         <td>{{promoCode}}</td>
                                         <td>{{couponType}}</td>
                                         <td>{{profit}}</td>
-                                        <td class="startDate">{{startDate}}</td>
-                                        <td>{{expDate}}</td>
+                                        <td id="startDate{{this._id}}"></td>
+                                        <td id="expDate{{this._id}}"></td>
 
                                         <td>
                                             <button type="button" class="view-coupon p-1 btn  btn-outline-dark m-1"
@@ -145,6 +145,11 @@
 
                                         </td>
                                     </tr>
+
+                                     <script>
+                                document.getElementById("startDate{{this._id}}").innerHTML="{{this.startDate}}".split(" ").slice(0,4).join(" ")
+                                document.getElementById("expDate{{this._id}}").innerHTML="{{this.expDate}}".split(" ").slice(0,4).join(" ")
+                            </script>
                                     {{/each}}
 
                                 </tbody>

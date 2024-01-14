@@ -132,4 +132,25 @@ route.delete("/delete_category", async (req, res) => {
 });
 
 
+
+// route.delete("/delete_category", async (req, res) => {
+//   try {
+//     const catId = req.body.id;
+
+//     const associatedProducts = await productCollection.find({ categoryId: catId });
+
+//     for (let product of associatedProducts) {
+//       await productCollection.findByIdAndDelete(product._id);
+//     }
+
+//     await categoryCollection.findByIdAndDelete(catId);
+
+//     res.redirect(303, "/adminhome/category");
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
+
+
+
 module.exports = route;

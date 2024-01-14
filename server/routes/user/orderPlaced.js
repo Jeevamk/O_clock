@@ -197,6 +197,18 @@ route.post("/", logauth, async (req, res) => {
         productid,
               { $inc: { countStock: -quantity } }
             );
+
+      const newstock =await productCollection.findById(productid);
+      const existCart = await cartcollection.find({productId:productid});
+      for (let item of existCart) {
+        if (newstock.countStock === 0) {
+          await cartcollection.deleteOne({ _id: item._id });
+        } else if (item.quantity > newstock.countStock) {
+          await cartcollection.updateOne({ _id: item._id }, { $set: { quantity: newstock.countStock } });
+        }else{
+          continue;
+        }
+      }
        
         res.json(orderData); 
     } 

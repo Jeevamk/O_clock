@@ -161,43 +161,26 @@ route.post("/buynow/:id", logauth, async (req, res) => {
 
 
 //coupon//
-route.get('/coupon/:promoCode',logauth,async(req,res)=>{
-  const userId = req.userId;
-  const promoCode = req.params.promoCode; 
-  const check = await couponCollection.findOne({promoCode:promoCode})
-  if(check){
-    const valid=check.startDate > new Date() < check.expDate;
 
-    if(valid){
-      res.json(check)
-    }
-    else {
+route.get('/coupon/:promoCode', logauth, async (req, res) => {
+  const userId = req.userId;
+  const promoCode = req.params.promoCode;
+  const check = await couponCollection.findOne({ promoCode: promoCode });
+
+  if (check) {
+    const currentDate = new Date();
+    if (check.startDate < currentDate && currentDate < check.expDate) {
+      res.json(check);
+    } else if (!(check.startDate < currentDate && currentDate < check.expDate)) {
       res.status(400).json({ error: 'Invalid coupon' });
+    }else{
+      res.status(404).json({ error: 'Coupon not found' });
     }
-  }else {
+  } else {
     res.status(404).json({ error: 'Coupon not found' });
   }
-})
+});
 
-
-
-// route.get('/coupon/:promoCode', logauth, async (req, res) => {
-//   const userId = req.userId;
-//   const promoCode = req.params.promoCode; 
-//   const check = await couponCollection.findOne({ promoCode: promoCode });
-
-//   if (check) {
-//     const valid = check.startDate > new Date() && check.expDate > new Date();
-
-//     if (valid) {
-//       res.json(check);
-//     } else {
-//       res.status(400).json({ error: 'Invalid coupon' });
-//     }
-//   } else {
-//     res.status(404).json({ error: 'Coupon not found' });
-//   }
-// });
 
 
 
