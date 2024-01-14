@@ -83,7 +83,7 @@ document.querySelectorAll(".deleteWishproduct").forEach((btn) => {
           "wishDelete"
         ).innerHTML = `<div id="deletealert"><h5> Are you confirm to delete this product from wishlist </h5> </div>
               <form id="deleteProductData">
-              <input type="text" class="form-control" hidden value="${productData._id}" name="id">
+              <input type="text" class="form-control" hidden value="${productData.productId}" name="id">
               <div class="col-sm-10">
               <button type="button" class="btn btn-dark"  onclick="deleteWish()" id="deleteButton">yes</button>
             </div>

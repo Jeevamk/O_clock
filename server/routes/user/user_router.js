@@ -451,12 +451,12 @@ route.post("/forgotpassword", async (req, res) => {
   const email = req.body.email;
   try {
     const userData = await userCollection.findOne({ email });
-    if (!userData) {
-      return res.status(400).send({ success: false, msg: "Email not valid" });
-    }
-
-
-    if (userData.status == 'active') {
+    console.log("user",userData);
+    if (userData == null) {
+      res.render('forgotpassword', {msg:"Email is not valid"})
+      // return res.status(400).send({ success: false, msg: "Email not valid" });
+    }else{
+      if (userData.status == 'active') {
       const randomString = randomstring.generate({ length: 5 });
       console.log(randomString);
       const randomtoken =await sendResetPasswordMail(email,randomString);
@@ -473,7 +473,13 @@ route.post("/forgotpassword", async (req, res) => {
 
         }
       }
+    }else {
+      res.render('forgotpassword', {msg:"user is blocked"})
     }
+    }
+
+
+    
   } catch (err) {
     res.status(400).send({ success: false, msg: err.message });
   }
