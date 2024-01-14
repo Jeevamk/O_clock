@@ -123,9 +123,9 @@ route.get("/delete/:id",logauth, async (req, res) => {
   
 route.delete("/delete", logauth, async (req, res) => {
     try {
+        const userId = req.userId;
         const proId = req.body.id;
-
-        const deleteproduct = await wishcollection.findByIdAndDelete(proId);
+        const deleteproduct = await wishcollection.deleteOne({productId:proId,userId:userId});
         return res.json(deleteproduct)    
     }
         catch (error) {
