@@ -14,9 +14,9 @@ passport.use(
     async (request, accessToken, refreshToken, profile, done) => {
       console.log('profile', profile)
       const userExist = await userCollection.findOne({
-        googleId: profile.id,
+        // googleId: profile.id,
+        email : profile.email[0].value
       });
-      console.log("fvgifdgi",profile);
       if (userExist) {
         return done(null, userExist);
       }
