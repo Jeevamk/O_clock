@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.querySelectorAll(".deleteWishproduct").forEach((btn) => {
   btn.addEventListener("click", async (event) => {
-    const Idproduct = await event.target.getAttribute("data-user-id");
+    const Idproduct = await event.target.getAttribute("data-product-id");
 
     try {
       const response = await fetch(`/wish/delete/${Idproduct}`);

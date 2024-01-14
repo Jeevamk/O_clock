@@ -340,11 +340,20 @@ a {
 
 @media screen and (max-width:550px) {
     .carousel-inner {
-        padding-top: 30px;
+        padding-top: 16px;
     }
     
 }
 
+@media screen and (max-width:426px) {
+    .text-head {
+        font-size: 20px;
+    }
+    .text-car{
+        font-size: 17px;
+    }
+    
+}
 
 @media screen and (max-width:685px) {
     .locator {
