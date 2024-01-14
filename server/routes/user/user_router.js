@@ -456,7 +456,7 @@ route.post("/forgotpassword", async (req, res) => {
       res.render('forgotpassword', {msg:"Email is not valid"})
       // return res.status(400).send({ success: false, msg: "Email not valid" });
     }else{
-      if (userData.status == 'active') {
+      if (userData.status == 'Active') {
       const randomString = randomstring.generate({ length: 5 });
       console.log(randomString);
       const randomtoken =await sendResetPasswordMail(email,randomString);
