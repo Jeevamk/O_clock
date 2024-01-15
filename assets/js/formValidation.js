@@ -579,11 +579,11 @@ function addbanner() {
 
 //product//
 function addproduct() {
-  let productName = document.forms["productForm"]["name"].value;
+  let productName = document.forms["productForm"]["name"].value.trim()
   let price = document.forms["productForm"]["price"].value;
-  let description1 = document.forms["productForm"]["description1"].value;
+  let description1 = document.forms["productForm"]["description1"].value.trim()
   let images = document.forms["productForm"]["images"].value;
-  let countStock = document.forms["productForm"]["countStock"].value;
+  let countStock = document.forms["productForm"]["countStock"].value.trim()
 
   let err1= document.getElementById('err1');
   let err2= document.getElementById('err2')                                                                      
@@ -622,7 +622,7 @@ function addproduct() {
   err5.innerHTML = "";
 
 
-    return true;
+  return true;
   
 }
 
