@@ -179,6 +179,12 @@
             </div>
         </div>
 
+        <script>
+                        var amountDisplay = document.getElementById("amountDisplay");
+                        var displayAmount = {{orders.totalAmountAfterDiscount}} || {{orders.grandtotal}};
+                        amountDisplay.textContent = displayAmount;
+                    </script>
+
 
 
 

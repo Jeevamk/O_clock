@@ -311,12 +311,18 @@
                         </div>
                     </div>
 
+<script>
+    var amountDisplay = document.getElementById("amountDisplay");
+    var displayAmount = 
+      {{#if myOrder.totalAmountAfterDiscount}}
+        {{myOrder.totalAmountAfterDiscount}}
+      {{else}}
+        {{myOrder.grandtotal}}
+      {{/if}};
 
-                    <script>
-                        var amountDisplay = document.getElementById("amountDisplay");
-                        var displayAmount = {{myOrder.totalAmountAfterDiscount}} || {{myOrder.grandtotal}};
-                        amountDisplay.textContent = displayAmount;
-                    </script>
+    amountDisplay.textContent = displayAmount;
+</script>
+
 
 
 
