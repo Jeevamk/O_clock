@@ -15,8 +15,9 @@ passport.use(
       console.log('profile', profile)
       const userExist = await userCollection.findOne({
         // googleId: profile.id,
-        email : profile.email[0].value
+        email : profile.emails[0].value
       });
+      console.log("userexist",userExist);
       if (userExist) {
         return done(null, userExist);
       }

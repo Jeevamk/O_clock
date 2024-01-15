@@ -31,7 +31,7 @@
 //signup//
 
 function validateForm() {
-  var name = document.forms["myform"]["name"].value;
+  var name = document.forms["myform"]["name"].value.trim();
   var email = document.forms["myform"]["email"].value;
   var phone = document.forms["myform"]["phone"].value;
   var password = document.forms["myform"]["password"].value;
@@ -303,10 +303,10 @@ function contactForm() {
 
 //checkout form//
 function checkout() {
-  var name = document.forms["checkoutForm"]["name"].value;
+  var name = document.forms["checkoutForm"]["name"].value.trim();
   var email = document.forms["checkoutForm"]["email"].value;
   var phone = document.forms["checkoutForm"]["phone"].value;
-  var address = document.forms["checkoutForm"]["address"].value;
+  var address = document.forms["checkoutForm"]["address"].value.trim();
   var area = document.forms["checkoutForm"]["area"].value;
   var pincode = document.forms["checkoutForm"]["pincode"].value;
   var city = document.forms["checkoutForm"]["city"].value;
@@ -352,17 +352,11 @@ function checkout() {
     emailError.innerHTML = "**Please fill in your email**";
     return false;
   }
-  if (
-    email.indexOf("@") <= 0 ||
-    (email.charAt(email.length - 4) !== "." &&
-      email.charAt(email.length - 3) !== ".")
-  ) {
+  if (! /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
     emailError.innerHTML = "**Invalid email format**";
     return false;
   }
   emailError.innerHTML = "";
-
-
 
   if (address === "") {
     Address.innerHTML = "**Please fill in your Address**";
@@ -384,10 +378,7 @@ function checkout() {
     pinAddress.innerHTML = "**Please fill in your Pincode**";
     return false;
   }
-  // if (pincode.length < 6) {
-  //   pinAddress.innerHTML = "**must be at least 6 characters**";
-  //   return false;
-  // }
+  
   if (!/^\d{6}$/.test(pincode)) {
     pinAddress.innerHTML = "**Pincode must  contain digits and 6 characters**";
     return false;
@@ -480,9 +471,9 @@ function addcoupon() {
 
 //edit profile//
 function editprofile() {
-  var name = document.forms["editform"]["name"].value;
-  var email = document.forms["editform"]["email"].value;
-  var phone = document.forms["editform"]["phone"].value;
+  var name = document.forms["editform"]["name"].value.trim()
+  var email = document.forms["editform"]["email"].value
+  var phone = document.forms["editform"]["phone"].value.trim()
   
   var nameError = document.getElementById("error");
   var emailError = document.getElementById("error1");
