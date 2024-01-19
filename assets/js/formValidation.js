@@ -80,7 +80,7 @@ function validateForm() {
     phoneError.innerHTML = "**Please fill in your phone**";
     return false;
   }
-  if (phone.length < 10) {
+  if (phone.length == 10) {
     phoneError.innerHTML = "**phone number must be at least 10 characters**";
     return false;
   }
@@ -279,15 +279,7 @@ function contactForm() {
     return false;
   }
   email = email.charAt(0).toLowerCase() + email.slice(1);
-  // if (
-  //   email.indexOf("@") <= 0 ||
-  //    (email.match(
-  //       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  //     ))
-  // ) {
-  //   cemailError.innerHTML = "**Invalid email format**";
-  //   return false;
-  // }
+  
   cemailError.innerHTML = "";
 
   if (subject === "") {
@@ -521,7 +513,7 @@ function editprofile() {
     phoneError.innerHTML = "**Please fill in your phone**";
     return false;
   }
-  if (phone.length < 10) {
+  if (phone.length == 10) {
     phoneError.innerHTML = "**phone number must be at least 10 characters**";
     return false;
   }
