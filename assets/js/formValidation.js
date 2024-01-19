@@ -305,7 +305,7 @@ function contactForm() {
 function checkout() {
   var name = document.forms["checkoutForm"]["name"].value.trim();
   var email = document.forms["checkoutForm"]["email"].value;
-  var phone = document.forms["checkoutForm"]["phone"].value;
+  var phone = document.forms["checkoutForm"]["phone"].value.trim();
   var address = document.forms["checkoutForm"]["address"].value.trim();
   var area = document.forms["checkoutForm"]["area"].value;
   var pincode = document.forms["checkoutForm"]["pincode"].value;
@@ -342,10 +342,14 @@ function checkout() {
     phoneError.innerHTML = "**Please fill in your phone**";
     return false;
   }
-  if (phone.length < 10) {
+  if (phone.length == 10) {
     phoneError.innerHTML = "**phone number must be at least 10 characters**";
     return false;
   }
+  if (isNaN(phone)) {
+    phoneError.innerHTML = "**Phone number must only contain digits**";
+    return false;
+}
   phoneError.innerHTML = "";
 
   if (email === "") {
