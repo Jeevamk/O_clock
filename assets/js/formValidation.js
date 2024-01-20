@@ -322,7 +322,7 @@ function checkout() {
     nameError.innerHTML = "**name must be at  3 characters**";
     return false;
   }
-  if (!/^[a-zA-Z]+$/.test(name)) {
+  if (!/^[a-zA-Z\s]+$/.test(name)) {
     nameError.innerHTML = "**Name must only contain letters**";
     return false;
   }
