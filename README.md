@@ -8,4 +8,21 @@
 * Node.js
 * Express.js
 * MongoDB
-* Twilio, Nodemailer, Razorpay, Cropper.js , Zoom.js, Cloudinary, OAuth 2.0, JWT,nginx, AWS, EC2, Git, Route53, GitHub, Nodemon, passport, chartjs, Toastify.
+* Twilio
+* Nodemailer
+* Razorpay
+* Cropper.js
+* Zoom.js
+* Cloudinary
+*  OAuth 2.0
+*  JWT
+*  nginx
+*  AWS
+*  EC2
+*  Git
+*  Route53
+*  GitHub
+*  Nodemon
+*  passport
+* chartjs
+* Toastify.
