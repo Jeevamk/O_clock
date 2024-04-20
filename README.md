@@ -14,8 +14,8 @@ Technologies used,
 * Cropper.js
 * Zoom.js
 * Cloudinary
-*  OAuth 2.0
-*  JWT
+* OAuth 2.0
+* JWT
 *  nginx
 *  AWS
 *  EC2
