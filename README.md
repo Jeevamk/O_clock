@@ -1,5 +1,6 @@
 # E-commerce website (Watch) O|o' Clock 
 Technologies used,
+<hr />
 * HTML
 * CSS
 * Bootstrap
